@@ -33,7 +33,13 @@ func _ready() -> void:
 	_place_buttons()
 
 
+func _process(_delta: float) -> void:
+	visible = Pacto.active
+
+
 func _input(event: InputEvent) -> void:
+	if not visible:
+		return
 	if event is InputEventScreenTouch:
 		_on_touch(event)
 	elif event is InputEventScreenDrag:

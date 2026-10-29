@@ -20,6 +20,8 @@ var is_depleted: bool = false
 
 
 func _ready() -> void:
+	body_entered.connect(_on_body_entered)
+	body_exited.connect(_on_body_exited)
 	if outline_mesh:
 		outline_mesh.visible = false
 

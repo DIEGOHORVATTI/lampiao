@@ -4,8 +4,8 @@ var failures: Array[String] = []
 
 
 func _ready() -> void:
-	add_child(load("res://main.tscn").instantiate())
-	await _frames(30)
+	add_child(load("res://world/sertao/sertao.tscn").instantiate())
+	await get_tree().create_timer(1.5).timeout
 
 	var touch := get_node_or_null("/root/TouchControls")
 	_check(touch != null, "TouchControls ativo")
