@@ -212,6 +212,9 @@ quando a vingança acaba, e se ela acaba.
 - **Comer o que é dono de si:** Comadre Fulozinha, Caipora, Batatão (fogo não enche barriga) e
   **o Lobisomem** (ver cap. 7: "bicho não come bicho do mesmo couro").
 - **Ficar em chão consagrado** sem pagar com a vida de Lampião.
+- **Comer gente morta.** A Boca funciona em criatura caída. Em gente, só **viva e rendida**, e
+  só quando Lampião deixa (as escolhas morais). Soldado morto em combate não serve: "Morto de
+  bala num presta. Eu quero é vivo." Por isso a Marca só sobe nas escolhas.
 - **Mentir sobre o trato.** Ele engana, provoca e esconde, mas o que foi tratado ele cumpre, e
   cobra.
 - **Tomar o corpo antes da hora**, a não ser que a fome encha (possessão).
@@ -222,7 +225,7 @@ quando a vingança acaba, e se ela acaba.
 |---|---|---|
 | 0–49 | **Calmo** | normal; o Encosto comenta de vez em quando |
 | 50–74 | **Inquieto** | sussurros, barriga roncando no som, a borda da tela escurece |
-| 75–94 | **Faminto** | a visão puxa para o vermelho, as mãos tremem (mira pior), e as Raízes **atacam sozinhas** o que estiver a 3 m, **inclusive gente** |
+| 75–94 | **Faminto** | a visão puxa para o vermelho, as mãos tremem (mira pior), e as Raízes **atacam sozinhas** o que estiver a 3 m, **inclusive gente** (ferem, não comem; um NPC ferido assim pode morrer e isso pesa na fala do povo) |
 | 95–100 | **Tomado** | possessão: o Encosto assume e é fim de jogo ("Agora é minha vez, garoto.") |
 
 - A fome sobe com o tempo: ~1 ponto a cada 3 s na luz e ~1 a cada 1,5 s no escuro.
