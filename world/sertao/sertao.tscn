@@ -1,20 +1,21 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://common/managers/input_manager.gd" id="1_ersvw"]
-[ext_resource type="PackedScene" path="res://player/player.tscn" id="2_fqe80"]
-[ext_resource type="Script" path="res://player/player.gd" id="3_oxv22"]
-[ext_resource type="Script" path="res://world/sertao/lantern_rig.gd" id="4_8bw7n"]
-[ext_resource type="PackedScene" path="res://common/hud/gameplay_hud.tscn" id="5_6viej"]
-[ext_resource type="Script" path="res://common/hud/hud.gd" id="6_ti7l2"]
-[ext_resource type="Script" path="res://world/sertao/nav_bake.gd" id="7_0yykg"]
-[ext_resource type="Script" path="res://world/sertao/prop.gd" id="8_njlop"]
-[ext_resource type="PackedScene" path="res://common/spawner/spawner.tscn" id="9_7rj5q"]
-[ext_resource type="Script" path="res://common/spawner/spawner.gd" id="10_17lcu"]
-[ext_resource type="PackedScene" path="res://enemies/undead.tscn" id="11_reeuu"]
-[ext_resource type="PackedScene" path="res://common/utils/ammo_refil.tscn" id="12_xg381"]
-[ext_resource type="Script" path="res://common/utils/ammo_refil.gd" id="13_r1on4"]
+[ext_resource type="Script" path="res://common/managers/input_manager.gd" id="1_fqe80"]
+[ext_resource type="PackedScene" path="res://player/player.tscn" id="2_oxv22"]
+[ext_resource type="Script" path="res://player/player.gd" id="3_8bw7n"]
+[ext_resource type="Script" path="res://world/sertao/lantern_rig.gd" id="4_6viej"]
+[ext_resource type="PackedScene" path="res://common/hud/gameplay_hud.tscn" id="5_ti7l2"]
+[ext_resource type="Script" path="res://common/hud/hud.gd" id="6_0yykg"]
+[ext_resource type="Script" path="res://world/sertao/nav_bake.gd" id="7_njlop"]
+[ext_resource type="Script" path="res://world/sertao/prop.gd" id="8_7rj5q"]
+[ext_resource type="PackedScene" path="res://common/spawner/spawner.tscn" id="9_17lcu"]
+[ext_resource type="Script" path="res://common/spawner/spawner.gd" id="10_reeuu"]
+[ext_resource type="PackedScene" path="res://enemies/corpo_seco.tscn" id="11_xg381"]
+[ext_resource type="Script" path="res://world/sertao/kerosene_pickup.gd" id="12_r1on4"]
+[ext_resource type="PackedScene" path="res://common/utils/ammo_refil.tscn" id="13_765ih"]
+[ext_resource type="Script" path="res://common/utils/ammo_refil.gd" id="14_giokp"]
 
-[sub_resource type="Environment" id="Environment_765ih"]
+[sub_resource type="Environment" id="Environment_bq7a8"]
 background_mode = 1
 background_color = Color(0.02, 0.02, 0.035, 1)
 ambient_light_source = 2
@@ -27,45 +28,45 @@ fog_enabled = true
 fog_light_color = Color(0.05, 0.05, 0.07, 1)
 fog_density = 0.045
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_giokp"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_pb8r7"]
 geometry_parsed_geometry_type = 1
 agent_max_slope = 40.0
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_bq7a8"]
-size = Vector3(80, 10, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_pb8r7"]
-size = Vector3(80, 10, 1)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_8cys5"]
-size = Vector3(1, 10, 80)
+size = Vector3(80, 10, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_heqs4"]
+size = Vector3(80, 10, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2k5qn"]
 size = Vector3(1, 10, 80)
 
-[node name="Sertao" type="Node3D" unique_id=1584821332]
+[sub_resource type="BoxShape3D" id="BoxShape3D_xc5mo"]
+size = Vector3(1, 10, 80)
 
-[node name="InputManager" type="Node" parent="." unique_id=122532117]
-script = ExtResource("1_ersvw")
+[node name="Sertao" type="Node3D" unique_id=1089763719]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=248781705]
-environment = SubResource("Environment_765ih")
+[node name="InputManager" type="Node" parent="." unique_id=97224050]
+script = ExtResource("1_fqe80")
 
-[node name="Lua" type="DirectionalLight3D" parent="." unique_id=224236020]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1606136473]
+environment = SubResource("Environment_bq7a8")
+
+[node name="Lua" type="DirectionalLight3D" parent="." unique_id=17288310]
 transform = Transform3D(0.8660254, -0.28678823, 0.40957603, 0, 0.81915206, 0.57357645, -0.5, -0.49673176, 0.7094065, 0, 0, 0)
 light_color = Color(0.55, 0.62, 0.85, 1)
 light_energy = 0.18
 
-[node name="Player" type="CharacterBody3D" parent="." unique_id=1157596601 groups=["door_access", "player"] instance=ExtResource("2_fqe80")]
+[node name="Player" type="CharacterBody3D" parent="." unique_id=1157596601 groups=["door_access", "player"] instance=ExtResource("2_oxv22")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 22)
-script = ExtResource("3_oxv22")
+script = ExtResource("3_8bw7n")
 
-[node name="LampiaoRig" type="Node" parent="." unique_id=1173216451]
-script = ExtResource("4_8bw7n")
+[node name="LampiaoRig" type="Node" parent="." unique_id=455559240]
+script = ExtResource("4_6viej")
 
-[node name="HUD" type="CanvasLayer" parent="." unique_id=638819196]
+[node name="HUD" type="CanvasLayer" parent="." unique_id=432240530]
 
-[node name="Control" type="Control" parent="HUD" unique_id=581381809 instance=ExtResource("5_6viej")]
+[node name="Control" type="Control" parent="HUD" unique_id=581381809 instance=ExtResource("5_ti7l2")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -73,605 +74,625 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("6_ti7l2")
+script = ExtResource("6_0yykg")
 
-[node name="NavigationRegion" type="NavigationRegion3D" parent="." unique_id=259908700]
-navigation_mesh = SubResource("NavigationMesh_giokp")
-script = ExtResource("7_0yykg")
+[node name="NavigationRegion" type="NavigationRegion3D" parent="." unique_id=1907735401]
+navigation_mesh = SubResource("NavigationMesh_pb8r7")
+script = ExtResource("7_njlop")
 
-[node name="Cenario" type="Node3D" parent="NavigationRegion" unique_id=1822879464]
+[node name="Cenario" type="Node3D" parent="NavigationRegion" unique_id=1354759617]
 
-[node name="terreno_7" type="Node3D" parent="NavigationRegion/Cenario" unique_id=183054929]
-script = ExtResource("8_njlop")
+[node name="terreno_7" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1484043141]
+script = ExtResource("8_7rj5q")
 kind = "terreno"
 seed = 7
 
-[node name="casa_taipa_3" type="Node3D" parent="NavigationRegion/Cenario" unique_id=407619010]
+[node name="casa_taipa_3" type="Node3D" parent="NavigationRegion/Cenario" unique_id=144945136]
 transform = Transform3D(0.40613842, 0, 0.91381156, 0, 1, 0, -0.91381156, 0, 0.40613842, -9, 0, -4)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "casa_taipa"
 seed = 3
 
-[node name="lampiao_0" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1580744462]
+[node name="lampiao_0" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1518589194]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.8930407, 1.6, -2.6191292)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "lampiao"
 
-[node name="casa_taipa_4" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1603152284]
+[node name="casa_taipa_4" type="Node3D" parent="NavigationRegion/Cenario" unique_id=881041998]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -11)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "casa_taipa"
 seed = 4
 
-[node name="lampiao_1" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1957328888]
+[node name="lampiao_1" type="Node3D" parent="NavigationRegion/Cenario" unique_id=374388127]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, -7.6)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "lampiao"
 seed = 1
 
-[node name="casa_taipa_5" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1781010758]
+[node name="casa_taipa_5" type="Node3D" parent="NavigationRegion/Cenario" unique_id=315077812]
 transform = Transform3D(0.44721356, 0, -0.89442724, 0, 1, 0, 0.89442724, 0, 0.44721356, 10, 0, -5)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "casa_taipa"
 seed = 5
 
-[node name="lampiao_2" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1619948767]
+[node name="lampiao_2" type="Node3D" parent="NavigationRegion/Cenario" unique_id=479372452]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.958947, 1.6, -3.4794736)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "lampiao"
 seed = 2
 
-[node name="casa_taipa_6" type="Node3D" parent="NavigationRegion/Cenario" unique_id=452462489]
+[node name="casa_taipa_6" type="Node3D" parent="NavigationRegion/Cenario" unique_id=833005873]
 transform = Transform3D(-0.8320503, 0, 0.5547002, 0, 1, 0, -0.5547002, 0, -0.8320503, -6, 0, 9)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "casa_taipa"
 seed = 6
 
-[node name="lampiao_3" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1235434050]
+[node name="lampiao_3" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1189500280]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1140194, 1.6, 6.171029)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "lampiao"
 seed = 3
 
-[node name="poco_1" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1382091408]
+[node name="poco_1" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1474107154]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "poco"
 seed = 1
 
-[node name="cerca_varas_40" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1341173815]
+[node name="cerca_varas_40" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1649152473]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 18, 0, -14)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "cerca_varas"
 seed = 40
 
-[node name="cerca_varas_41" type="Node3D" parent="NavigationRegion/Cenario" unique_id=12355221]
+[node name="cerca_varas_41" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1631987008]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 18.2, 0, -6.4)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "cerca_varas"
 seed = 41
 
-[node name="cerca_varas_42" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1469621486]
+[node name="cerca_varas_42" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1110699189]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 18, 0, 1.2)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "cerca_varas"
 seed = 42
 
-[node name="cerca_varas_43" type="Node3D" parent="NavigationRegion/Cenario" unique_id=658733833]
+[node name="cerca_varas_43" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1289433406]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 18.2, 0, 8.8)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "cerca_varas"
 seed = 43
 
-[node name="cerca_varas_44" type="Node3D" parent="NavigationRegion/Cenario" unique_id=997396094]
+[node name="cerca_varas_44" type="Node3D" parent="NavigationRegion/Cenario" unique_id=275034618]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 18, 0, 16.4)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "cerca_varas"
 seed = 44
 
-[node name="cerca_varas_45" type="Node3D" parent="NavigationRegion/Cenario" unique_id=270126718]
+[node name="cerca_varas_45" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1150866492]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 18.2, 0, 24)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "cerca_varas"
 seed = 45
 
-[node name="cerca_varas_50" type="Node3D" parent="NavigationRegion/Cenario" unique_id=328380704]
+[node name="cerca_varas_50" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1648187327]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, -18)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "cerca_varas"
 seed = 50
 
-[node name="cerca_varas_51" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1431450528]
+[node name="cerca_varas_51" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1179269048]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.6, 0, -18)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "cerca_varas"
 seed = 51
 
-[node name="cerca_varas_52" type="Node3D" parent="NavigationRegion/Cenario" unique_id=2132199536]
+[node name="cerca_varas_52" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1556017442]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.2, 0, -18)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "cerca_varas"
 seed = 52
 
-[node name="cerca_varas_53" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1191953346]
+[node name="cerca_varas_53" type="Node3D" parent="NavigationRegion/Cenario" unique_id=719091738]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.8, 0, -18)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "cerca_varas"
 seed = 53
 
-[node name="cruz_60" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1012947589]
+[node name="cruz_60" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1076626033]
 transform = Transform3D(0.9849101, 0, -0.17306691, 0, 1, 0, 0.17306691, 0, 0.9849101, -23.971096, 0, -26)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "cruz"
 seed = 60
 
-[node name="cruz_61" type="Node3D" parent="NavigationRegion/Cenario" unique_id=52012718]
+[node name="cruz_61" type="Node3D" parent="NavigationRegion/Cenario" unique_id=27713716]
 transform = Transform3D(0.9851436, 0, -0.17173263, 0, 1, 0, 0.17173263, 0, 0.9851436, -21.907179, 0, -26)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "cruz"
 seed = 61
 
-[node name="cruz_62" type="Node3D" parent="NavigationRegion/Cenario" unique_id=561456868]
+[node name="cruz_62" type="Node3D" parent="NavigationRegion/Cenario" unique_id=976892589]
 transform = Transform3D(0.9933365, 0, 0.11525017, 0, 1, 0, -0.11525017, 0, 0.9933365, -19.964813, 0, -26)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "cruz"
 seed = 62
 
-[node name="cruz_63" type="Node3D" parent="NavigationRegion/Cenario" unique_id=431763743]
+[node name="cruz_63" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1630994752]
 transform = Transform3D(0.99607766, 0, 0.08848335, 0, 1, 0, -0.08848335, 0, 0.99607766, -17.758175, 0, -26)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "cruz"
 seed = 63
 
-[node name="cruz_64" type="Node3D" parent="NavigationRegion/Cenario" unique_id=823183975]
+[node name="cruz_64" type="Node3D" parent="NavigationRegion/Cenario" unique_id=804485657]
 transform = Transform3D(0.99773777, 0, -0.0672265, 0, 1, 0, 0.0672265, 0, 0.99773777, -15.270266, 0, -26)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "cruz"
 seed = 64
 
-[node name="cruz_65" type="Node3D" parent="NavigationRegion/Cenario" unique_id=465885307]
+[node name="cruz_65" type="Node3D" parent="NavigationRegion/Cenario" unique_id=646745504]
 transform = Transform3D(0.986535, 0, 0.16355014, 0, 1, 0, -0.16355014, 0, 0.986535, -23.640736, 0, -28.6)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "cruz"
 seed = 65
 
-[node name="cruz_66" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1101844741]
+[node name="cruz_66" type="Node3D" parent="NavigationRegion/Cenario" unique_id=237704316]
 transform = Transform3D(0.9908833, 0, -0.13472293, 0, 1, 0, 0.13472293, 0, 0.9908833, -22.020649, 0, -28.6)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "cruz"
 seed = 66
 
-[node name="cruz_67" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1111059335]
+[node name="cruz_67" type="Node3D" parent="NavigationRegion/Cenario" unique_id=677872884]
 transform = Transform3D(0.9941877, 0, 0.10766051, 0, 1, 0, -0.10766051, 0, 0.9941877, -19.417591, 0, -28.6)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "cruz"
 seed = 67
 
-[node name="cruz_68" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1686430384]
+[node name="cruz_68" type="Node3D" parent="NavigationRegion/Cenario" unique_id=49766074]
 transform = Transform3D(0.98644567, 0, 0.16408809, 0, 1, 0, -0.16408809, 0, 0.98644567, -17.266228, 0, -28.6)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "cruz"
 seed = 68
 
-[node name="cruz_69" type="Node3D" parent="NavigationRegion/Cenario" unique_id=110504779]
+[node name="cruz_69" type="Node3D" parent="NavigationRegion/Cenario" unique_id=890258133]
 transform = Transform3D(0.99937904, 0, 0.035236172, 0, 1, 0, -0.035236172, 0, 0.99937904, -15.314157, 0, -28.6)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "cruz"
 seed = 69
 
-[node name="cruz_70" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1298806679]
+[node name="cruz_70" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1951764818]
 transform = Transform3D(0.99886185, 0, -0.047696754, 0, 1, 0, 0.047696754, 0, 0.99886185, -24.070107, 0, -31.2)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "cruz"
 seed = 70
 
-[node name="cruz_71" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1404959169]
+[node name="cruz_71" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1846247411]
 transform = Transform3D(0.98122305, 0, -0.19287637, 0, 1, 0, 0.19287637, 0, 0.98122305, -21.631285, 0, -31.2)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "cruz"
 seed = 71
 
-[node name="cruz_72" type="Node3D" parent="NavigationRegion/Cenario" unique_id=896791334]
+[node name="cruz_72" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1992120829]
 transform = Transform3D(0.99927187, 0, -0.038154755, 0, 1, 0, 0.038154755, 0, 0.99927187, -19.342182, 0, -31.2)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "cruz"
 seed = 72
 
-[node name="cruz_73" type="Node3D" parent="NavigationRegion/Cenario" unique_id=984071355]
+[node name="cruz_73" type="Node3D" parent="NavigationRegion/Cenario" unique_id=380224607]
 transform = Transform3D(0.99176747, 0, -0.1280517, 0, 1, 0, 0.1280517, 0, 0.99176747, -17.364977, 0, -31.2)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "cruz"
 seed = 73
 
-[node name="mandacaru_100" type="Node3D" parent="NavigationRegion/Cenario" unique_id=331742330]
+[node name="mandacaru_100" type="Node3D" parent="NavigationRegion/Cenario" unique_id=563930725]
 transform = Transform3D(0.8117941, 0, -0.5839438, 0, 1, 0, 0.5839438, 0, 0.8117941, 8.650003, 0, 15.150852)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 seed = 100
 
-[node name="mandacaru_101" type="Node3D" parent="NavigationRegion/Cenario" unique_id=626676115]
+[node name="mandacaru_101" type="Node3D" parent="NavigationRegion/Cenario" unique_id=307280229]
 transform = Transform3D(0.7069809, 0, -0.70723265, 0, 1, 0, 0.70723265, 0, 0.7069809, -2.1442752, 0, 16.84714)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 seed = 101
 
-[node name="mandacaru_102" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1201272042]
+[node name="mandacaru_102" type="Node3D" parent="NavigationRegion/Cenario" unique_id=377770975]
 transform = Transform3D(0.5288425, 0, -0.84871995, 0, 1, 0, 0.84871995, 0, 0.5288425, -11.838206, 0, -5.6711855)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 seed = 102
 
-[node name="mandacaru_103" type="Node3D" parent="NavigationRegion/Cenario" unique_id=2103636113]
+[node name="mandacaru_103" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1581635806]
 transform = Transform3D(0.5832644, 0, -0.8122824, 0, 1, 0, 0.8122824, 0, 0.5832644, 24.501307, 0, -14.681876)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 seed = 103
 
-[node name="mandacaru_104" type="Node3D" parent="NavigationRegion/Cenario" unique_id=291789321]
+[node name="mandacaru_104" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1519299331]
 transform = Transform3D(-0.48736322, 0, -0.87319934, 0, 1, 0, 0.87319934, 0, -0.48736322, -21.854889, 0, -15.044025)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 seed = 104
 
-[node name="mandacaru_105" type="Node3D" parent="NavigationRegion/Cenario" unique_id=227286258]
+[node name="mandacaru_105" type="Node3D" parent="NavigationRegion/Cenario" unique_id=824726821]
 transform = Transform3D(-0.1630635, 0, 0.9866156, 0, 1, 0, -0.9866156, 0, -0.1630635, -12.897078, 0, 4.013464)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 seed = 105
 
-[node name="mandacaru_106" type="Node3D" parent="NavigationRegion/Cenario" unique_id=2108610361]
+[node name="mandacaru_106" type="Node3D" parent="NavigationRegion/Cenario" unique_id=309946693]
 transform = Transform3D(-0.61756545, 0, 0.78651947, 0, 1, 0, -0.78651947, 0, -0.61756545, -20.310766, 0, 13.050717)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 seed = 106
 
-[node name="mandacaru_107" type="Node3D" parent="NavigationRegion/Cenario" unique_id=4821044]
+[node name="mandacaru_107" type="Node3D" parent="NavigationRegion/Cenario" unique_id=707138143]
 transform = Transform3D(-0.947367, 0, -0.3201495, 0, 1, 0, 0.3201495, 0, -0.947367, 3.7260675, 0, 18.270794)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 seed = 107
 
-[node name="mandacaru_108" type="Node3D" parent="NavigationRegion/Cenario" unique_id=133475046]
+[node name="mandacaru_108" type="Node3D" parent="NavigationRegion/Cenario" unique_id=95779531]
 transform = Transform3D(0.2723542, 0, -0.96219707, 0, 1, 0, 0.96219707, 0, 0.2723542, -18.321966, 0, -0.56566644)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 seed = 108
 
-[node name="mandacaru_109" type="Node3D" parent="NavigationRegion/Cenario" unique_id=522809503]
+[node name="mandacaru_109" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1450395555]
 transform = Transform3D(-0.9534813, 0, 0.30145207, 0, 1, 0, -0.30145207, 0, -0.9534813, -17.038422, 0, -20.010517)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 seed = 109
 
-[node name="mandacaru_110" type="Node3D" parent="NavigationRegion/Cenario" unique_id=661615361]
+[node name="mandacaru_110" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1775992587]
 transform = Transform3D(0.5577393, 0, 0.8300162, 0, 1, 0, -0.8300162, 0, 0.5577393, -7.192863, 0, 16.939444)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 seed = 110
 
-[node name="mandacaru_111" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1215546182]
+[node name="mandacaru_111" type="Node3D" parent="NavigationRegion/Cenario" unique_id=2119632083]
 transform = Transform3D(-0.99932396, 0, 0.03676507, 0, 1, 0, -0.03676507, 0, -0.99932396, -26.840103, 0, -14.486823)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 seed = 111
 
-[node name="mandacaru_112" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1476234923]
+[node name="mandacaru_112" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1982866544]
 transform = Transform3D(0.33475742, 0, 0.9423044, 0, 1, 0, -0.9423044, 0, 0.33475742, 8.072902, 0, -12.214996)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 seed = 112
 
-[node name="mandacaru_113" type="Node3D" parent="NavigationRegion/Cenario" unique_id=937865345]
+[node name="mandacaru_113" type="Node3D" parent="NavigationRegion/Cenario" unique_id=733328689]
 transform = Transform3D(0.99149626, 0, 0.130135, 0, 1, 0, -0.130135, 0, 0.99149626, 18.068642, 0, 26.705448)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 seed = 113
 
-[node name="mandacaru_114" type="Node3D" parent="NavigationRegion/Cenario" unique_id=829410222]
+[node name="mandacaru_114" type="Node3D" parent="NavigationRegion/Cenario" unique_id=405669959]
 transform = Transform3D(0.92627555, 0, 0.37684685, 0, 1, 0, -0.37684685, 0, 0.92627555, 14.943716, 0, -24.94367)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 seed = 114
 
-[node name="mandacaru_115" type="Node3D" parent="NavigationRegion/Cenario" unique_id=57099057]
+[node name="mandacaru_115" type="Node3D" parent="NavigationRegion/Cenario" unique_id=715618462]
 transform = Transform3D(0.5945235, 0, 0.8040782, 0, 1, 0, -0.8040782, 0, 0.5945235, 1.1172374, 0, -15.66159)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 seed = 115
 
-[node name="mandacaru_116" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1753459058]
+[node name="mandacaru_116" type="Node3D" parent="NavigationRegion/Cenario" unique_id=277156009]
 transform = Transform3D(-0.29386193, 0, 0.95584786, 0, 1, 0, -0.95584786, 0, -0.29386193, -23.802467, 0, -13.963175)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 seed = 116
 
-[node name="mandacaru_117" type="Node3D" parent="NavigationRegion/Cenario" unique_id=153881769]
+[node name="mandacaru_117" type="Node3D" parent="NavigationRegion/Cenario" unique_id=2075020720]
 transform = Transform3D(-0.8870958, 0, 0.4615854, 0, 1, 0, -0.4615854, 0, -0.8870958, -12.251758, 0, 0.26310772)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 seed = 117
 
-[node name="mandacaru_118" type="Node3D" parent="NavigationRegion/Cenario" unique_id=787042451]
+[node name="mandacaru_118" type="Node3D" parent="NavigationRegion/Cenario" unique_id=158026556]
 transform = Transform3D(0.3877087, 0, 0.92178196, 0, 1, 0, -0.92178196, 0, 0.3877087, -22.00804, 0, 7.1225233)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 seed = 118
 
-[node name="mandacaru_119" type="Node3D" parent="NavigationRegion/Cenario" unique_id=377306527]
+[node name="mandacaru_119" type="Node3D" parent="NavigationRegion/Cenario" unique_id=129080594]
 transform = Transform3D(0.5671663, 0, -0.8236033, 0, 1, 0, 0.8236033, 0, 0.5671663, 1.7158914, 0, -12.866208)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 seed = 119
 
-[node name="mandacaru_120" type="Node3D" parent="NavigationRegion/Cenario" unique_id=2128139343]
+[node name="mandacaru_120" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1541371649]
 transform = Transform3D(0.88805014, 0, 0.4597466, 0, 1, 0, -0.4597466, 0, 0.88805014, -4.9982047, 0, 11.462696)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 seed = 120
 
-[node name="mandacaru_121" type="Node3D" parent="NavigationRegion/Cenario" unique_id=62558147]
+[node name="mandacaru_121" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1873430728]
 transform = Transform3D(0.2830581, 0, -0.95910275, 0, 1, 0, 0.95910275, 0, 0.2830581, 1.7129104, 0, 32.549843)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 seed = 121
 
-[node name="mandacaru_122" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1762873306]
+[node name="mandacaru_122" type="Node3D" parent="NavigationRegion/Cenario" unique_id=62860257]
 transform = Transform3D(0.9999996, 0, -0.0009334722, 0, 1, 0, 0.0009334722, 0, 0.9999996, 4.618654, 0, 12.36177)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 seed = 122
 
-[node name="mandacaru_123" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1289440901]
+[node name="mandacaru_123" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1420925357]
 transform = Transform3D(-0.7438868, 0, 0.66830564, 0, 1, 0, -0.66830564, 0, -0.7438868, 25.572538, 0, 15.4940815)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 seed = 123
 
-[node name="mandacaru_124" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1244622973]
+[node name="mandacaru_124" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1434851888]
 transform = Transform3D(-0.20543498, 0, 0.9786708, 0, 1, 0, -0.9786708, 0, -0.20543498, 17.314873, 0, -22.80708)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 seed = 124
 
-[node name="mandacaru_125" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1785968397]
+[node name="mandacaru_125" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1963381638]
 transform = Transform3D(-0.1588148, 0, -0.9873084, 0, 1, 0, 0.9873084, 0, -0.1588148, -18.24395, 0, 10.368186)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 seed = 125
 
-[node name="arvore_seca_200" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1832168984]
+[node name="arvore_seca_200" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1863412760]
 transform = Transform3D(-0.33443013, 0, 0.94242054, 0, 1, 0, -0.94242054, 0, -0.33443013, -15.348983, 0, -28.26018)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "arvore_seca"
 seed = 200
 
-[node name="arvore_seca_201" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1618677031]
+[node name="arvore_seca_201" type="Node3D" parent="NavigationRegion/Cenario" unique_id=216990689]
 transform = Transform3D(-0.69248563, 0, -0.7214317, 0, 1, 0, 0.7214317, 0, -0.69248563, -4.5989666, 0, 22.88192)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "arvore_seca"
 seed = 201
 
-[node name="arvore_seca_202" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1757712322]
+[node name="arvore_seca_202" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1253063638]
 transform = Transform3D(0.99392813, 0, 0.11003122, 0, 1, 0, -0.11003122, 0, 0.99392813, 13.339232, 0, 29.08133)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "arvore_seca"
 seed = 202
 
-[node name="arvore_seca_203" type="Node3D" parent="NavigationRegion/Cenario" unique_id=342318420]
+[node name="arvore_seca_203" type="Node3D" parent="NavigationRegion/Cenario" unique_id=969879637]
 transform = Transform3D(0.3833317, 0, 0.92361075, 0, 1, 0, -0.92361075, 0, 0.3833317, 12.5746975, 0, 13.689489)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "arvore_seca"
 seed = 203
 
-[node name="arvore_seca_204" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1795969802]
+[node name="arvore_seca_204" type="Node3D" parent="NavigationRegion/Cenario" unique_id=125772024]
 transform = Transform3D(-0.6490395, 0, -0.7607547, 0, 1, 0, 0.7607547, 0, -0.6490395, -20.130962, 0, 0.6052775)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "arvore_seca"
 seed = 204
 
-[node name="arvore_seca_205" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1338283479]
+[node name="arvore_seca_205" type="Node3D" parent="NavigationRegion/Cenario" unique_id=505197006]
 transform = Transform3D(-0.4841611, 0, 0.87497884, 0, 1, 0, -0.87497884, 0, -0.4841611, 28.819984, 0, -19.146513)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "arvore_seca"
 seed = 205
 
-[node name="arvore_seca_206" type="Node3D" parent="NavigationRegion/Cenario" unique_id=2048359710]
+[node name="arvore_seca_206" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1022034573]
 transform = Transform3D(-0.13274264, 0, 0.99115056, 0, 1, 0, -0.99115056, 0, -0.13274264, 19.852118, 0, 8.136474)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "arvore_seca"
 seed = 206
 
-[node name="arvore_seca_207" type="Node3D" parent="NavigationRegion/Cenario" unique_id=788161479]
+[node name="arvore_seca_207" type="Node3D" parent="NavigationRegion/Cenario" unique_id=485164596]
 transform = Transform3D(-0.90422434, 0, -0.4270577, 0, 1, 0, 0.4270577, 0, -0.90422434, -10.348905, 0, 11.669853)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "arvore_seca"
 seed = 207
 
-[node name="arvore_seca_208" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1289095415]
+[node name="arvore_seca_208" type="Node3D" parent="NavigationRegion/Cenario" unique_id=253663177]
 transform = Transform3D(0.16655082, 0, 0.9860329, 0, 1, 0, -0.9860329, 0, 0.16655082, 12.194003, 0, 19.375378)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "arvore_seca"
 seed = 208
 
-[node name="arvore_seca_209" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1336029666]
+[node name="arvore_seca_209" type="Node3D" parent="NavigationRegion/Cenario" unique_id=564614180]
 transform = Transform3D(-0.226289, 0, 0.9740602, 0, 1, 0, -0.9740602, 0, -0.226289, 26.701078, 0, -4.984823)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "arvore_seca"
 seed = 209
 
-[node name="arvore_seca_210" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1596843551]
+[node name="arvore_seca_210" type="Node3D" parent="NavigationRegion/Cenario" unique_id=928024103]
 transform = Transform3D(-0.7706616, 0, 0.63724464, 0, 1, 0, -0.63724464, 0, -0.7706616, 23.569452, 0, 9.727667)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "arvore_seca"
 seed = 210
 
-[node name="arvore_seca_211" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1549208073]
+[node name="arvore_seca_211" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1247312491]
 transform = Transform3D(-0.9651642, 0, 0.2616449, 0, 1, 0, -0.2616449, 0, -0.9651642, -29.648321, 0, 10.191765)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "arvore_seca"
 seed = 211
 
-[node name="arvore_seca_212" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1824251054]
+[node name="arvore_seca_212" type="Node3D" parent="NavigationRegion/Cenario" unique_id=495939853]
 transform = Transform3D(-0.99307853, 0, 0.11745236, 0, 1, 0, -0.11745236, 0, -0.99307853, -15.782276, 0, 30.289627)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "arvore_seca"
 seed = 212
 
-[node name="arvore_seca_213" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1906845632]
+[node name="arvore_seca_213" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1256193122]
 transform = Transform3D(0.24151184, 0, 0.9703979, 0, 1, 0, -0.9703979, 0, 0.24151184, 15.215495, 0, -8.151492)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "arvore_seca"
 seed = 213
 
-[node name="pedra_300" type="Node3D" parent="NavigationRegion/Cenario" unique_id=503740443]
+[node name="pedra_300" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1936729409]
 transform = Transform3D(0.3218159, 0, 0.94680226, 0, 1, 0, -0.94680226, 0, 0.3218159, -13.89245, 0, -12.009977)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "pedra"
 seed = 300
 
-[node name="pedra_301" type="Node3D" parent="NavigationRegion/Cenario" unique_id=248936816]
+[node name="pedra_301" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1088928262]
 transform = Transform3D(0.19954562, 0, 0.97988856, 0, 1, 0, -0.97988856, 0, 0.19954562, 14.959382, 0, 8.411087)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "pedra"
 seed = 301
 
-[node name="pedra_302" type="Node3D" parent="NavigationRegion/Cenario" unique_id=571004065]
+[node name="pedra_302" type="Node3D" parent="NavigationRegion/Cenario" unique_id=578063129]
 transform = Transform3D(-0.5197604, 0, 0.85431206, 0, 1, 0, -0.85431206, 0, -0.5197604, -26.968597, 0, -14.6858425)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "pedra"
 seed = 302
 
-[node name="pedra_303" type="Node3D" parent="NavigationRegion/Cenario" unique_id=824900608]
+[node name="pedra_303" type="Node3D" parent="NavigationRegion/Cenario" unique_id=834569286]
 transform = Transform3D(-0.21167184, 0, 0.9773408, 0, 1, 0, -0.9773408, 0, -0.21167184, -36.406334, 0, 0.27156195)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "pedra"
 seed = 303
 
-[node name="pedra_304" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1524896350]
+[node name="pedra_304" type="Node3D" parent="NavigationRegion/Cenario" unique_id=44282025]
 transform = Transform3D(-0.44039017, 0, -0.89780647, 0, 1, 0, 0.89780647, 0, -0.44039017, -14.47669, 0, 1.8083924)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "pedra"
 seed = 304
 
-[node name="pedra_305" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1506339406]
+[node name="pedra_305" type="Node3D" parent="NavigationRegion/Cenario" unique_id=475255246]
 transform = Transform3D(-0.47285193, 0, -0.8811419, 0, 1, 0, 0.8811419, 0, -0.47285193, -4.7995586, 0, -15.194752)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "pedra"
 seed = 305
 
-[node name="pedra_306" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1396147868]
+[node name="pedra_306" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1583480212]
 transform = Transform3D(0.9899751, 0, 0.14124185, 0, 1, 0, -0.14124185, 0, 0.9899751, 1.0960647, 0, -21.542078)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "pedra"
 seed = 306
 
-[node name="pedra_307" type="Node3D" parent="NavigationRegion/Cenario" unique_id=124368430]
+[node name="pedra_307" type="Node3D" parent="NavigationRegion/Cenario" unique_id=739528381]
 transform = Transform3D(0.4428161, 0, 0.89661247, 0, 1, 0, -0.89661247, 0, 0.4428161, -6.9536123, 0, -29.410042)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "pedra"
 seed = 307
 
-[node name="pedra_308" type="Node3D" parent="NavigationRegion/Cenario" unique_id=688037189]
+[node name="pedra_308" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1594457331]
 transform = Transform3D(-0.028398974, 0, -0.99959666, 0, 1, 0, 0.99959666, 0, -0.028398974, -22.322865, 0, -19.83341)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "pedra"
 seed = 308
 
-[node name="pedra_309" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1361856997]
+[node name="pedra_309" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1644718591]
 transform = Transform3D(0.79758, 0, 0.6032132, 0, 1, 0, -0.6032132, 0, 0.79758, -2.793989, 0, -11.100507)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "pedra"
 seed = 309
 
-[node name="pedra_310" type="Node3D" parent="NavigationRegion/Cenario" unique_id=702599394]
+[node name="pedra_310" type="Node3D" parent="NavigationRegion/Cenario" unique_id=583935100]
 transform = Transform3D(0.81951225, 0, -0.57306165, 0, 1, 0, 0.57306165, 0, 0.81951225, 29.924036, 0, 17.957985)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "pedra"
 seed = 310
 
-[node name="pedra_311" type="Node3D" parent="NavigationRegion/Cenario" unique_id=650341721]
+[node name="pedra_311" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1975997959]
 transform = Transform3D(0.36717042, 0, -0.93015367, 0, 1, 0, 0.93015367, 0, 0.36717042, 25.072811, 0, 7.953975)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "pedra"
 seed = 311
 
-[node name="pedra_313" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1417662061]
+[node name="pedra_313" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1958908103]
 transform = Transform3D(-0.1760463, 0, -0.9843819, 0, 1, 0, 0.9843819, 0, -0.1760463, 18.111177, 0, -19.624348)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "pedra"
 seed = 313
 
-[node name="pedra_314" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1223024557]
+[node name="pedra_314" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1146817943]
 transform = Transform3D(-0.99177057, 0, -0.1280278, 0, 1, 0, 0.1280278, 0, -0.99177057, -7.2231803, 0, -9.005366)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "pedra"
 seed = 314
 
-[node name="pedra_315" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1809183562]
+[node name="pedra_315" type="Node3D" parent="NavigationRegion/Cenario" unique_id=2062766422]
 transform = Transform3D(-0.4113285, 0, -0.91148716, 0, 1, 0, 0.91148716, 0, -0.4113285, -5.961784, 0, -8.535453)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "pedra"
 seed = 315
 
-[node name="pedra_316" type="Node3D" parent="NavigationRegion/Cenario" unique_id=395350196]
+[node name="pedra_316" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1606379494]
 transform = Transform3D(-0.8050999, 0, -0.5931392, 0, 1, 0, 0.5931392, 0, -0.8050999, 0.59842795, 0, 17.167795)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "pedra"
 seed = 316
 
-[node name="pedra_317" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1054494880]
+[node name="pedra_317" type="Node3D" parent="NavigationRegion/Cenario" unique_id=128674425]
 transform = Transform3D(-0.22734839, 0, -0.9738135, 0, 1, 0, 0.9738135, 0, -0.22734839, -12.570997, 0, 25.71921)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "pedra"
 seed = 317
 
-[node name="pedra_318" type="Node3D" parent="NavigationRegion/Cenario" unique_id=823248631]
+[node name="pedra_318" type="Node3D" parent="NavigationRegion/Cenario" unique_id=877390701]
 transform = Transform3D(0.79532456, 0, -0.6061838, 0, 1, 0, 0.6061838, 0, 0.79532456, -26.42502, 0, -24.81579)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "pedra"
 seed = 318
 
-[node name="pedra_319" type="Node3D" parent="NavigationRegion/Cenario" unique_id=40241861]
+[node name="pedra_319" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1087051099]
 transform = Transform3D(-0.05011317, 0, -0.99874353, 0, 1, 0, 0.99874353, 0, -0.05011317, 5.2343903, 0, -15.55217)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "pedra"
 seed = 319
 
-[node name="pedra_320" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1407283130]
+[node name="pedra_320" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1755894352]
 transform = Transform3D(-0.25853434, 0, -0.96600205, 0, 1, 0, 0.96600205, 0, -0.25853434, 15.899862, 0, 32.47577)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "pedra"
 seed = 320
 
-[node name="pedra_321" type="Node3D" parent="NavigationRegion/Cenario" unique_id=1145272544]
+[node name="pedra_321" type="Node3D" parent="NavigationRegion/Cenario" unique_id=992995126]
 transform = Transform3D(-0.99954563, 0, 0.03014123, 0, 1, 0, -0.03014123, 0, -0.99954563, 22.366056, 0, -5.8572173)
-script = ExtResource("8_njlop")
+script = ExtResource("8_7rj5q")
 kind = "pedra"
 seed = 321
 
-[node name="Enemies" type="Node3D" parent="." unique_id=1238385947]
+[node name="Enemies" type="Node3D" parent="." unique_id=1814521515]
 
-[node name="Spawner" type="Node3D" parent="Enemies" unique_id=1991087990 instance=ExtResource("9_7rj5q")]
+[node name="Spawner" type="Node3D" parent="Enemies" unique_id=1991087990 instance=ExtResource("9_17lcu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, -27)
-script = ExtResource("10_17lcu")
-item = ExtResource("11_reeuu")
+script = ExtResource("10_reeuu")
+item = ExtResource("11_xg381")
 wait_time = 6.0
 spawn_time = 12.0
 
-[node name="@Node3D@11" type="Node3D" parent="Enemies" unique_id=1843392015 instance=ExtResource("9_7rj5q")]
+[node name="@Node3D@11" type="Node3D" parent="Enemies" unique_id=538911067 instance=ExtResource("9_17lcu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 0, 10)
-script = ExtResource("10_17lcu")
-item = ExtResource("11_reeuu")
+script = ExtResource("10_reeuu")
+item = ExtResource("11_xg381")
 wait_time = 6.0
 spawn_time = 12.0
 
-[node name="@Node3D@12" type="Node3D" parent="Enemies" unique_id=760389572 instance=ExtResource("9_7rj5q")]
+[node name="@Node3D@12" type="Node3D" parent="Enemies" unique_id=1981487498 instance=ExtResource("9_17lcu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 0, 14)
-script = ExtResource("10_17lcu")
-item = ExtResource("11_reeuu")
+script = ExtResource("10_reeuu")
+item = ExtResource("11_xg381")
 wait_time = 6.0
 spawn_time = 12.0
 
-[node name="@Node3D@13" type="Node3D" parent="Enemies" unique_id=1602649087 instance=ExtResource("9_7rj5q")]
+[node name="@Node3D@13" type="Node3D" parent="Enemies" unique_id=618748887 instance=ExtResource("9_17lcu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, -30)
-script = ExtResource("10_17lcu")
-item = ExtResource("11_reeuu")
+script = ExtResource("10_reeuu")
+item = ExtResource("11_xg381")
 wait_time = 6.0
 spawn_time = 12.0
 
-[node name="Municao" type="Area3D" parent="." unique_id=1503917819 node_paths=PackedStringArray("outline_mesh") instance=ExtResource("12_xg381")]
+[node name="Querosene" type="Area3D" parent="." unique_id=1198393470]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 1)
+script = ExtResource("12_r1on4")
+
+[node name="@Area3D@14" type="Area3D" parent="." unique_id=684329190]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -1)
+script = ExtResource("12_r1on4")
+
+[node name="@Area3D@15" type="Area3D" parent="." unique_id=2061133076]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -22)
+script = ExtResource("12_r1on4")
+
+[node name="@Area3D@16" type="Area3D" parent="." unique_id=756225404]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, 18)
+script = ExtResource("12_r1on4")
+
+[node name="@Area3D@17" type="Area3D" parent="." unique_id=1706215221]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -26)
+script = ExtResource("12_r1on4")
+
+[node name="Municao" type="Area3D" parent="." unique_id=1503917819 node_paths=PackedStringArray("outline_mesh") instance=ExtResource("13_765ih")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 6)
-script = ExtResource("13_r1on4")
+script = ExtResource("14_giokp")
 outline_mesh = NodePath("crate/outline")
 
-[node name="Limites" type="StaticBody3D" parent="." unique_id=1094572257]
+[node name="Limites" type="StaticBody3D" parent="." unique_id=1881607241]
 
-[node name="@CollisionShape3D@14" type="CollisionShape3D" parent="Limites" unique_id=668210366]
+[node name="@CollisionShape3D@18" type="CollisionShape3D" parent="Limites" unique_id=677208635]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -38)
-shape = SubResource("BoxShape3D_bq7a8")
-
-[node name="@CollisionShape3D@15" type="CollisionShape3D" parent="Limites" unique_id=120099986]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 38)
-shape = SubResource("BoxShape3D_pb8r7")
-
-[node name="@CollisionShape3D@16" type="CollisionShape3D" parent="Limites" unique_id=761720633]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 5, 0)
 shape = SubResource("BoxShape3D_8cys5")
 
-[node name="@CollisionShape3D@17" type="CollisionShape3D" parent="Limites" unique_id=1259937447]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 5, 0)
+[node name="@CollisionShape3D@19" type="CollisionShape3D" parent="Limites" unique_id=1982243577]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 38)
 shape = SubResource("BoxShape3D_heqs4")
+
+[node name="@CollisionShape3D@20" type="CollisionShape3D" parent="Limites" unique_id=139166551]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38, 5, 0)
+shape = SubResource("BoxShape3D_2k5qn")
+
+[node name="@CollisionShape3D@21" type="CollisionShape3D" parent="Limites" unique_id=467009502]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 38, 5, 0)
+shape = SubResource("BoxShape3D_xc5mo")

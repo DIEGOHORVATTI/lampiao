@@ -18,6 +18,8 @@ var current_health: float = 100.0
 @export var attack_damage: float = 10.0
 @export var attack_range: float = 2.0
 @export var vision_range: float = 10.0
+@export var hearing_range: float = 0.0
+@export var light_attraction: float = 0.0
 @export var chase_time: float = 5.0
 var is_chasing:bool = false
 
@@ -177,7 +179,9 @@ func _chasing_player() -> bool:
 	return is_chasing
 
 func _player_in_vision_range() -> bool:
-	return global_position.distance_to(player.global_position) < vision_range
+	var distance := global_position.distance_to(player.global_position)
+	var seen_range := vision_range * (1.0 + light_attraction * Pacto.light_factor())
+	return distance < seen_range or distance < hearing_range
 
 func _on_chase_timer_timeout() -> void:
 	is_chasing = false

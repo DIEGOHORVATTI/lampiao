@@ -118,7 +118,7 @@ func _enemies() -> void:
 	enemies.name = "Enemies"
 	_own(enemies, scene_root)
 	var spawner_scene: PackedScene = load("res://common/spawner/spawner.tscn")
-	var undead: PackedScene = load("res://enemies/undead.tscn")
+	var undead: PackedScene = load("res://enemies/corpo_seco.tscn")
 	for pos in [Vector3(-22, 0, -27), Vector3(26, 0, 10), Vector3(-26, 0, 14), Vector3(8, 0, -30)]:
 		var spawner: Node3D = spawner_scene.instantiate()
 		spawner.position = pos
@@ -127,6 +127,12 @@ func _enemies() -> void:
 		spawner.spawn_time = 12.0
 		spawner.max_items = 1
 		_own(spawner, enemies)
+	for pos in [Vector3(-9, 0, 1), Vector3(12, 0, -1), Vector3(-20, 0, -22), Vector3(22, 0, 18), Vector3(2, 0, -26)]:
+		var can := Area3D.new()
+		can.name = "Querosene"
+		can.set_script(load("res://world/sertao/kerosene_pickup.gd"))
+		can.position = pos
+		_own(can, scene_root)
 	var ammo: Node3D = load("res://common/utils/ammo_refil.tscn").instantiate()
 	ammo.name = "Municao"
 	ammo.position = Vector3(-5, 0, 6)
