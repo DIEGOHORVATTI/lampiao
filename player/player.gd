@@ -54,9 +54,13 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		camera_pivot.rotate_y(-event.relative.x * sensitivity)
-		camera_holder.rotate_x(-event.relative.y * sensitivity)
-		camera_holder.rotation.x = clamp(camera_holder.rotation.x, deg_to_rad(-60),deg_to_rad(60))
+		look(event.relative * sensitivity)
+
+
+func look(delta_radians: Vector2) -> void:
+	camera_pivot.rotate_y(-delta_radians.x)
+	camera_holder.rotate_x(-delta_radians.y)
+	camera_holder.rotation.x = clamp(camera_holder.rotation.x, deg_to_rad(-60),deg_to_rad(60))
 
 
 
