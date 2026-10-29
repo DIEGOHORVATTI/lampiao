@@ -8,7 +8,8 @@ bun install
 bun run dev
 ```
 
-Controles: clique para entrar · WASD anda · espaço pula · clique atira · Esc pausa.
+Feito para celular (toque: joystick à esquerda, olhar à direita, botão 🔥 atira).
+No desktop: clique para entrar · WASD anda · espaço pula · clique atira · Esc pausa.
 
 ## Base e créditos
 

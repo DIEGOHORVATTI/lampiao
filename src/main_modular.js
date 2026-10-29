@@ -48,7 +48,8 @@ const hud = {
   kills: document.getElementById("kills"),
   damage: document.getElementById("damage"),
 };
-const state = { health: 100, hunger: 0, kills: 0, over: false };
+const state = { health: 100, hunger: 0, kills: 0, over: false, touchStarted: false };
+const isPlaying = () => (document.pointerLockElement === document.body || state.touchStarted) && !state.over;
 
 document.addEventListener("pointerlockchange", () => {
   const locked = document.pointerLockElement === document.body;
@@ -57,15 +58,20 @@ document.addEventListener("pointerlockchange", () => {
 });
 
 hud.overlay.addEventListener("click", () => {
-  if (state.over) location.reload();
+  if (state.over) return location.reload();
+  if (!matchMedia("(pointer: coarse)").matches) return;
+  state.touchStarted = true;
+  hud.overlay.classList.add("hidden");
+  playAmbientMusic();
+  document.documentElement.requestFullscreen?.().then(() => screen.orientation.lock?.("landscape")).catch(() => {});
 });
 
 function endGame(message) {
   state.over = true;
   hud.message.textContent = message;
-  hud.overlay.querySelector(".hint").textContent = "Clique para tentar de novo";
+  hud.overlay.querySelector(".hint").textContent = "Toque para tentar de novo";
   hud.overlay.classList.remove("hidden");
-  document.exitPointerLock();
+  document.exitPointerLock?.();
 }
 
 function updateGame(dt) {
@@ -89,7 +95,7 @@ function animate() {
   const frameDelta = Math.min(0.05, clock.getDelta());
   flickerLantern(clock.elapsedTime);
 
-  if (document.pointerLockElement === document.body && !state.over) {
+  if (isPlaying()) {
     const deltaTime = frameDelta / STEPS_PER_FRAME;
     for (let i = 0; i < STEPS_PER_FRAME; i++) {
       applyControls(deltaTime, playerCollider.onFloor, camera);

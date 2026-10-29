@@ -12,9 +12,10 @@ function setupControls(camera, playerVelocity, throwBall, playerDirection) {
     (event) => (keyStates[event.code] = false)
   );
 
-  document.body.addEventListener("click", () =>
-    document.body.requestPointerLock()
-  );
+  const isTouch = matchMedia("(pointer: coarse)").matches;
+  if (!isTouch) document.body.addEventListener("click", () => document.body.requestPointerLock());
+
+  const touch = setupTouch(camera, () => throwBall(camera, playerDirection));
 
   // ✅ Pass `playerDirection` correctly
   document.body.addEventListener("mousedown", () => {
@@ -56,10 +57,68 @@ function setupControls(camera, playerVelocity, throwBall, playerDirection) {
     if (keyStates["KeyD"])
       playerVelocity.add(side.clone().multiplyScalar(speedDelta));
 
+    playerVelocity.add(forward.clone().multiplyScalar(-touch.y * speedDelta));
+    playerVelocity.add(side.clone().multiplyScalar(touch.x * speedDelta));
+
     if (playerOnFloor && keyStates["Space"]) playerVelocity.y = 15;
   }
 
   return applyControls;
+}
+
+const JOY_RADIUS = 60;
+
+function setupTouch(camera, fire) {
+  const touch = { x: 0, y: 0 };
+  const stick = document.getElementById("stick");
+  let move = null;
+  let look = null;
+
+  document.getElementById("fire").addEventListener("touchstart", (e) => {
+    e.stopPropagation();
+    fire();
+  });
+
+  document.addEventListener("touchstart", (e) => {
+    for (const t of e.changedTouches) {
+      if (t.clientX < innerWidth / 2 && !move) {
+        move = { id: t.identifier, x: t.clientX, y: t.clientY };
+        Object.assign(stick.style, { left: `${t.clientX}px`, top: `${t.clientY}px`, display: "block" });
+      } else if (!look) {
+        look = { id: t.identifier, x: t.clientX, y: t.clientY };
+      }
+    }
+  });
+
+  document.addEventListener("touchmove", (e) => {
+    for (const t of e.changedTouches) {
+      if (move?.id === t.identifier) {
+        touch.x = Math.max(-1, Math.min(1, (t.clientX - move.x) / JOY_RADIUS));
+        touch.y = Math.max(-1, Math.min(1, (t.clientY - move.y) / JOY_RADIUS));
+      }
+      if (look?.id === t.identifier) {
+        camera.rotation.y -= (t.clientX - look.x) / 200;
+        camera.rotation.x -= (t.clientY - look.y) / 200;
+        look.x = t.clientX;
+        look.y = t.clientY;
+      }
+    }
+  });
+
+  const release = (e) => {
+    for (const t of e.changedTouches) {
+      if (move?.id === t.identifier) {
+        move = null;
+        touch.x = touch.y = 0;
+        stick.style.display = "none";
+      }
+      if (look?.id === t.identifier) look = null;
+    }
+  };
+  document.addEventListener("touchend", release);
+  document.addEventListener("touchcancel", release);
+
+  return touch;
 }
 
 export { setupControls };
