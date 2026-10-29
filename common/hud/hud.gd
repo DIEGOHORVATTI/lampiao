@@ -24,7 +24,7 @@ func _ready() -> void:
 
 func _on_bullets_changed() -> void:
 	if not weapons_manager or not weapons_manager.current_weapon:
-		bullets_label.text = "AMMO: --/--"
+		bullets_label.text = "MUNIÇÃO: --/--"
 		return
 	
 	var current_mag = weapons_manager.get_current_mag()
@@ -33,18 +33,18 @@ func _on_bullets_changed() -> void:
 	# Handle infinite ammo display (-1)
 	if current_ammo == -1:
 		if weapons_manager.current_weapon.reload_required:
-			bullets_label.text = str("AMMO: ", current_mag, "/∞")
+			bullets_label.text = str("MUNIÇÃO: ", current_mag, "/∞")
 		else:
-			bullets_label.text = "AMMO: ∞"
+			bullets_label.text = "MUNIÇÃO: ∞"
 	else:
 		if weapons_manager.current_weapon.reload_required:
-			bullets_label.text = str("AMMO: ", current_mag, "/", current_ammo)
+			bullets_label.text = str("MUNIÇÃO: ", current_mag, "/", current_ammo)
 		else:
-			bullets_label.text = str("AMMO: ", current_ammo)
+			bullets_label.text = str("MUNIÇÃO: ", current_ammo)
 
 
 func _on_enemy_count_changed(count: int) -> void:
-	enemies_label.text = str("ENEMIES KILLED: ", count)
+	enemies_label.text = str("CARNIÇAS: ", count)
 
 
 func _on_player_health_changed(_health_change:float,current_health:float,max_health:float, _is_enemy_damage:bool) -> void:

@@ -15,9 +15,9 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="Lampião"
-run/main_scene="uid://4wonuqyiwe3i"
+run/main_scene="res://ui/menu.tscn"
 config/features=PackedStringArray("4.6", "Mobile")
-config/icon="res://icon.svg"
+config/icon="res://icon.png"
 
 [autoload]
 
@@ -130,6 +130,7 @@ brake={
 [rendering]
 
 renderer/rendering_method="mobile"
+scaling_3d/scale.mobile=0.7
 textures/vram_compression/import_etc2_astc=true
 
 [input_devices]
