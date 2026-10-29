@@ -42,7 +42,6 @@ function createCreatures(scene) {
     alive.push({ mesh, hp: 3, speed: 1.4 + Math.random() * 0.8 });
   }
 
-  // ponytail: anda em linha reta e atravessa paredes; trocar por navmesh quando o mapa for de verdade
   function update(dt, playerPos, spheres) {
     let kills = 0;
     let touching = 0;
