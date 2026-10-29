@@ -1,0 +1,16 @@
+{
+  "name": "lampeao",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "license": "MIT",
+  "description": "Lampião — jogo de horror em primeira pessoa no sertão",
+  "dependencies": {
+    "three": "^0.173.0",
+    "three-mesh-bvh": "^0.9.0",
+    "vite": "^6.1.0"
+  }
+}

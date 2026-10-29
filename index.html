@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lampião</title>
+    <script type="module" src="./src/main_modular.js"></script>
+    <link rel="stylesheet" href="./styles/style.css" />
+  </head>
+  <body>
+    <div id="container"></div>
+    <div id="hud">
+      <label>Vida <progress id="health" max="100" value="100"></progress></label>
+      <label>Fome do Encosto <progress id="hunger" max="100" value="0"></progress></label>
+      <span id="kills">0</span>
+    </div>
+    <div id="damage"></div>
+    <div id="overlay">
+      <h1>LAMPIÃO</h1>
+      <p id="message">"Eu te alimento com qualquer carniça no caminho."</p>
+      <p class="hint">Clique para entrar no sertão · WASD anda · espaço pula · clique atira</p>
+    </div>
+  </body>
+</html>
