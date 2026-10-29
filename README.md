@@ -1,18 +1,13 @@
 # Lampião
 
-Jogo de horror em primeira pessoa no sertão: justiceiro errante, pacto com o diabo e o
-folclore brasileiro na escuridão. Design em [docs/GDD.md](docs/GDD.md).
+Jogo de horror em primeira pessoa para mobile, no sertão: justiceiro errante, pacto com o
+diabo e o folclore brasileiro na escuridão. Design em [docs/GDD.md](docs/GDD.md).
 
-```bash
-bun install
-bun run dev
-```
-
-Feito para celular (toque: joystick à esquerda, olhar à direita, botão 🔥 atira).
-No desktop: clique para entrar · WASD anda · espaço pula · clique atira · Esc pausa.
+- Engine: Godot 4.6 (renderer Mobile)
+- Protótipo antigo em Three.js: branch `prototipo-threejs`
 
 ## Base e créditos
 
-- Template: [Footprintarts/ThreeJS_FPS_2.0](https://github.com/Footprintarts/ThreeJS_FPS_2.0) (MIT),
-  derivado do exemplo FPS do Three.js.
-- Modelo "FPS Rig AKM" por J-Toastie (CC-BY) via Poly Pizza.
+Template [bukkbeek/GodotFPS-Template](https://github.com/bukkbeek/GodotFPS-Template) (MIT), guia
+original em [docs/TEMPLATE.md](docs/TEMPLATE.md). Assets 3D e animações por bukkbeek, SFX do
+Pixabay, animações dos mortos-vivos do Mesh2Motion.
