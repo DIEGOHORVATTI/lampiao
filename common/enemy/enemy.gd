@@ -13,6 +13,7 @@ extends CharacterBody3D
 var current_health: float = 100.0
 @export var show_health_bar:bool = true
 @export var can_open_doors: bool = false
+@export var edible_seconds: float = 0.0
 
 @export_group("attack")
 @export var attack_damage: float = 10.0
@@ -209,15 +210,32 @@ func update_health_bar() -> void:
 
 func die():
 	Global.enemy_killed.emit()
-	
-	play_vfx(death_vfx)
 	play_sfx(death_sfx)
-	
-	character_root.visible = false
+	_change_state("dead")
 	collision_shape.disabled = true
 	health_bar.visible = false
 	debug_label.visible = false
-	
+	if edible_seconds > 0.0:
+		var carcass := Area3D.new()
+		carcass.set_script(preload("res://world/interagivel.gd"))
+		carcass.texto = "Comer"
+		carcass.raio = 1.8
+		carcass.usado.connect(_on_eaten)
+		add_child(carcass)
+		await get_tree().create_timer(edible_seconds).timeout
+	_vanish()
+
+
+func _on_eaten() -> void:
+	Pacto.comer()
+	_vanish()
+
+
+func _vanish() -> void:
+	if not character_root.visible:
+		return
+	play_vfx(death_vfx)
+	character_root.visible = false
 	await get_tree().create_timer(5.0).timeout
 	queue_free()
 

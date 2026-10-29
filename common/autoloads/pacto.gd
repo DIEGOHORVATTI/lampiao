@@ -4,7 +4,8 @@ signal hunger_changed(value: float)
 signal kerosene_changed(value: float)
 
 const HUNGER_PER_SECOND := 0.8
-const HUNGER_PER_KILL := 30.0
+const HUNGER_PER_MEAL := 30.0
+const HEAL_PER_MEAL := 15.0
 const KEROSENE_PER_SECOND := 0.45
 const POSSESSION_DAMAGE := 1000.0
 
@@ -24,14 +25,13 @@ func _ready() -> void:
 	hunger_bar = _bar(Vector2(70, 135), Color(0.55, 0.08, 0.12), "FOME DO ENCOSTO")
 	kerosene_bar = _bar(Vector2(70, 185), Color(0.9, 0.55, 0.15), "QUEROSENE")
 	death_screen = _build_death_screen()
-	Global.enemy_killed.connect(feed.bind(HUNGER_PER_KILL))
 	Global.player_dead.connect(_on_player_dead)
 	_set_hud_visible(false)
 
 
-func start_level() -> void:
-	hunger = 0.0
-	kerosene = 100.0
+func start_level(start_hunger := 0.0, start_kerosene := 100.0) -> void:
+	hunger = start_hunger
+	kerosene = start_kerosene
 	active = true
 	Global.enemies_killed = 0
 	get_tree().paused = false
@@ -48,6 +48,19 @@ func stop() -> void:
 func feed(amount: float) -> void:
 	hunger = maxf(0.0, hunger - amount)
 	_emit()
+
+
+func comer() -> void:
+	feed(HUNGER_PER_MEAL)
+	heal(HEAL_PER_MEAL)
+
+
+func heal(amount: float) -> void:
+	var player := Global.player
+	if not player:
+		return
+	player.current_health = minf(player.MAX_HEALTH, player.current_health + amount)
+	Global.player_health_changed.emit(amount, player.current_health, player.MAX_HEALTH, false)
 
 
 func refill_kerosene(amount: float) -> void:

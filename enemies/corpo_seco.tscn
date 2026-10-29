@@ -8,3 +8,4 @@ vision_range = 9.0
 hearing_range = 30.0
 light_attraction = 0.8
 show_health_bar = false
+edible_seconds = 15.0

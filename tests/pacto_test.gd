@@ -14,8 +14,19 @@ func _ready() -> void:
 	_check(Pacto.active, "fase ativa o Pacto")
 	_check(Pacto.hunger < 5.0 and Pacto.kerosene > 95.0, "começa com fome baixa e querosene cheio")
 	Pacto.hunger = 50.0
-	Global.enemy_killed.emit()
-	_check(Pacto.hunger < 25.0, "carniça alimenta o Encosto")
+	Pacto.comer()
+	_check(Pacto.hunger < 25.0, "comer carniça alimenta o Encosto")
+	var corpo: Node3D = load("res://enemies/corpo_seco.tscn").instantiate()
+	add_child(corpo)
+	corpo.global_position = Global.player.global_position + Vector3(4, 0, 0)
+	await get_tree().create_timer(0.3).timeout
+	corpo.get_damage(1000.0, Vector3.ZERO)
+	Pacto.hunger = 60.0
+	Global.player.global_position = corpo.global_position + Vector3(0.5, 0.5, 0)
+	await get_tree().create_timer(0.4).timeout
+	Global.activate_pressed.emit()
+	await get_tree().process_frame
+	_check(Pacto.hunger < 35.0 and not corpo.character_root.visible, "matar e comer o corpo-seco com ✋")
 	Pacto.kerosene = 10.0
 	var can: Node3D = find_child("Querosene", true, false)
 	Global.player.global_position = can.global_position + Vector3.UP
