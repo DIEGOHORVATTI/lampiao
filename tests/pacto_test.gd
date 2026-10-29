@@ -16,6 +16,11 @@ func _ready() -> void:
 	Pacto.hunger = 50.0
 	Global.enemy_killed.emit()
 	_check(Pacto.hunger < 25.0, "carniça alimenta o Encosto")
+	Pacto.kerosene = 10.0
+	var can: Node3D = find_child("Querosene", true, false)
+	Global.player.global_position = can.global_position + Vector3.UP
+	await get_tree().create_timer(0.6).timeout
+	_check(Pacto.kerosene > 50.0 and not is_instance_valid(can), "lata de querosene recarrega o lampião")
 	Pacto.hunger = 99.95
 	await get_tree().create_timer(0.5).timeout
 	_check(get_tree().paused, "fome cheia mata e pausa")
