@@ -5,12 +5,12 @@ const LOOK_SENSITIVITY := 0.006
 const BUTTON_SIZE := 150.0
 const MOVE_ACTIONS := ["left", "right", "forward", "backward"]
 const BUTTONS := [
-	{"action": "fire", "label": "🔥", "anchor": Vector2(-200, -260), "scale": 1.3},
-	{"action": "aim_mode", "label": "◎", "anchor": Vector2(-400, -200), "scale": 1.0},
-	{"action": "jump", "label": "⤒", "anchor": Vector2(-200, -470), "scale": 0.8},
-	{"action": "reload", "label": "↻", "anchor": Vector2(-380, -420), "scale": 0.8},
-	{"action": "activate", "label": "✋", "anchor": Vector2(-560, -260), "scale": 0.8},
-	{"action": "weapon_change_next", "label": "⇄", "anchor": Vector2(-200, -640), "scale": 0.7},
+	{"action": "fire", "label": "🔥", "anchor": Vector2(-200, -380), "scale": 1.3},
+	{"action": "aim_mode", "label": "◎", "anchor": Vector2(-400, -320), "scale": 1.0},
+	{"action": "jump", "label": "⤒", "anchor": Vector2(-200, -590), "scale": 0.8},
+	{"action": "reload", "label": "↻", "anchor": Vector2(-380, -540), "scale": 0.8},
+	{"action": "activate", "label": "✋", "anchor": Vector2(-560, -380), "scale": 0.8},
+	{"action": "weapon_change_next", "label": "⇄", "anchor": Vector2(-200, -760), "scale": 0.7},
 ]
 
 var move_finger := -1
