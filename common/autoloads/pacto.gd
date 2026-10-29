@@ -113,7 +113,7 @@ func _emit() -> void:
 
 
 func _set_hud_visible(visible_now: bool) -> void:
-	hunger_bar.get_parent().visible = visible_now
+	get_node("Barras").visible = visible_now
 
 
 func _bar(pos: Vector2, color: Color, caption: String) -> ProgressBar:

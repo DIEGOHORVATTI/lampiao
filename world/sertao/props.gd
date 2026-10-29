@@ -11,6 +11,11 @@ const COLORS := {
 	"stone": Color(0.45, 0.42, 0.38),
 	"iron": Color(0.12, 0.11, 0.1),
 	"flame": Color(1.0, 0.6, 0.25),
+	"canvas": Color(0.52, 0.47, 0.36),
+	"cloth": Color(0.3, 0.24, 0.17),
+	"leather": Color(0.36, 0.22, 0.12),
+	"ash": Color(0.12, 0.11, 0.1),
+	"ember": Color(1.0, 0.35, 0.1),
 }
 
 const TEXTURES := {
@@ -39,6 +44,17 @@ static func build(kind: String, rng: RandomNumberGenerator) -> Node3D:
 		"arvore_seca": return arvore_seca(rng)
 		"poco": return poco(rng)
 		"lampiao": return lampiao(rng)
+		"fogueira": return fogueira(rng, true)
+		"fogueira_apagada": return fogueira(rng, false)
+		"barraca_lona": return barraca_lona(rng, false)
+		"barraca_rasgada": return barraca_lona(rng, true)
+		"carroca_tombada": return carroca_tombada(rng)
+		"caixote": return caixote(rng)
+		"muro_pedra": return muro_pedra(rng, 8.0)
+		"cova": return cova(rng)
+		"paredao": return paredao(rng)
+		"corpo": return corpo(rng)
+		"cruz_exvoto": return cruz_exvoto(rng)
 	push_error("SertaoProps: peça desconhecida '%s'" % kind)
 	return Node3D.new()
 
@@ -54,7 +70,7 @@ static func material(name: String) -> StandardMaterial3D:
 			m.uv1_triplanar = true
 			m.uv1_world_triplanar = true
 			m.uv1_scale = Vector3.ONE * TEXTURES[name][1]
-		if name == "flame":
+		if name == "flame" or name == "ember":
 			m.emission_enabled = true
 			m.emission = COLORS[name]
 			m.emission_energy_multiplier = 3.0
@@ -201,6 +217,166 @@ static func lampiao(_rng: RandomNumberGenerator) -> Node3D:
 	light.position.y = 0.15
 	light.set_script(load("res://world/sertao/flicker.gd"))
 	root.add_child(light)
+	return root
+
+
+static func fogueira(rng: RandomNumberGenerator, lit: bool) -> Node3D:
+	var root := _static_body()
+	for i in 9:
+		var a := TAU * i / 9.0
+		_add_box(root, Vector3(0.22, 0.16, 0.18), Vector3(cos(a), 0.08, sin(a)) * Vector3(0.55, 1.0, 0.55), "stone", Basis(Vector3.UP, rng.randf() * TAU))
+	for i in 4:
+		var a := TAU * i / 4.0 + rng.randf()
+		_add_cylinder(root, 0.05, 0.7, Vector3(0, 0.12, 0), "ash" if not lit else "wood", 5, Basis(Vector3.UP, a) * Basis(Vector3.FORWARD, PI / 2 - 0.35))
+	_add_cylinder(root, 0.35, 0.04, Vector3(0, 0.02, 0), "ember" if lit else "ash", 10)
+	if lit:
+		var light := OmniLight3D.new()
+		light.light_color = COLORS["flame"]
+		light.light_energy = 3.0
+		light.omni_range = 9.0
+		light.position.y = 0.6
+		light.set_script(load("res://world/sertao/flicker.gd"))
+		root.add_child(light)
+	_add_cylinder(root, 0.65, 0.3, Vector3(0, 0.15, 0), "", 8, Basis.IDENTITY, true)
+	return root
+
+
+static func barraca_lona(rng: RandomNumberGenerator, torn: bool) -> Node3D:
+	var root := _static_body()
+	var w := 2.4
+	var length := rng.randf_range(2.6, 3.4)
+	var h := 1.7
+	var slope := sqrt(pow(w / 2, 2) + h * h)
+	var tilt := atan2(w / 2, h)
+	_add_box(root, Vector3(0.04, slope, length), Vector3(-w / 4, h / 2, 0), "canvas", Basis(Vector3.FORWARD, tilt))
+	if not torn:
+		_add_box(root, Vector3(0.04, slope, length), Vector3(w / 4, h / 2, 0), "canvas", Basis(Vector3.FORWARD, -tilt))
+	else:
+		_add_box(root, Vector3(0.04, slope * 0.5, length * 0.7), Vector3(w / 2 + 0.2, 0.15, 0.3), "canvas", Basis(Vector3.FORWARD, 1.35))
+	for z in [-length / 2, length / 2]:
+		_add_cylinder(root, 0.03, h + 0.1, Vector3(0, (h + 0.1) / 2, z), "wood", 5)
+	_add_box_shape(root, Vector3(w, h, length), Vector3(0, h / 2, 0))
+	return root
+
+
+static func carroca_tombada(rng: RandomNumberGenerator) -> Node3D:
+	var root := _static_body()
+	var lie := Basis(Vector3.FORWARD, deg_to_rad(rng.randf_range(95, 110)))
+	var bed := Node3D.new()
+	bed.transform = Transform3D(lie, Vector3(0, 0.75, 0))
+	root.add_child(bed)
+	_add_box(bed, Vector3(1.6, 0.08, 3.0), Vector3.ZERO, "wood")
+	for side in [-0.8, 0.8]:
+		_add_box(bed, Vector3(0.06, 0.5, 3.0), Vector3(side, 0.25, 0), "wood")
+	for x in [-0.88, 0.88]:
+		_add_cylinder(bed, 0.55, 0.1, Vector3(x, -0.25, 0.3), "wood", 10, Basis(Vector3.FORWARD, PI / 2))
+	_add_cylinder(bed, 0.04, 2.2, Vector3(0, -0.1, -2.4), "wood", 5, Basis(Vector3.RIGHT, PI / 2))
+	_add_box_shape(root, Vector3(1.0, 1.6, 3.0), Vector3(0, 0.8, 0))
+	return root
+
+
+static func caixote(rng: RandomNumberGenerator) -> Node3D:
+	var root := _static_body()
+	var size := rng.randf_range(0.55, 0.8)
+	_add_box(root, Vector3.ONE * size, Vector3(0, size / 2, 0), "wood", Basis(Vector3.UP, rng.randf() * 0.4))
+	_add_box_shape(root, Vector3.ONE * size, Vector3(0, size / 2, 0))
+	return root
+
+
+static func muro_pedra(rng: RandomNumberGenerator, length: float) -> Node3D:
+	var root := _static_body()
+	var h := rng.randf_range(1.0, 1.3)
+	_add_box(root, Vector3(length, h, 0.5), Vector3(0, h / 2, 0), "stone")
+	var x := -length / 2 + 0.3
+	while x < length / 2:
+		var stone := rng.randf_range(0.3, 0.55)
+		_add_box(root, Vector3(stone, rng.randf_range(0.15, 0.3), 0.45), Vector3(x, h + 0.08, rng.randf_range(-0.04, 0.04)), "stone", Basis(Vector3.UP, rng.randf_range(-0.2, 0.2)))
+		x += stone + rng.randf_range(0.05, 0.4)
+	_add_box_shape(root, Vector3(length, h + 0.2, 0.5), Vector3(0, (h + 0.2) / 2, 0))
+	return root
+
+
+static func cova(rng: RandomNumberGenerator) -> Node3D:
+	var root := Node3D.new()
+	var mound := SphereMesh.new()
+	mound.radius = 0.5
+	mound.height = 0.5
+	mound.radial_segments = 8
+	mound.rings = 4
+	var mi := _mesh_instance(mound, "earth")
+	mi.scale = Vector3(1.4, 0.5, 2.4)
+	mi.position.y = 0.0
+	root.add_child(mi)
+	if rng.randf() < 0.6:
+		var cross := cruz(rng)
+		cross.position = Vector3(0, 0, -1.1)
+		root.add_child(cross)
+	return root
+
+
+static func paredao(rng: RandomNumberGenerator) -> Node3D:
+	var root := _static_body()
+	var size := Vector3(rng.randf_range(10, 14), rng.randf_range(6, 9), 3.0)
+	var box := BoxMesh.new()
+	box.size = size
+	box.subdivide_width = 8
+	box.subdivide_height = 6
+	box.subdivide_depth = 2
+	var noise := FastNoiseLite.new()
+	noise.seed = rng.randi()
+	noise.frequency = 0.25
+	var mesh := _displace(box, func(v: Vector3) -> Vector3:
+		return v + Vector3(noise.get_noise_3dv(v) * 0.6, noise.get_noise_3dv(v + Vector3(9, 0, 0)) * 0.5, noise.get_noise_3dv(v + Vector3(0, 9, 0)) * 1.2))
+	var mi := _mesh_instance(mesh, "stone")
+	mi.position.y = size.y / 2 - 0.5
+	root.add_child(mi)
+	_add_box_shape(root, size, Vector3(0, size.y / 2 - 0.5, 0))
+	return root
+
+
+static func corpo(rng: RandomNumberGenerator) -> Node3D:
+	var root := Node3D.new()
+	var lie := Basis(Vector3.FORWARD, PI / 2) * Basis(Vector3.UP, rng.randf_range(-0.3, 0.3))
+	var body := CapsuleMesh.new()
+	body.radius = 0.2
+	body.height = 1.4
+	body.radial_segments = 8
+	body.rings = 2
+	var mi := _mesh_instance(body, "cloth")
+	mi.transform = Transform3D(lie, Vector3(0, 0.18, 0))
+	root.add_child(mi)
+	_add_box(root, Vector3(0.12, 0.12, 0.5), Vector3(-0.2, 0.08, 0.25), "leather", Basis(Vector3.UP, rng.randf_range(-0.4, 0.4)))
+	var hat := CylinderMesh.new()
+	hat.top_radius = 0.18
+	hat.bottom_radius = 0.32
+	hat.height = 0.14
+	hat.radial_segments = 10
+	var hat_mi := _mesh_instance(hat, "leather")
+	hat_mi.position = Vector3(1.05 + rng.randf_range(0.0, 0.5), 0.07, rng.randf_range(-0.4, 0.4))
+	root.add_child(hat_mi)
+	return root
+
+
+static func cruz_exvoto(rng: RandomNumberGenerator) -> Node3D:
+	var root := _static_body()
+	_add_box(root, Vector3(0.14, 2.2, 0.12), Vector3(0, 1.1, 0), "wood")
+	_add_box(root, Vector3(1.2, 0.12, 0.1), Vector3(0, 1.6, 0), "wood")
+	for i in 5:
+		var x := -0.5 + i * 0.25
+		var drop := rng.randf_range(0.15, 0.35)
+		_add_cylinder(root, 0.005, drop, Vector3(x, 1.54 - drop / 2, 0.06), "dry_wood", 3)
+		var head := SphereMesh.new()
+		head.radius = 0.06
+		head.height = 0.14
+		head.radial_segments = 6
+		head.rings = 3
+		var mi := _mesh_instance(head, "dry_wood")
+		mi.position = Vector3(x, 1.54 - drop - 0.06, 0.06)
+		root.add_child(mi)
+	for i in 6:
+		var a := TAU * i / 6.0
+		_add_box(root, Vector3(0.2, 0.12, 0.16), Vector3(cos(a) * 0.35, 0.06, sin(a) * 0.35), "stone")
+	_add_box_shape(root, Vector3(0.4, 2.2, 0.4), Vector3(0, 1.1, 0))
 	return root
 
 
