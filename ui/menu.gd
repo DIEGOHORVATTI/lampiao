@@ -34,6 +34,14 @@ func _ready() -> void:
 	hint.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE)
 	hint.offset_top = -120
 	add_child(hint)
+	var credits := Label.new()
+	credits.text = "Baseado no quadrinho Lampião, de Heitor Amatsu e Carlos Eduardo · tapas.io/series/Lampiao\nJogo de fãs para apoiar a continuação da história e o quadrinho brasileiro"
+	credits.add_theme_font_size_override("font_size", 20)
+	credits.add_theme_color_override("font_color", Color(0.91, 0.84, 0.69, 0.75))
+	credits.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE)
+	credits.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	credits.offset_top = -64
+	add_child(credits)
 	var pulse := create_tween().set_loops()
 	pulse.tween_property(hint, "modulate:a", 0.25, 1.2)
 	pulse.tween_property(hint, "modulate:a", 1.0, 1.2)
@@ -45,4 +53,4 @@ func _input(event: InputEvent) -> void:
 	if tapped or clicked or event.is_action_pressed("ui_accept"):
 		set_process_input(false)
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		get_tree().change_scene_to_file(CHAPTERS.get(Historia.capitulo, FREE_ROAM))
+		preload("res://ui/carregamento.gd").go(get_tree(), CHAPTERS.get(Historia.capitulo, FREE_ROAM))

@@ -53,7 +53,7 @@ func _process(_delta: float) -> void:
 	# Slerp rotation (spherical linear interpolation for smooth rotation)
 	var current_basis = global_transform.basis
 	var target_basis = target_transform.basis
-	global_transform.basis = current_basis.slerp(target_basis, follow_speed * _delta)
+	global_transform.basis = current_basis.orthonormalized().slerp(target_basis.orthonormalized(), minf(follow_speed * _delta, 1.0))
 	
 	# Continuous firing for automatic weapons (burst mode)
 	# Pass false to indicate this is NOT the initial press

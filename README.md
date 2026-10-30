@@ -1,7 +1,9 @@
 # Lampião
 
-Jogo de horror em primeira pessoa para mobile, no sertão: justiceiro errante, pacto com o
-diabo e o folclore brasileiro na escuridão. Design em [docs/GDD.md](docs/GDD.md).
+Jogo de horror em primeira pessoa para celular, feito por fãs e baseado no quadrinho brasileiro
+[**Lampião**](https://tapas.io/series/Lampiao/info), de **Heitor Amatsu** e **Carlos Eduardo**.
+A renda ajuda a financiar a continuação da história e o quadrinho brasileiro. Créditos completos
+em [CREDITOS.md](CREDITOS.md); design em [docs/GDD.md](docs/GDD.md).
 
 - Engine: Godot 4.6 (renderer Mobile)
 - Protótipo antigo em Three.js: branch `prototipo-threejs`
