@@ -41,9 +41,10 @@ jobs:
           mv /tmp/templates/templates ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable
 
       - name: Debug keystore
+        env:
+          KEYSTORE_B64: ${{ secrets.ANDROID_DEBUG_KEYSTORE_B64 }}
         run: |
-          keytool -genkeypair -v -keystore $RUNNER_TEMP/debug.keystore -storepass android -keypass android \
-            -alias androiddebugkey -dname "CN=Android Debug,O=Android,C=US" -keyalg RSA -keysize 2048 -validity 10000
+          echo "$KEYSTORE_B64" | base64 -d > $RUNNER_TEMP/debug.keystore
           echo "GODOT_ANDROID_KEYSTORE_DEBUG_PATH=$RUNNER_TEMP/debug.keystore" >> $GITHUB_ENV
           echo "GODOT_ANDROID_KEYSTORE_DEBUG_USER=androiddebugkey" >> $GITHUB_ENV
           echo "GODOT_ANDROID_KEYSTORE_DEBUG_PASSWORD=android" >> $GITHUB_ENV

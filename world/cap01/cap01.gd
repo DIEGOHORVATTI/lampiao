@@ -30,7 +30,7 @@ func _prologo() -> void:
 	await Dialogo.cartao("Na Grota da Baraúna,\nantes do galo cantar,\na volante fez a cerca\npra ninguém se levantar.\nMas um subiu da lama\nsem cabeça pra pensar.\n\n— Zé Mirim", 5.0)
 	await Dialogo.falar([
 		["", "[chuva na lona. Tiros. Um assovio agudo no ouvido.]"],
-		["ENCOSTO", "Ô, Virgulino. Tá doendo?"],
+		["ENCOSTO", "Ô, Lampião. Tá doendo?"],
 		["LAMPIÃO", "Quem é?"],
 		["ENCOSTO", "Quem sempre andou do teu lado. Tu é que nunca olhou pra trás."],
 		["ENCOSTO", "Tão vindo com o facão. Primeiro a tua cabeça, depois a dos teus. Vão botar no sal e mostrar na feira, que nem bode."],
@@ -75,7 +75,7 @@ func _acampamento() -> void:
 		Dialogo.falar([["ENCOSTO", "Costurar cabeça dá fome, garoto. Fome, fome."]]))
 	_interagivel("Barraca", "Ler os papéis").usado.connect(func(): Dialogo.falar([
 		["", "Relação do serviço. Grota da Baraúna, 28 de julho."],
-		["", "1. Virgulino Ferreira, vulgo Lampião (lata separada). 2. Cansanção. 3. Sabiá. 4. Mulher dita Gavião. 5. Fumaça. 6. Pé-de-Serra. 7. Um menino. Não se sabe o nome."],
+		["", "1. Vulgo Lampião (lata separada). 2. Cansanção. 3. Sabiá. 4. Mulher dita Gavião. 5. Fumaça. 6. Pé-de-Serra. 7. Um menino. Não se sabe o nome."],
 		["", "Coronel T. Valadares, Fazenda Jatobá. Serviço feito. Sete cabeças. Exposição na feira de Santa Luzia domingo. Ten. L. Brás."],
 	]))
 	_interagivel("CruzEnjeitados", "Ler a cruz").usado.connect(func(): Dialogo.falar([["", "AQUI A TERRA NÃO QUIS. NÃO REZE."]]))

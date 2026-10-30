@@ -165,7 +165,7 @@ Liberato e Tonho, o tenente (vivo e sem farda, ou nome em cruz) e Benedito.
   ela já o arrancou de um homem, que morreu.
 - **Escolha:** oferenda a Fulozinha.
 - **Termina:** Dorinha diz quem vendeu o bando: Liberato, que teve o filho levado pelo
-  coronel. "Vai. Mas num deixa ele comer gente, Virgulino. Gente engorda ele."
+  coronel. "Vai. Mas num deixa ele comer gente, Lampião. Gente engorda ele."
 
 #### `cap03-o-coiteiro` — Sítio Lagoa Rachada
 

@@ -70,7 +70,7 @@
 
 ### 3. O pedido (cena, 40 s) — Zona Z1, porta
 
-> **DORINHA:** Teu corpo tá aberto, Virgulino. Entra e sai o que quiser. Vou te fechar o
+> **DORINHA:** Teu corpo tá aberto, Lampião. Entra e sai o que quiser. Vou te fechar o
 > corpo, que nem os cangaceiro antigo pedia. Mas preciso de vassourinha e pinhão-roxo do
 > brejo lá em cima, e minhas perna num sobe mais aquela serra. A arruda eu tenho no
 > quintal.
@@ -159,7 +159,7 @@
 > **DORINHA:** E o coronel levou o menino dele faz oito dia. Quem tem filho preso vende até a
 > mãe.
 > **LAMPIÃO:** Então eu vou lá cobrar.
-> **DORINHA:** Vai. Mas escuta: num deixa ele comer gente, Virgulino. Carniça mata a fome
+> **DORINHA:** Vai. Mas escuta: num deixa ele comer gente, Lampião. Carniça mata a fome
 > dele. Gente engorda. E bicho gordo num sai de casa.
 > **ENCOSTO:** Velha agourenta.
 

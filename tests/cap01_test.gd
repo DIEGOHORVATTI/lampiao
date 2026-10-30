@@ -26,7 +26,7 @@ func _ready() -> void:
 	_check(Pacto.kerosene >= 69.0, "encher o lampião na lata")
 
 	await _go("G_Carroca")
-	await _until(func(): return Dialogo.choice_buttons[0].visible, 60.0)
+	await _until(func(): return Dialogo.choice_buttons[0].visible, 240.0)
 	Input.action_press("escolha_1")
 	await get_tree().process_frame
 	await get_tree().process_frame
@@ -35,7 +35,7 @@ func _ready() -> void:
 	_check(Historia.flag("benedito") == "poupado", "poupar Benedito grava a flag")
 
 	await _go("G_Cemiterio")
-	await get_tree().create_timer(12.0).timeout
+	await get_tree().create_timer(30.0).timeout
 	_check(_enemy_count() >= 1, "corpo-seco aparece no cemitério")
 
 	await _go("G_Grota")
@@ -43,14 +43,14 @@ func _ready() -> void:
 	for i in 6:
 		await _go("Corpo_%d" % i)
 		await _activate()
-		await _until(func(): return not Dialogo.talking, 30.0)
-	await get_tree().create_timer(1.0).timeout
+		await _until(func(): return not Dialogo.talking, 90.0)
+	await _until(func(): return level.covered == 6, 240.0)
 	_check(level.covered == 6, "cobrir os seis corpos")
 
 	await _go("G_Saida")
 	await get_tree().create_timer(4.0).timeout
 	await _go("G_Estrada")
-	await _until(func(): return Historia.capitulo == 2, 120.0)
+	await _until(func(): return Historia.capitulo == 2, 240.0)
 	_check(Historia.capitulo == 2, "capítulo termina e salva o cap. 2")
 	Engine.time_scale = 1.0
 	for f in failures:

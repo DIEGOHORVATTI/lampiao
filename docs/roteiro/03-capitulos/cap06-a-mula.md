@@ -44,7 +44,7 @@
 
 > **PADRE ANSELMO:** Eu sabia que tu vinha. Cemitério de cristão num é lugar de cangaceiro.
 > **LAMPIÃO:** Cristão foi quem cortou a cabeça deles, padre.
-> **PADRE ANSELMO:** Vade retro. Tu tem o Cão no corpo, Virgulino. Eu sinto daqui.
+> **PADRE ANSELMO:** Vade retro. Tu tem o Cão no corpo, Lampião. Eu sinto daqui.
 > **ENCOSTO:** E tu tem uma mulher na casa paroquial, padre. Eu sinto daqui também.
 > (só Lampião ouve)
 > **LAMPIÃO:** Abre o portão.
@@ -168,7 +168,7 @@
 > **JUREMA:** Eu sei. (some)
 
 - Dorinha, já indo embora:
-  **DORINHA:** "Amanhã é sexta, Virgulino."
+  **DORINHA:** "Amanhã é sexta, Lampião."
   **LAMPIÃO:** "Eu sei."
   **DAMIÃO:** (olhando o céu sem lua, sem ouvir) "O senhor vem comigo pro Pau-Ferro?"
 - Zé Mirim entrega o folheto. Fim do capítulo.

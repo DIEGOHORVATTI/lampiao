@@ -8,7 +8,7 @@ recusa a mudar). Nomes e apelidos são originais, menos Lampião.
 
 ## Protagonista
 
-### Lampião — Virgulino Ferreira da Silva, "o Capitão"
+### Lampião, "o Capitão"
 
 - **Idade:** 40 anos (morreu com 40).
 - **Aparência:** chapéu de couro em meia-lua com estrelas de metal, óculos redondos (perdeu um
@@ -106,7 +106,7 @@ recusa a mudar). Nomes e apelidos são originais, menos Lampião.
 - **Arco:** de caçador orgulhoso a homem assombrado. No cap. 8, ferido, pergunta a Lampião se
   ele lembra do pai dele, e Lampião não lembra. Pode morrer, ser comido ou ir embora vivo,
   tirando a farda.
-- **Fala de exemplo:** "Eu cortei tua cabeça com essas mão, Virgulino. E dormi a noite toda."
+- **Fala de exemplo:** "Eu cortei tua cabeça com essas mão, Lampião. E dormi a noite toda."
 
 ### Joaquim Liberato, o coiteiro
 

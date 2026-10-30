@@ -258,8 +258,8 @@ senão                            → escolha na cova: B "Descanso" ou A
 - As raízes saem do pescoço como bicho saindo de toca. A costura abre, e **a cabeça cai** na lama
   do leito da barragem. Câmera no chão, de lado, como na lata do cap. 1. A água chega e passa.
 - De manhã: botas de soldado. Uma lata de querosene. Sal.
-- **Corte:** 1938, Salvador. Uma vitrine de museu, uma etiqueta datilografada: "Virgulino
-  Ferreira da Silva, vulgo Lampião". No vidro, o reflexo de um soldado jovem da escolta,
+- **Corte:** 1938, Salvador. Uma vitrine de museu, uma etiqueta datilografada: "Vulgo
+  Lampião". No vidro, o reflexo de um soldado jovem da escolta,
   olhando a vitrine e sorrindo com a boca grande demais. A fome mudou de casa.
 
 ---

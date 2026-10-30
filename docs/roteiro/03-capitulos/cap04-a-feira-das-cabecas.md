@@ -159,7 +159,7 @@
   - Barril de pólvora da volante encostado na carroça ao lado do adro.
 - **Recolher as cabeças:** interação longa na tábua (5 s, jogador vulnerável). Lampião põe
   uma por uma num saco de estopa, falando o apelido de cada um, baixo.
-- **A cabeça do meio** (cena curta, 20 s): etiqueta "Virgulino Ferreira, vulgo Lampião". Rosto
+- **A cabeça do meio** (cena curta, 20 s): etiqueta "Vulgo Lampião". Rosto
   magro, bigode.
 
 > **LAMPIÃO:** Esse aí num sou eu.

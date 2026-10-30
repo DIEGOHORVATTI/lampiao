@@ -51,7 +51,7 @@
 Tudo fica lento. Na lama, de lado, o jogador vê alpercatas de soldado passando. Uma voz
 fala **de dentro** da cabeça.
 
-> **ENCOSTO:** Ô, Virgulino. Tá doendo?
+> **ENCOSTO:** Ô, Lampião. Tá doendo?
 > **LAMPIÃO:** (fôlego curto) Quem é?
 > **ENCOSTO:** Quem sempre andou do teu lado. Tu é que nunca olhou pra trás.
 > **ENCOSTO:** Tão vindo com o facão. Primeiro a tua cabeça, depois a dos teus. Vão botar no
@@ -219,7 +219,7 @@ fala **de dentro** da cabeça.
 
 **Relação das cabeças** (papel dobrado na barraca do tenente, letra caprichada):
 > Relação do serviço. Grota da Baraúna, 28 de julho.
-> 1. Virgulino Ferreira, vulgo Lampião (lata separada).
+> 1. Vulgo Lampião (lata separada).
 > 2. Vulgo Cansanção.
 > 3. Vulgo Sabiá.
 > 4. Mulher dita Gavião.

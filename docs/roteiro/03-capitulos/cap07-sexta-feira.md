@@ -153,7 +153,7 @@
 ## Textos de ambiente
 
 **Recado de Dorinha no bornal** (letra do afilhado):
-> Virgulino. O que tem no Damião não é o mesmo que tem em tu, mas é da mesma família. Se o
+> Lampião. O que tem no Damião não é o mesmo que tem em tu, mas é da mesma família. Se o
 > bicho pegar ele: ferro, sangue sem morte, um corte só. E boca fechada pra sempre. Se tu
 > contar a ele ou a qualquer cristão, a sina passa pra quem contou. D.
 

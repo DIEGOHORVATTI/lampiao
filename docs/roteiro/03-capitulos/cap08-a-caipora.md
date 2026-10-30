@@ -109,7 +109,7 @@
 - Laurindo encostado na pedra, o fuzil longe. No bornal dele aparecem o chapéu de couro de
   Lampião, dobrado, e os anéis numa bolsinha de couro.
 
-> **TENENTE LAURINDO:** Eu cortei tua cabeça com essas mão, Virgulino. E dormi a noite toda.
+> **TENENTE LAURINDO:** Eu cortei tua cabeça com essas mão, Lampião. E dormi a noite toda.
 > **LAMPIÃO:** Eu sei. Eu senti.
 > **TENENTE LAURINDO:** Mil novecentos e vinte e sete. Fazenda Bom Jesus, em Mata Grande. Um
 > velho de chapéu de palha que num quis pagar o que teus cabra pediram. Botaram ele de joelho
@@ -170,7 +170,7 @@ Em qualquer caso Lampião recupera o chapéu e os anéis.
 > Ordem do Sr. Coronel: cal por cima, que o cheiro chega na casa.
 
 **Segundo recado de Dorinha** ("só abrir no barracão velho"):
-> Virgulino. Meu Severo era menino de recado nesse barracão em 77. Ajudou a jogar os mortos
+> Lampião. Meu Severo era menino de recado nesse barracão em 77. Ajudou a jogar os mortos
 > na vala, que o coronel velho pagava um vintém por defunto. Foi ali que a fome entrou nele. O
 > que tá contigo é a fome daquele povo. Por isso ela odeia coronel. E o coronel velho morreu
 > em 1911, mas ninguém enterrou ele: o filho guarda ele na capela da Jatobá, acorrentado. Eu

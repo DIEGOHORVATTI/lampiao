@@ -105,7 +105,7 @@ do Sol*, a xilogravura de cordel, a fotografia de Benjamin Abrahão, o horror de
 
 ### Nota sobre a história real
 
-Lampião (Virgulino Ferreira da Silva, 1898–1938) é o único personagem histórico em cena. O
+Lampião é o único personagem histórico em cena e o jogo só o chama assim (ou de Capitão), nunca pelo nome de batismo. O
 jogo parte do fim real dele (morte em emboscada numa grota, degola, exposição das cabeças) e
 daí em diante tudo é lenda. O bando do jogo é inventado. Maria Bonita e os outros
 cangaceiros reais **não aparecem nem são citados**, por respeito às pessoas reais e para o

@@ -6,8 +6,10 @@ const SPEAKER_COLORS := {
 	"ENCOSTO": Color(0.75, 0.15, 0.2),
 	"LAMPIÃO": Color(0.95, 0.65, 0.25),
 }
-const SECONDS_PER_CHAR := 0.055
-const MIN_LINE_SECONDS := 2.2
+const SECONDS_PER_CHAR := 0.085
+const BASE_LINE_SECONDS := 1.5
+const MIN_LINE_SECONDS := 3.0
+const MIN_BEFORE_SKIP := 0.6
 
 var subtitle: Label
 var prompt: Label
@@ -17,6 +19,8 @@ var fader: ColorRect
 var card: Label
 var hold_bar: ProgressBar
 var screen_held := false
+var advance_requested := false
+var continue_hint: Label
 
 
 func _ready() -> void:
@@ -41,6 +45,10 @@ func _ready() -> void:
 	card.add_theme_color_override("font_color", Color(0.91, 0.84, 0.69))
 	card.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(card)
+	continue_hint = _label(26, Control.PRESET_BOTTOM_WIDE, -90)
+	continue_hint.text = "toque para avançar"
+	continue_hint.modulate.a = 0.6
+	continue_hint.visible = false
 	hold_bar = ProgressBar.new()
 	hold_bar.show_percentage = false
 	hold_bar.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
@@ -84,9 +92,30 @@ func falar(lines: Array) -> void:
 		var color: Color = SPEAKER_COLORS.get(speaker, Color(0.88, 0.84, 0.76))
 		subtitle.add_theme_color_override("font_color", color)
 		subtitle.text = text if speaker == "" else "%s: %s" % [speaker, text]
-		await get_tree().create_timer(maxf(MIN_LINE_SECONDS, text.length() * SECONDS_PER_CHAR)).timeout
+		await _wait_line(reading_time(subtitle.text))
 	subtitle.text = ""
 	talking = false
+
+
+func reading_time(text: String) -> float:
+	return maxf(MIN_LINE_SECONDS, BASE_LINE_SECONDS + text.length() * SECONDS_PER_CHAR)
+
+
+func _in_cutscene() -> bool:
+	return not Pacto.active
+
+
+func _wait_line(auto_seconds: float) -> void:
+	var elapsed := 0.0
+	advance_requested = false
+	while elapsed < auto_seconds:
+		await get_tree().process_frame
+		elapsed += get_process_delta_time()
+		continue_hint.visible = _in_cutscene() and elapsed > MIN_BEFORE_SKIP
+		if advance_requested and elapsed > MIN_BEFORE_SKIP and _in_cutscene():
+			break
+	continue_hint.visible = false
+	advance_requested = false
 
 
 func fade(alpha: float, seconds: float, color := Color.BLACK) -> void:
@@ -99,7 +128,7 @@ func cartao(text: String, seconds: float) -> void:
 	card.text = text
 	card.modulate.a = 0.0
 	await create_tween().tween_property(card, "modulate:a", 1.0, 1.0).finished
-	await get_tree().create_timer(seconds).timeout
+	await _wait_line(maxf(seconds, reading_time(text)))
 	await create_tween().tween_property(card, "modulate:a", 0.0, 1.0).finished
 	card.text = ""
 
@@ -143,7 +172,7 @@ func escolher(options: Array, timeout := 0.0, on_timeout := Callable()) -> int:
 	while choice == -1:
 		await get_tree().process_frame
 		for i in options.size():
-			if Input.is_action_just_pressed("escolha_%d" % (i + 1)):
+			if Input.is_action_pressed("escolha_%d" % (i + 1)):
 				choice = i
 		timer += get_process_delta_time()
 		if timeout > 0.0 and timer >= timeout:
@@ -156,10 +185,12 @@ func escolher(options: Array, timeout := 0.0, on_timeout := Callable()) -> int:
 
 
 func _input(event: InputEvent) -> void:
-	if event is InputEventScreenTouch:
+	if event is InputEventScreenTouch or event is InputEventMouseButton:
 		screen_held = event.pressed
-	elif event is InputEventMouseButton:
-		screen_held = event.pressed
+		if event.pressed:
+			advance_requested = true
+	elif event.is_action_pressed("ui_accept"):
+		advance_requested = true
 
 
 func segurar(text: String, seconds: float, nag := Callable()) -> void:
