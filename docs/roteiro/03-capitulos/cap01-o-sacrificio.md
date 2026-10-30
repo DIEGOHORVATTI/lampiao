@@ -10,7 +10,7 @@ Adapta o episódio 1 do quadrinho ("Lampião", 38 págs., `docs/referencias/tapa
 | **Objetivo** | fugir da fazenda com o dinheiro; sobreviver à traição; sair da caverna; enterrar o bando |
 | **Criatura** | Corpo-Seco (os servos secos da caverna); volante do Coronel (gente) |
 | **Ganha** | rifle e peixeira (desde o início), pistola (revólver de soldado), o terço de Maria; poderes Tentáculos e Comer |
-| **Começa com** | vida 100, sem medidor de fome (a fome só aparece depois que Ela acorda, beat 6) |
+| **Começa com** | vida 100, sem medidor de fome (a barra só aparece quando Ela acorda, beat 8; ao fim do beat 9 a fome está em 50) |
 | **Folheto** | "O Rifle que Alumiava a Noite" (no bornal de Xexéu) |
 
 ## Cartão de abertura
@@ -177,8 +177,8 @@ Imagem em preto chapado e retícula, legenda curta embaixo. Ordem de sorteio liv
 > **VINI:** Por aqui! Tem outra saída!
 > **LAMPIÃO:** A gente num tem escolha...
 
-- Ao entrar no túnel atrás de Vini, gatilho g2: rolam pedras atrás deles (a boca do túnel
-  fecha em parte; `^`). Não há volta para Maria agora.
+- Ao entrar no túnel atrás de Vini, gatilho g2: rolam pedras atrás deles e a boca do túnel
+  fecha **em parte** (os soldados ainda passam, um de cada vez).
 
 ### 5. A galeria (jogável, 2–3 min) — Zona Z3
 
@@ -187,12 +187,14 @@ Imagem em preto chapado e retícula, legenda curta embaixo. Ordem de sorteio liv
 - As paredes têm **nichos** cavados na pedra. Dentro de cada um, um corpo seco, sentado de
   joelhos, encolhido, a pele de couro grudada no osso, a boca aberta para cima como os
   ídolos. Ninguém sabe há quanto tempo estão ali.
-- **Susto 1 (!1):** no terceiro nicho, quando a luz do facho passa, o corpo vira a cabeça
+- **Susto !4 (vulto):** no terceiro nicho, quando a luz do facho passa, o corpo vira a cabeça
   devagar acompanhando Vini. Só a cabeça. Quando a luz volta, está de novo de boca para
   cima. Vini não viu.
 - **Encontro E1:** dois soldados alcançam os dois na curva. Combate curto com o rifle.
 - **Sussurro (sem legenda de personagem, só texto entre colchetes):** "[uma voz de mulher,
   muito longe, no fundo do túnel: ...fome...]"
+- Depois do E1, um segundo desmoronamento fecha a galeria de vez atrás dos dois (`^`). Não
+  há volta para Maria por ali.
 - Na entrada do salão, Vini para, ofegante.
 
 > **VINI:** Acho que despistamos eles.
@@ -276,7 +278,8 @@ Imagem em preto chapado e retícula, legenda curta embaixo. Ordem de sorteio liv
   soldado pelo peito e o levanta (empalamento em primeiro plano, sangue preto escorrendo pelo
   tentáculo até a câmera). **Tutorial de Comer:** "COMER" com o soldado erguido: a boca fecha
   sobre ele. Som de osso e mastigação. Fica a metade de baixo do corpo, que cai.
-- Aparece a barra **FOME**, cheia e piscando. Cada soldado comido baixa 30.
+- Aparece a barra **FOME**, cheia (100) e piscando. Em Modo Ela cada soldado comido baixa
+  12: depois dos quatro, ela fica em torno de 50. Séculos de fome não se matam numa noite.
 
 > **ELA:** Eu tô faminta!
 
@@ -328,12 +331,12 @@ Imagem em preto chapado e retícula, legenda curta embaixo. Ordem de sorteio liv
   ("Pegar o rifle").
 - **Escolha pequena (sem medidor):** "Fechar os olhos de Vini" ou deixar. Se fechar,
   `vini=perdoado`. Se não, `vini=largado`. Lampião não fala nada nos dois casos.
-- O caminho de volta pela galeria está fechado pelas pedras (beat 4). A saída é a **fenda
+- O caminho de volta pela galeria está fechado pelas pedras (beat 5). A saída é a **fenda
   leste**, por onde Benedito fugiu. Uma corrente de ar frio vem de lá.
 
 ### 10. Os servos (jogável, 4 min) — Zonas Z4 → Z5
 
-- Ao passar pela laje rachada, gatilho g3. **Susto 2 (!2):** todos os nichos do salão
+- Ao passar pela laje rachada, gatilho g3. **Susto !7 (chao):** todos os nichos do salão
   estalam ao mesmo tempo. Os corpos secos se desdobram e ficam de pé. Couro estalando como
   sola velha. Os olhos têm um brilho branco pequeno, igual ao dos totens.
 
@@ -480,11 +483,24 @@ estrofe, lida em voz alta por Lampião se o jogador abrir:
 
 ## Sustos (resumo para o level design)
 
-| # | Zona | Gatilho | O que acontece | Motivo |
+Tipos (ferramentas que o jogo já tem): **jumpscare** (rosto em tela cheia), **vulto** (figura na
+visão periférica que some quando se olha), **passos**, **batida**, **sussurro**, **respiracao**
+(som atrás do jogador), **apagao** (as fogueiras próximas apagam juntas), **chao** (corpo-seco
+saindo do chão ou do nicho). Posições em `04-mapas.md`, cap. 1.
+
+| # | Zona | Tipo | Gatilho | O que acontece |
 |---|---|---|---|---|
-| !1 | Z3 | luz do facho passa pelo 3º nicho | o corpo seco vira a cabeça seguindo Vini e volta | os servos estão quase acordando |
-| !2 | Z4 | passar pela laje rachada depois da cena 9 | todos os nichos estalam juntos e os corpos ficam de pé | Ela acordou, os servos acordam |
-| !3 | Z5 | tirar a luz do facho de cima de um nicho vazio | quando a luz volta, o corpo está do lado de fora, a 2 m, parado | a fenda é a casa deles |
+| !1 | Z2 | vulto | olhar o ídolo do pressentimento (−10, 14) e virar para a fogueira | uma figura de pé atrás de Vini, na borda da luz; some quando o jogador olha |
+| !2 | Z2 | jumpscare | acordar do sonho (beat 4) | o rosto de Maria em tela cheia, espuma branca saindo da boca, olho revirado; 0,4 s |
+| !3 | Z2 | apagao | o Coronel chega na boca (beat 4) | o vento da boca apaga a fogueira do bando de uma vez (se o jogador não tiver apagado antes); só os clarões |
+| !4 | Z3 | vulto | o facho de Vini passa pelo 3º nicho (−6, 36) | o corpo seco vira a cabeça seguindo Vini e volta à posição quando a luz retorna |
+| !5 | Z3 | sussurro | (−2, 46) | voz de mulher no ouvido esquerdo: "...fome..." |
+| !6 | Z4 | respiracao | cabeça caída (beat 7), antes da voz | respiração enorme, de bicho, vinda de debaixo da laje |
+| !7 | Z4 | chao | passar pela laje depois do beat 9 (g3) | todos os nichos estalam juntos e os corpos secos ficam de pé |
+| !8 | Z5 | passos | 10 s depois de pegar o facho (16, 78) | passos de pé descalço atrás do jogador, parando quando ele para |
+| !9 | Z5 | jumpscare | tirar a luz do facho do nicho (27, 54) e voltar | o corpo seco está fora do nicho, a 1 m, rosto de couro e boca aberta em tela cheia |
+| !10 | Z5 | batida | perto do nicho de Benedito (31, 24) | três batidas de dedo na pedra, devagar; é Benedito pedindo socorro, mas o jogador não sabe |
+| !11 | Z6 | vulto | olhar a árvore seca durante o enterro (beat 13) | por um instante, Maria de pé ao lado da árvore, de chapéu; some |
 
 ## Encontros de combate
 
@@ -508,9 +524,7 @@ estrofe, lida em voz alta por Lampião se o jogador abrir:
 
 ## Ganchos
 
-- `benedito=poupado`: Benedito conta na estrada que "Lampião levantou sem cabeça". É por
-  isso que os irmãos do cap. 2 já ouviram o boato e que, em Mossoró (cap. 9), o Coronel está
-  esperando por ele.
-- `benedito=comido`: o Coronel acha que Lampião está morto e a cabeça ficou com a "coisa da
-  caverna". Em Mossoró, ele espeta uma cabeça falsa e não espera ninguém.
-- O chapéu de três medalhões fica na cruz de Maria. Volta no final B.
+- `benedito=poupado`: Benedito conta na estrada que "Lampião levantou sem cabeça"; no cap. 2
+  Antônio já ouviu o boato.
+- O chapéu de três medalhões fica na cruz de Maria.
+- As flags do cap. 1 ficam salvas para o "Lampião 2".

@@ -1,260 +1,225 @@
 # Personagens
 
-Regra de elenco: no máximo três vozes por cena, e o Encosto conta como uma. Cada personagem
-tem **motivação** (o que quer), **segredo** (o que esconde) e **arco** (como muda, ou como se
-recusa a mudar). Nomes e apelidos são originais, menos Lampião.
-
----
+Os nomes e a aparência vêm do quadrinho (`docs/referencias/guia-visual.md`, seção 2, com as
+páginas de referência). Quem o quadrinho não nomeia ganhou nome aqui, e isso está marcado
+com **(nome do jogo)**.
 
 ## Protagonista
 
 ### Lampião, "o Capitão"
 
-- **Idade:** 40 anos (morreu com 40).
-- **Aparência:** chapéu de couro em meia-lua com estrelas de metal, óculos redondos (perdeu um
-  olho de verdade, e o jogo respeita isso: a visão do lado direito tem uma leve sombra na
-  borda), lenço no pescoço, cartucheiras cruzadas, anéis em quase todos os dedos (a volante
-  levou, ele não tem mais) e alpercatas. Depois do cap. 1, uma **costura preta de raiz** dá a
-  volta no pescoço, e por cima dela, a partir do cap. 2, o cordão do crucifixo.
-- **Como fala:** pouco, seco, de cima. Trata todo mundo de "cabra", "home", "moça". Chama
-  soldado de "macaco". Reza com fervor de verdade e jura por "meu Padim". Quando fica com
-  raiva, fala mais baixo.
-- **Motivação:** vingança contra quem matou o bando (Liberato, que vendeu; Tenente Laurindo,
-  que cortou as cabeças; Coronel Teotônio, que pagou) e enterrar as cabeças dos seus cabras
-  em chão bento.
-- **Segredo:** sabe que merecia morrer. Na emboscada, antes do Encosto falar, a última coisa
-  que pensou foi "foi justo". Só admite isso no cap. 8, para o tenente.
-- **Arco:** começa como vingador puro ("eles vão pagar"). O Encosto oferece a vingança fácil,
-  e o povo oferece o desprezo. No meio do caminho ele descobre, com Dorinha, Damião e
-  Rosinha, que ainda se importa, e que se importar custa. O final depende de o que ele
-  escolheu ser: o justiceiro que ainda é gente (Descanso), o mal necessário (O Mal
-  Necessário), a fome com chapéu (A Fome) ou uma cabeça num museu (A Cabeça).
-- **Contradição central:** quer ser "justiceiro pro meu povo", mas o povo tem medo dele com
-  razão.
+- **Quem é:** chefe de um bando pequeno de cangaceiros "justiceiros errantes": tiram dos
+  coronéis e devolvem às comunidades. Só é chamado de **Lampião** ou **Capitão**. Nenhum texto do
+  jogo usa outro nome.
+- **O apelido:** o rifle. Ele atira tão rápido que o clarão acende a noite; o povo viu a serra
+  inteira aparecer num tiro dele e deu o nome. Maria diz no cap. 1: "Tu acende a noite toda vez
+  que atira, sabia? O povo te chama de Lampião por isso. Eu chamo de besta."
+- **Aparência:** magro, alto, ombros estreitos, postura cansada. Cabelo preto liso **até o meio
+  das costas**, repartido no meio. Sem barba. **Óculos redondos de aro fino**; a lente direita
+  racha na degola (no jogo: risco permanente no canto direito da tela). Casaco comprido aberto,
+  camisa clara, cartucheira no peito e na cintura, faixa de pano na cintura, calça escura, botas.
+  Lenço amarelo-mostarda no pescoço, cobrindo a **costura em X**. O chapéu de couro de três
+  medalhões fica na cruz de Maria no fim do cap. 1; ele não usa mais chapéu.
+- **Armas:** rifle de ferrolho nas costas; peixeira comprida; revólver (desde o cap. 1); balas
+  de prata (cap. 7).
+- **Quer:** matar o Coronel. Depois, descansar.
+- **Medo:** virar o que carrega. E, mais escondido, que Maria tenha morrido por causa do dinheiro
+  dele.
+- **Voz:** seca, rápida, xinga quando apanha. Ternura só com Maria, e depois, sem admitir, com
+  Juliana. Com Ela, briga como casal velho.
+- **Corpo:** frágil por fora. Apanha, voa longe, quebra osso, levanta porque Ela segura. "Tu só
+  sobreviveu porque eu tô no teu corpo." (E9)
+- **Frases-chave:** "Tamo aqui pela grana, não pela matança." / "Aquieta o facho." / "Eu vou te
+  matar, Coronel!" / "Eu vou te dar todas as carnes podres que eu achar no caminho."
 
----
+## Ela
 
-## O Encosto
+- **Quem é:** a entidade. Feminina, antiquíssima, veio do mar; ficou sepultada séculos debaixo da
+  laje da Caverna dos Ídolos; acordou com o sacrifício do bando e mora no pescoço de Lampião. Sem
+  nome. Regina a chama de **a Dona do Mar**. Na interface, "ELA". Detalhes na bíblia.
+- **Aparência:** ver bíblia, "Formas". Em primeira pessoa: o olho na costura (visto ao olhar para
+  baixo), os tentáculos pretos de olhinhos brancos, a sombra dela no chão quando sai.
+- **Quer:** comer até ficar completa. Voltar para o mar. Morder o Velho, a quem não perdoa.
+- **Esconde:** que tem medo do Velho; que não sabe se, completa, vai querer ir embora.
+- **Voz:** debochada, vaidosa, gulosa, um pouco mais "certa" que a fala do sertão. Chama
+  Lampião de "Capitão" (deboche) e, com Marca alta, de "meu bem". Balão do quadrinho: borda preta
+  irregular; no jogo, legenda com o nome "ELA" em branco sobre preto.
+- **Frases-chave:** "Eu tô faminta!" / "Você só tá andando por causa de mim, tá bom?" / "Irch...
+  sério que você vai usar isso aí?" / "É sério, imbecil!" / "Eu não acreditava... mas é ele...
+  ele ainda está aqui."
 
-- **O que é:** a fome da Grande Seca de 1877, que aprendeu a falar. Ver `00-biblia.md`.
-- **Voz:** grave, rouca, calma, perto demais do ouvido. É mixada **dentro** da cabeça
-  (centro, sem reverb de ambiente). Por baixo dela, um **coro** baixo de vozes de retirantes
-  (homens, mulheres, criança) que fala as últimas palavras junto com ele. Cada ponto de
-  Marca acrescenta ao coro a voz de quem foi comido (Benedito, Liberato, Rosália, o
-  boticário, o tenente, o coronel).
-- **Como fala:** chama Lampião de **"garoto"** (tem 60 anos a mais que ele). Fala de gente
-  como comida: "carne", "carniça", "bucho", "miúdo", "osso bom". Usa provérbio torto ("quem
-  tem fome tem pressa"). Ri baixo e sem graça. Nunca grita, a não ser na possessão. Repete
-  palavras quando está com fome: "fome, fome, garoto, fome".
-- **Personalidade:** paciente, debochado, sedutor, honesto do jeito dele (não mente sobre o
-  trato), cruel sem ódio, porque fome não odeia. Tem raiva de uma coisa só: coronel, gente
-  que guarda comida enquanto os outros morrem. Isso o aproxima de Lampião, e é o que torna
-  ele perigoso.
-- **Motivação:** comer; o corpo para sempre; e, a partir do cap. 8, comer o Coronel Velho, o
-  homem que o fez.
-- **Segredo:** ele não é um demônio. É o que restou de 312 retirantes jogados numa vala. Por
-  baixo da fome tem um pedido de justiça que ele mesmo esqueceu. Isso é revelado no cap. 8 e
-  pesa no final: comer o Coronel Velho é a única vez em que ele fica **cheio**.
-- **Arco:**
-  1. **Caps. 1–3:** voz com fome, parceiro de crime. Ri dos escrúpulos de Lampião.
-  2. **Caps. 4–7:** irritado com a mania de Lampião de ajudar ("Tu ajuda quem bate a porta na
-     tua cara?"). Tenta convencer pela lógica: o povo não presta, o povo te vendeu.
-  3. **Cap. 8:** lembra de onde veio. Fica quieto pela primeira vez.
-  4. **Cap. 9:** come o pai da fome, fica cheio, e mesmo assim cobra o trato. A fome
-     saciada continua querendo mais. Isso é a tese do jogo: a fome que os homens fabricaram
-     não acaba com um coronel morto.
-- **Falas de exemplo:**
-  - "Shhh. Num se mexe, garoto. Inda não."
-  - "Eu tô com fome, garoto. Tu prometeu."
-  - "Tu ajuda quem mal conhece? Quem nem água te deu?"
-  - "Carniça não enche, só engana. Gente enche."
-  - "Isso aí num é comida. É dona."
-  - "Tá ouvindo? Pararam os grilo. Chegou visita."
+## O bando (cap. 1)
 
----
+### Maria
 
-## Antagonistas humanos
+- **Quem é:** mulher de Lampião, cangaceira do bando. "Abençoada": anda com um **terço de contas
+  escuras e crucifixo de prata**. Leva um tiro protegendo Lampião na fazenda, toma a sopa
+  envenenada e morre nos braços dele de manhã. Só "Maria".
+- **Aparência:** cabelo curto escuro em chanel com franja, rosto delicado, chapéu de cangaceira
+  com losangos, casaco do bando, cartucheira.
+- **O terço:** dá a Lampião para segurar enquanto dorme ("Tu num é abençoado, mas eu te
+  empresto"). É o terço que trava Ela e devolve a cabeça. No fim do cap. 1 vai para o pescoço dele.
+- **Frases:** "Não se preocupa, eu sou abençoada, lembra?" / "Fica com ele. Ele cuida de tu
+  agora."
 
-### Coronel Teotônio Valadares
+### Vini, o traidor
 
-- **Quem:** 62 anos, dono da Fazenda Jatobá e da barragem que segura o açude que dava água à
-  Ribeira do Ermo. Terno de linho encardido, bengala de castão de prata, voz mansa, nunca
-  levanta a voz.
-- **Motivação:** na seca de 1937 fechou a comporta da barragem para vender água e farinha no
-  barracão. O bando de Lampião arrombou o barracão e deu a farinha aos retirantes de Santa
-  Luzia. Teotônio pagou a volante, prendeu o filho do coiteiro para forçar a traição e quer
-  as cabeças por dois motivos: a recompensa do governo e uma nomeação de prefeito pelo
-  interventor do Estado Novo.
-- **Segredo:** o pai dele, o **Coronel Velho Valadares**, morreu em 1911 e a terra não quis o
-  corpo. Teotônio guarda o pai, um corpo-seco acorrentado, na cripta da capela da fazenda,
-  e o alimenta com cabra e, quando falta, com gente: retirante sem nome. Acredita que a
-  fortuna da família depende de o velho continuar "em casa". Também sabe o que o boticário
-  faz e manda para ele os órfãos dos retirantes.
-- **Arco:** de intocável a um velho de pijama implorando na sala. Não muda por dentro. A
-  última fala dele, qualquer que seja o destino, é sobre dinheiro.
-- **Fala de exemplo:** "Ninguém morreu de fome nesta ribeira, Capitão. Morreu de preço."
+- **Quem é:** cozinheiro do bando, alegre, loiro, chapéu de aba curta, camisa listrada. O Coronel
+  pegou os pais, a mulher e a filha dele. Ele envenena a sopa e leva Lampião ao fundo da caverna.
+  O Coronel o mata e conta que a família dele "tá morta desde que tu saiu em missão".
+- **No jogo:** o jogador decide se fecha os olhos dele e se o enterra com os outros.
+- **Frases:** "Pessoal, sopa tá pronta!" / "Me desculpa..." / "Tu não faria o mesmo por Maria?"
 
-### Tenente Laurindo Brás
+### Baraúna **(nome do jogo)**
 
-- **Quem:** 34 anos, comandante da volante. Sertanejo de Mata Grande, filho de vaqueiro, magro,
-  bigode fino, farda cáqui suja, chapéu de abas largas.
-- **Motivação:** em 1927 um grupo do bando de Lampião matou o pai dele numa fazenda que não pagou
-  a "contribuição". Entrou na polícia para isso. Cortou a cabeça de Lampião com a própria mão.
-- **Segredo:** a lata de Lampião voltou vazia (cap. 1). Para não perder a recompensa nem virar
-  piada, Laurindo mandou matar um retirante parecido, o **Expedito**, e expôs a cabeça dele
-  como se fosse a de Lampião (cap. 4). Guarda no bornal os anéis e o chapéu de Lampião.
-- **Arco:** de caçador orgulhoso a homem assombrado. No cap. 8, ferido, pergunta a Lampião se
-  ele lembra do pai dele, e Lampião não lembra. Pode morrer, ser comido ou ir embora vivo,
-  tirando a farda.
-- **Fala de exemplo:** "Eu cortei tua cabeça com essas mão, Lampião. E dormi a noite toda."
+- O mais velho do bando: careca, trancinha atrás da orelha, chapéu de triângulos. Grandão,
+  esquentado ("Tu tá morto, desgraça!"), mas é ele quem lembra que o dinheiro é das comunidades.
+  Morre envenenado.
 
-### Joaquim Liberato, o coiteiro
+### Xexéu **(nome do jogo)**
 
-- **Quem:** 51 anos, dono do Sítio Lagoa Rachada. Escondeu o bando por dez anos, deu de comer,
-  guardou arma e dinheiro no coito.
-- **Motivação:** o coronel levou o filho dele, Tonho (14 anos), e prometeu soltar se ele dissesse
-  onde o bando ia dormir. Ele disse.
-- **Segredo:** o coronel não soltou o Tonho. Liberato acha que soltou e que o filho está com
-  um tio em Propriá; na verdade Tonho está preso no tronco da Fazenda Jatobá (cap. 9).
-- **Arco:** de traidor escondido na casa de farinha a, se perdoado, aliado envergonhado que abre o
-  caminho da fazenda no cap. 9 e descobre que o filho está vivo.
-- **Fala de exemplo:** "Era o senhor ou meu menino, Capitão. Eu escolhi meu menino. O senhor
-  escolhia o seu."
+- O mais novo: cabelo preto, chapéu de estrela, olho grande para dinheiro. "Caramba! Esse calote
+  foi do Pipoco. Olha toda essa grana!" Carrega o folheto do cap. 1. Morre envenenado apontando
+  para a boca da caverna: "É o Coronel..."
 
-### Padre Anselmo
+## Antagonistas
 
-- **Quem:** 45 anos, vigário de Santa Luzia do Ermo. Batina remendada, voz de púlpito.
-- **Motivação:** manter a paróquia, a casa e a mulher que ninguém pode saber que ele tem. O
-  coronel paga as três coisas.
-- **Segredo:** vive com **Rosália** (que vira mula toda quinta para sexta) e sabe disso.
-  Registrou no livro de óbitos 43 retirantes enterrados "sem nome" na vala do açude em 1937
-  e nunca perguntou do que morreram. Prega por encomenda do coronel que Lampião é o Cão.
-- **Arco:** covarde do começo ao fim, com um momento só de verdade (cap. 6): se Rosália é
-  libertada, ele a cobre com a batina e diz "a culpa é minha"; se ela é comida, ele
-  enlouquece no adro. O que acontece com ele depois depende do
-  jogador e aparece no cordel final.
-- **Fala de exemplo:** "Cemitério de cristão num é lugar de cangaceiro."
+### O Coronel
 
-### Doutor Gaudêncio Paiva, o boticário (Papa-figo)
+- **Quem é:** dono da região e da volante, que comanda em pessoa. Mora em Mossoró. Matou o bando
+  e conta a todo mundo que matou Lampião. Só "o Coronel": o jogo não dá nome a ele.
+- **Aparência:** forte, queixo quadrado, **cavanhaque e barba curta**, bigode, **quepe** com
+  emblema, terno escuro e gravata, **medalhas**, cavalo escuro. Revólver; faca de degola.
+- **Quer:** dinheiro, terra e a fama. "Vai ficar bom numa estaca."
+- **Esconde:** o **corpo fechado**. Bala de chumbo não entra nele. Ele paga o Velho com gente
+  (retirantes, presos, meninos) para manter o pacto, e foi o Velho quem soprou a ele onde o bando
+  ia se esconder. É por isso que achou a caverna.
+- **Fraqueza:** bala de prata ou o terço de Maria encostado nele quebram o corpo fechado por uns
+  segundos.
+- **Voz:** deboche de patrão, xinga baixo. "Tu vai se arrepender de roubar de mim, fi duma
+  rapariga!" / "Ha. Tu pensou que eu ia deixar tu ir embora na boa?"
+- **Aparece:** caps. 1 (degola e fuga), 9 (de longe, na sacada), 10 (duelo e escolha).
 
-- **Quem:** 58 anos, boticário de Santa Luzia, cunhado do coronel. Doente há anos de um mal que
-  seca a pele e abre feridas (o jogo nunca dá nome à doença, para não estigmatizar nenhuma
-  doença real).
-- **Motivação:** viver. Acredita no remédio que a lenda promete: fígado de criança.
-- **Segredo:** de noite sai vestido de mendigo, com um saco nas costas, pedindo esmola e
-  oferecendo rapadura a menino. O coronel manda órfãos de retirante para "trabalhar na
-  botica".
-- **Arco:** não tem. É o único dos homens que já virou bicho por inteiro. Serve para mostrar
-  que nem toda assombração vem do inferno, algumas vêm da botica.
-- **Fala de exemplo (disfarçado):** "Uma esmolinha, pelo amor de Deus... me ajuda a levar
-  esse saco, que eu num aguento mais."
+### O Velho (o vulto de olhos brancos)
 
----
+- **Quem é:** o primeiro servo dela, que bebeu o sangue dela e virou o **primeiro lobisomem**.
+  Enterrou-a debaixo da laje e anda pelo sertão há séculos, mordendo um homem de cada vez. No
+  quadrinho é o vulto preto de olhos brancos que diz "Então é verdade... ela despertou" (E4) e
+  instiga Ciro na janela (E8).
+- **Aparência:** silhueta preta peluda e esfumaçada, **dois olhos brancos**, braço comprido de
+  dedos finos, fios pretos escorrendo. Na luz de fogueira, dá para ver por um instante um rosto de
+  velho magro por baixo do pelo. Forma de luta: lobisomem enorme e magro, mais alto que Ciro, com
+  o pelo grisalho e falhado.
+- **Quer:** que Ela continue presa ou morra. E um herdeiro: o filho de Juliana, que tomou banho de
+  sangue de lobisomem no cap. 7 ("A criança cheira a mim").
+- **Fraqueza:** prata. O terço só o atrasa. Ela pode comê-lo, mas isso tem preço (ver finais).
+- **Voz:** baixa, educada, antiga. "Não seja tímido, Ciro... Mostre a eles quem você realmente
+  é." Chama Ela de "minha senhora", com nojo.
+- **Aparece:** caps. 3 (final), 6 (janela), 8 (mini-chefe), 10 (chefe final).
+
+### Antônio e Marconi
+
+- **Quem são:** irmãos bandidos, caçadores de recompensa. Juliana fugiu de casa com eles.
+  Antônio é o pai da criança. Reconhecem Lampião ("os óculos, os cabelo") e querem levá-lo vivo ao
+  Coronel em Mossoró.
+- **Aparência:** grandões, cabelo claro raspado dos lados e espetado em cima, cicatrizes, nariz
+  quebrado, camisa branca, jaqueta escura, revólveres de cano longo, laço. Marconi tem faixa
+  branca no braço.
+- **Fim:** Marconi leva a própria faca na cara (E3 15); Antônio pega Juliana de escudo; Ela empala
+  e come os dois
+  (roteirizado, como no quadrinho).
+- **Frases:** **ANTÔNIO:** "O Coronel contou pra todo mundo que matou tu. Vai ser bonito ver a
+  cara dele." **MARCONI:** "Fica quieta e não me atrapalha. As coisas tão diferentes agora."
+
+### O Doutor (Papa-figo) **(nome do jogo: Doutor Anísio)**
+
+- Médico do Coronel em Mossoró, dono da botica. Doente de uma doença que "só fígado de menino
+  cura". Preparou a cabeça falsa da estaca. Cap. 9.
+
+### Zeca **(nome do jogo)**
+
+- Filho de Dona Cândida, puxador da multidão na Vila Boa Vista. Pula a janela dos fundos da casa de Ciro com um facão
+  para "acabar com isso", sem a multidão ver. Cap. 5, escolha.
+
+### Volante
+
+- Soldados do Coronel: farda clara de manga comprida, quepe, cinto, rifle. **Benedito**, 19 anos,
+  é o único com nome: aparece desarmado na fazenda e preso na fenda (cap. 1).
 
 ## Aliados
 
-### Dona Dorinha — Doralice Ventura, rezadeira
+### Juliana
 
-- **Quem:** 71 anos, viúva, mora sozinha no Sítio Olho-d'Água. Pequena, cabelo branco em
-  coque, um olho nublado de catarata, terço no pulso, cachimbo de barro. Reza quebranto,
-  espinhela caída e olhado com galho de vassourinha, e faz garrafada.
-- **Como fala:** mansa e direta, com humor seco. Trata Lampião de "home" e "menino" sem
-  medo nenhum. É a única pessoa que ouve o Encosto (baixinho) e responde a ele.
-- **Motivação:** consertar o que deixou solto. Em 1901 ela tirou o Encosto do marido, Severo,
-  e ele morreu na hora. O Encosto ficou vagando, e ela sabe que ele está em Lampião por
-  culpa dela.
-- **Segredo:** Severo foi menino de recado no barracão do Coronel Velho em 1877 e ajudou a
-  enterrar os retirantes na vala. Foi lá que a fome entrou nele. Dorinha sabe de onde o
-  Encosto veio e só conta no cap. 8, por recado deixado no bornal.
-- **Arco:** de rezadeira que tranca Lampião com terço a mãe que reza o enterro das cabeças e,
-  no final "Descanso", reza a dele. Ela **não morre** em nenhum final.
-- **O crucifixo:** de latão, do tamanho de um palmo, comprado numa romaria a Juazeiro em 1899
-  e bento lá. Foi com ele que ela arrancou o Encosto de Severo. Dá a Lampião no cap. 2:
-  "Ele já conhece essa cruz. Tem medo dela."
-- **Falas de exemplo:**
-  - "Home, tu tá mais morto do que vivo e mais vivo do que devia."
-  - "Num é pra tu gostar da cruz. É pra tu segurar."
-  - (ao Encosto) "Te aquieta. Eu te conheço de outra casa."
+- **Quem é:** moça pobre do sítio do Riacho Fundo. Fugiu com Antônio e Marconi porque não
+  aguentava ver os pais passando fome para ela comer. Está **grávida** de Antônio. Atiradora: o
+  pai, antes de ficar cego, a ensinou a atirar em espantalhos presos em mandacaru. Depois do cap.
+  3, viaja com Lampião até o fim.
+- **Aparência:** pele morena, rosto redondo, olhos grandes, sobrancelhas grossas, cabelo preto
+  cacheado volumoso até os ombros, vestido comprido de chita florida ou bata lisa, sandálias,
+  cordão no pescoço. Do cap. 7 em diante, os **dois revólveres** dos irmãos, um em cada mão; no
+  cap. 7, **encharcada de sangue da cabeça aos pés**.
+- **Quer:** que o filho não passe fome. Ir a Mossoró ver o Coronel cair (os irmãos iam vendê-la
+  junto com Lampião).
+- **No jogo:** companheira de NPC. Atira de cobertura (dano baixo), carrega facho em trechos
+  escuros, aponta perigo ("Ali, Capitão!"). Nunca morre fora de cena roteirizada.
+- **Voz:** começa encolhida, termina dura. "E tu tá sem cabeça. Cada um com seu problema." /
+  "Lampião!"
 
-### Menino Jurema — Josué, alma penada
+### Os pais de Juliana: Dona Socorro e Seu Tonho **(nomes do jogo)**
 
-- **Quem:** 15 anos, o mais novo do bando. Entrou com 12, depois que a volante queimou a casa
-  da família. Lampião o tratava como filho e não deixava ele atirar.
-- **Como aparece:** alma penada: menino de chapéu de couro grande demais, sem marca nenhuma no
-  pescoço (a alma é inteira), descalço, pálido, sempre de longe, na borda da luz. Assovia
-  a toada de "Mulher Rendeira". O assovio é o sinal dele e leva a segredos e caminhos
-  certos.
-- **Motivação:** descansar, mas não sem o Capitão.
-- **Segredo:** sabe o que o Encosto é desde o primeiro minuto ("ele tá frio por dentro,
-  Capitão, igual eu"), mas tem medo de dizer.
-- **Arco:** pede a cabeça (cap. 1), acompanha o enterro (cap. 6) e espera Lampião no final.
-  No Descanso pega a mão dele. Ecoa a música: "O senhor vem?" / "Vou me atrasar um pouco."
+- **Dona Socorro:** velha magra, cabelo branco liso até a cintura, óculos, avental. Ameaça
+  Lampião de espingarda. **Seu Tonho:** velho cego, boné de pano, bigode branco. Foi atirador.
+  Caps. 2, 3 e flashback do cap. 7.
 
-### Damião Rocha, vaqueiro
+### Ciro
 
-- **Quem:** 38 anos, vaqueiro do Sítio Pau-Ferro, viúvo, gibão de couro, fala devagar.
-  Sétimo filho homem depois de seis mulheres. A irmã mais velha não quis ser madrinha dele,
-  e por isso a sina pegou.
-- **Motivação:** criar Rosinha. Ajuda Lampião porque o bando deu farinha à mulher dele na seca
-  de 1937, quando ela ainda estava viva.
-- **Segredo:** vira lobisomem toda sexta-feira à meia-noite. Não lembra o que faz, mas acha
-  bicho morto no curral no sábado. Rosinha acha que o pai "fica doente toda sexta".
-- **Arco:** o único adulto que abre a porta para Lampião (cap. 5); vira o chefe do cap. 7. Se
-  curado, acorda nu no espojadouro sem saber de nada e continua o mesmo homem bom. Se morto,
-  Rosinha fica órfã, e o cordel final fala dela.
-- **Fala de exemplo:** "Aqui o senhor come. Lá fora o senhor faz o que tiver que fazer."
+- **Quem é:** pai de Helena, homem bom e pobre da Vila Boa Vista, mordido pelo Velho. Na lua cheia
+  vira **lobisomem**. Acorrenta-se na loca da Pedra de Topo Reto para não fazer mal a ninguém; a
+  corrente arrebenta.
+- **Aparência (homem):** cabelo preto curto espetado, barba por fazer, camiseta branca, calça
+  larga, descalço, suado, ferido. **(bicho):** ver bestiário.
+- **No jogo:** personagem jogável no prólogo do cap. 4; chefe nos caps. 6–7; escolha no cap. 7.
+- **Frase:** "Filha..." / "Filha... vá embora, por favor."
 
-### Rosinha
+### Helena
 
-- **Quem:** 8 anos, filha de Damião. Cabelo cortado em cuia, vestido de chita, curiosa.
-- **Papel:** a única pessoa que não tem medo de Lampião, porque ninguém disse a ela que
-  devia ter. Pergunta o que ninguém pergunta ("o senhor tá morto?"). Ela dá o nome de
-  "Seu Bicho" ao Encosto, e o Encosto não sabe o que fazer com isso.
-- **Arco:** o termômetro do jogador. Nos finais aparece adulta no cordel.
+- Filha de Ciro, 7–8 anos, coque alto com franja, jardineira, descalça, **boneca de pano rasgada**.
+  Jogável no prólogo do cap. 6. "Painho, volta logo." / "Tia Vó!"
 
-### Zé Mirim, o cego cantador
+### Lúcia **(nome do jogo)**, mãe de Helena
 
-- **Quem:** 60 anos, cego de nascença, cantador de feira com viola de dez cordas. Vive debaixo
-  da latada da bodega em Santa Luzia.
-- **Papel:** narrador. Abre cada capítulo com uma sextilha e escreve os folhetos de cordel que
-  o jogador acha (colecionáveis). É o único na vila que conversa com Lampião sem medo,
-  porque não enxerga o que os outros enxergam. "Eu num vejo o senhor, Capitão. Eu escuto. E
-  o senhor tem dois fôlego."
-- **Arco:** a história que ele canta muda conforme as escolhas. O cordel dele é o epílogo de
-  cada final.
+- Cabelo preto curto e cacheado, magra. Reconhece Ciro na porta: "Ele é meu marido!"
 
----
+### Regina, a Tia Vó
 
-## Personagens secundários
+- **Quem é:** tia-avó de Helena, rezadeira e guardiã da história antiga da família: a sina do
+  Velho cai num homem da família de geração em geração, e a avó dela contava da **Dona do Mar**
+  enterrada na serra. Guarda a **caixa escura com lua crescente** e **seis balas de prata**.
+- **Aparência:** velha, rosto enrugado, olhos fundos, cabelo branco liso saindo de um turbante de
+  pano, manto comprido claro, vários colares de contas, sandálias.
+- **No jogo:** tenta matar Ciro com faca antes da lua (cap. 5); volta com as balas (cap. 7);
+  explica o Velho e a Dona do Mar; ouve Ela falar ("Eu ouço o que tá debaixo do teu lenço,
+  menino."). Aparece no fim do cap. 10.
+- **Frases:** "Me desculpe." / "Vocês estão condenando todos nós." / "Me mata logo então, que todo
+  mundo sai morto daqui!" / "Isso acaba aqui e agora, Ciro!"
 
-| Nome | Quem | Capítulo | Papel |
-|---|---|---|---|
-| **Soldado Benedito** | 19 anos, recruta da volante, de Pão de Açúcar | 1, 8 | ferido e largado pela tropa; primeira escolha (poupar ou dar ao Encosto). Se poupado, no cap. 8 grita o aviso da emboscada. |
-| **Zulmira** | mulher de Liberato | 3 | fecha a porta na cara de Lampião com a espingarda na mão. "Aqui num tem mais nada pro senhor." |
-| **Tonho** | 14 anos, filho de Liberato | 9 | preso no tronco do barracão; libertá-lo dá Graça. |
-| **Inácia** | lavadeira de Santa Luzia, mãe de Biu | 4 | fecha a porta para Lampião; minutos depois o filho some. Não agradece nunca, mas deixa a cuia na janela. |
-| **Biu** (Severino) | 7 anos, filho de Inácia | 4 | levado pelo Papa-figo. |
-| **Rosália** | costureira, mulher escondida do padre | 6 | a Mula-sem-cabeça. Se libertada, devolve o freio de ferro a Lampião: "Guarda. Pra lembrar que tem coisa que se tira." |
-| **Seu Quincas e Dona Nena** | vizinhos de Damião, com três filhos | 5 | pedem abrigo da cabra-cabriola na casa onde está "o Cão". |
-| **Expedito** | retirante morto pela volante no lugar de Lampião | 4, 6 | só a cabeça e um bilhete. Lampião enterra junto com os seus. |
-| **O bando morto** | Cansanção (o mais velho, braço direito), Sabiá (cantador), Quitéria "Gavião" (mulher de Sabiá, a melhor atiradora), Fumaça, Pé-de-Serra, Jurema | 1, 4, 6 | as seis cabeças a recuperar e enterrar. Aparecem vivos só no flashback do cap. 1. |
+### Dona Cândida **(nome do jogo)**
 
----
+- Vizinha e parente de Ciro, que nega a linha para a boneca de Helena e bate a porta. Mãe de Zeca.
+  Se Zeca for poupado, deixa a linha na janela.
 
 ## Mapa de relações
 
 ```
-                 Coronel Velho (corpo-seco, 1877) ──fez──► O ENCOSTO
-                        │ pai                                   │ mora em
-                        ▼                                       ▼
- Padre Anselmo ◄─paga── CORONEL TEOTÔNIO ──paga──► Ten. LAURINDO ──cortou──► LAMPIÃO
-   │ vive com           │ cunhado  │ prende                (volante)            ▲   ▲
-   ▼                    ▼          ▼                                            │   │
- Rosália (Mula)   Dr. Gaudêncio   Tonho ◄─filho─ LIBERATO ──vendeu o bando──────┘   │
-                  (Papa-figo)                                                       │
-                                                                                    │
- Dona Dorinha ──deu o crucifixo, já tirou o Encosto do marido───────────────────────┤
- Damião (Lobisomem) + Rosinha ──abrigo──────────────────────────────────────────────┤
- Jurema (alma) ──espera───────────────────────────────────────────────────────────────┤
- Zé Mirim ──canta a lenda──────────────────────────────────────────────────────────────┘
+                     O VELHO ─── pacto (gente por corpo fechado) ─── O CORONEL
+                   (1º servo,                                       (Mossoró)
+                    1º lobisomem)                                       │ degola
+                        │ enterrou                                      ▼
+                        ▼                         VINI ── trai ──▶ LAMPIÃO ◀── ama ── MARIA (terço)
+                       ELA ════ mora no pescoço de ═══════════════════╝  │
+                        ▲                                                │ salva / viaja com
+                        │ gosto ruim (sangue dela)                       ▼
+   morde ▶ CIRO (lobisomem) ── pai de ── HELENA            JULIANA (grávida de ANTÔNIO)
+                │                                            │ pais: SOCORRO e TONHO
+                └── sobrinho de ── REGINA (balas de prata)   └── fugiu com ANTÔNIO e MARCONI
 ```
