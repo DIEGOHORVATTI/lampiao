@@ -79,7 +79,7 @@ func _on_bullets_changed() -> void:
 
 
 func _on_enemy_count_changed(count: int) -> void:
-	enemies_label.text = str("CARNIÇAS: ", count)
+	enemies_label.text = tr("UI_KILLS") % count
 
 
 func _on_player_health_changed(_health_change:float,current_health:float,max_health:float, _is_enemy_damage:bool) -> void:

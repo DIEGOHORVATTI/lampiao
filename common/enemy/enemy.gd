@@ -83,7 +83,7 @@ func _ready() -> void:
 	
 	play_sfx(spawn_sfx)
 	play_vfx(spawn_vfx)
-	add_to_group("inimigos")
+	add_to_group("enemies")
 	if hearing_range > 0.0:
 		Global.fire_input.connect(_on_player_fired)
 	if flash_sight_range > 0.0:
@@ -184,7 +184,7 @@ func _player_in_attack_range() -> bool:
 func _chasing_player() -> bool:
 	if _player_in_vision_range():
 		if not is_chasing and alert_range > 0.0:
-			get_tree().call_group("inimigos", "alert", global_position, alert_range)
+			get_tree().call_group("enemies", "alert", global_position, alert_range)
 		is_chasing = true
 		chase_timer.start(chase_time)
 	
@@ -255,17 +255,17 @@ func die():
 	debug_label.visible = false
 	if edible_seconds > 0.0:
 		var carcass := Area3D.new()
-		carcass.set_script(preload("res://world/interagivel.gd"))
-		carcass.texto = "Comer"
-		carcass.raio = 1.8
-		carcass.usado.connect(_on_eaten)
+		carcass.set_script(preload("res://game/world/components/interactable.gd"))
+		carcass.label = "Comer"
+		carcass.radius = 1.8
+		carcass.used.connect(_on_eaten)
 		add_child(carcass)
 		await get_tree().create_timer(edible_seconds).timeout
 	_vanish()
 
 
 func _on_eaten() -> void:
-	Pacto.comer()
+	Pact.eat()
 	_vanish()
 
 

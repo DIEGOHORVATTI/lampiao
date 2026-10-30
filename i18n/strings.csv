@@ -1,0 +1,198 @@
+keys,pt_BR
+SPEAKER_BARAUNA,BARAÚNA
+SPEAKER_BENEDITO,BENEDITO
+SPEAKER_CAPITAO_DA_VOLANTE,CAPITÃO DA VOLANTE
+SPEAKER_CORONEL,CORONEL
+SPEAKER_ELA,ELA
+SPEAKER_GUARDAR_A_PEIXEIRA,Guardar a peixeira
+SPEAKER_LAMPIAO,LAMPIÃO
+SPEAKER_MARIA,MARIA
+SPEAKER_SOLDADO,SOLDADO
+SPEAKER_SOLDADOS,SOLDADOS
+SPEAKER_VINI,VINI
+SPEAKER_XEXEU,XEXÉU
+CH01_RAID_01,Olhe arrastando à direita · ande com o polegar esquerdo
+CH01_RAID_02,Pegar o saco
+CH01_RAID_03,Lampião!
+CH01_RAID_04,"Tu tá morto, desgraça!"
+CH01_RAID_05,"Ele tá desarmado! Tamo aqui pela grana, não pela matança. Para de perder tempo!"
+CH01_RAID_06,"Ali estão eles, não os deixem fugir!"
+CH01_RAID_07,FOGO!
+CH01_RAID_08,O clarão do tiro mostra o caminho. E mostra você.
+CH01_RAID_09,Maria?!
+CH01_RAID_10,"Querida, o que tu fez? Tu tá bem?"
+CH01_RAID_11,"(dente trincado) Urgh! Não podemos parar, vamo reto!"
+CH01_RAID_12,"Tão com o Vini, bem ali!"
+CH01_RAID_13,Onde que tão os cavalo?
+CH01_RAID_14,[Maria abre a mão. O terço de contas escuras brilha na luz da lua.]
+CH01_RAID_15,"Não se preocupa. Eu sou abençoada, lembra?"
+CH01_ESCAPE_01,[galope. Lua cheia. Tiros ficando para trás.]
+CH01_ESCAPE_02,Eu conheço um lugar seguro! Apenas me sigam!
+CH01_ESCAPE_03,Precisamos parar em algum lugar. Não podemos seguir viagem com Maria nesse estado!
+CH01_ESCAPE_04,Vai ficar tudo bem!
+CH01_ESCAPE_05,[pilares tortos de pedra lavrada na entrada]
+CH01_ESCAPE_06,Chegamos. Podemos passar pelo menos essa noite aqui.
+CH01_CAMP_01,Caramba! Esse calote foi do Pipoco. Olha toda essa grana!
+CH01_CAMP_02,"Nem adianta ficar muito animado não. Temos planos pra toda essa bufunfa, lembra?"
+CH01_CAMP_03,Essas taxa vão de volta pras comunidade que pagaram. Começando pela comunidade de Maria.
+CH01_CAMP_04,"Daí o que sobrar, a gente compra comida e suprimento."
+CH01_CAMP_05,"Sopa de bode, Capitão. Do jeito que tua mãe fazia, só que melhor."
+CH01_CAMP_06,[ele não olha nos olhos]
+CH01_CAMP_07,Olhar o rosto de pedra
+CH01_CAMP_08,Falar com Maria
+CH01_CAMP_09,Vem cá. Segura isso pra mim enquanto eu durmo.
+CH01_CAMP_10,Teu terço? Tu num larga isso nem pra tomar banho.
+CH01_CAMP_11,"Tu num é abençoado, mas eu te empresto. Amanhã tu me devolve."
+CH01_CAMP_12,Amanhã eu te devolvo.
+CH01_CAMP_13,"Tu acende a noite toda vez que atira, sabia? O povo te chama de Lampião por isso. Eu chamo de besta."
+CH01_CAMP_14,"Pessoal, sopa tá pronta!"
+CH01_CAMP_15,"Orra, que sopa deliciosa. Tu tem uns talento escondido, Vini."
+CH01_CAMP_16,"Hahah, que nada, home. Agora descansem. Vou passar a noite na vigia."
+CH01_CAMP_17,"(já na boca da caverna, de costas) Tenham um bom descanso."
+CH01_CAMP_18,Tomar a sopa
+CH01_POISON_01,modulate:a
+CH01_POISON_02,Q-que mizera de pesadelo foi esse? M-Maria...
+CH01_POISON_03,[espuma branca escorrendo pelo queixo dela. Baraúna caído na mesma espuma. Xexéu com a cuia na mão.]
+CH01_POISON_04,Maria?! Que porra é essa?
+CH01_POISON_05,Levantar Maria
+CH01_POISON_06,"(quase sem voz) Vai... Eu sou abençoada, lembra? Volta pra mim."
+CH01_POISON_07,"[lá fora: cascos, muitos. Os cavalos relincham e disparam.]"
+CH01_POISON_08,"(morrendo, apontando a boca da caverna) É o Coronel..."
+CH01_POISON_09,"Tu vai se arrepender de roubar de mim, fi duma rapariga!"
+CH01_POISON_10,Cacete! Como eles acharam a gente aqui?
+CH01_POISON_11,Apagar a fogueira
+CH01_POISON_12,Por aqui! Tem outra saída!
+CH01_POISON_13,A gente num tem escolha...
+CH01_GALLERY_01,"[uma voz de mulher, muito longe, no fundo do túnel: ...fome...]"
+CH01_GALLERY_02,Acho que despistamos eles.
+CH01_GALLERY_03,E-eu preciso parar...
+CH01_GALLERY_04,"Isso tudo parece muito conveniente, tu num acha, Vini?"
+CH01_GALLERY_05,O-o que o senhor quer dizer?
+CH01_BETRAYAL_01,Que lugar é esse?
+CH01_BETRAYAL_02,Me desculpa...
+CH01_BETRAYAL_03,...?
+CH01_BETRAYAL_04,Tu não faria o mesmo por Maria?
+CH01_BETRAYAL_05,Nem se atreva a falar o nome dela!
+CH01_BETRAYAL_06,"Eu... eu não tive escolha. Eles pegaram a minha família. Ameaçaram matar meus pais, minha esposa... minha filha!"
+CH01_BETRAYAL_07,Só a peixeira. Desvie e golpeie.
+CH01_BETRAYAL_08,[a peixeira abre o rosto de Vini de orelha a boca. Ele cai de joelho. Um passo atrás de você.]
+CH01_BEHEADING_01,Vai ficar bom numa estaca.
+CH01_BEHEADING_02,rotation:y
+CH01_BEHEADING_03,"Belo trabalho, traidor. Vi todos os corpos. Tu é um assassino implacável, haha."
+CH01_BEHEADING_04,O senhor vai liberar minha família agora? Eu fiz tudo que pediu.
+CH01_BEHEADING_05,Ha. Tu pensou que eu ia deixar tu ir embora na boa? Tua família tá morta desde que tu saiu em missão.
+CH01_BEHEADING_06,Eh...?
+CH01_BEHEADING_07,Por séculos eu estive sepultada...
+CH01_BEHEADING_08,Quê?
+CH01_BEHEADING_09,Mas agora que o sacrifício foi feito... dentro do receptáculo oferecido... eu posso renascer mais uma vez.
+CH01_BEHEADING_10,(olhando para trás) Cadê o corpo de Lampião?!
+CH01_ENTITY_01,FOGO!
+CH01_ENTITY_02,Infelizmente não sei nem quem são vocês... mas eu agradeço pelas oferendas.
+CH01_ENTITY_03,Ainda não estou completa. Mas só de estar livre é fantástico.
+CH01_ENTITY_04,TENTÁCULOS: agarre de longe. Depois USAR para comer.
+CH01_ENTITY_05,Coronel?! Coronel!
+CH01_ENTITY_06,Eu tô faminta!
+CH01_ENTITY_07,E essa cabecinha aí? Tem cara de sobremesa.
+CH01_ENTITY_08,[Maria com um bode no colo]
+CH01_ENTITY_09,[Maria com um feixe de flor do mato]
+CH01_ENTITY_10,[Maria de olho fechado]
+CH01_AWAKENING_01,Eu... eu estou vivo...?
+CH01_AWAKENING_02,"[costura em X em volta do pescoço inteiro, linha preta grossa]"
+CH01_AWAKENING_03,"Urgh... Nós estamos vivos. Eu não sei o que houve aqui, mas ainda não estou na minha forma completa... que maravilha."
+CH01_AWAKENING_04,Tu é o quê?
+CH01_AWAKENING_05,"Eu sou a dona dessa casa, Capitão. Tu é que entrou sem bater."
+CH01_AWAKENING_06,Eu... entendo.
+CH01_AWAKENING_07,"Entende nada. Você só tá andando por causa de mim, tá bom? Eu só preciso arranjar mais comida e te deixo descansar em paz."
+CH01_AWAKENING_08,E se eu num quiser?
+CH01_AWAKENING_09,Aí tua cabeça cai de novo. E dessa vez sem eu pra segurar.
+CH01_AWAKENING_10,Pegar o revólver
+CH01_AWAKENING_11,Pegar o rifle
+CH01_AWAKENING_12,Fechar os olhos de Vini
+CH01_AWAKENING_13,"Bilhete no bolso de Vini: ""Vini. Tua mulher e tua menina tão com a gente. Leva eles pra caverna das pedra de cara. Veneno vai junto com esse bilhete. Se tu não fizer, nós faz."""
+CH01_CREVICE_01,O Coronel quer a cabeça! Sem a cabeça ninguém recebe!
+CH01_CREVICE_02,Pegar o facho
+CH01_CREVICE_01,Segure o TERÇO para acalmar a fome.
+CH01_CREVICE_02,Irch... sério que você vai usar isso aí?
+CH01_BENEDITO_01,Capitão... É o senhor? O senhor me poupou na fazenda. Duas vez num é pedir muito?
+CH01_BENEDITO_02,"Pelo amor de Deus, Capitão. Eu tenho filho."
+CH01_BENEDITO_03,Tu tava com quem me degolou.
+CH01_BENEDITO_04,"Eu num sabia, Capitão. O Coronel disse que era só pegar o dinheiro de volta. Eu tenho dezenove ano..."
+CH01_BENEDITO_05,"Olha que coisa. Novinho. Carne de menino é macia, Capitão. Abre o pescoço, que eu faço o resto."
+CH01_BENEDITO_06,(ouvindo só a respiração de Lampião) Com quem o senhor tá falando?
+CH01_BENEDITO_07,Deixar ela comer
+CH01_BENEDITO_08,"Tô esperando, Capitão."
+CH01_BENEDITO_09,Corre. E conta pra todo mundo o que tu viu.
+CH01_BENEDITO_10,"Tu vai se arrepender de cada um que tu solta, Capitão. Cada um."
+CH01_BENEDITO_11,[o grito vira um som molhado. Dois segundos de mastigar no escuro.]
+CH01_BENEDITO_12,Tá vendo? Gente enche.
+CH01_MARIA_01,[cascos marcados no chão e cartucho vazio: a volante foi embora]
+CH01_MARIA_02,Pegar Maria no colo
+CH01_MARIA_03,Nada foi um sonho...
+CH01_MARIA_04,Maria!
+CH01_MARIA_05,"Tu é abençoada, lembra? Acorda!"
+CH01_MARIA_06,"Maria, meu amor, tu precisa acordar... por favor!"
+CH01_MARIA_07,"(olho meio aberto, vendo a costura) Tu... voltou."
+CH01_MARIA_08,Fica com ele. Ele cuida de tu agora.
+CH01_MARIA_09,Meu amor... me desculpa... me desculpa.
+CH01_MARIA_10,"[a barriga dela ronca, bem baixo. Um ""shhh"" que não é de ninguém.]"
+CH01_BURIAL_01,Segure para cavar
+CH01_BURIAL_02,Cavar para Vini
+CH01_BURIAL_03,Segure para cavar
+CH01_BURIAL_04,Meus companheiros...
+CH01_BURIAL_05,Obrigado por tudo que fizeram por mim.
+CH01_BURIAL_06,"[ele pendura o chapéu de três medalhões na cruz de Maria e passa o terço pelo pescoço, por cima da costura]"
+CH01_BURIAL_07,Irch... sério que você vai usar isso aí no pescoço?
+CH01_BURIAL_08,"Er... eu não quero interromper, mas tô precisando bater um rango."
+CH01_BURIAL_09,"Aguenta um pouquinho, que em troca..."
+CH01_BURIAL_10,Aquieta o facho. Tu vai ter o que comer.
+CH01_BURIAL_11,"Eu vou te matar, Coronel!"
+CH01_BURIAL_12,Eu vou te dar todas as carnes podres que eu achar no caminho.
+CH01_BURIAL_13,"Fim do capítulo 1
+O Sacrifício"
+CH01_OPENING_CARD,"Nordeste do Brasil, 19XX.
+
+Somos justiceiros errantes.
+Bandidos por necessidade.
+Nós ajudamos aqueles que necessitam,
+tirando daqueles que têm até demais.
+
+Somos cangaceiros."
+CH01_RAID_SHOT_01,É ele! É o Lampião! Olha o clarão!
+CH01_RAID_SHOT_02,"Rápido, pelos fundos! Vamo depressa!"
+CH01_CREVICE_EAT_01,Morto de pouco. Ainda tá quente.
+CH01_CREVICE_EAT_02,Tu disse carne podre.
+CH01_CREVICE_EAT_03,Tu disse. Eu como o que tiver.
+CH01_ENTITY_MEMORY_01,[Maria rindo a cavalo]
+CH01_BURIAL_BLEH,Bleh.
+UI_TALK,Falar
+UI_EAT,Comer
+UI_DIG,Cavar
+UI_EAT_CARRION,Comer a carniça
+UI_LET_HER_EAT,Deixar Ela comer
+UI_USE,USAR: %s
+UI_CONTINUE,toque para avançar
+UI_PAUSE_TITLE,PAUSA
+UI_PAUSE_RESUME,CONTINUAR
+UI_PAUSE_TO_MENU,VOLTAR AO MENU
+UI_DEATH_HUNGER,"Ela cansou de esperar, Capitão.
+Agora a carne podre é você."
+UI_DEATH_DEFAULT,O sertão te engoliu.
+UI_DEATH_RETRY,toque para tentar de novo
+UI_TITLE,LAMPIÃO
+UI_MENU_START,toque para entrar no sertão
+UI_MENU_SOON,capítulo %d em breve · toque para andar no sertão
+UI_MENU_CREDITS,"Baseado no quadrinho Lampião, de Heitor Amatsu e Carlos Eduardo · tapas.io/series/Lampiao
+Jogo de fãs para apoiar a continuação da história e o quadrinho brasileiro"
+UI_KILLS,CARNIÇAS: %d
+LOADING_VERSE_1,"Quem vende o bando por moeda
+não dorme mais em paz:
+o sertão tem boca grande
+e cobra o que se faz."
+LOADING_VERSE_2,"Cortaram a cabeça do Capitão
+pra mostrar na feira.
+Mas o que mora no pescoço
+não cabe numa lata inteira."
+LOADING_VERSE_3,"Na noite sem lua do sertão
+quem clareia é o fuzil:
+cada tiro é um lampião
+que o inimigo nunca viu."

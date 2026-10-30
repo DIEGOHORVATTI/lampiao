@@ -4,7 +4,7 @@ var failures: Array[String] = []
 
 
 func _ready() -> void:
-	add_child(load("res://world/sertao/sertao.tscn").instantiate())
+	add_child(load("res://game/world/sandbox/sandbox.tscn").instantiate())
 	await get_tree().create_timer(1.5).timeout
 
 	var touch := get_node_or_null("/root/TouchControls")
