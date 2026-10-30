@@ -10,6 +10,8 @@ const SECONDS_PER_CHAR := 0.085
 const BASE_LINE_SECONDS := 1.5
 const MIN_LINE_SECONDS := 3.0
 const MIN_BEFORE_SKIP := 0.6
+const VOICE_PATH := "res://resources/voices/%s.ogg"
+const VOICE_TAIL := 0.35
 
 var subtitle: Label
 var prompt: Label
@@ -21,11 +23,14 @@ var hold_bar: ProgressBar
 var screen_held := false
 var advance_requested := false
 var continue_hint: Label
+var voice: AudioStreamPlayer
 
 
 func _ready() -> void:
 	layer = 15
 	process_mode = Node.PROCESS_MODE_ALWAYS
+	voice = AudioStreamPlayer.new()
+	add_child(voice)
 	subtitle = _label(40, Control.PRESET_BOTTOM_WIDE, -260)
 	subtitle.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	subtitle.offset_left = 260
@@ -92,7 +97,8 @@ func say(lines: Array) -> void:
 		var color: Color = SPEAKER_COLORS.get(speaker, Color(0.88, 0.84, 0.76))
 		subtitle.add_theme_color_override("font_color", color)
 		subtitle.text = tr(text) if speaker == "" else "%s: %s" % [tr(speaker), tr(text)]
-		await _wait_line(reading_time(subtitle.text))
+		await _wait_line(maxf(reading_time(subtitle.text), _speak(text)))
+		voice.stop()
 	subtitle.text = ""
 	talking = false
 
@@ -128,12 +134,23 @@ func show_card(text: String, seconds: float) -> void:
 	card.text = tr(text)
 	card.modulate.a = 0.0
 	await create_tween().tween_property(card, "modulate:a", 1.0, 1.0).finished
-	await _wait_line(maxf(seconds, reading_time(text)))
+	await _wait_line(maxf(maxf(seconds, reading_time(text)), _speak(text)))
+	voice.stop()
 	await create_tween().tween_property(card, "modulate:a", 0.0, 1.0).finished
 	card.text = ""
 
 
+func _speak(key: String) -> float:
+	var path := VOICE_PATH % key
+	if not ResourceLoader.exists(path):
+		return 0.0
+	voice.stream = load(path)
+	voice.play()
+	return voice.stream.get_length() + VOICE_TAIL
+
+
 func clear() -> void:
+	voice.stop()
 	subtitle.text = ""
 	prompt.text = ""
 	card.text = ""
