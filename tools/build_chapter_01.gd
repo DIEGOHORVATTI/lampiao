@@ -6,6 +6,9 @@ const CAVE_PIECES := preload("res://game/world/props/cave_pieces.gd")
 const ROOT_REGIONS := [["roots_mouth", -10.0, 14.0, 240], ["roots_tunnel", 14.0, 60.0, 300], ["roots_hall", 60.0, 93.0, 300]]
 const GEO_DIR := "res://game/world/chapters/chapter_01/geo/"
 const FARM := Vector3(0, 0, -216)
+const NIGHT_SKY := "res://resources/props/night_sky.gdshader"
+const MOON_ROTATION := Vector3(-26, 172, 0)
+const HALL_FILL := [["MoonBounce", Vector3(0, -4.6, 74), 2.2, 15.0], ["HallDepth", Vector3(0, -2.0, 86), 0.8, 10.0]]
 
 
 func _setup() -> void:
@@ -19,6 +22,7 @@ func _layout() -> void:
 	_farm()
 	_cave_geometry()
 	_z2_cave_mouth()
+	_z5_trail()
 	_z3_gallery()
 	_z4_idol_hall()
 	_z6_rock_shelf()
@@ -27,28 +31,84 @@ func _layout() -> void:
 
 func _night() -> Environment:
 	var e := super._night()
-	e.ambient_light_energy = 0.35
-	e.fog_density = 0.03
+	e.background_color = Color(0.012, 0.014, 0.024)
+	e.ambient_light_color = Color(0.36, 0.4, 0.56)
+	e.ambient_light_energy = 0.32
+	e.tonemap_mode = Environment.TONE_MAPPER_FILMIC
+	e.tonemap_exposure = 1.15
+	e.tonemap_white = 6.0
+	e.fog_light_color = Color(0.05, 0.056, 0.08)
+	e.fog_density = 0.011
+	e.fog_sky_affect = 0.0
+	e.glow_intensity = 0.7
+	e.glow_bloom = 0.04
+	e.glow_hdr_threshold = 0.9
+	e.adjustment_enabled = true
+	e.adjustment_contrast = 1.22
+	e.adjustment_saturation = 0.5
 	return e
 
 
 func _moonlight() -> void:
+	scene_root.get_node("Moon").free()
 	var moon := DirectionalLight3D.new()
 	moon.name = "FullMoon"
-	moon.light_color = Color(0.62, 0.68, 0.9)
-	moon.light_energy = 0.55
-	moon.rotation_degrees = Vector3(-40, -70, 0)
+	moon.light_color = Color(0.72, 0.8, 1.0)
+	moon.light_energy = 1.35
+	moon.rotation_degrees = MOON_ROTATION
+	moon.shadow_enabled = true
+	moon.shadow_blur = 1.5
+	moon.directional_shadow_mode = DirectionalLight3D.SHADOW_PARALLEL_2_SPLITS
+	moon.directional_shadow_max_distance = 70.0
 	_own(moon, scene_root)
+	_night_sky(moon)
+	_skylight()
+	_hall_fill()
+
+
+func _night_sky(moon: DirectionalLight3D) -> void:
+	var dome := MeshInstance3D.new()
+	dome.name = "NightSky"
+	var sphere := SphereMesh.new()
+	sphere.radius = 1200.0
+	sphere.height = 2400.0
+	sphere.radial_segments = 32
+	sphere.rings = 16
+	dome.mesh = sphere
+	dome.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	var sky := ShaderMaterial.new()
+	sky.shader = load(NIGHT_SKY)
+	sky.set_shader_parameter("moon_direction", moon.basis.z)
+	dome.material_override = sky
+	dome.position = Vector3(0, 0, -100)
+	_own(dome, scene_root)
+
+
+func _skylight() -> void:
 	var shaft := SpotLight3D.new()
 	shaft.name = "Skylight"
-	shaft.light_color = Color(0.7, 0.75, 0.95)
-	shaft.light_energy = 6.0
-	shaft.spot_range = 18.0
-	shaft.spot_angle = 16.0
-	shaft.spot_attenuation = 0.25
-	shaft.position = Vector3(0, 8.5, 74)
+	shaft.light_color = Color(0.74, 0.8, 1.0)
+	shaft.light_energy = 14.0
+	shaft.spot_range = 24.0
+	shaft.spot_angle = 34.0
+	shaft.spot_angle_attenuation = 1.6
+	shaft.spot_attenuation = 0.6
+	shaft.shadow_enabled = true
+	shaft.position = Vector3(CAVE.SKYLIGHT.x, 8.5, CAVE.SKYLIGHT.z)
 	shaft.rotation_degrees = Vector3(-90, 0, 0)
 	_own(shaft, scene_root)
+
+
+func _hall_fill() -> void:
+	for f in HALL_FILL:
+		var fill := OmniLight3D.new()
+		fill.name = f[0]
+		fill.light_color = Color(0.55, 0.62, 0.85)
+		fill.light_energy = f[2]
+		fill.omni_range = f[3]
+		fill.omni_attenuation = 1.4
+		fill.position = f[1]
+		_own(fill, scene_root)
 
 
 func _farm() -> void:
@@ -65,6 +125,7 @@ func _farm() -> void:
 	for p in [Vector3(-21, 0, -211), Vector3(-21, 0, -203), Vector3(-21, 0, -195), Vector3(4.5, 0, -207), Vector3(4.5, 0, -198)]:
 		_put("porch_house", p, PI / 2 if p.x < 0 else -PI / 2)
 	_put("dead_tree", Vector3(-30, 0, -186), 0).scale = Vector3.ONE * 1.4
+	_farm_forest()
 	for i in 40:
 		var a := rng.randf() * TAU
 		var r := rng.randf_range(36.0, 46.0)
@@ -136,9 +197,12 @@ func _z2_cave_mouth() -> void:
 	_at("drum_column", 5.4, -10.3, rng.randf() * TAU)
 	_at("broken_drum_column", -7.4, -11.9, rng.randf() * TAU)
 	_at("block_pillar", -11.6, -12.6, 0.2)
-	for p in [Vector2(11.2, -12.4), Vector2(13.8, -11.0), Vector2(-11.8, -14.0)]:
-		_at("mandacaru", p.x, p.y, rng.randf() * TAU)
-	_at("campfire", 0, 0)
+	for p in [Vector3(11.2, -12.4, 1.7), Vector3(13.8, -11.0, 1.4), Vector3(-11.8, -14.0, 0.8), Vector3(-9.6, -10.4, 1.2)]:
+		_at("mandacaru", p.x, p.y, rng.randf() * TAU).scale = Vector3.ONE * p.z
+	for p in [Vector2(-6.2, -9.8), Vector2(8.4, -10.2), Vector2(-13.5, -10.6), Vector2(12.0, -14.6)]:
+		_at("dry_bush", p.x, p.y, rng.randf() * TAU)
+	_at("campfire", 0, 0).name = "CampfireLit"
+	_at("campfire_out", 0, 0).name = "CampfireOut"
 	_at("stone_stove", 2.4, -1.8)
 	for p in [Vector2(-4, 6), Vector2(-8, 8), Vector2(6, 8), Vector2(8, 2)]:
 		_at("sleeping_mat", p.x, p.y, rng.randf_range(-0.3, 0.3))
@@ -153,6 +217,38 @@ func _z2_cave_mouth() -> void:
 	for m in [["LampiaoMat", -4, 6], ["Maria", -8, 8], ["Triangles", 6, 8], ["Stars", 8, 2], ["Vini", 2, -4], ["CoinPile", 10, 4], ["SoupBowl", -3.2, 5.2], ["Campfire", 0, 0], ["ColonelAtMouth", 0, -16], ["MouthSoldier_1", -3, -14], ["MouthSoldier_2", 3, -14], ["MouthSoldier_3", 5, -17]]:
 		_marker(m[0], m[1], m[2])
 	_trigger("CampReturnTrigger", 3, 11, Vector3(6, 4, 4))
+
+
+func _farm_forest() -> void:
+	_put("forest_belt", FARM + Vector3(0, 0, -36), PI)
+	_put("forest_belt", FARM + Vector3(-44, 0, 0), -PI / 2).scale = Vector3(0.6, 1, 0.6)
+	_put("forest_belt", FARM + Vector3(44, 0, 0), PI / 2).scale = Vector3(0.6, 1, 0.6)
+
+
+func _z5_trail() -> void:
+	for i in 7:
+		var z := -31.0 - i * 6.5
+		for side in [-1.0, 1.0]:
+			_at("trail_pillar", _trail_x(z) + side * rng.randf_range(4.2, 5.2), z + rng.randf_range(-1.0, 1.0), rng.randf() * TAU)
+	for i in 34:
+		var z := rng.randf_range(-30.0, -78.0)
+		var side := -1.0 if i % 2 == 0 else 1.0
+		var kind: String = ["dry_bush", "dry_bush", "xique_xique", "dead_tree", "rock"][i % 5]
+		_at(kind, _trail_x(z) + side * rng.randf_range(3.0, 8.0), z, rng.randf() * TAU)
+	for i in 30:
+		var z := rng.randf_range(-44.0, -83.0)
+		var x := rng.randf_range(-30.0, 40.0)
+		if absf(x - _trail_x(z)) < 7.0:
+			continue
+		_at("mandacaru", x, z, rng.randf() * TAU).scale = Vector3.ONE * rng.randf_range(1.2, 1.9)
+
+
+func _trail_x(z: float) -> float:
+	var points: Array = CAVE.PATHS[1].points
+	for i in points.size() - 1:
+		if z >= points[i + 1].z:
+			return lerpf(points[i].x, points[i + 1].x, inverse_lerp(points[i].z, points[i + 1].z, z))
+	return points[-1].x
 
 
 func _z3_gallery() -> void:
@@ -186,6 +282,8 @@ func _z6_rock_shelf() -> void:
 	for i in 30:
 		var x := rng.randf_range(-27, 37)
 		var z := rng.randf_range(-35, -30)
+		if absf(x) < 6.0:
+			continue
 		_at(["xique_xique", "rock", "mandacaru"][rng.randi() % 3], x, z, rng.randf() * TAU)
 	for m in [["Grave_1", -16, -24], ["Grave_2", -12, -24], ["Grave_3", -8, -24], ["Grave_4", -4, -24], ["OathPoint", -15, -31], ["DeadTree", -18, -34], ["Kepi", -6, -27]]:
 		_marker(m[0], m[1], m[2])

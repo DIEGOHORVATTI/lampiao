@@ -38,6 +38,7 @@ func run_chapter() -> void:
 	night_fog_density = environment.fog_density
 	night_fog_color = environment.fog_light_color
 	lock_player(true)
+	set_campfire(false)
 	Pact.start_level(0.0)
 	Pact.hunger_enabled = false
 	Pact.active = false
@@ -88,6 +89,11 @@ func set_glasses(on: bool) -> void:
 	attributes.dof_blur_near_enabled = false
 	attributes.dof_blur_amount = 0.12
 	Global.player.camera.attributes = null if on else attributes
+
+
+func set_campfire(lit: bool) -> void:
+	find_child("CampfireLit", true, false).visible = lit
+	find_child("CampfireOut", true, false).visible = not lit
 
 
 func restore_night() -> void:

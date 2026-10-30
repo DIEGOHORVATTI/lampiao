@@ -1,5 +1,5 @@
 const CELL := 0.75
-const MIN := Vector2(-32, -40)
+const MIN := Vector2(-32, -84)
 const MAX := Vector2(42, 98)
 const ROCK_TOP := 9.0
 const WALL_BLEND := 2.4
@@ -10,24 +10,27 @@ const ROOMS := [
 	{"name": "lajedo", "min": Vector2(-28, -36), "max": Vector2(38, -8), "y": 0.0, "h": 0.0, "roof": false},
 ]
 const PATHS := [
-	{"name": "galeria", "width": 3.2, "h": 3.6, "points": [Vector3(6, 0, 14), Vector3(4, -1, 26), Vector3(-4, -2.5, 36), Vector3(-2, -4, 46), Vector3(2, -5.5, 56), Vector3(0, -6, 62)]},
+	{"name": "galeria", "width": 3.2, "h": 3.6, "roof": true, "points": [Vector3(6, 0, 14), Vector3(4, -1, 26), Vector3(-4, -2.5, 36), Vector3(-2, -4, 46), Vector3(2, -5.5, 56), Vector3(0, -6, 62)]},
+	{"name": "trilha", "width": 7.0, "h": 0.0, "roof": false, "points": [Vector3(0, 0, -30), Vector3(0, 0, -42), Vector3(-1.5, 1.2, -50), Vector3(1.0, 3.0, -59), Vector3(0, 4.6, -68), Vector3(0, 5.2, -76)]},
 ]
+const OUTDOOR_Z := -36.0
+const HILL_Z := -44.0
 const SKYLIGHT := Vector3(0, 0, 74)
 const SKYLIGHT_RADIUS := 3.0
 const MOUTH_Z := -8.0
 
 
 static func sample(x: float, z: float) -> Dictionary:
-	var best := {"d": INF, "y": ROCK_TOP, "h": 0.0, "roof": false}
+	var best := {"d": INF, "y": ROCK_TOP, "h": 0.0, "roof": false, "name": ""}
 	for room in ROOMS:
 		var d := _rect_distance(Vector2(x, z), room.min, room.max)
 		if d < best.d:
-			best = {"d": d, "y": room.y, "h": room.h, "roof": room.roof}
+			best = {"d": d, "y": room.y, "h": room.h, "roof": room.roof, "name": room.name}
 	for path in PATHS:
 		var hit := _path_distance(Vector2(x, z), path.points)
 		var d: float = hit.d - path.width / 2.0
 		if d < best.d:
-			best = {"d": d, "y": hit.y, "h": path.h, "roof": true}
+			best = {"d": d, "y": hit.y, "h": path.h, "roof": path.roof, "name": path.name}
 	return best
 
 
@@ -35,7 +38,17 @@ static func floor_height(x: float, z: float) -> float:
 	var s := sample(x, z)
 	if s.d <= 0.0:
 		return s.y
-	return lerpf(s.y, ROCK_TOP, smoothstep(0.0, WALL_BLEND, s.d))
+	return lerpf(s.y, rim_height(x, z), smoothstep(0.0, WALL_BLEND * _rim_spread(z), s.d))
+
+
+static func rim_height(x: float, z: float) -> float:
+	var north := smoothstep(OUTDOOR_Z + 6.0, HILL_Z, z)
+	var hill := 5.5 + 3.0 * sin(x * 0.11 + 1.3) * cos(z * 0.07) + maxf(HILL_Z - z, 0.0) * 0.18
+	return lerpf(ROCK_TOP, hill, north)
+
+
+static func _rim_spread(z: float) -> float:
+	return lerpf(1.0, 4.0, smoothstep(OUTDOOR_Z + 4.0, HILL_Z, z))
 
 
 static func ceiling_height(x: float, z: float) -> float:
@@ -44,13 +57,18 @@ static func ceiling_height(x: float, z: float) -> float:
 		return NAN
 	if Vector2(x, z).distance_to(Vector2(SKYLIGHT.x, SKYLIGHT.z)) < SKYLIGHT_RADIUS:
 		return NAN
-	var open := 1.0 - smoothstep(-WALL_BLEND, 0.4, s.d)
+	var open := 1.0 - smoothstep(-WALL_BLEND, 0.4, _mouth_open_distance(x, z) if s.name == "boca" else s.d)
 	return s.y + s.h * open + 0.05
+
+
+static func _mouth_open_distance(x: float, z: float) -> float:
+	var boca: Dictionary = ROOMS[0]
+	return _rect_distance(Vector2(x, z), boca.min - Vector2(0, 8), boca.max)
 
 
 static func top_height(x: float, z: float) -> float:
 	var s := sample(x, z)
-	if not s.roof and s.d <= 0.5:
+	if not s.roof and (s.d <= 0.5 or z < OUTDOOR_Z + 6.0):
 		return NAN
 	if Vector2(x, z).distance_to(Vector2(SKYLIGHT.x, SKYLIGHT.z)) < SKYLIGHT_RADIUS:
 		return NAN

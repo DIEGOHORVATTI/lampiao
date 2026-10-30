@@ -20,6 +20,7 @@ func run(d: Chapter01Director) -> void:
 	Global.player.weapons_manager.switch_weapon(2)
 	await Dialogue.fade(0.0, 1.5)
 	d.lock_player(false)
+	await _light_campfire(d)
 	d.objective("CH01_GOAL_MARIA")
 	await d.interactable("Maria", "CH01_CAMP_BANDAGE").used
 	d.lock_player(true)
@@ -49,3 +50,9 @@ func run(d: Chapter01Director) -> void:
 	])
 	d.cast.vini.walk_to(d.marker("Vini"), 1.4)
 	await Dialogue.say([["SPEAKER_VINI", "CH01_CAMP_10"]])
+
+
+func _light_campfire(d: Chapter01Director) -> void:
+	d.objective("CH01_GOAL_FIRE")
+	await d.interactable("Campfire", "CH01_CAMP_FIRE").used
+	d.set_campfire(true)

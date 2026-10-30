@@ -42,6 +42,7 @@ que o inimigo nunca viu."
 UI_MENU_PLAY,JOGAR
 UI_MENU_FREE_ROAM,ANDAR NO SERTÃO
 UI_MENU_SETTINGS,OPÇÕES
+UI_MENU_CHAPTER,Capítulo %d
 UI_PAUSE_SETTINGS,OPÇÕES
 UI_SETTINGS_TITLE,OPÇÕES
 UI_SETTINGS_MOUSE,Sensibilidade do mouse
@@ -79,6 +80,8 @@ CH01_RIDE_03,Vai ficar tudo bem!
 CH01_RIDE_04,"Precisamos parar em alguma lugar, não podemos seguir viagem com Maria nesse estado!"
 CH01_RIDE_05,"Chegamos, podemos passar pelo menos essa noite aqui."
 CH01_RIDE_06,Uau...
+CH01_GOAL_FIRE,Acenda a fogueira
+CH01_CAMP_FIRE,Acender a fogueira
 CH01_GOAL_MARIA,Cuide de Maria
 CH01_CAMP_BANDAGE,Enfaixar Maria
 CH01_CAMP_01,"Foi muita burrice tua de fazer isso, prometa que essa foi a última vez!"

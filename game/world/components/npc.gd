@@ -105,6 +105,11 @@ func walk_to(target: Vector3, speed := 1.6, run := false) -> void:
 	pose("Idle_Torch" if carries_torch else "Idle", 0.25)
 
 
+func walk_path(points: Array, speed := 1.6, run := false) -> void:
+	for point in points:
+		await walk_to(point, speed, run)
+
+
 func _hat() -> void:
 	if hat == "none":
 		return

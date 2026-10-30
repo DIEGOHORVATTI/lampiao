@@ -22,6 +22,8 @@ func _ready() -> void:
 	_check(GameUI.objective_label.text != "", "objetivo aparece na tela")
 	_check(Global.player.get_viewport().get_camera_3d() == Global.player.camera, "controle começa na caverna")
 	_shot("acampamento")
+	_check(not level.find_child("CampfireLit", true, false).visible, "fogueira apagada na chegada")
+	await _use("Campfire")
 	await _use("Maria")
 	await _until(func(): return Pact.active and not Dialogue.talking, 120.0)
 	await _go("CoinPile")
