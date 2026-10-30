@@ -8,6 +8,8 @@ errante possuído) e na música de referência (transcrição em `docs/transcric
 - O apelido vem do rifle: ele atirava tão rápido que o clarão iluminava a noite. **Não existe lampião de querosene**: a luz do jogo vem do clarão dos tiros e das fogueiras. Atirar ilumina, mas revela a posição.
 - O jogo nunca usa o nome de batismo, só "Lampião" ou "Capitão".
 - Nenhum emoji na interface.
+- **Gênero definido (2026-10-30): horror gore em primeira pessoa**, em episódios curtos e polidos que rendam vídeo de streamer. Nada de FPS competitivo, RPG ou MMO. O primeiro capítulo é a vitrine e recebe o polimento máximo.
+- A história segue a cronologia do quadrinho (episódios 1 a 11 na ordem) e só depois continua com história nova.
 - Onde o roteiro cita querosene, lampião na mão ou pavio, trocar por clarão do rifle, fogueira ou candeeiro de cenário.
 
 ## Premissa
