@@ -1,6 +1,6 @@
 extends Node
 
-const SAVE_PATH := "user://historia.json"
+var save_path := "user://save.json"
 
 var flags := {}
 var mark := 0
@@ -33,14 +33,14 @@ func add_grace() -> void:
 
 
 func save_game() -> void:
-	var file := FileAccess.open(SAVE_PATH, FileAccess.WRITE)
+	var file := FileAccess.open(save_path, FileAccess.WRITE)
 	file.store_string(JSON.stringify({"flags": flags, "mark": mark, "grace": grace, "pamphlets": pamphlets, "chapter": chapter}))
 
 
 func load_game() -> void:
-	if not FileAccess.file_exists(SAVE_PATH):
+	if not FileAccess.file_exists(save_path):
 		return
-	var data = JSON.parse_string(FileAccess.get_file_as_string(SAVE_PATH))
+	var data = JSON.parse_string(FileAccess.get_file_as_string(save_path))
 	if data is Dictionary:
 		flags = data.get("flags", {})
 		mark = int(data.get("mark", 0))

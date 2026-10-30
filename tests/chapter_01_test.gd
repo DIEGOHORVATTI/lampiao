@@ -8,6 +8,7 @@ var shots_taken := {}
 func _ready() -> void:
 	Engine.time_scale = 6.0
 	Engine.physics_ticks_per_second = 360
+	Story.save_path = "user://test_save.json"
 	Story.reset()
 	level = load("res://game/world/chapters/chapter_01/chapter_01.tscn").instantiate()
 	add_child(level)
