@@ -1,6 +1,6 @@
 extends Node3D
 
-const KINDS := ["carcaca_cavalo", "carcaca_bode", "urubu_morto", "fogueira", "fogueira_apagada", "barraca_lona", "barraca_rasgada", "carroca_tombada", "caixote", "muro_pedra", "cova", "corpo", "cruz_exvoto", "paredao", "mandacaru", "casa_taipa"]
+const KINDS := ["casa_grande", "capela", "totem_idolo", "laje_sepultura", "arco_pedra", "cavalo", "cerca_arame", "nicho_ossada", "caldeirao", "monte_moedas", "facho", "esteira", "carcaca_bode"]
 
 
 func _ready() -> void:
@@ -20,10 +20,10 @@ func _ready() -> void:
 		var rng := RandomNumberGenerator.new()
 		rng.seed = i
 		var node: Node3D = props.build(KINDS[i], rng)
-		node.position = Vector3((i % 5) * 6.0 - 12.0, 0, int(i / 5) * -9.0)
+		node.position = Vector3((i % 5) * 9.0 - 18.0, 0, int(i / 5) * -14.0) + (Vector3(0, 0, -30) if i == 0 else Vector3.ZERO)
 		add_child(node)
 	var cam := Camera3D.new()
-	cam.position = Vector3(0, 6, 7)
+	cam.position = Vector3(0, 14, 16)
 	cam.rotation_degrees = Vector3(-32, 0, 0)
 	add_child(cam)
 	await get_tree().create_timer(1.0).timeout

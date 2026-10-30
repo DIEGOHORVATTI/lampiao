@@ -72,8 +72,14 @@ static func _build(kind: String, rng: RandomNumberGenerator) -> Node3D:
 		"terreno": return terreno(rng, 60.0)
 		"terreno_grande": return terreno(rng, 140.0)
 		"grota_barauna": return terreno_relevo(load("res://world/cap01/relevo.gd"))
+		"caverna_chao": return superficie(load("res://world/cap01/caverna.gd"), "chao", false, "stone")
+		"caverna_teto": return superficie(load("res://world/cap01/caverna.gd"), "teto", true, "stone")
+		"caverna_topo": return superficie(load("res://world/cap01/caverna.gd"), "topo", false, "earth")
+		"terreno_fazenda": return terreno(rng, 96.0, 0.2)
 		"xique_xique": return xique_xique(rng)
 		"carcaca_cavalo": return carcaca(rng, 1.0)
+		"cerca_arame", "cavalo", "arco_pedra", "totem_idolo", "laje_sepultura", "nicho_ossada", "caldeirao", "monte_moedas", "facho", "candeeiro", "esteira", "capela", "casa_grande":
+			return load("res://world/sertao/pecas_cap01.gd").call(kind, rng)
 		"carcaca_bode": return carcaca(rng, 0.5)
 		"urubu_morto": return carcaca(rng, 0.25)
 		"mandacaru": return mandacaru(rng)
@@ -118,7 +124,7 @@ static func material(name: String) -> StandardMaterial3D:
 	return _materials[name]
 
 
-static func terreno(rng: RandomNumberGenerator, size: float) -> Node3D:
+static func terreno(rng: RandomNumberGenerator, size: float, amplitude := 1.2) -> Node3D:
 	var plane := PlaneMesh.new()
 	plane.size = Vector2(size, size)
 	plane.subdivide_width = int(size / 2)
@@ -128,7 +134,7 @@ static func terreno(rng: RandomNumberGenerator, size: float) -> Node3D:
 	noise.frequency = 0.04
 	var mesh := _displace(plane, func(v: Vector3) -> Vector3:
 		var flatten := clampf(Vector2(v.x, v.z).length() / (size * 0.25), 0.0, 1.0)
-		return v + Vector3.UP * noise.get_noise_2d(v.x, v.z) * 1.2 * flatten)
+		return v + Vector3.UP * noise.get_noise_2d(v.x, v.z) * amplitude * flatten)
 	var root := _static_body()
 	root.add_child(_mesh_instance(mesh, "earth"))
 	var shape := CollisionShape3D.new()
@@ -148,6 +154,64 @@ static func terreno_relevo(relevo: Script) -> Node3D:
 	var root := _static_body()
 	root.position = center
 	root.add_child(_mesh_instance(mesh, "earth"))
+	var shape := CollisionShape3D.new()
+	shape.shape = mesh.create_trimesh_shape()
+	root.add_child(shape)
+	return root
+
+
+static func superficie(field: Script, fn: String, flip: bool, mat: String) -> Node3D:
+	var cell: float = field.CELL
+	var lo: Vector2 = field.MIN
+	var hi: Vector2 = field.MAX
+	var cols := int((hi.x - lo.x) / cell) + 1
+	var rows := int((hi.y - lo.y) / cell) + 1
+	var noise := FastNoiseLite.new()
+	noise.seed = 1938
+	noise.frequency = 0.35
+	var heights := PackedFloat32Array()
+	heights.resize(cols * rows)
+	var floor_ref := PackedFloat32Array()
+	floor_ref.resize(cols * rows)
+	for r in rows:
+		for c in cols:
+			var x := lo.x + c * cell
+			var z := lo.y + r * cell
+			heights[r * cols + c] = field.call(fn, x, z)
+			floor_ref[r * cols + c] = field.call("chao", x, z) if fn != "chao" else heights[r * cols + c]
+	var st := SurfaceTool.new()
+	st.begin(Mesh.PRIMITIVE_TRIANGLES)
+	for r in rows - 1:
+		for c in cols - 1:
+			var ids := [r * cols + c, r * cols + c + 1, (r + 1) * cols + c, (r + 1) * cols + c + 1]
+			var ok := true
+			for id in ids:
+				var i: int = id
+				if is_nan(heights[i]):
+					ok = false
+			if not ok:
+				continue
+			var v := []
+			for id in ids:
+				var i: int = id
+				var x := lo.x + (i % cols) * cell
+				var z := lo.y + int(i / cols) * cell
+				var y: float = heights[i]
+				var rough := clampf(absf(y - floor_ref[i]) / 3.0, 0.0, 1.0) if fn == "teto" else clampf((y - floor_ref[i] + 0.01) / 3.0, 0.0, 1.0)
+				if fn == "chao":
+					var base: float = field.call("sample", x, z).y
+					rough = clampf(absf(y - base) / 3.0, 0.0, 1.0)
+				y += noise.get_noise_2d(x, z) * (0.08 + rough * 0.7)
+				v.append(Vector3(x + noise.get_noise_2d(z, x) * rough * 0.5, y, z))
+			var tris := [[0, 1, 2], [2, 1, 3]]
+			for t in tris:
+				var order: Array = t if not flip else [t[0], t[2], t[1]]
+				for k in order:
+					st.add_vertex(v[k])
+	st.generate_normals()
+	var mesh := st.commit()
+	var root := _static_body()
+	root.add_child(_mesh_instance(mesh, mat))
 	var shape := CollisionShape3D.new()
 	shape.shape = mesh.create_trimesh_shape()
 	root.add_child(shape)
