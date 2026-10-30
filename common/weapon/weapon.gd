@@ -158,6 +158,8 @@ func fire_weapon() -> void:
 		firing_sfx.play()
 	
 	# Muzzle flash VFX (ranged weapons only)
+	if not is_melee_weapon:
+		Global.muzzle_flash.emit()
 	if not is_melee_weapon and firing_vfx and muzzle_flash_position:
 		var muzzle_instance = firing_vfx.instantiate()
 		muzzle_flash_position.add_child(muzzle_instance)

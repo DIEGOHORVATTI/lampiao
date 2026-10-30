@@ -22,6 +22,9 @@ signal active_camera_fov_changed
 signal fire_input
 
 @warning_ignore("unused_signal")
+signal muzzle_flash
+
+@warning_ignore("unused_signal")
 signal reload_input
 
 @warning_ignore("unused_signal")

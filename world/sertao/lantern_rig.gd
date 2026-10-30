@@ -7,6 +7,7 @@ const LANTERN_RANGE := 11.0
 @export var auto_start := true
 
 var lantern: OmniLight3D
+var clarao: OmniLight3D
 var lit := true
 
 
@@ -24,6 +25,15 @@ func _ready() -> void:
 	lantern.position = Vector3(0.3, 0.15, 0.25)
 	lantern.set_script(preload("res://world/sertao/flicker.gd"))
 	player.camera.add_child(lantern)
+	clarao = OmniLight3D.new()
+	clarao.name = "Clarao"
+	clarao.light_color = Color(1.0, 0.82, 0.55)
+	clarao.light_energy = 0.0
+	clarao.omni_range = 24.0
+	clarao.omni_attenuation = 0.8
+	clarao.position = Vector3(0.2, -0.1, -1.0)
+	player.camera.add_child(clarao)
+	Global.muzzle_flash.connect(_on_muzzle_flash)
 
 	var hands := Environment.new()
 	hands.background_mode = Environment.BG_CLEAR_COLOR
@@ -32,6 +42,12 @@ func _ready() -> void:
 	hands.ambient_light_energy = 0.32
 	hands.tonemap_mode = Environment.TONE_MAPPER_FILMIC
 	player.get_node("WeaponSubViewport/SubViewport/Camera3D").environment = hands
+
+
+func _on_muzzle_flash() -> void:
+	clarao.light_energy = 9.0
+	var fade := create_tween()
+	fade.tween_property(clarao, "light_energy", 0.0, 0.16).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_OUT)
 
 
 func set_lit(value: bool) -> void:
