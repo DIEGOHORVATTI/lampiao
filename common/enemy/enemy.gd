@@ -23,7 +23,6 @@ var current_health: float = 100.0
 @export var light_attraction: float = 0.0
 @export var alert_range: float = 0.0
 @export var eye_glow: Color = Color(0, 0, 0, 0)
-@export var eye_height: float = 1.6
 @export var chase_time: float = 5.0
 var is_chasing:bool = false
 
@@ -202,21 +201,15 @@ func _on_player_fired() -> void:
 
 
 func _add_eyes() -> void:
-	var mat := StandardMaterial3D.new()
-	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	mat.albedo_color = eye_glow
-	mat.disable_fog = true
-	var sphere := SphereMesh.new()
-	sphere.radius = 0.025
-	sphere.height = 0.05
-	sphere.radial_segments = 6
-	sphere.rings = 3
-	for x in [-0.045, 0.045]:
-		var eye := MeshInstance3D.new()
-		eye.mesh = sphere
-		eye.material_override = mat
-		eye.position = Vector3(x, eye_height, -0.13)
-		character_root.add_child(eye)
+	for mi in character_root.find_children("*", "MeshInstance3D", true, false):
+		for i in mi.mesh.get_surface_count():
+			var mat := mi.get_active_material(i) as StandardMaterial3D
+			if mat and mat.albedo_color.r > 2.0:
+				var eyes := mat.duplicate() as StandardMaterial3D
+				eyes.albedo_color = eye_glow * 3.0
+				eyes.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+				eyes.disable_fog = true
+				mi.set_surface_override_material(i, eyes)
 
 func _player_in_vision_range() -> bool:
 	var distance := global_position.distance_to(player.global_position)

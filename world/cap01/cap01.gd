@@ -125,7 +125,7 @@ func _enjeitados() -> void:
 		["ENCOSTO", "Tá ouvindo? Pararam os grilo. Chegou visita."],
 	])
 	_spawn("E1")
-	Dialogo.mostrar_prompt("Derrube o corpo-seco e coma: ✋ Comer")
+	Dialogo.mostrar_prompt("🌿 Raízes derrubam o corpo-seco · depois ✋ Comer")
 	await get_tree().create_timer(6.0).timeout
 	Dialogo.esconder_prompt()
 	_spawn("E2a")

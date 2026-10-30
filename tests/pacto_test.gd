@@ -20,7 +20,9 @@ func _ready() -> void:
 	add_child(corpo)
 	corpo.global_position = Global.player.global_position + Vector3(4, 0, 0)
 	await get_tree().create_timer(0.3).timeout
-	corpo.get_damage(1000.0, Vector3.ZERO)
+	Global.player.camera_pivot.look_at(corpo.global_position, Vector3.UP)
+	Global.player.camera_holder.rotation.x = 0.0
+	_check(Poderes.raizes() and not corpo.is_alive, "raízes derrubam o corpo-seco à frente")
 	Pacto.hunger = 60.0
 	Global.player.global_position = corpo.global_position + Vector3(0.5, 0.5, 0)
 	await get_tree().create_timer(0.4).timeout

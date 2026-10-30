@@ -11,6 +11,7 @@ const BUTTONS := [
 	{"action": "reload", "label": "↻", "anchor": Vector2(-380, -540), "scale": 0.8},
 	{"action": "activate", "label": "✋", "anchor": Vector2(-560, -380), "scale": 0.8},
 	{"action": "weapon_change_next", "label": "⇄", "anchor": Vector2(-200, -760), "scale": 0.7},
+	{"action": "raizes", "label": "🌿", "anchor": Vector2(-560, -560), "scale": 0.9},
 ]
 
 var move_finger := -1
