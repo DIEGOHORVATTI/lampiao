@@ -45,6 +45,7 @@ for src_action in source_actions:
     if only and clean not in only:
         continue
     source.animation_data.action = src_action
+    source.animation_data.action_slot = src_action.slots[0]
     start, end = int(src_action.frame_range[0]), int(src_action.frame_range[1])
     frames = list(range(start, end + 1))
     rotations = {n: [] for n in names}
@@ -102,6 +103,9 @@ for src_action in source_actions:
                     data += [f, v[i]]
                 fc.keyframe_points.foreach_set("co", data)
                 fc.update()
+    target.animation_data.action = None
+    target.animation_data.action = new_action
+    target.animation_data.action_slot = new_action.slots[0]
     print("RETARGETED", clean, len(frames))
 
 target.animation_data.action = None

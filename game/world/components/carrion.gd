@@ -26,7 +26,7 @@ func _ready() -> void:
 func _eat() -> void:
 	eaten = true
 	Pact.eat()
-	Pact.hit_flash = 0.7
+	GameUI.hit_flash = 0.7
 	Scares.shake(0.08, 0.6)
 	var rot := PROPS.material("rot")
 	for meat in find_children("*", "MeshInstance3D", true, false):

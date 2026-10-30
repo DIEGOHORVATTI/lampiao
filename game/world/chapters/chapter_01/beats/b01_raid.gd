@@ -42,7 +42,7 @@ func run(d: Chapter01Director) -> void:
 	Dialogue.show_prompt("CH01_RAID_08")
 	Global.muzzle_flash.connect(d.on_player_shot)
 	d.trigger("BackDoorTrigger").entered.connect(func():
-		for key in ["SPEAKER_BARAUNA", "xexeu", "maria"]:
+		for key in ["barauna", "xexeu", "maria"]:
 			d.cast[key].walk_to(d.marker("MariaShotTrigger") + Vector3(randf_range(-2, 2), 0, randf_range(-1, 1)), 1.8, true))
 	await d.await_trigger("MariaShotTrigger")
 	Dialogue.hide_prompt()
@@ -52,7 +52,7 @@ func run(d: Chapter01Director) -> void:
 	Effects.gunshot(d, shooter.global_position + Vector3.UP * 1.4)
 	d.cast.maria.global_position = Global.player.global_position + Vector3(1.2, 0, -0.6)
 	d.cast.maria.pose("Crouch_Idle")
-	Pact.hit_flash = 0.8
+	GameUI.hit_flash = 0.8
 	await Dialogue.say([
 		["SPEAKER_LAMPIAO", "CH01_RAID_09"],
 		["SPEAKER_LAMPIAO", "CH01_RAID_10"],
@@ -64,6 +64,6 @@ func run(d: Chapter01Director) -> void:
 	])
 	shooter.queue_free()
 	d.cast.vini = d.spawn_npc("ViniFarm", Color(0.5, 0.48, 0.4), "beret", false)
-	for key in ["SPEAKER_BARAUNA", "xexeu", "maria"]:
+	for key in ["barauna", "xexeu", "maria"]:
 		d.cast[key].walk_to(d.marker("ViniFarm") + Vector3(randf_range(-2, 2), 0, -1.5), 1.6, true)
 	await d.await_trigger("HorsesTrigger")

@@ -49,7 +49,8 @@ for i, pose in enumerate(poses):
     holder.animation_data_create()
     act = bpy.data.actions[name]
     track = holder.animation_data.nla_tracks.new()
-    track.strips.new(act.name, int(act.frame_range[0]) + 1 - int(frame), act)
+    strip = track.strips.new(act.name, int(act.frame_range[0]) + 1 - int(frame), act)
+    strip.action_slot = act.slots[0]
     holder.location = Vector(((i - (len(poses) - 1) / 2) * 1.4, 0, 0))
     copies.append((holder, int(frame)))
 

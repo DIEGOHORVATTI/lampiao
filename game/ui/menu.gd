@@ -26,14 +26,15 @@ func _ready() -> void:
 	title.offset_top = 30
 	add_child(title)
 
-	var hint := Label.new()
-	hint.text = tr("UI_MENU_START") if CHAPTERS.has(Story.chapter) else tr("UI_MENU_SOON") % Story.chapter
-	hint.add_theme_font_size_override("font_size", 40)
-	hint.add_theme_color_override("font_color", Color(0.91, 0.84, 0.69))
-	hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	hint.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE)
-	hint.offset_top = -120
-	add_child(hint)
+	var buttons := VBoxContainer.new()
+	buttons.set_anchors_and_offsets_preset(Control.PRESET_CENTER_BOTTOM)
+	buttons.custom_minimum_size = Vector2(560, 0)
+	buttons.position += Vector2(-280, -330)
+	buttons.add_theme_constant_override("separation", 18)
+	add_child(buttons)
+	var play_key := "UI_MENU_PLAY" if CHAPTERS.has(Story.chapter) else "UI_MENU_FREE_ROAM"
+	buttons.add_child(_button(play_key, _play))
+	buttons.add_child(_button("UI_MENU_SETTINGS", func(): add_child(SettingsMenu.new())))
 	var credits := Label.new()
 	credits.text = tr("UI_MENU_CREDITS")
 	credits.add_theme_font_size_override("font_size", 20)
@@ -42,15 +43,17 @@ func _ready() -> void:
 	credits.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	credits.offset_top = -64
 	add_child(credits)
-	var pulse := create_tween().set_loops()
-	pulse.tween_property(hint, "modulate:a", 0.25, 1.2)
-	pulse.tween_property(hint, "modulate:a", 1.0, 1.2)
 
 
-func _input(event: InputEvent) -> void:
-	var tapped: bool = event is InputEventScreenTouch and event.pressed
-	var clicked: bool = event is InputEventMouseButton and event.pressed
-	if tapped or clicked or event.is_action_pressed("ui_accept"):
-		set_process_input(false)
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		preload("res://game/ui/loading_screen.gd").go(get_tree(), CHAPTERS.get(Story.chapter, FREE_ROAM))
+func _button(label_key: String, action: Callable) -> Button:
+	var button := Button.new()
+	button.text = tr(label_key)
+	button.custom_minimum_size = Vector2(0, 96)
+	button.add_theme_font_size_override("font_size", 40)
+	button.pressed.connect(action)
+	return button
+
+
+func _play() -> void:
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	preload("res://game/ui/loading_screen.gd").go(get_tree(), CHAPTERS.get(Story.chapter, FREE_ROAM))

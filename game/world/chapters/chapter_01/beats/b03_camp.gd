@@ -13,7 +13,7 @@ func run(d: Chapter01Director) -> void:
 	d.cast.xexeu.pose("Crouch_Idle")
 	d.cast.vini = d.spawn_npc("Vini", Color(0.5, 0.48, 0.4), "beret", false)
 	d.cast.vini.global_position = d.marker("Campfire") + Vector3(0.9, 0, 0.9)
-	for key in ["SPEAKER_BARAUNA", "xexeu", "vini"]:
+	for key in ["barauna", "xexeu", "vini"]:
 		d.cast[key].look_at_point(d.marker("Campfire"), 0.01)
 	await Dialogue.fade(0.0, 1.5)
 	d.lock_player(false)

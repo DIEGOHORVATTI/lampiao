@@ -9,7 +9,7 @@ func _ready() -> void:
 		Global.player.get_damage(float(OS.get_environment("DANO")), Vector3.ZERO)
 	Global.reload_input.emit()
 	if OS.has_environment("SEM_VINHETA"):
-		Pact.get_node("Vinheta").visible = false
+		GameUI.overlay.visible = false
 	if OS.has_environment("SEM_HUD"):
 		find_child("HUD", true, false).visible = false
 	await get_tree().create_timer(0.6).timeout

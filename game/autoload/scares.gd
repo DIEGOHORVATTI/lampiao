@@ -38,7 +38,7 @@ func jumpscare(face := "entity", seconds := 0.45) -> void:
 	face_rect.modulate = Color(1, 1, 1, 1)
 	_play(sounds["stinger"], 4.0)
 	shake(0.35, 0.5)
-	Pact.hit_flash = 1.0
+	GameUI.hit_flash = 1.0
 	if OS.has_feature("mobile"):
 		Input.vibrate_handheld(350)
 	var zoom := create_tween().set_parallel()

@@ -90,7 +90,7 @@ func _layout() -> void:
 		var facing: float = atan2(-houses[i].x, -houses[i].z)
 		_prop("mud_house", houses[i], facing, i + 3)
 		var door: Vector3 = houses[i] + Vector3(sin(facing), 0, cos(facing)) * 3.4
-		_prop("lampiao", door + Vector3(0, 1.6, 0), 0, i)
+		_prop("wall_lamp", door + Vector3(0, 2.2, 0), 0, i)
 	_prop("well", Vector3(1, 0, 1), 0, 1)
 	for i in 6:
 		_prop("stick_fence", Vector3(18 + (i % 2) * 0.2, 0, -14 + i * 7.6), PI / 2, 40 + i)

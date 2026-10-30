@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3]
+
+[ext_resource type="Shader" path="res://resources/personagens/shared/comic_outline.gdshader" id="1"]
+
+[resource]
+render_priority = -1
+shader = ExtResource("1")
+shader_parameter/ink_color = Color(0.06, 0.04, 0.035, 1)
+shader_parameter/width = 0.004
+shader_parameter/max_scale = 3.0

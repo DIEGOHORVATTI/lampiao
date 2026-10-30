@@ -6,7 +6,21 @@ var mouse_mode_captured:bool = true
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
+const MOUSE_ACTIONS := {MOUSE_BUTTON_LEFT: "fire", MOUSE_BUTTON_RIGHT: "aim_mode"}
+
+
 func _input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.device != InputEvent.DEVICE_ID_EMULATION and MOUSE_ACTIONS.has(event.button_index):
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+			var action: String = MOUSE_ACTIONS[event.button_index]
+			if event.pressed:
+				Input.action_press(action)
+			else:
+				Input.action_release(action)
+			var synthetic := InputEventAction.new()
+			synthetic.action = action
+			synthetic.pressed = event.pressed
+			Input.parse_input_event(synthetic)
 	#AIM_MODE
 	if event.is_action_pressed("aim_mode"):
 		aim_mode = true

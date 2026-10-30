@@ -53,8 +53,8 @@ func _ready() -> void:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		look(event.relative * sensitivity)
+	if event is InputEventMouseMotion and event.device != InputEvent.DEVICE_ID_EMULATION and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+		look(Settings.look_delta(event.relative, "mouse_sensitivity"))
 
 
 func look(delta_radians: Vector2) -> void:
@@ -65,7 +65,14 @@ func look(delta_radians: Vector2) -> void:
 
 
 
+func _keyboard_look(delta: float) -> void:
+	var axis := Input.get_vector("look_left", "look_right", "look_up", "look_down")
+	if axis != Vector2.ZERO:
+		look(Settings.look_delta(axis * delta * 400.0, "mouse_sensitivity") * Settings.get_value("keyboard_look_speed") / 2.2)
+
+
 func _physics_process(delta: float) -> void:
+	_keyboard_look(delta)
 	# Add the gravity
 	if not is_on_floor():
 		velocity.y += GRAVITY * delta

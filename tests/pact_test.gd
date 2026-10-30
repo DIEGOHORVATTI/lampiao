@@ -43,13 +43,11 @@ func _ready() -> void:
 	Pact.hunger = 99.95
 	await get_tree().create_timer(0.5).timeout
 	_check(get_tree().paused, "fome cheia mata e pausa")
-	_check(Pact.death_screen.visible, "tela de morte aparece")
+	_check(GameUI.death_screen.visible, "tela de morte aparece")
 	if failures:
 		return _finish()
 	restarted = true
-	var tap := InputEventScreenTouch.new()
-	tap.pressed = true
-	Input.parse_input_event(tap)
+	GameUI.death_screen.retry_requested.emit()
 
 
 func _finish() -> void:

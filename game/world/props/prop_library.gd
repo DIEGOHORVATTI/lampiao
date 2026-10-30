@@ -99,7 +99,7 @@ static func _build(kind: String, rng: RandomNumberGenerator) -> Node3D:
 		"cliff": return cliff(rng)
 		"corpse": return corpse(rng)
 		"roadside_cross": return roadside_cross(rng)
-	push_error("SertaoProps: peça desconhecida '%s'" % kind)
+	push_error("PropLibrary: unknown kind '%s'" % kind)
 	return Node3D.new()
 
 

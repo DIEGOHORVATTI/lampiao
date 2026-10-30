@@ -13,7 +13,6 @@ func _ready() -> void:
 	claw_rect.visible = false
 	damage_overlay.visible = false
 	claw_rect_current_pos = position
-	Global.player_health_changed.connect(_on_player_health_changed)
 
 
 

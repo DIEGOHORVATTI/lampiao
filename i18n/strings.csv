@@ -50,7 +50,6 @@ CH01_CAMP_15,"Orra, que sopa deliciosa. Tu tem uns talento escondido, Vini."
 CH01_CAMP_16,"Hahah, que nada, home. Agora descansem. Vou passar a noite na vigia."
 CH01_CAMP_17,"(já na boca da caverna, de costas) Tenham um bom descanso."
 CH01_CAMP_18,Tomar a sopa
-CH01_POISON_01,modulate:a
 CH01_POISON_02,Q-que mizera de pesadelo foi esse? M-Maria...
 CH01_POISON_03,[espuma branca escorrendo pelo queixo dela. Baraúna caído na mesma espuma. Xexéu com a cuia na mão.]
 CH01_POISON_04,Maria?! Que porra é essa?
@@ -77,7 +76,6 @@ CH01_BETRAYAL_06,"Eu... eu não tive escolha. Eles pegaram a minha família. Ame
 CH01_BETRAYAL_07,Só a peixeira. Desvie e golpeie.
 CH01_BETRAYAL_08,[a peixeira abre o rosto de Vini de orelha a boca. Ele cai de joelho. Um passo atrás de você.]
 CH01_BEHEADING_01,Vai ficar bom numa estaca.
-CH01_BEHEADING_02,rotation:y
 CH01_BEHEADING_03,"Belo trabalho, traidor. Vi todos os corpos. Tu é um assassino implacável, haha."
 CH01_BEHEADING_04,O senhor vai liberar minha família agora? Eu fiz tudo que pediu.
 CH01_BEHEADING_05,Ha. Tu pensou que eu ia deixar tu ir embora na boa? Tua família tá morta desde que tu saiu em missão.
@@ -177,7 +175,7 @@ UI_PAUSE_TO_MENU,VOLTAR AO MENU
 UI_DEATH_HUNGER,"Ela cansou de esperar, Capitão.
 Agora a carne podre é você."
 UI_DEATH_DEFAULT,O sertão te engoliu.
-UI_DEATH_RETRY,toque para tentar de novo
+UI_DEATH_RETRY,TENTAR DE NOVO
 UI_TITLE,LAMPIÃO
 UI_MENU_START,toque para entrar no sertão
 UI_MENU_SOON,capítulo %d em breve · toque para andar no sertão
@@ -196,3 +194,15 @@ LOADING_VERSE_3,"Na noite sem lua do sertão
 quem clareia é o fuzil:
 cada tiro é um lampião
 que o inimigo nunca viu."
+UI_MENU_PLAY,JOGAR
+UI_MENU_FREE_ROAM,ANDAR NO SERTÃO
+UI_MENU_SETTINGS,OPÇÕES
+UI_PAUSE_SETTINGS,OPÇÕES
+UI_SETTINGS_TITLE,OPÇÕES
+UI_SETTINGS_MOUSE,Sensibilidade do mouse
+UI_SETTINGS_TOUCH,Sensibilidade do toque
+UI_SETTINGS_KEYBOARD,Mira pelas setas
+UI_SETTINGS_VOLUME,Volume
+UI_SETTINGS_QUALITY,Qualidade gráfica
+UI_SETTINGS_INVERT_Y,Inverter eixo vertical
+UI_SETTINGS_BACK,VOLTAR

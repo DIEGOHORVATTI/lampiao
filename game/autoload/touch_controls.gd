@@ -1,7 +1,6 @@
 extends CanvasLayer
 
 const STICK_RADIUS := 110.0
-const LOOK_SENSITIVITY := 0.006
 const ICON_DIR := "res://resources/ui/icons/%s.svg"
 const INK := Color(0.91, 0.86, 0.75)
 const DISC := Color(0.04, 0.03, 0.02)
@@ -94,7 +93,7 @@ func _on_drag(event: InputEventScreenDrag) -> void:
 		_set_axis("left", "right", v.x)
 		_set_axis("forward", "backward", v.y)
 	elif event.index == look_finger and Global.player:
-		Global.player.look(event.relative * LOOK_SENSITIVITY)
+		Global.player.look(Settings.look_delta(event.relative, "touch_sensitivity"))
 
 
 func _set_axis(negative: String, positive: String, value: float) -> void:

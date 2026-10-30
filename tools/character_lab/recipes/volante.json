@@ -1,0 +1,33 @@
+{
+  "name": "volante",
+  "base": "Male",
+  "eyebrows": true,
+  "parts": [
+    {"file": "modular_character_outfits/Outfits/Male_Peasant.gltf", "meshes": ["Male_Peasant_Body", "Male_Peasant_Legs"]},
+    {"file": "modular_character_outfits/Outfits/Male_Ranger.gltf", "meshes": ["Male_Ranger_Arms", "Male_Ranger_Feet_Boots"]}
+  ],
+  "hair": {"style": "Hair_Buzzed"},
+  "palette": {
+    "skin_mid": [0.58, 0.42, 0.3],
+    "skin_light": [0.88, 0.72, 0.56],
+    "khaki_light": [0.82, 0.76, 0.6]
+  },
+  "grades": {
+    "SuperHero_Male": {"ramp": ["sepia_dark", "skin_mid", "skin_light"], "amount": 0.6},
+    "MI_Regular_Male": {"ramp": ["sepia_dark", "skin_mid", "skin_light"], "amount": 0.6},
+    "Male_Peasant_Body": {"ramp": ["khaki_dark", "khaki", "khaki_light"], "gamma": 0.7},
+    "Male_Peasant_Legs": {"ramp": ["khaki_dark", "khaki", "khaki_light"], "gamma": 0.5},
+    "Male_Ranger_Arms": {"ramp": ["khaki_dark", "khaki", "khaki_light"], "gamma": 0.5},
+    "Male_Ranger_Feet_Boots": {"ramp": ["ink", "sepia_dark", "leather"]},
+    "Hair_Buzzed": {"ramp": ["ink", "sepia_dark", "leather"]},
+    "Eyebrows": {"ramp": ["ink", "ink", "sepia_dark"]}
+  },
+  "density": {"SuperHero_Male": 1.6},
+  "decimate": {"Male_Ranger_Feet_Boots": 0.22, "Male_Ranger_Arms": 0.5, "Male_Peasant_Body": 0.6, "SuperHero_Male": 0.75, "Eyebrows": 0.4, "Eyes": 0.5, "Male_Peasant_Legs": 0.8},
+  "accessories": [
+    {"type": "quepe", "color": "khaki_dark", "band": "sepia_dark", "visor": "ink"},
+    {"type": "belt", "buckle": true, "bullets": true, "color": "sepia_dark"},
+    {"type": "bandolier", "sides": [1], "strap": "sepia_dark"},
+    {"type": "rifle_hand", "separate": "Rifle"}
+  ]
+}

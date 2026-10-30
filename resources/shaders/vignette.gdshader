@@ -21,14 +21,14 @@ void fragment() {
 	float n = noise(UV * 7.0) * 0.6 + noise(UV * 19.0) * 0.4;
 	float edge = smoothstep(0.45, 0.95, r);
 
-	float bloodiness = clamp(blood * 0.85 + hit * 0.6, 0.0, 1.0);
-	float stain = smoothstep(1.05 - bloodiness * 0.7, 1.1 - bloodiness * 0.7, r + n * 0.35) * smoothstep(0.0, 0.15, bloodiness);
+	float bloodiness = clamp(blood * 0.6 + hit * 0.35, 0.0, 1.0);
+	float stain = smoothstep(1.08 - bloodiness * 0.38, 1.16 - bloodiness * 0.38, r + n * 0.25) * smoothstep(0.0, 0.15, bloodiness);
 
 	float pulse = 0.55 + 0.45 * sin(TIME * (2.0 + hunger * 4.0));
 	float vein_lines = 1.0 - smoothstep(0.0, 0.06, abs(noise(UV * vec2(9.0, 5.0) + TIME * 0.05) - 0.5));
 	float veins = vein_lines * smoothstep(0.35, 0.9, r) * smoothstep(0.35, 1.0, hunger) * pulse;
 
 	vec3 color = mix(vec3(0.02, 0.0, 0.0), vec3(0.22, 0.0, 0.01), stain * 0.5 + veins * 0.6);
-	float alpha = edge * 0.45 + stain * 0.92 + veins * 0.7;
+	float alpha = edge * 0.18 + stain * 0.6 + veins * 0.45;
 	COLOR = vec4(color, clamp(alpha, 0.0, 0.96));
 }

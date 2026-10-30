@@ -10,12 +10,12 @@ func run(d: Chapter01Director) -> void:
 	Scares.face_rect.modulate.a = 0.0
 	Scares.face_rect.scale = Vector2.ONE
 	Scares.face_rect.visible = true
-	await d.create_tween().tween_property(Scares.face_rect, "CH01_POISON_01", 1.0, 2.0).finished
+	await d.create_tween().tween_property(Scares.face_rect, "modulate:a", 1.0, 2.0).finished
 	await d.create_tween().tween_property(Scares.face_rect, "scale", Vector2.ONE * 1.25, 4.0).finished
 	Scares.face_rect.visible = false
 	Scares.jumpscare("maria")
 	await d.get_tree().create_timer(0.5).timeout
-	for key in ["SPEAKER_MARIA", "barauna", "xexeu"]:
+	for key in ["maria", "barauna", "xexeu"]:
 		d.cast[key].lie_down()
 	Dialogue.fade(0.0, 0.8)
 	await Dialogue.say([["SPEAKER_LAMPIAO", "CH01_POISON_02"], ["", "CH01_POISON_03"], ["SPEAKER_LAMPIAO", "CH01_POISON_04"]])

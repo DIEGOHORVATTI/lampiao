@@ -1,0 +1,35 @@
+{
+  "name": "maria",
+  "base": "Female",
+  "parts": [
+    {"file": "modular_character_outfits/Outfits/Female_Ranger.gltf", "meshes": ["Female_Ranger_Body", "Female_Ranger_Feet"]},
+    {"file": "modular_character_outfits/Outfits/Female_Peasant.gltf", "meshes": ["Female_Peasant_Arms", "Female_Peasant_Legs"]}
+  ],
+  "hair": {"style": "Hair_Long", "cut": 0.3, "clamp": 0.02},
+  "palette": {
+    "skin_mid": [0.56, 0.4, 0.29],
+    "skin_light": [0.88, 0.72, 0.57],
+    "pants_mid": [0.32, 0.23, 0.16],
+    "hair_light": [0.3, 0.23, 0.2]
+  },
+  "grades": {
+    "Superhero_Female": {"ramp": ["sepia_dark", "skin_mid", "skin_light"], "amount": 0.6},
+    "MI_Regular_Female": {"ramp": ["sepia_dark", "skin_mid", "skin_light"], "amount": 0.6},
+    "Female_Ranger_Body": {"ramp": ["ink", "coat", "leather_light"], "gamma": 0.7},
+    "Female_Peasant_Arms": {"ramp": ["ink", "coat", "leather_light"], "gamma": 0.6},
+    "Female_Peasant_Legs": {"ramp": ["ink", "pants_mid", "leather"], "gamma": 0.7},
+    "Female_Ranger_Feet": {"ramp": ["ink", "leather", "leather_light"]},
+    "Hair_Long": {"ramp": ["ink", "sepia_dark", "hair_light"]},
+    "Eyebrows": {"ramp": ["ink", "ink", "sepia_dark"]}
+  },
+  "density": {"Superhero_Female": 1.6},
+  "decimate": {"Female_Ranger_Feet": 0.22, "Female_Peasant_Arms": 0.45, "Female_Ranger_Body": 0.6, "Hair_Long": 0.6, "Superhero_Female": 0.75, "Eyebrows": 0.4, "Eyes": 0.5, "Female_Peasant_Legs": 0.8},
+  "accessories": [
+    {"type": "hat_crescent", "emblem": "window", "span": 1.05, "rise": 0.12, "tassels": 2, "medal": "cream", "crown": "coat", "flap": "coat"},
+    {"type": "scarf", "color": "cream", "width": 0.1, "drop": 0.12, "length": 0.09},
+    {"type": "bandolier", "sides": [1], "rx": 0.17, "ry": 0.13},
+    {"type": "belt", "bullets": true, "rx": 0.15, "ry": 0.12, "buckle": true},
+    {"type": "coat_tails", "rx": 0.16, "ry": 0.13, "flare": 0.05, "below_knee": 0.08},
+    {"type": "rosary"}
+  ]
+}

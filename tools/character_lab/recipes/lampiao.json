@@ -1,0 +1,165 @@
+{
+  "name": "lampiao",
+  "base": "Male",
+  "parts": [
+    {
+      "file": "modular_character_outfits/Outfits/Male_Peasant.gltf",
+      "meshes": [
+        "Male_Peasant_Body",
+        "Male_Peasant_Legs"
+      ]
+    },
+    {
+      "file": "modular_character_outfits/Outfits/Male_Ranger.gltf",
+      "meshes": [
+        "Male_Ranger_Arms",
+        "Male_Ranger_Feet_Boots"
+      ]
+    }
+  ],
+  "hair": {
+    "style": "Hair_Long",
+    "fit_from": "Female",
+    "cut": 0.3,
+    "stretch": 2.6,
+    "flare": 0.3,
+    "spread": 0.05
+  },
+  "palette": {
+    "skin_mid": [
+      0.55,
+      0.38,
+      0.27
+    ],
+    "skin_light": [
+      0.86,
+      0.69,
+      0.53
+    ],
+    "pants_mid": [
+      0.45,
+      0.33,
+      0.2
+    ],
+    "pants_light": [
+      0.72,
+      0.56,
+      0.36
+    ],
+    "hair_light": [
+      0.3,
+      0.23,
+      0.2
+    ]
+  },
+  "grades": {
+    "SuperHero_Male": {
+      "ramp": [
+        "sepia_dark",
+        "skin_mid",
+        "skin_light"
+      ],
+      "amount": 0.6
+    },
+    "MI_Regular_Male": {
+      "ramp": [
+        "sepia_dark",
+        "skin_mid",
+        "skin_light"
+      ],
+      "amount": 0.6
+    },
+    "Male_Peasant_Body": {
+      "ramp": [
+        "ink",
+        "coat",
+        "leather_light"
+      ]
+    },
+    "Male_Peasant_Legs": {
+      "ramp": [
+        "sepia_dark",
+        "pants_mid",
+        "pants_light"
+      ],
+      "gamma": 0.55
+    },
+    "Male_Ranger_Arms": {
+      "ramp": [
+        "ink",
+        "coat",
+        "leather_light"
+      ],
+      "gamma": 0.6
+    },
+    "Male_Ranger_Feet_Boots": {
+      "ramp": [
+        "ink",
+        "leather",
+        "leather_light"
+      ]
+    },
+    "Hair_Long": {
+      "ramp": [
+        "ink",
+        "sepia_dark",
+        "hair_light"
+      ]
+    },
+    "Eyebrows": {
+      "ramp": [
+        "ink",
+        "ink",
+        "sepia_dark"
+      ]
+    }
+  },
+  "density": {
+    "SuperHero_Male": 1.6
+  },
+  "accessories": [
+    {
+      "type": "hat_crescent",
+      "emblem": "medallion",
+      "blind": false
+    },
+    {
+      "type": "glasses",
+      "blind_right": true
+    },
+    {
+      "type": "choker"
+    },
+    {
+      "type": "scarf",
+      "color": "mustard"
+    },
+    {
+      "type": "bandolier"
+    },
+    {
+      "type": "belt",
+      "bullets": true,
+      "knife": true,
+      "sash": "cream",
+      "buckle": true
+    },
+    {
+      "type": "coat_tails"
+    },
+    {
+      "type": "rifle_back",
+      "separate": "Rifle"
+    }
+  ],
+  "decimate": {
+    "Male_Ranger_Feet_Boots": 0.22,
+    "Male_Ranger_Arms": 0.5,
+    "Male_Peasant_Body": 0.6,
+    "Hair_Long": 0.6,
+    "SuperHero_Male": 0.75,
+    "Eyebrows": 0.4,
+    "Eyes": 0.5,
+    "Male_Peasant_Legs": 0.8
+  }
+}

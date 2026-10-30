@@ -182,7 +182,7 @@ func die() -> void:
 
 func _eaten() -> void:
 	Pact.eat()
-	Pact.hit_flash = 1.0
+	GameUI.hit_flash = 1.0
 	Scares.shake(0.12, 0.8)
 	var t := create_tween()
 	t.tween_property(character_root, "scale", Vector3(1.0, 0.05, 1.0), 0.9).set_trans(Tween.TRANS_EXPO)

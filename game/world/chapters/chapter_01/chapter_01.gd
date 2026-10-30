@@ -111,7 +111,7 @@ func gallop_camera() -> void:
 
 func _eat_remains(remains: Node3D) -> void:
 	Pact.eat()
-	Pact.hit_flash = 0.8
+	GameUI.hit_flash = 0.8
 	Scares.shake(0.1, 0.7)
 	remains.queue_free()
 	if not ate_carrion:
