@@ -17,7 +17,7 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	var panel := PanelContainer.new()
-	panel.custom_minimum_size = Vector2(900, 620)
+	panel.custom_minimum_size = Vector2(900, 680)
 	add_child(panel)
 	var frame := StyleBoxFlat.new()
 	frame.bg_color = Color(0.05, 0.03, 0.02, 0.95)
@@ -31,7 +31,8 @@ func _ready() -> void:
 	column.add_child(_title())
 	for row in ROWS:
 		column.add_child(_slider_row(row))
-	column.add_child(_invert_row())
+	column.add_child(_toggle_row("UI_SETTINGS_INVERT_Y", "invert_y"))
+	column.add_child(_toggle_row("UI_SETTINGS_THIRD_PERSON", "third_person"))
 	var back := Button.new()
 	back.text = tr("UI_SETTINGS_BACK")
 	back.custom_minimum_size = Vector2(0, 80)
@@ -66,12 +67,12 @@ func _slider_row(row: Dictionary) -> Control:
 	return line
 
 
-func _invert_row() -> Control:
+func _toggle_row(label_key: String, setting: String) -> Control:
 	var check := CheckButton.new()
-	check.text = tr("UI_SETTINGS_INVERT_Y")
-	check.button_pressed = Settings.get_value("invert_y")
+	check.text = tr(label_key)
+	check.button_pressed = Settings.get_value(setting)
 	check.add_theme_font_size_override("font_size", 30)
-	check.toggled.connect(func(on): Settings.set_value("invert_y", on))
+	check.toggled.connect(func(on): Settings.set_value(setting, on))
 	return check
 
 

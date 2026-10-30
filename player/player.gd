@@ -49,6 +49,7 @@ const HIT_STAGGER: float = 40.0
 func _ready() -> void:
 	Global.player = self
 	Global.aim_mode_changed.connect(_on_aim_mode_changed)
+	add_child(ThirdPersonView.new())
 
 
 

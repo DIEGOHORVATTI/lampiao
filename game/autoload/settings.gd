@@ -8,6 +8,7 @@ const DEFAULTS := {
 	"touch_sensitivity": 0.006,
 	"keyboard_look_speed": 2.2,
 	"invert_y": false,
+	"third_person": false,
 	"master_volume": 0.8,
 	"render_scale": 0.85,
 }
