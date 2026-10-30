@@ -34,19 +34,16 @@ com **(nome do jogo)**.
 
 ## Ela
 
-- **Quem é:** a entidade. Feminina, antiquíssima, veio do mar; ficou sepultada séculos debaixo da
-  laje da Caverna dos Ídolos; acordou com o sacrifício do bando e mora no pescoço de Lampião. Sem
-  nome. Regina a chama de **a Dona do Mar**. Na interface, "ELA". Detalhes na bíblia.
-- **Aparência:** ver bíblia, "Formas". Em primeira pessoa: o olho na costura (visto ao olhar para
-  baixo), os tentáculos pretos de olhinhos brancos, a sombra dela no chão quando sai.
-- **Quer:** comer até ficar completa. Voltar para o mar. Morder o Velho, a quem não perdoa.
-- **Esconde:** que tem medo do Velho; que não sabe se, completa, vai querer ir embora.
-- **Voz:** debochada, vaidosa, gulosa, um pouco mais "certa" que a fala do sertão. Chama
-  Lampião de "Capitão" (deboche) e, com Marca alta, de "meu bem". Balão do quadrinho: borda preta
-  irregular; no jogo, legenda com o nome "ELA" em branco sobre preto.
-- **Frases-chave:** "Eu tô faminta!" / "Você só tá andando por causa de mim, tá bom?" / "Irch...
-  sério que você vai usar isso aí?" / "É sério, imbecil!" / "Eu não acreditava... mas é ele...
-  ele ainda está aqui."
+- **Quem é:** a entidade do quadrinho. Feminina, antiga, "sepultada por séculos" na Caverna dos
+  Ídolos, vivia perto do mar; acordou com o sacrifício do bando e mora no pescoço de Lampião. Sem
+  nome. Na interface, "ELA". Só o que o quadrinho diz (ver bíblia).
+- **Aparência:** ver bíblia, "Formas".
+- **Quer:** comer até ficar completa.
+- **Voz:** debochada, vaidosa, gulosa. Chama Lampião de "Capitão" (deboche); com Marca alta, de
+  "meu bem".
+- **Frases do quadrinho:** "Eu tô faminta!" / "Você só tá andando por causa de mim, tá bom?" /
+  "Irch... sério que você vai usar isso aí?" / "É sério, imbecil!" / "Chegou a hora!" / "Eu não
+  acreditava... mas é ele... ele ainda está aqui."
 
 ## O bando (cap. 1)
 
@@ -86,36 +83,22 @@ com **(nome do jogo)**.
 
 ### O Coronel
 
-- **Quem é:** dono da região e da volante, que comanda em pessoa. Mora em Mossoró. Matou o bando
-  e conta a todo mundo que matou Lampião. Só "o Coronel": o jogo não dá nome a ele.
-- **Aparência:** forte, queixo quadrado, **cavanhaque e barba curta**, bigode, **quepe** com
-  emblema, terno escuro e gravata, **medalhas**, cavalo escuro. Revólver; faca de degola.
-- **Quer:** dinheiro, terra e a fama. "Vai ficar bom numa estaca."
-- **Esconde:** o **corpo fechado**. Bala de chumbo não entra nele. Ele paga o Velho com gente
-  (retirantes, presos, meninos) para manter o pacto, e foi o Velho quem soprou a ele onde o bando
-  ia se esconder. É por isso que achou a caverna.
-- **Fraqueza:** bala de prata ou o terço de Maria encostado nele quebram o corpo fechado por uns
-  segundos.
-- **Voz:** deboche de patrão, xinga baixo. "Tu vai se arrepender de roubar de mim, fi duma
-  rapariga!" / "Ha. Tu pensou que eu ia deixar tu ir embora na boa?"
-- **Aparece:** caps. 1 (degola e fuga), 9 (de longe, na sacada), 10 (duelo e escolha).
+- **Quem é:** dono da região e da volante, que comanda em pessoa. Está em Mossoró. Degola Lampião,
+  mata Vini e foge da caverna. Fica com a fama de ter matado Lampião. Só "o Coronel".
+- **Aparência:** forte, queixo quadrado, cavanhaque e barba curta, bigode, quepe com emblema, terno
+  escuro e gravata, medalhas, cavalo escuro. Revólver; faca de degola.
+- **Frases do quadrinho:** "Tu vai se arrepender de roubar de mim, fi duma rapariga!" / "Vai ficar
+  bom numa estaca." / "Ha, tu pensou que eu ia deixar tu ir embora na boa?"
+- **Aparece:** só no cap. 1. Os irmãos falam dele nos caps. 2–3.
 
-### O Velho (o vulto de olhos brancos)
+### O vulto de olhos brancos
 
-- **Quem é:** o primeiro servo dela, que bebeu o sangue dela e virou o **primeiro lobisomem**.
-  Enterrou-a debaixo da laje e anda pelo sertão há séculos, mordendo um homem de cada vez. No
-  quadrinho é o vulto preto de olhos brancos que diz "Então é verdade... ela despertou" (E4) e
-  instiga Ciro na janela (E8).
-- **Aparência:** silhueta preta peluda e esfumaçada, **dois olhos brancos**, braço comprido de
-  dedos finos, fios pretos escorrendo. Na luz de fogueira, dá para ver por um instante um rosto de
-  velho magro por baixo do pelo. Forma de luta: lobisomem enorme e magro, mais alto que Ciro, com
-  o pelo grisalho e falhado.
-- **Quer:** que Ela continue presa ou morra. E um herdeiro: o filho de Juliana, que tomou banho de
-  sangue de lobisomem no cap. 7 ("A criança cheira a mim").
-- **Fraqueza:** prata. O terço só o atrasa. Ela pode comê-lo, mas isso tem preço (ver finais).
-- **Voz:** baixa, educada, antiga. "Não seja tímido, Ciro... Mostre a eles quem você realmente
-  é." Chama Ela de "minha senhora", com nojo.
-- **Aparece:** caps. 3 (final), 6 (janela), 8 (mini-chefe), 10 (chefe final).
+- **Quem é:** não se sabe. No quadrinho observa Lampião ("Então é verdade... ela despertou", E4) e
+  instiga Ciro na janela ("Não seja tímido, Ciro... Mostre a eles quem você realmente é", E8). O
+  jogo **não explica** quem é; fica para o "Lampião 2".
+- **Aparência:** silhueta preta peluda e esfumaçada, dois olhos brancos, braço comprido de dedos
+  finos, fios pretos escorrendo.
+- **No jogo:** não é inimigo. Aparece como susto (vulto) e nas cenas dos caps. 3, 6 e 7.
 
 ### Antônio e Marconi
 
@@ -131,20 +114,16 @@ com **(nome do jogo)**.
 - **Frases:** **ANTÔNIO:** "O Coronel contou pra todo mundo que matou tu. Vai ser bonito ver a
   cara dele." **MARCONI:** "Fica quieta e não me atrapalha. As coisas tão diferentes agora."
 
-### O Doutor (Papa-figo) **(nome do jogo: Doutor Anísio)**
-
-- Médico do Coronel em Mossoró, dono da botica. Doente de uma doença que "só fígado de menino
-  cura". Preparou a cabeça falsa da estaca. Cap. 9.
-
 ### Zeca **(nome do jogo)**
 
-- Filho de Dona Cândida, puxador da multidão na Vila Boa Vista. Pula a janela dos fundos da casa de Ciro com um facão
+- Filho de Dona Cândida, da multidão na Vila Boa Vista (personagem do jogo; a multidão é do
+  quadrinho). Pula a janela dos fundos da casa de Ciro com um facão
   para "acabar com isso", sem a multidão ver. Cap. 5, escolha.
 
 ### Volante
 
 - Soldados do Coronel: farda clara de manga comprida, quepe, cinto, rifle. **Benedito**, 19 anos,
-  é o único com nome: aparece desarmado na fazenda e preso na fenda (cap. 1).
+  é do jogo: aparece desarmado na fazenda e preso na fenda (cap. 1).
 
 ## Aliados
 
@@ -158,8 +137,7 @@ com **(nome do jogo)**.
   cacheado volumoso até os ombros, vestido comprido de chita florida ou bata lisa, sandálias,
   cordão no pescoço. Do cap. 7 em diante, os **dois revólveres** dos irmãos, um em cada mão; no
   cap. 7, **encharcada de sangue da cabeça aos pés**.
-- **Quer:** que o filho não passe fome. Ir a Mossoró ver o Coronel cair (os irmãos iam vendê-la
-  junto com Lampião).
+- **Quer:** que o filho não passe fome.
 - **No jogo:** companheira de NPC. Atira de cobertura (dano baixo), carrega facho em trechos
   escuros, aponta perigo ("Ali, Capitão!"). Nunca morre fora de cena roteirizada.
 - **Voz:** começa encolhida, termina dura. "E tu tá sem cabeça. Cada um com seu problema." /
@@ -173,12 +151,12 @@ com **(nome do jogo)**.
 
 ### Ciro
 
-- **Quem é:** pai de Helena, homem bom e pobre da Vila Boa Vista, mordido pelo Velho. Na lua cheia
+- **Quem é:** pai de Helena, homem bom e pobre da Vila Boa Vista. Na lua cheia
   vira **lobisomem**. Acorrenta-se na loca da Pedra de Topo Reto para não fazer mal a ninguém; a
   corrente arrebenta.
 - **Aparência (homem):** cabelo preto curto espetado, barba por fazer, camiseta branca, calça
   larga, descalço, suado, ferido. **(bicho):** ver bestiário.
-- **No jogo:** personagem jogável no prólogo do cap. 4; chefe nos caps. 6–7; escolha no cap. 7.
+- **No jogo:** personagem jogável no prólogo do cap. 4; chefe nos caps. 6–7; o destino dele fica em aberto.
 - **Frase:** "Filha..." / "Filha... vá embora, por favor."
 
 ### Helena
@@ -192,34 +170,32 @@ com **(nome do jogo)**.
 
 ### Regina, a Tia Vó
 
-- **Quem é:** tia-avó de Helena, rezadeira e guardiã da história antiga da família: a sina do
-  Velho cai num homem da família de geração em geração, e a avó dela contava da **Dona do Mar**
-  enterrada na serra. Guarda a **caixa escura com lua crescente** e **seis balas de prata**.
+- **Quem é:** tia-avó de Helena. Sabe o que Ciro é. Tenta matá-lo com faca antes da
+  transformação ("Me desculpe"); posta para fora, avisa: "Vocês estão condenando todos nós."
+  Volta com a **caixa escura com lua crescente** e as **balas de prata**.
 - **Aparência:** velha, rosto enrugado, olhos fundos, cabelo branco liso saindo de um turbante de
   pano, manto comprido claro, vários colares de contas, sandálias.
-- **No jogo:** tenta matar Ciro com faca antes da lua (cap. 5); volta com as balas (cap. 7);
-  explica o Velho e a Dona do Mar; ouve Ela falar ("Eu ouço o que tá debaixo do teu lenço,
-  menino."). Aparece no fim do cap. 10.
-- **Frases:** "Me desculpe." / "Vocês estão condenando todos nós." / "Me mata logo então, que todo
-  mundo sai morto daqui!" / "Isso acaba aqui e agora, Ciro!"
+- **Frases do quadrinho:** "Me desculpe." / "Me mata logo então, que todo mundo sai morto daqui!" /
+  "Vocês estão condenando todos nós." / "Isso acaba aqui e agora, Ciro!"
 
 ### Dona Cândida **(nome do jogo)**
 
 - Vizinha e parente de Ciro, que nega a linha para a boneca de Helena e bate a porta. Mãe de Zeca.
   Se Zeca for poupado, deixa a linha na janela.
 
+
 ## Mapa de relações
 
 ```
-                     O VELHO ─── pacto (gente por corpo fechado) ─── O CORONEL
-                   (1º servo,                                       (Mossoró)
-                    1º lobisomem)                                       │ degola
-                        │ enterrou                                      ▼
-                        ▼                         VINI ── trai ──▶ LAMPIÃO ◀── ama ── MARIA (terço)
-                       ELA ════ mora no pescoço de ═══════════════════╝  │
-                        ▲                                                │ salva / viaja com
-                        │ gosto ruim (sangue dela)                       ▼
-   morde ▶ CIRO (lobisomem) ── pai de ── HELENA            JULIANA (grávida de ANTÔNIO)
-                │                                            │ pais: SOCORRO e TONHO
-                └── sobrinho de ── REGINA (balas de prata)   └── fugiu com ANTÔNIO e MARCONI
+  O CORONEL ── degola ──▶ LAMPIÃO ◀── ama ── MARIA (terço)
+      │                    ▲   ║
+      └─ pegou a família ─ VINI (trai)   ║ Ela mora no pescoço dele
+                                         ║
+  O VULTO de olhos brancos ─ instiga ─▶ CIRO (lobisomem) ── pai de ── HELENA
+      (Ela reconhece "ele" no sangue)    │  mulher: LÚCIA
+                                         └─ sobrinho de ── REGINA (balas de prata)
+
+  LAMPIÃO ── salva / viaja com ──▶ JULIANA (grávida de ANTÔNIO; pais: SOCORRO e TONHO)
+                                     └─ fugiu com ANTÔNIO e MARCONI (comidos por Ela)
 ```
+

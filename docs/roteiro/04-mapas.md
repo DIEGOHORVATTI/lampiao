@@ -1,6 +1,6 @@
 # Mapas: ponte para o level design
 
-Um mapa por capítulo (os caps. 5, 6 e 7 dividem o mesmo mapa da vila). Os mapas são
+Um mapa por capítulo do "Lampião 1" (caps. 1 a 7; os caps. 5, 6 e 7 dividem o mesmo mapa da vila). Os mapas são
 pequenos e densos porque rodam no celular: a área jogável fica entre 3 mil e 10 mil m², e o
 resto é borda bloqueada (paredão, caatinga fechada, muro, rio). A escuridão esconde o fim do
 mapa; nenhum mapa precisa de horizonte.
@@ -14,7 +14,9 @@ mapa; nenhum mapa precisa de horizonte.
 - **ASCII:** 1 coluna = 2 m em x; 1 linha = 4 m em z. A coluna da esquerda mostra o z da
   linha. Os desenhos foram gerados a partir das coordenadas das tabelas.
 - **Zonas** (Z1, Z2...) batem com as zonas citadas em `03-capitulos/`.
-- **Encontros** (E#), **sustos** (!#) e **gatilhos** (g#) batem com as tabelas dos capítulos.
+- **Encontros** (E#), **sustos** (!#) e **gatilhos** (g#) batem com as tabelas dos capítulos. Cada
+  susto tem um tipo (jumpscare, vulto, passos, batida, sussurro, respiracao, apagao, chao); o
+  `gatilho` do mapa dispara a ferramenta de susto correspondente.
 - **Luz.** Não existe luz carregada pelo jogador. A luz vem de: **lua cheia** (sempre, em área
   aberta; nunca dentro de caverna ou casa), **clarão do tiro** (rifle: raio 14 m por 0,15 s;
   pistola: 8 m por 0,1 s; revela o jogador a todo inimigo que tenha linha de visão),
@@ -44,7 +46,7 @@ S  segredo / folheto            !  susto
 0..9  encontro (E#)             x  marco narrativo
 ^  bloqueio que fecha após evento   %  bloqueio que abre após evento
 o  ponto de rota de criatura    g  gatilho de cena
-B  batatão (rota)               D  duelo / chefe
+D  duelo / chefe
 ```
 
 ---
@@ -64,18 +66,15 @@ parênteses). 🆕 = peça a criar. ♻️ = existe no template com outro nome. 
 | `arvore-seca` | ✅ (`arvore_seca`) | árvore sem folha | todos |
 | `pedra` | ✅ (`pedra`) | pedra solta 0,5–2,5 m | cobertura, borda |
 | `paredao` | ✅ (`paredao`) | módulo de rocha vertical | caverna, bordas |
-| `lajedo` | 🆕 | laje de pedra plana e baixa, 6–15 m | caps. 1, 4, 8 |
+| `lajedo` | 🆕 | laje de pedra plana e baixa, 6–15 m | caps. 1, 4 |
 | `pedra-topo-reto` | 🆕 | rocha de 12 × 12 × 6 m com topo plano e loca embaixo | cap. 4 |
-| `loca` | 🆕 | abrigo de pedra baixo, entra agachado | caps. 4, 8 |
+| `loca` | 🆕 | abrigo de pedra baixo, entra agachado | cap. 4 |
 | `galhada-seca` | 🆕 | moita cinza 1,5 m; agachado some | todos |
 | `caatinga-fechada` | 🆕 | módulo de borda (galhada densa + espinho) | todos |
-| `juazeiro` | 🆕 | a única árvore verde | caps. 2, 3, 8 |
-| `cipo-trancado` | 🆕 | parede de cipó que a Comadre Fulozinha fecha e abre | cap. 4 |
-| `toco-oferenda` | 🆕 | toco com fumo e mel | caps. 4, 8 |
+| `juazeiro` | 🆕 | a única árvore verde | caps. 2, 3 |
 | `caveira-cavalo` | 🆕 | ossada de cavalo | cap. 2 |
-| `rio-margem` | 🆕 | margem de rio de areia, água rasa | cap. 10 |
 
-### Caverna dos Ídolos (cap. 1; volta no final B)
+### Caverna dos Ídolos (cap. 1)
 
 | Peça | Status | Descrição |
 |---|---|---|
@@ -98,27 +97,22 @@ parênteses). 🆕 = peça a criar. ♻️ = existe no template com outro nome. 
 | `casa-taipa-interior` | 🆕 | taipa de 2–3 cômodos com interior, janela de tábua | caps. 2, 5–7 |
 | `parede-taipa-quebravel` | 🆕 | trecho de parede que o lobisomem arrebenta | cap. 6 |
 | `casa-grande` | 🆕 | sede de fazenda com interior (sala do cofre, corredor, cozinha) | cap. 1 |
-| `sobrado` | 🆕 | sobrado de cidade com pátio interno e porão | caps. 9, 10 |
-| `casa-caiada` | 🆕 | casa de cidade/vila, branca, rachada | caps. 5, 9 |
-| `capela` | 🆕 | capela de uma nave | caps. 1, 5–7, 10 |
-| `matriz` | 🆕 | igreja grande com escadaria | cap. 9 |
+| `casa-caiada` | 🆕 | casa de vila, branca, rachada | caps. 5–7 |
+| `capela` | 🆕 | capela de uma nave | caps. 1, 5–7 |
 | `choupana` | 🆕 | casinha de palha e vara | cap. 2 |
 | `cerca-varas` | ✅ (`cerca_varas`) | cerca de varas | todos |
 | `cerca-arame` | 🆕 | arame farpado com mourões grossos | cap. 1 |
 | `porteira` / `porta` | ♻️ (`door.tscn`) | porta e porteira | todos |
 | `janela-tabua` | 🆕 | janela de tábua com veneziana; parapeito para oferenda | vila |
 | `muro-pedra` | ✅ (`muro_pedra`) | muro de pedra seca 1,2 m | caps. 3, 5 |
-| `muro-caiado` | 🆕 | muro branco 2 m | caps. 9, 10 |
 | `cruz` / `cova` | ✅ (`cruz`, `cova`) | cruz de túmulo, monte de terra; **spawner** quando marcado | todos |
-| `cruz-exvoto` | ✅ (`cruz_exvoto`) | cruz de beira de estrada com ex-votos | caps. 3, 8 |
+| `cruz-exvoto` | ✅ (`cruz_exvoto`) | cruz de beira de estrada com ex-votos | cap. 3 |
 | `cova-cavavel` | 🆕 | marca no chão que vira cova aberta e depois cova fechada | cap. 1 |
-| `poco` | ✅ (`poco`) | poço com sarilho | caps. 2, 10 |
+| `poco` | ✅ (`poco`) | poço com sarilho | cap. 2 |
 | `cacimba` | 🆕 | buraco d'água cercado de pedra | cap. 3 |
 | `carroca` | ✅ (`carroca_tombada`) | carroça (tombada ou de pé) | caps. 2, 3 |
 | `caixote` | ✅ (`caixote`) | caixote de madeira | todos |
-| `barraca-lona` | ✅ (`barraca_lona`) | barraca | caps. 3, 8 |
-| `barraca-feira` | 🆕 | barraca de pau e palha | cap. 9 |
-| `estaca-cabeca` | 🆕 | estaca alta com cabeça e placa | cap. 9 |
+| `barraca-lona` | ✅ (`barraca_lona`) | barraca | — (não usada no Lampião 1) |
 | `espantalho` | 🆕 | espantalho de roupa preso em mandacaru | cap. 7 (flashback) |
 | `corpo` | ✅ (`corpo`) | cadáver; variações: cangaceiro, soldado, carroceiro | todos |
 | `mobilia-sertao` | 🆕 | mesa, tamborete, cama, criado-mudo, santinho, fogão de lenha | interiores |
@@ -134,8 +128,8 @@ parênteses). 🆕 = peça a criar. ♻️ = existe no template com outro nome. 
 | `fogueira` | ✅ (`fogueira`, `lit`) | acesa: luz 8 m, checkpoint; pode ser **apagada** (interação 1 s) | todos |
 | `candeeiro-parede` | 🆕 | luz fixa de cenário 5 m; não é pickup | interiores |
 | `vela` | 🆕 | luz 2 m | interiores |
-| `facho` | 🆕 | tocha de pau com breu: NPC carrega; jogador pode carregar 90 s | caps. 1, 4, 8 |
-| `ticao` | 🆕 | pickup tirado de fogueira acesa; arremessável, fogo de 3 m | a partir do cap. 6 |
+| `facho` | 🆕 | tocha de pau com breu: NPC carrega; jogador pode carregar 90 s | caps. 1, 3, 4, 5 |
+| `ticao` | 🆕 | pickup tirado de fogueira acesa; arremessável, fogo de 3 m | cap. 7 |
 | `cartucheira` | ♻️ (`ammo_refil.tscn`) | munição de rifle e de revólver | todos |
 | `caixa-balas-prata` | 🆕 | caixa escura com lua crescente; 6 balas de prata | cap. 7 |
 | `folheto` | 🆕 | folheto de cordel (colecionável, um por capítulo) | todos |
@@ -242,7 +236,7 @@ z −36 a −8 são o lajedo de fora, aberto para o céu. A boca da caverna (`||
 | Corredor | interior | x −2..2, z −234..−218 | liga as salas à porta dos fundos |
 | Cozinha | interior | x −14..−6, z −224..−218 | fogão de lenha, janela sul (−10, −216) |
 | Porta dos fundos | `porta` | (0, −216) | gatilho de saída da casa |
-| Capela | `capela` | x 20..30, z −236..−220 | o soldado do !1 sai da quina sudoeste (20, −214) |
+| Capela | `capela` | x 20..30, z −236..−220 | o soldado do g1 sai da quina sudoeste (20, −214) |
 | Terreiro de trás | aberto | z −216..−190 | `pedra` (6, −206), `caixote` (−24, −204), `arvore-seca` (−30, −212) |
 | Gatilho g1 (Maria ferida) | `gatilho` | caixa x −10..−2, z −210..−202 | cena do tiro em Maria |
 | Cerca de arame | `cerca-arame` | linha z −188, x −40..40 | porteira (−18, −188) |
@@ -416,15 +410,15 @@ Template: `porta` (`door.tscn`), `cartucheira` (`ammo_refil.tscn`), `spawner`, `
    28 **************                ..                  *
    32 **************              ..                    *
    36 **************            ..     *******          *
-   40 **********B***          ..       *******          *
+   40 **************          ..       *******          *
    44 **************        ...        *******          *
-   48 *********     2    ...        B  *******          *
+   48 *********     2    ...           *******          *
    52 *********       ...              *******          *
    56 *********      ..                *******          *
    60 *********   2   .                *******          *
    64 ***************  .       2                        *
    68 ***************   .                               *
-   72 **********B****    .                              *
+   72 ***************    .                              *
    76 ***************     .                             *
    80 *********           gn                            *
    84 *********         HHHHH   T                       *
@@ -447,8 +441,7 @@ Template: `porta` (`door.tscn`), `cartucheira` (`ammo_refil.tscn`), `spawner`, `
 | Z3 | Cerca e poço | `cerca-varas`, `poco` | cerca em volta; poço (34, 12) | |
 | Z3 | Segredo | `folheto` | (30, 18) | "A Moça que Fugiu com o Cão" |
 | Z4 | Trilha do rastro | trilha | (24, 24) → (10, 40) → (−10, 56) → (0, 76) | pegadas de cavalo visíveis só no clarão e na lua |
-| Z4 | Batatões | rota `B` | (−20, 40), (20, 50), (−20, 72) | cada um imita uma fogueira e foge quando o jogador chega a 10 m |
-| Z4 | Corpos-secos E2 | `cova` + `spawner` | (−12, 48), (10, 62), (−16, 60) | aparecem se o jogador seguir um batatão para fora da trilha |
+| Z4 | Cemiteriozinho e corpos-secos E2 | `cruz`, `cova` + `spawner` | (−12, 48), (10, 62), (−16, 60) | saem do chão um de cada vez; o tiro acorda o próximo |
 | Z5 | Choupana | `choupana` | x −4..4, z 84..92 | |
 | Z5 | Fogueira | `fogueira` | (−6, 86) | a verdadeira (checkpoint) |
 | Z5 | Juliana | NPC | (2, 80) | sentada |
@@ -456,7 +449,7 @@ Template: `porta` (`door.tscn`), `cartucheira` (`ammo_refil.tscn`), `spawner`, `
 | Z5 | Gatilho da emboscada | `gatilho` | raio 4 em (0, 80) | |
 
 Peças: `terreno`, `mandacaru`, `arvore-seca`, `caatinga-fechada`, `galhada-seca`, `caveira-cavalo`,
-`urubu`, `carroca`, `corpo`, `cavalo`, `casa-taipa-interior`, `cerca-varas`, `poco`, `cova`,
+`urubu`, `carroca`, `cruz`, `corpo`, `cavalo`, `casa-taipa-interior`, `cerca-varas`, `poco`, `cova`,
 `choupana`, `fogueira`, `juazeiro`, `pedra`, `spawner`, `gatilho`, `folheto`.
 
 ---
@@ -519,14 +512,14 @@ Peças: `juazeiro`, `cacimba`, `cavalo`, `fogueira`, `muro-pedra`, `cruz`, `cova
 
 ---
 
-## Cap. 4 — `cap04-painho` — Mata da Comadre e a Pedra de Topo Reto
+## Cap. 4 — `cap04-painho` — A mata e a Pedra de Topo Reto
 
 | | |
 |---|---|
 | **Tipo** | prólogo na vila (reusa o mapa da vila, ver cap. 5) + trilha de caatinga funda até uma rocha com loca |
 | **Tamanho** | caixa 120 × 140 m; jogável ≈ 5.500 m² |
 | **Origem (0, 0)** | o centro da Pedra de Topo Reto |
-| **Rota** | prólogo Ciro (vila) → Z1 Chegada a cavalo → Z2 Mata da Comadre → Z3 A Pedra e a loca → Z4 Volta (escolta) |
+| **Rota** | prólogo Ciro (vila) → Z1 Chegada a cavalo → Z2 A mata → Z3 A Pedra e a loca → Z4 Volta (escolta) |
 
 ```
  -100 *************************************************************
@@ -540,13 +533,13 @@ Peças: `juazeiro`, `cacimba`, `cavalo`, `fogueira`, `muro-pedra`, `cruz`, `cova
   -68 ************** ***.*****************         ****************
   -64 ************** ***.*****************         ****************
   -60 ************** **.****************** 2       ****************
-  -56 ************** ***.x****************         ****************
+  -56 ************** ***.*****************         ****************
   -52 ************** !**..****************         ****************
   -48 ************** ****.****************         ****************
-  -44 ************** *****..%*************         ****************
+  -44 ************** *****..**************         ****************
   -40 ************** ******...************      3  ****************
   -36 ************** ********...**********         ****************
-  -32 ************** **********...%*******         ****************
+  -32 ************** **********...********         ****************
   -28 ************** ************....*****         ****************
   -24 **************                ...            ****************
   -20 ************** 3                 ...         ****************
@@ -570,17 +563,16 @@ Peças: `juazeiro`, `cacimba`, `cavalo`, `fogueira`, `muro-pedra`, `cruz`, `cova
 | Zona | Elemento | Peça | Posição (x, z) | Notas |
 |---|---|---|---|---|
 | Z1 | Início, cavalos, fogueira | P, `cavalo`, `fogueira` | P (0, −92); cavalos (4, −92); fogueira (10, −90) | Juliana acende a fogueira (checkpoint) |
-| Z2 | Mata da Comadre | `caatinga-fechada` mais alta, `galhada-seca` | x −30..10, z −72..−28 | trilha estreita em zigue-zague |
-| Z2 | Toco de oferenda | `toco-oferenda` | (−22, −56) | escolha da oferenda |
-| Z2 | Cipós | `cipo-trancado` | (−16, −44), (−4, −32) | abrem com oferenda; sem oferenda abrem depois de 60 s de assovio e surra |
-| Z2 | Susto | `!` | (−30, −50) | a crina trançada do cavalo de Juliana, que ficou lá atrás |
+| Z2 | A mata | `caatinga-fechada` mais alta, `galhada-seca` | x −30..10, z −72..−28 | trilha estreita em zigue-zague; corrente arrastada no chão |
+| Z2 | Gatilho do apagão (!3) | `gatilho` | (−20, −44) | o facho de Juliana apaga |
+| Z2 | Susto !4 (vulto) | `gatilho` | (−30, −50) | dois olhos brancos na galhada ao olhar para trás |
 | Z3 | Pedra de Topo Reto | `pedra-topo-reto` | x −6..6, z −4..8 | entrada da loca (0, −8), agachado |
 | Z3 | Ciro acorrentado | NPC | (2, 4) | |
 | Z3 | Munição, dinheiro, folheto | `cartucheira`, `$`, `folheto` | (−4, 4), (4, 0), (−2, 0) | o coito do bando |
 | Z4 | Corpos-secos E2/E3 | `cova` / `galhada-seca` + `spawner` | E2: (−26, −84), (14, −60); E3: (−30, −20), (24, −40), (16, −72) | E3 só na volta, com Ciro no cavalo |
 | Z4 | Saída X | — | (20, 20) | estrada para a vila |
 
-Peças: `pedra-topo-reto`, `loca`, `cipo-trancado`, `toco-oferenda`, `caatinga-fechada`, `galhada-seca`,
+Peças: `pedra-topo-reto`, `loca`, `caatinga-fechada`, `galhada-seca`,
 `cavalo`, `fogueira`, `cova`, `corrente` (🆕, cenário), `cartucheira`, `folheto`, `spawner`, `gatilho`.
 
 ---
@@ -628,14 +620,14 @@ Peças: `pedra-topo-reto`, `loca`, `cipo-trancado`, `toco-oferenda`, `caatinga-f
 | Largo e cruzeiro | `cruz`, aberto | cruzeiro (0, 22); fogueira do largo (0, 18) | checkpoint; fonte de **tição** (cap. 7) |
 | Capela | `capela` | x −6..6, z 28..36 | |
 | Cemitério | `muro-pedra`, `cova` + `spawner` | muro x 32..50, z 24..40; covas (38, 30), (44, 34), (40, 40) | corpos-secos dos caps. 5–7 |
-| Casa de Regina | `casa-taipa` | fora, a leste: NPC em (56, −12) | ela chega por aqui |
+| Casa de Regina | `casa-taipa` | ponta leste da rua: NPC em (56, −12) | ela chega por aqui; a janela da caixa de prata (cap. 7) |
 | Gatilhos da multidão | `gatilho` | (−8, 4), (8, 4) | a multidão ocupa a rua entre eles |
 | Gatilho da janela | `gatilho` | (0, −20) | cap. 6 |
 | Rotas | `o` | moradores fogem por (−30, 20) e (30, −20) | cap. 6 |
 
 Peças: `casa-taipa`, `casa-taipa-interior`, `parede-taipa-quebravel`, `casa-caiada`, `janela-tabua`,
 `capela`, `cruz`, `muro-pedra`, `cova`, `fogueira`, `candeeiro-parede`, `vela`, `mobilia-sertao`,
-`ticao`, `caixa-balas-prata`, `oferenda-janela`, `mandacaru`, `arvore-seca`, `spawner`, `gatilho`.
+`ticao`, `caixa-balas-prata`, `oferenda-janela`, `boneca` (🆕), `mandacaru`, `arvore-seca`, `spawner`, `gatilho`.
 
 **Área extra do cap. 7 (flashback de Juliana):** caixa separada em x 200..240, z −20..20: roça
 seca com 5 `espantalho` presos em `mandacaru` a 10, 15, 20, 25 e 30 m de um tamborete em
@@ -643,215 +635,12 @@ seca com 5 `espantalho` presos em `mandacaru` a 10, 15, 20, 25 e 30 m de um tamb
 
 ---
 
-## Cap. 8 — `cap08-o-lajedo` — O Lajedo das Pinturas
-
-| | |
-|---|---|
-| **Tipo** | caatinga funda com uma laje enorme no meio e um paredão pintado |
-| **Tamanho** | caixa 160 × 180 m; jogável ≈ 9.000 m² |
-| **Origem (0, 0)** | o centro do lajedo |
-| **Rota** | Z1 Caatinga do sul (retirantes, Caipora) → Z2 O Lajedo e o paredão pintado → Z3 Caatinga do norte → X |
-
-```
- -100 *********************************************************************************
-  -96 ****************                        X                        ****************
-  -92 ****************                        ..                       ****************
-  -88 ****************                         .                       ****************
-  -84 ****************                         ..                      ****************
-  -80 **************** ******                   .            !         ****************
-  -76 **************** ******                   .                      ****************
-  -72 **************** ******                    .                     ****************
-  -68 **************** *2****                    .                     ****************
-  -64 **************** ******                    .                     ****************
-  -60 **************** ******                     .       3            ****************
-  -56 ****************                            .                    ****************
-  -52 ****************                             .                   ****************
-  -48 ****************                             .                   ****************
-  -44 ****************                            .                    ****************
-  -40 ****************    2                      .                     ****************
-  -36 ****************                          ..                     ****************
-  -32 ****************                          .                      ****************
-  -28 ****************                         ..                      ****************
-  -24 ****************              ###########.#########              ****************
-  -20 ****************         ...............S...............         ****************
-  -16 ****************         ...............................         ****************
-  -12 ****************         .....3.........................         ****************
-   -8 ****************         ...............................         ****************
-   -4 ****************         ...............................         ****************
-    0 ****************         ...............D...............         ****************
-    4 ****************         ...............................         ****************
-    8 ****************         ...............................         ****************
-   12 ****************         .........................3.....         ****************
-   16 ****************         ...............................         ****************
-   20 ****************         ...............................  ****** ****************
-   24 ****************                       .                  ****** ****************
-   28 ****************                 Y    ..                  **2*** ****************
-   32 ****************                      .                   ****** ****************
-   36 ****************                     ..                   ****** ****************
-   40 ****************                     .        T           ****** ****************
-   44 ****************                    .                            ****************
-   48 ****************                   .                             ****************
-   52 ****************         Fn        ..                            ****************
-   56 ****************                    .               x            ****************
-   60 ****************                     .                           ****************
-   64 ****************                      .                          ****************
-   68 ****************                      ..                         ****************
-   72 ****************                       .                         ****************
-   76 ****************                        P                        ****************
-   80 *********************************************************************************
-```
-
-| Zona | Elemento | Peça | Posição (x, z) | Notas |
-|---|---|---|---|---|
-| Z1 | Início | P | (0, 76) | Juliana a cavalo ao lado |
-| Z1 | Retirantes | `fogueira` + NPC ×4 | fogueira (−30, 50); família (−28, 52) | escolha da carne |
-| Z1 | Toco da Caipora | `toco-oferenda` | (25, 55) | |
-| Z1/Z3 | Caititus E2 | `galhada-seca` + `spawner` | (40, 30), (−40, −40), (−44, −70) | vara de 3; caçar atrai a Caipora |
-| Z2 | Lajedo | `lajedo` (grande) | x −30..30, z −20..20 | |
-| Z2 | Paredão pintado | `paredao` com pinturas (decal) | z −24, x −20..20 | interação "Olhar" em 3 pontos: (−12, −22), (0, −22), (12, −22) |
-| Z2 | Duelo com o Vulto | D | (0, 0) | mini-chefe; foge ao perder 50% |
-| Z2/Z3 | Corpos-secos E3 | `cova` + `spawner` | (−20, −10), (20, 10), (24, −60) | |
-| Z3 | Susto | `!` | (30, −80) | Juliana chamando de um lado; ela está do outro |
-| Z3 | Saída | X | (0, −96) | estrada de Mossoró |
-
-Peças: `lajedo`, `paredao` (com decal de pintura rupestre 🆕), `caatinga-fechada`, `galhada-seca`,
-`toco-oferenda`, `fogueira`, `juazeiro`, `mandacaru`, `cova`, `spawner`, `gatilho`, `folheto`.
-
----
-
-## Cap. 9 — `cap09-mossoro` — Mossoró
-
-| | |
-|---|---|
-| **Tipo** | cidade pequena à noite: praça com feira, matriz, botica, quartel da volante, frente do sobrado |
-| **Tamanho** | caixa 144 × 144 m; jogável ≈ 8.500 m² (ruas de 6 m) |
-| **Origem (0, 0)** | a estaca com a cabeça, no meio da praça |
-| **Rota** | Z1 Rua do oeste → Z2 Praça e feira → Z3 Botica (Papa-figo) → Z2 → Z4 Frente do sobrado (portão) |
-
-```
-  -72 *************************************************************************
-  -68 *                                                                       *
-  -64 *                                                                       *
-  -60 *     HHHHHHHHHHHHHHH                               HHHHHHHHHHHHHHH     *
-  -56 *     HHHHHHHHHHHHHHH                               HHHHHHHHHHHHHHH     *
-  -52 *     HHHHHHHHHHHHHHH         CCCCCCCCCCCCC         HHHHHHHHHHHHHHH     *
-  -48 *     HHHHHHHHHHHHHHH         CCCCCCCCCCCCC         HHHHHHHHHHHHHHH     *
-  -44 *     HHHHHHHHHHHHHHH         CCCCCCCCCCCCC         HHHHHHHHHHHHHHH     *
-  -40 *     HHHHHHHHHHHHHHH         CCCCCCCCCCCCC         HHHHHHHHHHHHHHH     *
-  -36 *     HHHHHHHHHHHHHHH         CCCCCCCCCCCCC         HHHHHHHHHHHHHHH     *
-  -32 *     HHHHHHHHHHHHHHH               +               HHHHHHHHHHHHHHH     *
-  -28 *                                                                       *
-  -24 *                                              2                        *
-  -20 *                         .....................                         *
-  -16 *                         ...1.................                         *
-  -12 *                         .....................                         *
-   -8 *                         ......c.......c......     GGGGGGGGGG          *
-   -4 *                         .....................     GGGG1GGGGG          *
-    0 *::P::::::::::::::::::::::..........x..........:::::|GGGGGGGGG::::::::::*
-    4 *           GGGGGGGGG     .....................     GGGGGGGGGG          *
-    8 *           GGGG|GGGG     ......c.......c......     GGGGGGGGGG          *
-   12 *           GGGG!GGGG     .....................                         *
-   16 *           GGGGGGGGG     .................1...                         *
-   20 *                         .....................                         *
-   24 *                                   :               HHHHHHHHHHHHHHH     *
-   28 *     HHHHHHHHHHHHHHH               :               HHHHHHHHHHHHHHH     *
-   32 *     HHHHHHHHHHHHHHH       S       :               HHHHHHHHHHHHHHH     *
-   36 *     HHHHHHHHHHHHHHHn              :               HHHHHHHHHHHHHHH     *
-   40 *     HHHHHHHHHHHHHHH               |               HHHHHHHHHHHHHHH     *
-   44 *     HHHHHHHHHHHHHHH   GGGGGGGGGGGGXGGGGGGGGGGGG                       *
-   48 *     HHHHHHHHHHHHHHH   GGGGGGGGGGGGGGGGGGGGGGGGG                       *
-   52 *     HHHHHHHHHHHHHHH   GGGGGGGGGGGGGGGGGGGGGGGGG                       *
-   56 *     HHHHHHHHHHHHHHH   GGGGGGGGGGGGGGGGGGGGGGGGG                       *
-   60 *     HHHHHHHHHHHHHHH   GGGGGGGGGGGGGGGGGGGGGGGGG                       *
-   64 *                       GGGGGGGGGGGGGGGGGGGGGGGGG                       *
-   68 *                                                                       *
-   72 *************************************************************************
-```
-
-| Zona | Elemento | Peça | Posição (x, z) | Notas |
-|---|---|---|---|---|
-| Z1 | Início | P | (−66, 0) | |
-| Z2 | Praça | aberto, `barraca-feira` ×4 | x −20..20, z −20..20; barracas (±8, ±8) | festa acabando, candeeiros nas barracas |
-| Z2 | Estaca e cabeça | `estaca-cabeca` | (0, 0) | placa: "LAMPIÃO — MORTO PELO CORONEL" |
-| Z2 | Matriz | `matriz` | x −12..12, z −52..−36; cruzeiro (0, −34) | sino |
-| Z2 | Volante na praça E1 | NPC | (−14, −14), (14, 14), (40, −4) | patrulha de lanterna |
-| Z3 | Botica | `casa-caiada` + `porao` 🆕 | x −48..−32, z 4..16; porta (−40, 8) | o menino preso no porão (−40, 12) **!** |
-| Z3 | Volante do quartel E2 | NPC | (22, −26) | |
-| Z3 | Quartel da volante | `casa-caiada` | x 32..50, z −8..8; porta (32, 0) | |
-| Z4 | Porta dos fundos do sobrado (atalho) | `porta` | (−30, 36) | só se `carta=guardada` (o sinal da carta) ou `moedas=guardadas` (guarda subornado) |
-| Z4 | Segredo | `folheto` | (−16, 30) | "A Cabeça Errada na Estaca" |
-| Z4 | Portão do sobrado | `porta` | (0, 40) | X (0, 44) |
-
-Peças: `casa-caiada`, `sobrado` (fachada), `matriz`, `barraca-feira`, `estaca-cabeca`, `porao`,
-`candeeiro-parede`, `muro-caiado`, `caixote`, `spawner`, `gatilho`, `folheto`.
-
----
-
-## Cap. 10 — `cap10-o-coronel` — O Sobrado e o Rio
-
-| | |
-|---|---|
-| **Tipo** | sobrado com pátio interno e porão → quintal → margem do rio |
-| **Tamanho** | caixa 80 × 112 m; jogável ≈ 5.000 m² |
-| **Origem (0, 0)** | a fogueira no meio do pátio interno |
-| **Rota** | Z1 Pátio → Z2 Escritório (1º andar) → Z3 Porão → Z4 Quintal → Z5 Margem do rio (final) |
-
-```
-  -28 ********************P********************
-  -24 *                                       *
-  -20 *         GGGGGGGGGG|GGGGGGGGGG         *
-  -16 *         GG!GGGGGGGGGGGGGGGGGG         *
-  -12 *         GGGG...........D.GSGG         *
-   -8 *         GGGG..1..........GGGG         *
-   -4 *         GGGG.............GGGG         *
-    0 *         GGGG......F......GGGG         *
-    4 *         GGGG.............GGGG         *
-    8 *         GGGG..........1..GGGG         *
-   12 *         GGGC.............GGGG         *
-   16 *         GGGGGGGGGGGGGGGGGGGGG         *
-   20 *         GGGGGGGGGGGGGGGGGGGGG         *
-   24 *    MMMMMMMMMMMMMMM|MMMMMMMMMMMMMMM    *
-   28 *                                       *
-   32 *                                       *
-   36 *                         T             *
-   40 *         3         o                   *
-   44 *                             3         *
-   48 *                                       *
-   52 *                                       *
-   56 *    ...............................    *
-   60 *~~~~...............D...............~~~~*
-   64 *~~~~...............X...............~~~~*
-   68 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-   72 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-   76 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-   80 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-   84 *~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*
-```
-
-| Zona | Elemento | Peça | Posição (x, z) | Notas |
-|---|---|---|---|---|
-| Z1 | Portão / P | `porta` | (0, −20); P (0, −26) | |
-| Z1 | Pátio | aberto, `fogueira` | x −12..12, z −12..12; fogueira (0, 0) | capangas E1 (−8, −8), (8, 8) |
-| Z1 | Capela particular | `capela` (interior pequeno) | (−14, 14) | o terço brilha aqui |
-| Z2 | Escritório do Coronel | interior, y +4 | (10, −14) | duelo com o Coronel (D) |
-| Z2 | Segredo | `bilhete` | (16, −10) | o pacto do corpo fechado |
-| Z3 | Porão | `porao`, y −4 | x −16..16, z −16..16; escada (−16, −16) **!** | gente acorrentada; o altar do Velho |
-| Z4 | Muro e portão do quintal | `muro-caiado` | z 24; portão (0, 24) | |
-| Z4 | Quintal | aberto, `poco`, `arvore-seca` | z 24..52 | corpos-secos E3 (−20, 40), (20, 44) |
-| Z5 | Margem do rio | `rio-margem` | z 56..64 | chefe final, o Velho (0, 60) |
-| Z5 | Final | X | (0, 64) | |
-
-Peças: `sobrado` (interior), `capela`, `porao`, `corrente`, `muro-caiado`, `poco`, `arvore-seca`,
-`rio-margem`, `fogueira`, `candeeiro-parede`, `vela`, `cova`, `spawner`, `gatilho`.
-
----
-
 ## Peças: prioridade de produção
 
 | Prioridade | Peças |
 |---|---|
-| **Já existem** | `terreno`, `terreno_relevo`, `mandacaru`, `xique_xique`, `arvore_seca`, `pedra`, `paredao`, `casa_taipa`, `cerca_varas`, `cruz`, `cova`, `fogueira`, `caixote`, `corpo`, `poco`, `muro_pedra`, `cruz_exvoto`, `barraca_lona`, `carroca_tombada` |
+| **Já existem** | `terreno`, `terreno_relevo`, `mandacaru`, `xique_xique`, `arvore_seca`, `pedra`, `paredao`, `casa_taipa`, `cerca_varas`, `cruz`, `cova`, `fogueira`, `caixote`, `corpo`, `poco`, `muro_pedra`, `cruz_exvoto`, `carroca_tombada` |
 | **Sai do jogo** | `lampiao` (e qualquer pickup de querosene) |
 | **1 — cap. 1** | `casa-grande`, `capela`, `cerca-arame`, `candeeiro-parede`, `janela-tabua`, `cavalo`, `arco-pedra`, `caverna-modulo`, `salao-caverna`, `claraboia`, `totem-idolo`, `laje-sepultura`, `nicho-corpo-seco`, `caldeirao`, `monte-moedas`, `desmoronamento`, `facho`, `lajedo`, `cova-cavavel`, `folheto`, `bilhete` |
-| **2 — vários capítulos** | `galhada-seca`, `caatinga-fechada`, `casa-taipa-interior`, `mobilia-sertao`, `juazeiro`, `toco-oferenda`, `ticao`, `urubu`, `vela`, `casa-caiada`, `muro-caiado`, `oferenda-janela` |
-| **3 — um capítulo** | `choupana`, `caveira-cavalo`, `cacimba`, `pedra-topo-reto`, `loca`, `cipo-trancado`, `corrente`, `parede-taipa-quebravel`, `caixa-balas-prata`, `espantalho`, decal de pintura rupestre, `matriz`, `barraca-feira`, `estaca-cabeca`, `porao`, `sobrado`, `rio-margem` |
+| **2 — vários capítulos** | `galhada-seca`, `caatinga-fechada`, `casa-taipa-interior`, `mobilia-sertao`, `juazeiro`, `urubu`, `vela`, `casa-caiada`, `oferenda-janela` |
+| **3 — um capítulo** | `choupana`, `caveira-cavalo`, `cacimba`, `pedra-topo-reto`, `loca`, `corrente`, `parede-taipa-quebravel`, `ticao`, `caixa-balas-prata`, `espantalho`, `boneca` |

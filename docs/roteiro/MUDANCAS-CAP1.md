@@ -1,5 +1,8 @@
 # Mudanças no cap. 1 — do "A Cabeça" para "O Sacrifício"
 
+O jogo agora é o **"Lampião 1"**: 7 capítulos que seguem os episódios 1 a 11 do quadrinho à risca.
+O cap. 1 é o E1 inteiro (`docs/referencias/tapas-2173018/01–38`).
+
 Para o programador. Compara o cap. 1 que está no código (`world/cap01/cap01.gd`,
 `world/cap01/cinematica.gd`, `tools/build_cap01.gd`, roteiro antigo `cap01-a-cabeca`) com o
 novo roteiro (`03-capitulos/cap01-o-sacrificio.md`) e o novo mapa (`04-mapas.md`, cap. 1).
@@ -130,12 +133,20 @@ mesma seção, "Peças usadas no cap. 1".
   totens acendendo, Ela saindo do pescoço (massa preta subindo, vista da cabeça no chão),
   brilho do terço com flashes de memória de Maria.
 
-## 10. Telas de carregamento
+## 10. Sustos
+
+O cap. 1 antigo tinha 4 sustos (batidas na lata, braço na cerca, urubus, Jurema). O novo tem 11,
+todos com as ferramentas que o jogo já tem: **jumpscare**, **vulto**, **passos**, **batida**,
+**sussurro**, **respiracao**, **apagao**, e **chao** (corpo-seco saindo do nicho). Tabela com zona,
+gatilho e efeito no fim de `03-capitulos/cap01-o-sacrificio.md`; posições dos gatilhos em
+`04-mapas.md`. Os ids de gatilho sugeridos: `S1_Vulto` … `S11_Vulto` (um por linha da tabela).
+
+## 11. Telas de carregamento
 
 Novas, com gore do quadrinho (preto chapado, silhueta): `tapas-2173018/21.jpg`, `25.jpg`,
 `28.jpg`, `23.jpg`, com as legendas do roteiro. Sem emoji em nenhuma legenda.
 
-## 11. Testes
+## 12. Testes
 
 `tests/cap01_test.gd` e `tests/pacto_test.gd` testam o fluxo antigo (lata, Jurema, Benedito
 antigo, fome inicial 60). Precisam ser reescritos para: fome escondida até o Modo Ela, fome 50

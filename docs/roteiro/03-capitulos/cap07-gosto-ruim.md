@@ -73,8 +73,7 @@ vulto, o que Ela é. É o último capítulo do "Lampião 1".
   (um quepe de soldado, uma bota, a mão de Antônio), subindo do corpo dele e caindo em cima do
   lobisomem como uma rede. O bicho larga Juliana e fica preso no chão, se debatendo.
 - A partir daqui o **Vômito** é poder de jogo (ver bíblia). A fome vai a 90 ("vazia") e, **só neste
-  capítulo**, fica congelada aí até o fim: Ela está enjoada demais para ter mais fome. No cap. 8 a
-  regra normal volta.
+  capítulo**, fica congelada aí até o fim: Ela está enjoada demais para ter mais fome.
 
 > **ELA:** (fraca) Eu... nunca fiz isso... na frente de ninguém...
 
