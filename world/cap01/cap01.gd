@@ -1,6 +1,8 @@
 extends Node3D
 
 const CORPO_SECO := preload("res://enemies/corpo_seco.tscn")
+const CINEMATICA := preload("res://world/cap01/cinematica.gd")
+const RELEVO := preload("res://world/cap01/relevo.gd")
 const INTERAGIVEL := preload("res://world/interagivel.gd")
 const CORPOS := [
 	["Cansanção", "Vinte ano do meu lado, velho. Vinte ano."],
@@ -13,6 +15,8 @@ const CORPOS := [
 const BENEDITO_TIMEOUT := 30.0
 
 var covered := 0
+var cine: Node3D
+var firing := false
 var e4_spawned := 0
 var e4_done := false
 
@@ -20,6 +24,7 @@ var e4_done := false
 func _ready() -> void:
 	await get_tree().process_frame
 	_lock(true)
+	_rig().set_lit(false)
 	Dialogo.fade(1.0, 0.0)
 	await _prologo()
 	await _lata()
@@ -27,9 +32,40 @@ func _ready() -> void:
 
 
 func _prologo() -> void:
+	cine = CINEMATICA.new()
+	add_child(cine)
+	cine.setup(self)
 	await Dialogo.cartao("Na Grota da Baraúna,\nantes do galo cantar,\na volante fez a cerca\npra ninguém se levantar.\nMas um subiu da lama\nsem cabeça pra pensar.\n\n— Zé Mirim", 5.0)
+	var floor_y := RELEVO.altura(-6, 80)
+	cine.begin(Vector3(-6, floor_y, 80), -90.0)
+	cine.dawn_rain()
+	var rim := []
+	for z in [80, 86, 92, 98, 104, 110]:
+		rim.append(cine.soldier(Vector3(17, RELEVO.altura(17, z), z), PI / 2))
+	var cansancao: Node3D = cine.soldier(Vector3(-4, floor_y, 79.5), -PI / 2)
+	cine.look(28.0, 0.1)
+	Dialogo.fade(0.0, 3.0)
+	await Dialogo.falar([["", "[chuva na lona. Um bode longe. Mais nada.]"], ["CANSANÇÃO", "Capitão. Os cachorro calaram."]])
+	await cine.lift_head(1.5)
+	cine.sound(cine.PISTOL, cansancao.global_position + Vector3(6, 4, 0), 4.0)
+	create_tween().tween_property(cansancao, "rotation:z", -PI / 2, 0.4)
+	firing = true
+	_fire_loop(rim)
 	await Dialogo.falar([
-		["", "[chuva na lona. Tiros. Um assovio agudo no ouvido.]"],
+		["GAVIÃO", "Sabiá! Sabiá, levanta, home!"],
+		["JUREMA", "Capitão, eu atiro? Eu atiro?"],
+		["LAMPIÃO", "Fica atrás da pedra, menino! Atrás da pedra!"],
+	])
+	cine.sound(cine.PISTOL, Vector3(16, RELEVO.altura(16, 90), 90), 8.0)
+	await Dialogo.fade(0.55, 0.15, Color(0.45, 0.0, 0.0))
+	AudioServer.set_bus_volume_db(0, -14.0)
+	await cine.fall_to_side(0.6)
+	cine.look(18.0, 0.8)
+	await Dialogo.fade(0.7, 1.5, Color(0.04, 0.0, 0.0))
+	var passer: Node3D = cine.soldier(Vector3(-3, floor_y, 77), PI)
+	create_tween().tween_property(passer, "global_position", Vector3(-3, floor_y, 84), 6.0)
+	cine.footsteps(passer.global_position, 10, 0.6)
+	await Dialogo.falar([
 		["ENCOSTO", "Ô, Lampião. Tá doendo?"],
 		["LAMPIÃO", "Quem é?"],
 		["ENCOSTO", "Quem sempre andou do teu lado. Tu é que nunca olhou pra trás."],
@@ -45,23 +81,77 @@ func _prologo() -> void:
 	await Dialogo.falar([
 		["LAMPIÃO", "Feito. Eu te alimento com qualquer carniça que tiver no caminho. Mas tu fica calado até eu ter minha vingança."],
 		["ENCOSTO", "(riso baixo) Calado eu fico. Com fome, não."],
-		["", "[o facão sobe contra o céu cinza]"],
 	])
+	var executioner: Node3D = cine.soldier(Vector3(-5.2, floor_y, 80.6), -PI / 2)
+	cine.footsteps(executioner.global_position, 3, 0.5)
+	await Dialogo.fade(0.3, 1.0, Color(0.04, 0.0, 0.0))
+	await cine.look(-60.0, 1.5)
+	await get_tree().create_timer(1.2).timeout
+	firing = false
+	Dialogo.fade(1.0, 0.0)
+	AudioServer.set_bus_volume_db(0, -80.0)
+	for node in rim + [cansancao, passer, executioner]:
+		node.queue_free()
 	await get_tree().create_timer(3.0).timeout
+	AudioServer.set_bus_volume_db(0, 0.0)
+	cine.end()
+
+
+func _fire_loop(rim: Array) -> void:
+	while firing:
+		var shooter: Node3D = rim[randi() % rim.size()]
+		await cine.burst(shooter.global_position + Vector3(-0.5, 1.4, 0), randi_range(2, 6), 0.09)
+		await get_tree().create_timer(randf_range(0.3, 1.2)).timeout
 
 
 func _lata() -> void:
+	cine.setup(self)
+	var lata_pos := Vector3(-3, RELEVO.altura(-3, 3), 3)
+	cine.begin(lata_pos, -45.0)
+	cine.look(4.0, 0.1)
+	var camp := []
+	for p in [Vector3(2, -0.5, -1), Vector3(-1, -0.5, -2.2), Vector3(1.8, -0.5, 1.6)]:
+		camp.append(cine.soldier(p, atan2(p.x, p.z)))
+	camp.append(cine.soldier(Vector3(-8, 0, -2.5), PI / 2))
+	await Dialogo.fade(0.6, 2.0, Color(0.5, 0.3, 0.04))
 	await Dialogo.falar([
-		["", "[líquido mexendo. Tudo âmbar e turvo, dentro de uma lata de querosene.]"],
+		["", "[líquido mexendo. Tudo âmbar e turvo, de dentro de uma lata de querosene. Luz de fogueira por um furo de prego.]"],
 		["SOLDADO", "Sete lata, sete cabeça. Coronel paga por cabeça."],
 		["SOLDADO", "Bota mais sal na do Capitão, que essa vai separada, na frente."],
 		["TENENTE LAURINDO", "Ninguém mexe nessa lata. Essa é minha."],
+		["SOLDADO", "E o eixo, Tenente?"],
+		["TENENTE LAURINDO", "De manhã se conserta. Ninguém dorme longe da fogueira."],
 		["ENCOSTO", "Shhh. Num se mexe, garoto. Inda não."],
-		["", "[três batidas de nó de dedo no metal. Devagar.]"],
-		["SENTINELA", "Quem vem lá, desgraça? ...Valei-me. Valei-me, Nossa Senhora..."],
-		["", "[grito. Tiro. A lata cai. Som úmido de raiz costurando, estalo de galho verde.]"],
 	])
-	await Dialogo.fade(0.0, 2.0)
+	await get_tree().create_timer(2.0).timeout
+	for i in 3:
+		cine.knock(lata_pos + Vector3.UP * 0.3)
+		await get_tree().create_timer(1.1).timeout
+	var sentinela: Node3D = cine.soldier(Vector3(-11, RELEVO.altura(-11, 9), 9), -PI * 0.75)
+	var body: Node3D = cine.undead_walker(Vector3(-16, RELEVO.altura(-16, 12), 12))
+	create_tween().tween_property(body, "global_position", lata_pos + Vector3(-0.6, 0, 0.9), 9.0)
+	cine.footsteps(body.global_position, 12, 0.75)
+	await Dialogo.falar([
+		["SENTINELA", "Quem vem lá?"],
+		["SENTINELA", "Quem vem lá, desgraça? ...Valei-me. Valei-me, Nossa Senhora..."],
+	])
+	cine.sound(cine.PISTOL, sentinela.global_position + Vector3.UP, 6.0)
+	create_tween().tween_property(sentinela, "rotation:x", PI / 2, 0.5)
+	await Dialogo.fade(0.0, 0.25)
+	await cine.look(-10.0, 0.4)
+	await Dialogo.falar([["", "[a lata cai. A tampa salta. A cabeça rola na terra.]"]])
+	await get_tree().create_timer(2.0).timeout
+	await Dialogo.falar([["", "[dois braços descem. Os dedos estão pretos, com raiz saindo de debaixo das unhas.]"]])
+	body.queue_free()
+	Dialogo.fade(0.5, 0.2, Color(0.5, 0.0, 0.0))
+	await cine.lift_head(2.5)
+	await Dialogo.fade(0.0, 0.8)
+	for soldier in camp:
+		var run := create_tween()
+		run.tween_property(soldier, "global_position", soldier.global_position + Vector3(randf_range(-4, 4), 0, -30), 3.0)
+		run.tween_callback(soldier.queue_free)
+	cine.sound(cine.ENGINE, Vector3(0, 0, -10), 4.0)
+	cine.end()
 	_lock(false)
 	Pacto.start_level(60.0, 0.0)
 	_rig().set_lit(false)
@@ -86,7 +176,6 @@ func _acampamento() -> void:
 	_gatilho("G_Estrada").entrou.connect(_amanhecer)
 	await Dialogo.falar([
 		["TENENTE LAURINDO", "É assombração! Pro caminhão! Larga essa merda e sobe!"],
-		["", "[o caminhão arranca com o eixo rangendo, levando as outras seis latas]"],
 		["ENCOSTO", "Tá seco. Enche da tua lata, garoto. É querosene bom, tá com teu cheiro."],
 	])
 

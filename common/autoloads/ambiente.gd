@@ -9,6 +9,8 @@ var phase := 0.0
 var t := 0.0
 var wind := 0.0
 var cricket_level := 0.0
+var rain_level := 0.0
+var rain_noise := 0.0
 
 
 func _ready() -> void:
@@ -24,7 +26,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	var target := 0.0
-	if Pacto.active and Global.player and not _creature_near():
+	if Pacto.active and Global.player and not _creature_near() and rain_level == 0.0:
 		target = 1.0
 	cricket_level = move_toward(cricket_level, target, delta * (0.4 if target > cricket_level else 2.5))
 	var frames := playback.get_frames_available()
@@ -35,7 +37,10 @@ func _process(delta: float) -> void:
 		var cricket := sin(phase * TAU) * chirp * 0.18 * cricket_level
 		wind = lerpf(wind, randf_range(-1.0, 1.0), 0.02)
 		var gust := 0.5 + 0.5 * sin(t * 0.21) * sin(t * 0.13)
-		var sample := cricket + wind * 0.35 * gust
+		var white := randf_range(-1.0, 1.0)
+		var hiss := white - rain_noise
+		rain_noise = white
+		var sample := cricket + wind * 0.35 * gust + hiss * 0.12 * rain_level
 		playback.push_frame(Vector2(sample, sample))
 
 
