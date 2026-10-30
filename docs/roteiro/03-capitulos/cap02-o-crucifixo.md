@@ -43,7 +43,7 @@
 > **DORINHA:** (vira o rosto de leve, como quem escuta um mosquito) Tu também acordou, foi?
 > Te aquieta. Eu te conheço de outra casa.
 > **LAMPIÃO:** A senhora escuta ele?
-> **DORINHA:** Escuto. Baixinho, que nem rádio de vizinho. (pausa) Num pergunta agora.
+> **DORINHA:** Escuto. Baixinho, que nem conversa de vizinho do outro lado da parede. (pausa) Num pergunta agora.
 
 - Ela desamarra o terço. O jogador ganha controle **dentro do quarto**. É chão bento: o HUD
   mostra a fome parada e a vida descendo devagar. **ENCOSTO:** "Tira eu daqui, garoto.

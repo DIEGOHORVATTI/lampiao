@@ -59,8 +59,9 @@ povo que negou ajuda).
 | | | **Bala** | `liberato=morto` | Zulmira amaldiçoa; volante chega mais rápido |
 | 4 | Inácia (fechou a porta) perde o filho para o Papa-figo | **Ir atrás do Biu** | Graça +1, `biu=salvo` | primeira oferenda na janela (querosene) |
 | | | **Seguir para as cabeças** | `biu=perdido` | o choro de Inácia continua ao fundo até o fim do capítulo; o cordel conta |
-| 4 | Papa-figo caído | **Dar ao Encosto** | Marca +1, poder "Boca Grande" | — |
-| | | **Bala / deixar** | — | os moradores acham o corpo de manhã (cordel) |
+| 4 | Papa-figo caído (só se foi atrás do Biu) | **Dar ao Encosto** | Marca +1, `papafigo=comido`, poder "Boca Grande" | Biu vê tudo |
+| | | **Atirar** ou **Deixar pro povo** | `papafigo=morto` | os moradores acham o corpo de manhã (cordel) |
+| | | (não enfrentado, se `biu=perdido`) | `papafigo=vivo` | o cordel diz que "o doutor seguiu comendo" |
 | 5 | Vizinhos que negaram ajuda pedem abrigo da cabra | **Abrir a porta** | Graça +1, `vizinhos=abrigados` | mais gente para proteger, defesa mais difícil |
 | | | **Deixar trancada** | `vizinhos=fora` | a cabra pega um dos meninos lá fora (só som); Dona Nena nunca mais fala |
 | 6 | Mula-sem-cabeça atordoada | **Tirar o freio** | Graça +1, `rosalia=livre` | Rosália vive; dá o freio a Lampião; o padre confessa |
@@ -199,7 +200,7 @@ Liberato e Tonho, o tenente (vivo e sem farda, ou nome em cruz) e Benedito.
 - **Criatura:** Cabra-cabriola.
 - **Ensina:** defesa de casa de taipa (paredes que racham, porta que cede, telhado), proteger
   NPC.
-- **Virada:** os vizinhos que negaram água a Lampião na estrada correm para a casa de
+- **Virada:** os vizinhos que ameaçaram denunciar Lampião à volante correm para a casa de
   Damião pedindo abrigo. Depois da luta, Rosinha comenta que "painho fica doente toda sexta".
 - **Escolha:** abrir a porta aos vizinhos.
 - **Termina:** Damião, olhando o céu sem lua: "Sexta tá chegando, Capitão. Se eu ficar
@@ -267,7 +268,7 @@ benedito      : poupado | comido
 oferenda      : sim | nao
 liberato      : perdoado | comido | morto
 biu           : salvo | perdido
-papafigo      : comido | morto
+papafigo      : comido | morto | vivo
 vizinhos      : abrigados | fora
 rosalia       : livre | comida
 damiao        : curado | morto

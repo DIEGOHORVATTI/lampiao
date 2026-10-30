@@ -1,6 +1,6 @@
 extends Area3D
 
-const REFILL := 45.0
+@export var refill := 45.0
 
 
 func _ready() -> void:
@@ -36,5 +36,5 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
-		Pacto.refill_kerosene(REFILL)
+		Pacto.refill_kerosene(refill)
 		queue_free()

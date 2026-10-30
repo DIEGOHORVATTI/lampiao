@@ -37,6 +37,8 @@ static func build(kind: String, rng: RandomNumberGenerator) -> Node3D:
 	match kind:
 		"terreno": return terreno(rng, 60.0)
 		"terreno_grande": return terreno(rng, 140.0)
+		"grota_barauna": return terreno_relevo(load("res://world/cap01/relevo.gd"))
+		"xique_xique": return xique_xique(rng)
 		"mandacaru": return mandacaru(rng)
 		"casa_taipa": return casa_taipa(rng)
 		"cerca_varas": return cerca_varas(rng, 8.0)
@@ -95,6 +97,34 @@ static func terreno(rng: RandomNumberGenerator, size: float) -> Node3D:
 	var shape := CollisionShape3D.new()
 	shape.shape = mesh.create_trimesh_shape()
 	root.add_child(shape)
+	return root
+
+
+static func terreno_relevo(relevo: Script) -> Node3D:
+	var plane := PlaneMesh.new()
+	plane.size = relevo.SIZE
+	plane.subdivide_width = int(relevo.SIZE.x / 2.0)
+	plane.subdivide_depth = int(relevo.SIZE.y / 2.0)
+	var center: Vector3 = relevo.CENTER
+	var mesh := _displace(plane, func(v: Vector3) -> Vector3:
+		return Vector3(v.x, relevo.altura(v.x + center.x, v.z + center.z), v.z))
+	var root := _static_body()
+	root.position = center
+	root.add_child(_mesh_instance(mesh, "earth"))
+	var shape := CollisionShape3D.new()
+	shape.shape = mesh.create_trimesh_shape()
+	root.add_child(shape)
+	return root
+
+
+static func xique_xique(rng: RandomNumberGenerator) -> Node3D:
+	var root := _static_body()
+	for i in rng.randi_range(3, 6):
+		var h := rng.randf_range(0.4, 1.0)
+		var a := rng.randf() * TAU
+		var tilt := Basis(Vector3(cos(a), 0, sin(a)), rng.randf_range(0.2, 0.6))
+		_add_cylinder(root, 0.08, h, tilt * Vector3(0, h / 2, 0), "cactus", 6, tilt)
+	_add_box_shape(root, Vector3(0.8, 0.8, 0.8), Vector3(0, 0.4, 0))
 	return root
 
 

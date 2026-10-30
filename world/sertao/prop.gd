@@ -1,7 +1,7 @@
 @tool
 extends Node3D
 
-@export_enum("terreno", "terreno_grande", "mandacaru", "casa_taipa", "cerca_varas", "cruz", "pedra", "arvore_seca", "poco", "lampiao", "fogueira", "fogueira_apagada", "barraca_lona", "barraca_rasgada", "carroca_tombada", "caixote", "muro_pedra", "cova", "paredao", "corpo", "cruz_exvoto") var kind := "mandacaru":
+@export_enum("terreno", "terreno_grande", "grota_barauna", "xique_xique", "mandacaru", "casa_taipa", "cerca_varas", "cruz", "pedra", "arvore_seca", "poco", "lampiao", "fogueira", "fogueira_apagada", "barraca_lona", "barraca_rasgada", "carroca_tombada", "caixote", "muro_pedra", "cova", "paredao", "corpo", "cruz_exvoto") var kind := "mandacaru":
 	set(value):
 		kind = value
 		_rebuild()

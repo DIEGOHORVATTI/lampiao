@@ -129,8 +129,9 @@ recusa a mudar). Nomes e apelidos são originais, menos Lampião.
 - **Segredo:** vive com **Rosália** (que vira mula toda quinta para sexta) e sabe disso.
   Registrou no livro de óbitos 43 retirantes enterrados "sem nome" na vala do açude em 1937
   e nunca perguntou do que morreram. Prega por encomenda do coronel que Lampião é o Cão.
-- **Arco:** covarde do começo ao fim, com um momento só de verdade (cap. 6), quando vê Rosália
-  livre ou comida e diz "a culpa é minha". O que acontece com ele depois depende do
+- **Arco:** covarde do começo ao fim, com um momento só de verdade (cap. 6): se Rosália é
+  libertada, ele a cobre com a batina e diz "a culpa é minha"; se ela é comida, ele
+  enlouquece no adro. O que acontece com ele depois depende do
   jogador e aparece no cordel final.
 - **Fala de exemplo:** "Cemitério de cristão num é lugar de cangaceiro."
 

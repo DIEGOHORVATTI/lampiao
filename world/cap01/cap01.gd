@@ -7,7 +7,7 @@ const CORPOS := [
 	["Sabiá", "Num vai ter mais cantoria, Sabiá."],
 	["Gavião", "Tu atirava melhor que eu, mulher."],
 	["Fumaça", "Perdoa, cabra."],
-	["Pé-de-Serra", ""],
+	["Pé-de-Serra", "", "Bilhete no bornal: \"Mãe, to bem. O capitão dis que no natal nos passa perto. Guarde o bode.\""],
 	["Jurema", ""],
 ]
 const BENEDITO_TIMEOUT := 30.0
@@ -78,6 +78,7 @@ func _acampamento() -> void:
 		["", "1. Virgulino Ferreira, vulgo Lampião (lata separada). 2. Cansanção. 3. Sabiá. 4. Mulher dita Gavião. 5. Fumaça. 6. Pé-de-Serra. 7. Um menino. Não se sabe o nome."],
 		["", "Coronel T. Valadares, Fazenda Jatobá. Serviço feito. Sete cabeças. Exposição na feira de Santa Luzia domingo. Ten. L. Brás."],
 	]))
+	_interagivel("CruzEnjeitados", "Ler a cruz").usado.connect(func(): Dialogo.falar([["", "AQUI A TERRA NÃO QUIS. NÃO REZE."]]))
 	_gatilho("G_Carroca").entrou.connect(_benedito)
 	_gatilho("G_Cemiterio").entrou.connect(_enjeitados)
 	_gatilho("G_Grota").entrou.connect(_grota)
@@ -143,7 +144,9 @@ func _grota() -> void:
 
 func _cobrir(index: int) -> void:
 	var line: String = CORPOS[index][1]
-	if line != "":
+	if CORPOS[index].size() > 2:
+		await Dialogo.falar([["", "[Lampião tira o chapéu]"], ["", CORPOS[index][2]]])
+	elif line != "":
 		await Dialogo.falar([["LAMPIÃO", line]])
 	else:
 		await Dialogo.falar([["", "[Lampião tira o chapéu e fica um tempo]"]])
