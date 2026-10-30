@@ -34,6 +34,38 @@ static var _materials := {}
 
 
 static func build(kind: String, rng: RandomNumberGenerator) -> Node3D:
+	var root := _build(kind, rng)
+	_merge(root)
+	return root
+
+
+static func _merge(root: Node3D) -> void:
+	var tools := {}
+	for mi in root.find_children("*", "MeshInstance3D", true, false):
+		var xform := Transform3D.IDENTITY
+		var node: Node = mi
+		while node != root:
+			xform = node.transform * xform
+			node = node.get_parent()
+		var mat: Material = mi.material_override
+		if not tools.has(mat):
+			var st := SurfaceTool.new()
+			st.begin(Mesh.PRIMITIVE_TRIANGLES)
+			tools[mat] = st
+		for surface in mi.mesh.get_surface_count():
+			var part := SurfaceTool.new()
+			part.create_from(mi.mesh, surface)
+			tools[mat].append_from(part.commit(), 0, xform)
+		mi.get_parent().remove_child(mi)
+		mi.free()
+	for mat in tools:
+		var merged := MeshInstance3D.new()
+		merged.mesh = tools[mat].commit()
+		merged.material_override = mat
+		root.add_child(merged)
+
+
+static func _build(kind: String, rng: RandomNumberGenerator) -> Node3D:
 	match kind:
 		"terreno": return terreno(rng, 60.0)
 		"terreno_grande": return terreno(rng, 140.0)

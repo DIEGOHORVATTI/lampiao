@@ -18,6 +18,6 @@ func _ready() -> void:
 	Dialogo.limpar()
 	var frames := Engine.get_frames_drawn()
 	await get_tree().create_timer(2.0).timeout
-	print("fps: %.1f" % ((Engine.get_frames_drawn() - frames) / 2.0))
+	print("fps: %.1f draw_calls: %d objetos: %d prims: %d" % [(Engine.get_frames_drawn() - frames) / 2.0, Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME), Performance.get_monitor(Performance.RENDER_TOTAL_OBJECTS_IN_FRAME), Performance.get_monitor(Performance.RENDER_TOTAL_PRIMITIVES_IN_FRAME)])
 	get_viewport().get_texture().get_image().save_png(OS.get_environment("SHOT"))
 	get_tree().quit()
