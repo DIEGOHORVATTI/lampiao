@@ -1,54 +1,63 @@
 extends RefCounted
 
-const GUARD_FIRE_INTERVAL := 1.6
-const GUARD_DAMAGE := 4.0
-
 
 func run(d: Chapter01Director) -> void:
 	d.beat = 1
-	d.teleport_player("LampiaoRaid", 0.0)
+	var lampiao := d.spawn_character(d.LAMPIAO, d.marker("LampiaoRaid"))
+	d.cast.lampiao = lampiao
 	d.cast.triangles = d.spawn_npc("Triangles", d.LEATHER, "half_moon")
 	d.cast.triangles.pose("Crouch_Idle")
 	d.cast.stars = d.spawn_npc("Stars", d.LEATHER.darkened(0.2), "half_moon")
 	d.cast.drawings = d.spawn_npc("Drawings", d.LEATHER.darkened(0.35), "half_moon")
 	d.cast.maria = d.spawn_maria("MariaFarm")
 	var guard := d.spawn_npc("Guard", d.SHIRT, "none")
-	guard.look_at_point(d.marker("LampiaoRaid"), 0.01)
-	d.face_player_to("Guard")
-	Global.player.weapons_manager.switch_weapon(2)
-	d.set_hud_visible(true)
-	await Dialogue.fade(0.0, 0.4)
-	d.lock_player(false)
-	d.objective("CH01_GOAL_RAID")
-	var target := d.attach_hit_target(guard)
-	var alive := [true]
-	target.hit.connect(func():
-		alive[0] = false
-		guard.die())
-	while alive[0]:
-		Effects.gunshot(d, guard.global_position + Vector3.UP * 1.4)
-		Global.player.get_damage(GUARD_DAMAGE, Vector3.ZERO, true)
-		await d.get_tree().create_timer(GUARD_FIRE_INTERVAL).timeout
+	guard.look_at_point(lampiao.global_position, 0.01)
+	await lampiao.look_at_point(d.marker("Guard"), 0.01)
+	lampiao.pose("Pistol_Aim_Neutral", 0.0)
+	await _shot(d, lampiao, guard)
+	await _unarmed_soldier(d, lampiao)
+	await _run_to_back_door(d)
+
+
+func _shot(d: Chapter01Director, lampiao: Node3D, guard: Node3D) -> void:
+	var at := lampiao.global_position
+	d.cut(at + Vector3(2.2, 0.5, -1.4), at + Vector3.UP * 1.4)
+	await Dialogue.fade(0.0, 0.3)
+	await d.get_tree().create_timer(0.6).timeout
+	Effects.gunshot(d, at + Vector3(0.8, 1.4, 0))
+	Global.muzzle_flash.emit()
+	Scares.shake(0.08, 0.2)
+	await d.get_tree().create_timer(0.5).timeout
+	d.cut(d.marker("RoomDoor") + Vector3(-1.0, 1.6, 0.4), guard.global_position + Vector3.UP * 1.2)
+	guard.die()
+	Effects.blood_jet(d, guard.global_position + Vector3.UP * 1.5, 0.8)
 	await Dialogue.say([["SPEAKER_LAMPIAO", "CH01_RAID_01"]])
-	await _unarmed_soldier(d)
-	await Dialogue.say([["", "CH01_RAID_05"]])
-	for key in ["triangles", "stars", "drawings", "maria"]:
-		d.cast[key].walk_to(d.marker("BackDoor") + Vector3(randf_range(-1.0, 1.0), 0, randf_range(0.0, 3.0)), 1.8, true)
-	d.lock_player(false)
-	d.objective("CH01_GOAL_RAID", ["RoomDoor", "SoldierHandsUp", "BackDoor"])
-	await d.await_trigger("BackDoorTrigger")
 
 
-func _unarmed_soldier(d: Chapter01Director) -> void:
-	d.lock_player(true)
+func _unarmed_soldier(d: Chapter01Director, lampiao: Node3D) -> void:
 	var soldier := d.spawn_volante("SoldierDoor", false)
+	var drawings: Node3D = d.cast.drawings
+	d.cut(drawings.global_position + Vector3(-0.5, 1.75, 1.6), d.marker("SoldierHandsUp") + Vector3.UP * 1.3)
 	await soldier.walk_to(d.marker("SoldierHandsUp"), 1.4)
-	d.face_player_to("SoldierHandsUp")
-	d.cast.drawings.look_at_point(soldier.global_position, 0.2)
-	d.cast.drawings.pose("Pistol_Aim_Neutral")
+	soldier.look_at_point(drawings.global_position, 0.2)
+	await drawings.look_at_point(soldier.global_position, 0.2)
+	drawings.pose("Pistol_Aim_Neutral")
 	await Dialogue.say([["SPEAKER_CANGACEIRO", "CH01_RAID_02"]])
-	Effects.gunshot(d, d.cast.drawings.global_position + Vector3.UP * 1.3)
-	await Dialogue.say([["SPEAKER_LAMPIAO", "CH01_RAID_03"], ["SPEAKER_LAMPIAO", "CH01_RAID_04"]])
-	d.cast.drawings.pose("Idle")
+	lampiao.walk_to(drawings.global_position + Vector3(-1.0, 0, -1.0), 2.0, true)
+	await Dialogue.say([["SPEAKER_LAMPIAO", "CH01_RAID_03"]])
+	Effects.gunshot(d, drawings.global_position + Vector3.UP * 1.3)
+	var face := lampiao.global_position + Vector3.UP * 1.6
+	d.cut(face + lampiao.model.global_basis.z * 1.1, face)
+	await Dialogue.say([["SPEAKER_LAMPIAO", "CH01_RAID_04"]])
+	drawings.pose("Idle")
 	soldier.walk_to(d.marker("SoldierDoor"), 2.0, true)
 	d.get_tree().create_timer(2.5).timeout.connect(soldier.queue_free)
+
+
+func _run_to_back_door(d: Chapter01Director) -> void:
+	var door := d.marker("BackDoor")
+	d.cut(door + Vector3(0.6, 1.4, 1.5), door + Vector3(0, 1.2, -10))
+	for key in ["triangles", "stars", "drawings", "maria", "lampiao"]:
+		d.cast[key].walk_to(door + Vector3(randf_range(-1.0, 1.0), 0, randf_range(0.5, 2.5)), 2.0, true)
+	await Dialogue.say([["", "CH01_RAID_05"]])
+	await d.get_tree().create_timer(1.5).timeout

@@ -11,6 +11,7 @@ var cast := {}
 var soldiers: Array = []
 var beat := 0
 var trail: Node3D
+var cinematic_camera: Camera3D
 
 
 func _ready() -> void:
@@ -126,6 +127,39 @@ func set_hud_visible(visible_now: bool) -> void:
 	var hud := find_child("HUD", true, false)
 	if hud:
 		hud.visible = visible_now
+
+
+func start_cinematic() -> void:
+	lock_player(true)
+	set_hud_visible(false)
+	Global.player.visible = false
+	Global.player.get_node("WeaponSubViewport").visible = false
+	cinematic_camera = Camera3D.new()
+	cinematic_camera.fov = 60.0
+	add_child(cinematic_camera)
+	cinematic_camera.make_current()
+
+
+func cut(from: Vector3, target: Vector3) -> void:
+	cinematic_camera.global_position = from
+	cinematic_camera.look_at(target)
+
+
+func dolly(to: Vector3, target: Vector3, seconds: float) -> void:
+	var start := cinematic_camera.global_position
+	var move := create_tween()
+	move.tween_method(func(t: float):
+		cinematic_camera.global_position = start.lerp(to, t)
+		cinematic_camera.look_at(target), 0.0, 1.0, seconds).set_trans(Tween.TRANS_SINE)
+	await move.finished
+
+
+func end_cinematic() -> void:
+	cinematic_camera.queue_free()
+	Global.player.visible = true
+	Global.player.get_node("WeaponSubViewport").visible = true
+	Global.player.camera.make_current()
+	set_hud_visible(true)
 
 
 func start_god_mode() -> Timer:

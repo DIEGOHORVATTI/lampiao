@@ -5,10 +5,9 @@ const SUIT := Color(0.12, 0.12, 0.16)
 const LEATHER := Color(0.42, 0.3, 0.18)
 const SHIRT := Color(0.85, 0.83, 0.78)
 const VINI_SHIRT := Color(0.5, 0.48, 0.4)
+const LAMPIAO := preload("res://resources/characters/lampiao/lampiao.tscn")
 const MARIA := preload("res://resources/characters/maria/maria.tscn")
 const VOLANTE := preload("res://resources/characters/volante/volante.tscn")
-const WALK_SPEED := 5.0
-const CARRY_SPEED := 2.2
 const LANTERN_LIGHT := Color(1.0, 0.72, 0.4)
 const FLICKER := preload("res://game/world/components/flicker.gd")
 const BEATS := [
@@ -46,22 +45,21 @@ func run_chapter() -> void:
 	await run_beats(BEATS)
 
 
+func spawn_character(scene: PackedScene, at: Vector3, armed := true) -> Node3D:
+	var npc := NPC.new()
+	npc.character = scene
+	npc.carries_rifle = armed
+	add_child(npc)
+	npc.global_position = at
+	return npc
+
+
 func spawn_maria(marker_name: String) -> Node3D:
-	var maria := NPC.new()
-	maria.character = MARIA
-	maria.carries_rifle = false
-	add_child(maria)
-	maria.global_position = marker(marker_name)
-	return maria
+	return spawn_character(MARIA, marker(marker_name), false)
 
 
 func spawn_volante(marker_name: String, armed := true) -> Node3D:
-	var soldier := NPC.new()
-	soldier.character = VOLANTE
-	soldier.carries_rifle = armed
-	add_child(soldier)
-	soldier.global_position = marker(marker_name)
-	return soldier
+	return spawn_character(VOLANTE, marker(marker_name), armed)
 
 
 func carry_lantern() -> void:
@@ -101,11 +99,9 @@ func restore_night() -> void:
 func gallop_camera() -> void:
 	galloping = true
 	var t := 0.0
-	while galloping:
+	while galloping and is_instance_valid(cinematic_camera):
 		t += get_process_delta_time()
-		Global.player.camera.v_offset = sin(t * 11.0) * 0.06
-		Global.player.camera.h_offset = sin(t * 5.5) * 0.03
+		cinematic_camera.v_offset = sin(t * 11.0) * 0.06
+		cinematic_camera.h_offset = sin(t * 5.5) * 0.03
 		await get_tree().process_frame
-	Global.player.camera.v_offset = 0.0
-	Global.player.camera.h_offset = 0.0
 

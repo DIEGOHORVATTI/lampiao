@@ -5,7 +5,6 @@ const NEAR := 3.0
 
 func run(d: Chapter01Director) -> void:
 	d.beat = 4
-	await Dialogue.fade(1.0, 0.4)
 	d.teleport_player("LampiaoMat", 180.0)
 	d.cast.maria = d.spawn_maria("Maria")
 	d.cast.maria.pose("Sitting_Idle")
@@ -18,8 +17,8 @@ func run(d: Chapter01Director) -> void:
 	for key in ["maria", "triangles", "stars", "vini"]:
 		d.cast[key].look_at_point(d.marker("Campfire"), 0.01)
 	d.face_player_to("Maria")
+	Global.player.weapons_manager.switch_weapon(2)
 	await Dialogue.fade(0.0, 1.5)
-	d.set_hud_visible(true)
 	d.lock_player(false)
 	d.objective("CH01_GOAL_MARIA")
 	await d.interactable("Maria", "CH01_CAMP_BANDAGE").used
