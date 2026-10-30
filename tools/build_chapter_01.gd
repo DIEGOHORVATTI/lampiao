@@ -2,7 +2,6 @@ extends "res://tools/build_sandbox.gd"
 
 const TRIGGER := preload("res://game/world/components/trigger.gd")
 const CAVE := preload("res://game/world/chapters/chapter_01/cave_field.gd")
-const AMMO_BELT := preload("res://common/utils/ammo_refil.tscn")
 const GEO_DIR := "res://game/world/chapters/chapter_01/geo/"
 const FARM := Vector3(0, 0, -216)
 
@@ -20,7 +19,6 @@ func _layout() -> void:
 	_z2_cave_mouth()
 	_z3_gallery()
 	_z4_idol_hall()
-	_z5_crevice()
 	_z6_rock_shelf()
 	_moonlight()
 
@@ -58,31 +56,24 @@ func _farm() -> void:
 		_put("barbed_fence", Vector3(seg[0], 0, -188), 0).scale.x = seg[1]
 	for x in [-22.0, -18.0, -14.0]:
 		_put("horse", Vector3(x, 0, -184), PI + rng.randf_range(-0.3, 0.3))
-	for p in [Vector3(-14, 2.4, -228), Vector3(0, 2.4, -224), Vector3(-14, 2.4, -220)]:
-		_put("wall_lamp", p, 0)
 	_put("crate", Vector3(-14, 0.1, -234), 0)
 	_put("coin_pile", Vector3(-12.5, 0.1, -233.5), 0)
-	_put("rock", Vector3(6, 0, -206), 0)
-	_put("crate", Vector3(-24, 0, -204), 0.4)
-	_put("dead_tree", Vector3(-30, 0, -212), 0).scale = Vector3.ONE * 1.4
+	for p in [Vector3(-30, 0, -210), Vector3(-30, 0, -198), Vector3(14, 0, -204), Vector3(14, 0, -194)]:
+		_put("mud_house", p, PI / 2 if p.x < 0 else -PI / 2)
+	_put("dead_tree", Vector3(-30, 0, -186), 0).scale = Vector3.ONE * 1.4
 	for i in 40:
 		var a := rng.randf() * TAU
 		var r := rng.randf_range(36.0, 46.0)
 		var kind: String = ["dead_tree", "mandacaru", "xique_xique", "rock"][rng.randi() % 4]
 		_put(kind, FARM + Vector3(cos(a) * r, 0, sin(a) * r), rng.randf() * TAU)
-	_marker("CoinBag", -13, -233.5, 0.1)
-	_marker("MariaFarm", -4, -229, 0.1)
-	_marker("BaraunaFarm", -12, -232, 0.1)
-	_marker("XexeuFarm", -10, -234.5, 0.1)
-	_marker("BeneditoDoor", 10, -238, 0.1)
-	_marker("BeneditoFloor", 10, -230, 0.1)
-	_marker("ViniFarm", -16, -182, 0.1)
-	_marker("ChapelSoldier", 20, -214, 0.1)
+	for m in [["OpeningView", -4, -183], ["LampiaoRaid", -9, -230], ["RoomDoor", -2, -230], ["Triangles", -12, -232], ["Stars", -7, -228], ["MariaFarm", -5, -231], ["Guard", 7, -230], ["SoldierDoor", 10, -237], ["SoldierHandsUp", 1, -229], ["Drawings", -1, -224], ["BackDoor", 0, -215], ["StreetMiddle", -8, -200], ["ViniFarm", -16, -182]]:
+		_marker(m[0], m[1], m[2], 0.1)
 	var e0 := [Vector3(-20, 0, -248), Vector3(0, 0, -248), Vector3(18, 0, -248), Vector3(34, 0, -228), Vector3(34, 0, -212), Vector3(28, 0, -196), Vector3(36, 0, -200)]
 	for i in e0.size():
 		_marker("FarmSoldier_%d" % (i + 1), e0[i].x, e0[i].z, 0.1)
 	_trigger_at("BackDoorTrigger", Vector3(0, 0, -214), Vector3(6, 4, 4))
 	_trigger_at("MariaShotTrigger", Vector3(-6, 0, -206), Vector3(8, 4, 8))
+	_trigger_at("StreetTrigger", Vector3(-10, 0, -196), Vector3(10, 4, 4))
 	_trigger_at("HorsesTrigger", Vector3(-18, 0, -186), Vector3(8, 4, 6))
 	_farm_bounds()
 
@@ -132,63 +123,31 @@ func _z2_cave_mouth() -> void:
 	_at("stone_arch", 0, -8, 0)
 	_at("campfire", 0, 0)
 	_at("cauldron", 0.7, 0.4)
-	_at("sleeping_mat", -4, 6, 0.2)
-	_at("sleeping_mat", -8, 8, -0.3)
+	for p in [Vector2(-4, 6), Vector2(-8, 8), Vector2(6, 8), Vector2(8, 2)]:
+		_at("sleeping_mat", p.x, p.y, rng.randf_range(-0.3, 0.3))
 	_at("coin_pile", 10, 4)
-	_at("idol_totem", -10, 14, PI)
 	for p in [Vector2(-8, -16), Vector2(4, -16)]:
 		_at("horse", p.x, p.y, rng.randf() * TAU)
-	for m in [["LampiaoMat", -4, 6], ["Maria", -8, 8], ["Barauna", 6, 8], ["Xexeu", 8, 2], ["Vini", 2, -4], ["SoupBowl", -3.2, 5.2], ["Idol", -10, 12.5], ["Campfire", 0, 0], ["MouthSoldier_1", 0, -9], ["MouthSoldier_2", 2.5, -10], ["Rockfall_1", 6, 18], ["ColonelAtMouth", 0, -14]]:
+	for m in [["LampiaoMat", -4, 6], ["Maria", -8, 8], ["Triangles", 6, 8], ["Stars", 8, 2], ["Vini", 2, -4], ["CoinPile", 10, 4], ["SoupBowl", -3.2, 5.2], ["Campfire", 0, 0], ["ColonelAtMouth", 0, -16], ["MouthSoldier_1", -3, -14], ["MouthSoldier_2", 3, -14], ["MouthSoldier_3", 5, -17]]:
 		_marker(m[0], m[1], m[2])
-	_trigger("RockfallTrigger", 6, 20, Vector3(4, 4, 4))
-	_trigger("ScareIdolApparition", -10, 12, Vector3(4, 4, 4))
+	_trigger("CampReturnTrigger", 3, 11, Vector3(6, 4, 4))
 
 
 func _z3_gallery() -> void:
-	for p in [Vector2(8.5, 24), Vector2(0.8, 30), Vector2(-6.5, 36), Vector2(2.8, 44), Vector2(-4.6, 50)]:
-		_at("bone_niche", p.x, p.y, rng.randf() * TAU)
-	for m in [["GallerySoldier_1", 4, 26], ["GallerySoldier_2", 5, 24], ["Rockfall_2", -1, 48], ["ViniPath_1", 4, 26], ["ViniPath_2", -4, 36], ["ViniPath_3", -2, 46], ["ViniPath_4", 2, 56], ["ViniHall", 0, 62]]:
+	for m in [["Tunnel_1", 6, 14], ["Tunnel_2", 4, 26], ["Tunnel_3", -4, 36], ["Tunnel_4", -2, 46], ["Tunnel_5", 2, 56], ["ViniHall", 0, 62]]:
 		_marker(m[0], m[1], m[2])
-	_trigger("ScareGalleryApparition", -4, 36, Vector3(5, 4, 5))
-	_trigger("ScareWhisper", -2, 46, Vector3(5, 4, 5))
-	_trigger("HallTrigger", 0, 61, Vector3(6, 4, 3))
+	_trigger("DistrustTrigger", 2, 55, Vector3(5, 4, 4))
+	_trigger("HallTrigger", 0, 63, Vector3(8, 4, 3))
 
 
 func _z4_idol_hall() -> void:
 	for p in [Vector2(-10, 64), Vector2(10, 64), Vector2(-12, 76), Vector2(12, 76), Vector2(-10, 88), Vector2(10, 88)]:
-		var t := _at("idol_totem", p.x, p.y, atan2(-p.x, 76.0 - p.y))
-		t.name = "Totem_%d" % int(p.x * 10 + p.y)
-		t.add_to_group("totens", true)
-	_at("tomb_slab", 0, 80)
-	for p in [Vector2(-13, 70), Vector2(13, 70), Vector2(-13, 84), Vector2(13, 84)]:
-		_at("bone_niche", p.x, p.y, rng.randf() * TAU)
-	var carnes := [Vector2(-6, 62), Vector2(6, 62), Vector2(-8, 72), Vector2(8, 72)]
-	for i in carnes.size():
-		_marker("Remains_%d" % (i + 1), carnes[i].x, carnes[i].y)
-		_marker("HallSoldier_%d" % (i + 1), carnes[i].x, carnes[i].y)
-	for m in [["LampiaoDuel", 0, 66], ["ViniDuel", 0, 72], ["HeadDrop", -2, 66], ["ColonelHall", 1.5, 67], ["Revolver", -6, 70], ["ViniRifle", 4, 78], ["ViniBody", 2, 78], ["ReturnSoldier_1", 12, 78], ["ReturnSoldier_2", 10, 72], ["BeneditoEscape", 14, 80], ["Slab", 0, 80]]:
+		_at("idol_totem", p.x, p.y, atan2(-p.x, 76.0 - p.y))
+	var soldiers := [Vector2(-6, 66), Vector2(6, 66), Vector2(-8, 74), Vector2(8, 74)]
+	for i in soldiers.size():
+		_marker("HallSoldier_%d" % (i + 1), soldiers[i].x, soldiers[i].y)
+	for m in [["HallView", 0, 70], ["LampiaoDuel", 0, 72], ["ViniDuel", 0, 77], ["HeadDrop", -1.5, 73], ["ColonelBehind", 0.6, 69], ["ColonelExit", 0, 61], ["LampiaoRifle", 1.2, 72.5]]:
 		_marker(m[0], m[1], m[2])
-	_trigger("ScareSlabBreathing", 0, 80, Vector3(8, 4, 8))
-
-
-func _z5_crevice() -> void:
-	_at("torch", 16, 78)
-	_at("bone_niche", 27, 54, -PI / 2)
-	_at("corpse", 27.3, 54, 0.4)
-	for i in 4:
-		var p: Vector2 = [Vector2(24, 66), Vector2(27, 56), Vector2(29, 40), Vector2(30, 34)][i]
-		_marker("CreviceSoldier_%d" % (i + 1), p.x, p.y)
-		_at("rock", p.x + 0.8, p.y + 1.4)
-		_at("torch", p.x - 0.6, p.y + 0.8).name = "CreviceTorch_%d" % (i + 1)
-	_at("rock", 31.5, 23.5).scale = Vector3.ONE * 1.3
-	for m in [["TorchPickup", 16, 78], ["EatenSoldierNiche", 27, 54], ["BeneditoNiche", 31, 24]]:
-		_marker(m[0], m[1], m[2])
-	_trigger("RosaryTrigger", 26, 60, Vector3(5, 4, 5))
-	_trigger("ScareFootsteps", 18, 74, Vector3(4, 4, 4))
-	_trigger("ScareEatenSoldier", 27, 55, Vector3(3, 4, 3))
-	_trigger("ScareKnock", 31, 28, Vector3(4, 4, 4))
-	_trigger("BeneditoTrigger", 31, 24, Vector3(5, 4, 5))
-	_trigger("CreviceExitTrigger", 34, -6, Vector3(5, 4, 5))
 
 
 func _z6_rock_shelf() -> void:
@@ -201,14 +160,8 @@ func _z6_rock_shelf() -> void:
 		var x := rng.randf_range(-27, 37)
 		var z := rng.randf_range(-35, -30)
 		_at(["xique_xique", "rock", "mandacaru"][rng.randi() % 3], x, z, rng.randf() * TAU)
-	for m in [["Grave_1", -14, -24], ["Grave_2", -10, -24], ["Grave_3", -6, -24], ["GraveVini", -20, -30], ["EndPoint", -10, -30], ["DeadTree", -18, -34], ["MariaRock", -6, 10]]:
+	for m in [["Grave_1", -16, -24], ["Grave_2", -12, -24], ["Grave_3", -8, -24], ["Grave_4", -4, -24], ["OathPoint", -15, -31], ["DeadTree", -18, -34], ["Kepi", -6, -27]]:
 		_marker(m[0], m[1], m[2])
-	var ammo: Node3D = AMMO_BELT.instantiate()
-	ammo.name = "AmmoBelt"
-	ammo.position = Vector3(12, CAVE.floor_height(12, -30), -30)
-	_own(ammo, scene_root)
-	_trigger("GravesTrigger", -10, -22, Vector3(14, 4, 6))
-	_trigger("ScareMariaApparition", -18, -30, Vector3(8, 4, 8))
 
 
 func _enemies() -> void:

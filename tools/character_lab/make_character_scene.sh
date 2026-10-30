@@ -3,13 +3,13 @@ set -e
 name=$1
 title=$2
 base=$3
-dir=resources/personagens/$name
+dir=resources/characters/$name
 cat > $dir/${name}_comic.tres <<TRES
 [gd_resource type="ShaderMaterial" load_steps=4 format=3]
 
-[ext_resource type="Shader" path="res://resources/personagens/shared/comic.gdshader" id="1"]
+[ext_resource type="Shader" path="res://resources/characters/shared/comic.gdshader" id="1"]
 [ext_resource type="Texture2D" path="res://$dir/${name}_atlas.png" id="2"]
-[ext_resource type="Material" path="res://resources/personagens/shared/comic_outline.tres" id="3"]
+[ext_resource type="Material" path="res://resources/characters/shared/comic_outline.tres" id="3"]
 
 [resource]
 next_pass = ExtResource("3")
@@ -22,7 +22,7 @@ cat <<TSCN
 
 [ext_resource type="PackedScene" path="res://$dir/$name.glb" id="1"]
 [ext_resource type="Material" path="res://$dir/${name}_comic.tres" id="2"]
-[ext_resource type="AnimationLibrary" path="res://resources/personagens/ubc/ual1_$base.res" id="3"]
+[ext_resource type="AnimationLibrary" path="res://resources/characters/ubc/ual1_$base.res" id="3"]
 
 [node name="$title" instance=ExtResource("1")]
 TSCN

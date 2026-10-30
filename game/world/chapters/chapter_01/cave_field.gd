@@ -11,7 +11,6 @@ const ROOMS := [
 ]
 const PATHS := [
 	{"name": "galeria", "width": 3.2, "h": 3.6, "points": [Vector3(6, 0, 14), Vector3(4, -1, 26), Vector3(-4, -2.5, 36), Vector3(-2, -4, 46), Vector3(2, -5.5, 56), Vector3(0, -6, 62)]},
-	{"name": "fenda", "width": 2.4, "h": 3.0, "points": [Vector3(12, -6, 80), Vector3(22, -5.5, 72), Vector3(26, -4.5, 60), Vector3(28, -3.5, 46), Vector3(30, -2.5, 32), Vector3(32, -1.5, 18), Vector3(34, -0.5, 6), Vector3(34, 0, -10)]},
 ]
 const SKYLIGHT := Vector3(0, 0, 74)
 const SKYLIGHT_RADIUS := 3.0

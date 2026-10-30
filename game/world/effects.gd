@@ -2,6 +2,8 @@ class_name Effects
 
 const BLOOD := Color(0.04, 0.0, 0.0)
 const GUNSHOT_SOUND := preload("res://resources/sfx/weapons/pistol.wav")
+const BLOOD_SPLASH := preload("res://resources/textures/decal_bloodsplash_1.png")
+const TRAIL_SPACING := 2.2
 
 
 static func blood_jet(parent: Node3D, at: Vector3, seconds := 3.0) -> void:
@@ -36,6 +38,25 @@ static func blood_pool(parent: Node3D, at: Vector3, radius: float) -> void:
 	pool.global_position = at
 	pool.scale = Vector3(0.1, 1, 0.1)
 	pool.create_tween().tween_property(pool, "scale", Vector3.ONE, 2.0)
+
+
+static func blood_trail(parent: Node3D, points: Array) -> Node3D:
+	var trail := Node3D.new()
+	parent.add_child(trail)
+	for i in points.size() - 1:
+		var a: Vector3 = points[i]
+		var b: Vector3 = points[i + 1]
+		var steps := maxi(1, int(a.distance_to(b) / TRAIL_SPACING))
+		for step in steps:
+			var drop := Decal.new()
+			drop.texture_albedo = BLOOD_SPLASH
+			drop.modulate = Color(0.45, 0.02, 0.02)
+			var size := randf_range(0.5, 0.9)
+			drop.size = Vector3(size, 1.2, size)
+			trail.add_child(drop)
+			drop.global_position = a.lerp(b, float(step) / steps) + Vector3(randf_range(-0.3, 0.3), 0.3, randf_range(-0.3, 0.3))
+			drop.rotation.y = randf() * TAU
+	return trail
 
 
 static func gunshot(parent: Node3D, from: Vector3) -> void:

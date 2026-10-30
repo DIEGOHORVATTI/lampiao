@@ -3,7 +3,7 @@ class_name PropLibrary
 const COLORS := {
 	"earth": Color(0.42, 0.27, 0.16),
 	"cactus": Color(0.22, 0.32, 0.2),
-	"taipa": Color(0.55, 0.38, 0.25),
+	"wattle_and_daub": Color(0.55, 0.38, 0.25),
 	"lime": Color(0.78, 0.72, 0.62),
 	"tile": Color(0.5, 0.2, 0.12),
 	"wood": Color(0.3, 0.2, 0.12),
@@ -21,16 +21,16 @@ const COLORS := {
 }
 
 const TEXTURES := {
-	"earth": ["terra", 0.25],
-	"cactus": ["mandacaru", 1.0],
-	"taipa": ["taipa", 0.4],
-	"lime": ["reboco", 0.4],
-	"tile": ["telha", 0.6],
-	"wood": ["madeira", 0.8],
-	"dry_wood": ["madeira", 1.2],
-	"stone": ["rock", 0.5],
+	"earth": ["earth", 0.25],
+	"cactus": ["cactus", 1.0],
+	"wattle_and_daub": ["wattle_and_daub", 0.4],
+	"lime": ["plaster", 0.4],
+	"tile": ["roof_tile", 0.6],
+	"wood": ["wood", 0.8],
+	"dry_wood": ["wood", 1.2],
+	"stone": ["stone", 0.5],
 }
-const TEXTURE_DIR := "res://resources/sertao/textures/%s.png"
+const TEXTURE_DIR := "res://resources/textures/world/%s.png"
 
 static var _materials := {}
 
@@ -270,7 +270,7 @@ static func mud_house(rng: RandomNumberGenerator) -> Node3D:
 	var h := 2.6
 	var t := 0.25
 	var door := 1.0
-	var wall := "lime" if rng.randf() < 0.4 else "taipa"
+	var wall := "lime" if rng.randf() < 0.4 else "wattle_and_daub"
 	_add_wall(root, Vector3(0, 0, -d / 2), w, h, t, wall)
 	_add_wall(root, Vector3(-w / 2, 0, 0), d, h, t, wall, true)
 	_add_wall(root, Vector3(w / 2, 0, 0), d, h, t, wall, true)
@@ -442,10 +442,12 @@ static func grave(rng: RandomNumberGenerator) -> Node3D:
 	mi.scale = Vector3(1.4, 0.5, 2.4)
 	mi.position.y = 0.0
 	root.add_child(mi)
-	if rng.randf() < 0.6:
-		var cross := cross(rng)
-		cross.position = Vector3(0, 0, -1.1)
-		root.add_child(cross)
+	var post := BoxMesh.new()
+	post.size = Vector3(0.08, 0.9, 0.08)
+	var stake := _mesh_instance(post, "wood")
+	stake.position = Vector3(0, 0.35, -1.15)
+	stake.rotation.z = rng.randf_range(-0.12, 0.12)
+	root.add_child(stake)
 	return root
 
 

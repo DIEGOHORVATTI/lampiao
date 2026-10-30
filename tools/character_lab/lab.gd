@@ -1,7 +1,7 @@
 extends Node3D
 
 const POSES := [["Idle", 0.6], ["Walk", 0.35], ["Pistol_Aim_Neutral", 0.1]]
-const MANNEQUIN := "res://resources/personagens/ual/UAL1_Standard.glb"
+const MANNEQUIN := "res://resources/characters/ual/UAL1_Standard.glb"
 
 
 var stage: SubViewport
@@ -14,7 +14,7 @@ func _ready() -> void:
 	stage.render_target_update_mode = SubViewport.UPDATE_ALWAYS
 	stage.own_world_3d = true
 	add_child(stage)
-	var scenes: PackedStringArray = args.get("scenes", "res://resources/personagens/lampiao/lampiao.tscn").split(",")
+	var scenes: PackedStringArray = args.get("scenes", "res://resources/characters/lampiao/lampiao.tscn").split(",")
 	var output: String = args.get("out", "/tmp/claude-1000/lab_shot.png")
 	var close: bool = args.get("close", "0") == "1"
 	var yaw := float(args.get("yaw", "20"))

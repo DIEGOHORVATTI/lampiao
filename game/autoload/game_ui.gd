@@ -8,6 +8,7 @@ var death_reason := "UI_DEATH_DEFAULT"
 var overlay: CanvasLayer
 var vignette: ShaderMaterial
 var lens_crack: Line2D
+var objective_label: Label
 var pause_menu: PauseMenu
 var death_screen: DeathScreen
 
@@ -42,7 +43,16 @@ func reset() -> void:
 	vignette.set_shader_parameter("blood", 0.0)
 	vignette.set_shader_parameter("hit", 0.0)
 	death_screen.visible = false
+	lens_crack.visible = Story.flag("lens") == "cracked"
+	set_objective("")
 	set_overlay_visible(true)
+
+
+func set_objective(text_key: String) -> void:
+	objective_label.text = tr(text_key) if text_key != "" else ""
+	if text_key != "":
+		objective_label.modulate.a = 0.0
+		create_tween().tween_property(objective_label, "modulate:a", 1.0, 0.8)
 
 
 func set_overlay_visible(visible_now: bool) -> void:
@@ -90,6 +100,13 @@ func _build_overlay() -> void:
 	lens_crack.points = PackedVector2Array(LENS_CRACK)
 	lens_crack.visible = Story.flag("lens") == "cracked"
 	overlay.add_child(lens_crack)
+	objective_label = Label.new()
+	objective_label.position = Vector2(48, 40)
+	objective_label.add_theme_font_size_override("font_size", 30)
+	objective_label.add_theme_color_override("font_color", Color(0.91, 0.86, 0.75))
+	objective_label.add_theme_color_override("font_outline_color", Color(0.25, 0.0, 0.0))
+	objective_label.add_theme_constant_override("outline_size", 8)
+	overlay.add_child(objective_label)
 
 
 func _on_health_changed(change: float, current: float, max_health: float, _enemy: bool) -> void:

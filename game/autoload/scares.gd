@@ -2,10 +2,10 @@ extends CanvasLayer
 
 const RATE := 22050
 const FACES := {
-	"entity": "res://resources/ui/sustos/entidade.jpg",
-	"maria": "res://resources/ui/sustos/maria.jpg",
-	"eaten_soldier": "res://resources/ui/sustos/soldado_comido.jpg",
-	"moon": "res://resources/ui/sustos/lua.jpg",
+	"entity": "res://resources/ui/scares/entity.jpg",
+	"maria": "res://resources/ui/scares/maria.jpg",
+	"eaten_soldier": "res://resources/ui/scares/eaten_soldier.jpg",
+	"moon": "res://resources/ui/scares/moon.jpg",
 }
 const UNDEAD := preload("res://enemies/undead.tscn")
 const FOOTSTEP := preload("res://player/sfx/footstep_ground.ogg")

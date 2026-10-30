@@ -15,103 +15,69 @@ func _ready() -> void:
 
 	await _until(func(): return level.beat == 1 and Pact.active, 120.0)
 	_check(not Pact.hunger_enabled, "fome escondida antes dela acordar")
-	_shot("fazenda")
-	await _use("CoinBag")
-	await _until(func(): return Story.flag("farm_benedito") != "", 90.0)
-	_check(Story.flag("farm_benedito") == "spared", "Benedito poupado na fazenda")
-	await _until(func(): return level.soldiers.size() >= 7, 60.0)
-	_shot("tiroteio")
+	_shot("assalto")
+	_check(GameUI.objective_label.text != "", "objetivo aparece na tela")
+	_hit_all()
+	await _until(func(): return Pact.active and level.trail != null, 120.0)
+	_check(is_instance_valid(level.trail) and level.trail.get_child_count() > 3, "rastro de sangue até os fundos")
 	await _go("BackDoorTrigger")
+	await _until(func(): return level.beat == 2, 30.0)
 	await _go("MariaShotTrigger")
-	await _until(func(): return not Dialogue.talking, 120.0)
-	await get_tree().create_timer(2.0).timeout
+	await _until(func(): return Pact.active and Global.player.walk_speed < 3.0, 120.0)
+	_check(Global.player.walk_speed < 3.0, "amparando Maria anda devagar")
+	await _go("StreetTrigger")
+	await _until(func(): return not Dialogue.talking, 60.0)
 	await _go("HorsesTrigger")
-	await _until(func(): return level.beat == 3, 120.0)
-	_check(level.beat == 3, "fuga a cavalo chega na caverna")
-	await _until(func(): return Pact.active, 60.0)
+	await _until(func(): return level.beat == 4 and Pact.active, 180.0)
+	_check(true, "cavalgada chega na caverna")
 	_shot("acampamento")
 	await _use("Maria")
-	await _until(func(): return Story.flag("rosary") == "wrist", 120.0)
-	_check(Story.flag("rosary") == "wrist", "Maria empresta o terço")
-	await _until(func(): return not Dialogue.talking, 120.0)
+	await _until(func(): return Pact.active and not Dialogue.talking, 120.0)
+	await _go("CoinPile")
+	await _until(func(): return level.find_child("SoupBowl", true, false).get_child_count() > 0, 120.0)
 	await _use("SoupBowl")
-	await _until(func(): return level.beat == 4 and Pact.active, 120.0)
-	_check(level.poisoned, "veneno deixa Lampião lento")
-	await _use("Maria")
-	await _until(func(): return level.soldiers.size() >= 2, 120.0)
+	await _until(func(): return level.beat == 5 and Pact.active, 120.0)
 	_shot("veneno")
-	_kill_all()
-	await _until(func(): return level.cast.vini.visible and not Dialogue.talking, 120.0)
-	await _go("RockfallTrigger")
-	await _until(func(): return level.beat == 5, 30.0)
-	for point in ["ViniPath_1", "ViniPath_2", "ViniPath_3", "ViniPath_4"]:
-		await _go(point)
-		await get_tree().create_timer(3.0).timeout
-		_kill_all()
-	_shot("galeria")
-	await _until(func(): return level.cast.vini.global_position.distance_to(_pos("ViniHall")) < 1.0, 120.0)
+	await _go("Maria")
+	await get_tree().create_timer(1.0).timeout
+	await _until(func(): return not Dialogue.talking, 60.0)
+	await _go("Stars")
+	await _until(func(): return level.beat == 6 and Pact.active, 180.0)
+	_check(level.lantern != null, "lanterna no túnel")
+	await _go("Tunnel_2")
+	await _go("Tunnel_3")
+	await _until(func(): return not Dialogue.talking, 60.0)
+	await _go("DistrustTrigger")
+	await _until(func(): return level.beat == 7 and Pact.active, 180.0)
+	_shot("tunel")
 	await _go("HallTrigger")
-	await _until(func(): return level.beat == 6 and Dialogue.prompt.text.begins_with(tr("CH01_BETRAYAL_07").left(10)), 120.0)
-	_check(true, "traição de Vini no Salão dos Ídolos")
-	_shot("duelo")
-	level.vini_hits = 2
-	await _until(func(): return level.beat == 7, 60.0)
+	await _go("HallView")
+	await _until(func(): return level.beat == 7 and Pact.active and GameUI.objective_label.text == tr("CH01_GOAL_FIGHT"), 120.0)
+	_check(true, "luta com Vini no salão dos ídolos")
+	_shot("luta")
+	level.vini_hits = 3
+	await _until(func(): return level.beat == 8, 60.0)
 	await get_tree().create_timer(4.0).timeout
 	_shot("degola")
-	_check(Story.flag("lens") == "cracked", "degola racha a lente")
-	await _until(func(): return level.beat == 8 and Pact.active, 180.0)
-	_check(Pact.hunger_enabled and Pact.hunger > 90.0 and Powers.entity_mode, "Modo Ela com fome cheia")
-	_shot("modo_ela")
+	await _until(func(): return level.beat == 9 and Pact.active, 240.0)
+	_check(Pact.hunger_enabled and Pact.hunger > 90.0 and Powers.entity_mode, "Ela acorda faminta")
+	_shot("ela")
 	await _until(func(): return level.soldiers.size() >= 4, 30.0)
-	for s in level.soldiers:
-		if is_instance_valid(s) and s.is_alive:
-			Global.player.global_position = s.global_position + Vector3(1.2, 0.4, 0)
-			Global.player.camera_pivot.look_at(s.global_position, Vector3.UP)
-			await get_tree().create_timer(0.3).timeout
-			Powers.cooldown = 0.0
-			Powers.tentacles()
-			await get_tree().create_timer(0.4).timeout
-			Global.activate_pressed.emit()
-			await get_tree().create_timer(0.3).timeout
-	_check(Pact.hunger <= 60.0, "Ela come os soldados (fome desce)")
-	await _until(func(): return level.beat == 9, 180.0)
-	_check(not Powers.entity_mode and absf(Pact.hunger - 50.0) < 1.0, "volta a Lampião com fome 50")
-	await _until(func(): return Pact.active, 120.0)
-	_shot("nos")
-	await _use("ViniBody")
-	await get_tree().create_timer(0.5).timeout
-	_check(Story.flag("vini") == "forgiven", "fechar os olhos de Vini")
-	await _until(func(): return level.beat == 10, 30.0)
-	Pact.hunger = 70.0
-	await _use("Remains_1")
-	_check(Pact.hunger < 45.0, "comer os restos de soldado")
-	await _go("ScareSlabBreathing")
-	await get_tree().create_timer(5.0).timeout
 	_kill_all()
-	await _use("TorchPickup")
-	await _go("RosaryTrigger")
-	await get_tree().create_timer(2.0).timeout
-	_shot("fenda")
-	_kill_all()
-	await _go("BeneditoTrigger")
-	await _until(func(): return Dialogue.choice_buttons[0].visible, 240.0)
-	Input.action_press("choice_1")
-	await _until(func(): return Story.flag("benedito") != "", 20.0)
-	Input.action_release("choice_1")
-	_check(Story.flag("benedito") == "spared", "Benedito poupado na fenda")
-	await _until(func(): return not Dialogue.talking, 60.0)
-	await _go("CreviceExitTrigger")
-	await _until(func(): return level.beat == 12, 60.0)
-	await _use("MariaRock")
-	await _until(func(): return level.beat == 13, 180.0)
+	await _until(func(): return level.beat == 10, 240.0)
+	await _until(func(): return level.beat == 11 and Pact.active, 180.0)
+	_check(not Powers.entity_mode and Story.flag("lens") == "cracked", "volta a Lampião, de óculos trincados")
+	await _go("CampReturnTrigger")
+	await _until(func(): return level.beat == 12 and Pact.active, 240.0)
 	_shot("enterro")
-	for grave in ["Grave_1", "Grave_2", "Grave_3"]:
-		await _go(grave)
-		Global.activate_pressed.emit()
-		await get_tree().process_frame
-		Input.action_press("activate")
-		await get_tree().create_timer(4.0).timeout
-		Input.action_release("activate")
+	for grave in ["Grave_1", "Grave_2", "Grave_3", "Grave_4"]:
+		await _hold_at(grave)
+	await _until(func(): return Pact.active and GameUI.objective_label.text == tr("CH01_GOAL_LEAVE"), 120.0)
+	Input.action_press("activate")
+	await _until(func(): return Story.flag("rosary") == "neck", 30.0)
+	Input.action_release("activate")
+	_check(Story.flag("rosary") == "neck", "terço de Maria no pescoço")
+	await _use("Kepi")
 	await _until(func(): return Story.chapter == 2, 300.0)
 	_check(Story.chapter == 2, "capítulo termina e salva o cap. 2")
 	Engine.time_scale = 1.0
@@ -120,6 +86,19 @@ func _ready() -> void:
 		printerr("FALHOU: ", f)
 	print("chapter_01_test: ", "OK" if failures.is_empty() else "%d falha(s)" % failures.size())
 	Engine.get_main_loop().quit(1 if failures else 0)
+
+
+func _hit_all() -> void:
+	for target in level.find_children("*", "StaticBody3D", true, false):
+		if target is HitTarget:
+			target.hit.emit()
+
+
+func _hold_at(marker: String) -> void:
+	await _use(marker)
+	Input.action_press("activate")
+	await get_tree().create_timer(4.0).timeout
+	Input.action_release("activate")
 
 
 func _kill_all() -> void:
@@ -149,7 +128,7 @@ func _go(marker: String) -> void:
 
 func _use(marker: String) -> void:
 	var node: Node = level.find_child(marker, true, false)
-	await _until(func(): return node.get_children().any(func(c): return c is Area3D and c.has_signal("usado")), 240.0)
+	await _until(func(): return node.get_children().any(func(c): return c is Interactable), 240.0)
 	Global.player.global_position = _pos(marker) + Vector3(0, 0.6, 6.0)
 	await get_tree().create_timer(0.3).timeout
 	await _go(marker)

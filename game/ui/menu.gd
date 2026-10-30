@@ -9,7 +9,7 @@ func _ready() -> void:
 	set_anchors_preset(Control.PRESET_FULL_RECT)
 
 	var art := TextureRect.new()
-	art.texture = preload("res://resources/ui/titulo.jpg")
+	art.texture = preload("res://resources/ui/title.jpg")
 	art.set_anchors_preset(Control.PRESET_FULL_RECT)
 	art.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	art.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED

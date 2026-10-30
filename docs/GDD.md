@@ -1,7 +1,7 @@
 # Lampião — documento de design
 
 Jogo de horror em primeira pessoa no sertão. Inspirado no mangá *Lampião* (justiceiro
-errante possuído) e na música de referência (transcrição em `docs/transcricao-musica.txt`).
+errante possuído) e na música de referência (transcrição em `docs/song-transcript.txt`).
 
 ## Decisões do autor (2026-10-29)
 

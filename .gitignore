@@ -16,5 +16,5 @@ data_*/
 mono_crash.*.json
 /source-build
 build/
-docs/referencias/
+docs/references/
 __pycache__/

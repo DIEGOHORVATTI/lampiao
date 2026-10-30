@@ -10,6 +10,7 @@ var environment: Environment
 var cast := {}
 var soldiers: Array = []
 var beat := 0
+var trail: Node3D
 
 
 func _ready() -> void:
@@ -39,6 +40,14 @@ func await_trigger(trigger_name: String) -> void:
 	var area := trigger(trigger_name)
 	if not area.triggered:
 		await area.entered
+
+
+func objective(text_key: String, path: Array = []) -> void:
+	GameUI.set_objective(text_key)
+	if is_instance_valid(trail):
+		trail.queue_free()
+	if not path.is_empty():
+		trail = Effects.blood_trail(self, path.map(func(marker_name): return marker(marker_name)))
 
 
 func interactable(marker_name: String, label: String) -> Interactable:

@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-const MODEL := preload("res://resources/personagens/volante/volante.tscn")
+const MODEL := preload("res://resources/characters/volante/volante.tscn")
 const SHOT := preload("res://resources/sfx/weapons/pistol.wav")
 const GRAVITY := -20.0
 const LOOPS := ["Idle", "Walk", "Jog_Fwd", "Sitting_Idle", "Pistol_Idle", "Pistol_Aim_Neutral", "Idle_Torch"]

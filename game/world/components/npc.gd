@@ -1,6 +1,6 @@
 extends Node3D
 
-const MODEL := preload("res://resources/personagens/ual/UAL1_Standard.glb")
+const MODEL := preload("res://resources/characters/ual/UAL1_Standard.glb")
 const LOOPS := ["Idle", "Walk", "Jog_Fwd", "Sitting_Idle", "Pistol_Idle", "Idle_Torch", "Idle_Talking", "Crouch_Idle"]
 
 @export var shirt_color := Color(0.45, 0.33, 0.2)

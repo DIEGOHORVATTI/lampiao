@@ -1,6 +1,6 @@
 extends Control
 
-const ARTS := ["res://resources/ui/carregamento/1.jpg", "res://resources/ui/carregamento/2.jpg", "res://resources/ui/carregamento/3.jpg"]
+const ARTS := ["res://resources/ui/loading/1.jpg", "res://resources/ui/loading/2.jpg", "res://resources/ui/loading/3.jpg"]
 const VERSES := ["LOADING_VERSE_1", "LOADING_VERSE_2", "LOADING_VERSE_3"]
 const MIN_SECONDS := 2.5
 
