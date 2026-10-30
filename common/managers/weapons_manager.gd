@@ -48,7 +48,7 @@ func _process(_delta: float) -> void:
 	var target_transform = main_camera.global_transform
 	
 	# Lerp position
-	global_position = global_position.lerp(target_transform.origin, follow_speed * _delta)
+	global_position = global_position.lerp(target_transform.origin, minf(follow_speed * _delta, 1.0))
 	
 	# Slerp rotation (spherical linear interpolation for smooth rotation)
 	var current_basis = global_transform.basis

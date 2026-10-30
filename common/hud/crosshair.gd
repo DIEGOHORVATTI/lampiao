@@ -11,7 +11,7 @@ extends Control
 # Crosshair settings
 const LINE_WIDTH: float = 3.0
 const LINE_LENGTH: float = 10.0
-const CENTER_DOT_SIZE: float = 2.0
+const CENTER_DOT_SIZE: float = 6.0
 
 const MIN_SPREAD: float = 10.0  # Minimum distance from center when aiming
 const MAX_SPREAD: float = 50.0  # Maximum distance from center when moving fast
@@ -24,6 +24,9 @@ var is_aiming: bool = false
 
 
 func _ready() -> void:
+	for line in [crosshair_top, crosshair_bottom, crosshair_left, crosshair_right]:
+		line.visible = false
+	crosshair_center.color = Color(0.91, 0.86, 0.75, 0.7)
 	Global.aim_mode_changed.connect(_on_aim_mode_changed)
 	Global.player_velocity_changed.connect(_on_player_velocity_changed)
 	_setup_crosshair()

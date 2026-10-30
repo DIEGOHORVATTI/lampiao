@@ -27,7 +27,7 @@ func _ready() -> void:
 	_check(not is_equal_approx(pivot.rotation.y, yaw_before), "arrastar à direita gira a câmera")
 	_touch(1, Vector2(screen.x * 0.6 + 100, 300), false)
 
-	var fire_center := screen + Vector2(-200, -380) + Vector2(97, 97)
+	var fire_center: Vector2 = touch.button_center(0)
 	_touch(2, fire_center, true)
 	await _frames(2)
 	_check(Input.is_action_pressed("fire"), "tocar em ATIRAR aciona fire")

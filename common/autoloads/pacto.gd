@@ -11,7 +11,9 @@ var hunger := 0.0
 var active := false
 var fps_log_timer := 0.0
 
-var hunger_bar: ProgressBar
+var vignette: ShaderMaterial
+var pause_screen: Control
+var hit_flash := 0.0
 var death_screen: Control
 var death_message: Label
 
@@ -19,10 +21,79 @@ var death_message: Label
 func _ready() -> void:
 	layer = 20
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	hunger_bar = _bar(Vector2(70, 135), Color(0.55, 0.08, 0.12), "FOME DO ENCOSTO")
+	_build_vignette()
+	pause_screen = _build_pause_screen()
+	if not InputMap.has_action("pausa"):
+		InputMap.add_action("pausa")
+		var key := InputEventKey.new()
+		key.physical_keycode = KEY_P
+		InputMap.action_add_event("pausa", key)
+	Global.player_health_changed.connect(_on_health_changed)
 	death_screen = _build_death_screen()
 	Global.player_dead.connect(_on_player_dead)
 	_set_hud_visible(false)
+
+
+func _build_vignette() -> void:
+	var holder := CanvasLayer.new()
+	holder.name = "Vinheta"
+	holder.layer = 4
+	add_child(holder)
+	var rect := ColorRect.new()
+	rect.set_anchors_preset(Control.PRESET_FULL_RECT)
+	rect.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	vignette = ShaderMaterial.new()
+	vignette.shader = preload("res://resources/shaders/vinheta.gdshader")
+	rect.material = vignette
+	holder.add_child(rect)
+
+
+func _on_health_changed(change: float, current: float, max_health: float, _enemy: bool) -> void:
+	vignette.set_shader_parameter("blood", 1.0 - current / max_health)
+	if change < 0.0:
+		hit_flash = 1.0
+
+
+func _build_pause_screen() -> Control:
+	var screen := ColorRect.new()
+	screen.color = Color(0.03, 0.02, 0.02, 0.88)
+	screen.set_anchors_preset(Control.PRESET_FULL_RECT)
+	screen.visible = false
+	add_child(screen)
+	var title := Label.new()
+	title.text = "PAUSA"
+	title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	title.set_anchors_and_offsets_preset(Control.PRESET_TOP_WIDE)
+	title.offset_top = 200
+	title.add_theme_font_size_override("font_size", 64)
+	title.add_theme_color_override("font_color", Color(0.72, 0.53, 0.17))
+	screen.add_child(title)
+	for i in 2:
+		var action := "pausa_continuar" if i == 0 else "pausa_menu"
+		if not InputMap.has_action(action):
+			InputMap.add_action(action)
+		var button := TouchScreenButton.new()
+		button.action = action
+		var image := Image.create(560, 110, false, Image.FORMAT_RGBA8)
+		image.fill(Color(0.43, 0.08, 0.08, 0.55))
+		button.texture_normal = ImageTexture.create_from_image(image)
+		button.position = Vector2(680, 430 + i * 160)
+		var label := Label.new()
+		label.text = "CONTINUAR" if i == 0 else "VOLTAR AO MENU"
+		label.size = Vector2(560, 110)
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		label.add_theme_font_size_override("font_size", 40)
+		label.add_theme_color_override("font_color", Color(0.91, 0.86, 0.75))
+		button.add_child(label)
+		screen.add_child(button)
+	return screen
+
+
+func pause(paused: bool) -> void:
+	pause_screen.visible = paused
+	get_tree().paused = paused
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE if paused else Input.MOUSE_MODE_CAPTURED)
 
 
 func start_level(start_hunger := 0.0) -> void:
@@ -67,6 +138,20 @@ func _notification(what: int) -> void:
 
 
 func _process(delta: float) -> void:
+	hit_flash = maxf(0.0, hit_flash - delta * 2.5)
+	vignette.set_shader_parameter("hit", hit_flash)
+	vignette.set_shader_parameter("hunger", hunger / 100.0 if active else 0.0)
+	if Input.is_action_just_pressed("pausa") and (active or pause_screen.visible):
+		pause(not pause_screen.visible)
+	if pause_screen.visible:
+		if Input.is_action_just_pressed("pausa_continuar"):
+			pause(false)
+		elif Input.is_action_just_pressed("pausa_menu"):
+			pause(false)
+			stop()
+			Dialogo.limpar()
+			get_tree().change_scene_to_file("res://ui/menu.tscn")
+		return
 	fps_log_timer += delta
 	if OS.is_debug_build() and OS.has_feature("mobile") and fps_log_timer > 5.0:
 		fps_log_timer = 0.0
@@ -103,40 +188,13 @@ func _input(event: InputEvent) -> void:
 
 
 func _emit() -> void:
-	hunger_bar.value = hunger
 	hunger_changed.emit(hunger)
 
 
 func _set_hud_visible(visible_now: bool) -> void:
-	get_node("Barras").visible = visible_now
+	get_node("Vinheta").visible = visible_now
 
 
-func _bar(pos: Vector2, color: Color, caption: String) -> ProgressBar:
-	var box := VBoxContainer.new()
-	box.position = pos
-	box.add_theme_constant_override("separation", 0)
-	if not has_node("Barras"):
-		var holder := Control.new()
-		holder.name = "Barras"
-		holder.mouse_filter = Control.MOUSE_FILTER_IGNORE
-		add_child(holder)
-	get_node("Barras").add_child(box)
-	var label := Label.new()
-	label.text = caption
-	label.add_theme_font_size_override("font_size", 18)
-	label.add_theme_color_override("font_color", Color(0.91, 0.84, 0.69))
-	box.add_child(label)
-	var bar := ProgressBar.new()
-	bar.custom_minimum_size = Vector2(400, 14)
-	bar.show_percentage = false
-	var fill := StyleBoxFlat.new()
-	fill.bg_color = color
-	var back := StyleBoxFlat.new()
-	back.bg_color = Color(0, 0, 0, 0.55)
-	bar.add_theme_stylebox_override("fill", fill)
-	bar.add_theme_stylebox_override("background", back)
-	box.add_child(bar)
-	return bar
 
 
 func _build_death_screen() -> Control:
