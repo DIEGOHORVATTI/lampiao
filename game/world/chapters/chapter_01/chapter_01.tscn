@@ -1,24 +1,31 @@
 [gd_scene format=3]
 
-[ext_resource type="Script" path="res://game/world/chapters/chapter_01/chapter_01.gd" id="1_urs5c"]
-[ext_resource type="Script" path="res://common/managers/input_manager.gd" id="2_gicds"]
-[ext_resource type="PackedScene" path="res://player/player.tscn" id="3_4irl1"]
-[ext_resource type="Script" path="res://player/player.gd" id="4_mi23m"]
-[ext_resource type="Script" path="res://game/world/components/muzzle_flash_rig.gd" id="5_5k2yf"]
-[ext_resource type="PackedScene" path="res://common/hud/gameplay_hud.tscn" id="6_y1r8k"]
-[ext_resource type="Script" path="res://common/hud/hud.gd" id="7_lr6r2"]
-[ext_resource type="Script" path="res://game/world/components/nav_bake.gd" id="8_r3m3s"]
-[ext_resource type="Script" path="res://game/world/props/prop.gd" id="9_4l2gl"]
-[ext_resource type="ArrayMesh" path="res://game/world/chapters/chapter_01/geo/cave_floor.mesh" id="10_ptcqw"]
-[ext_resource type="Shape3D" path="res://game/world/chapters/chapter_01/geo/cave_floor_col.res" id="11_c5472"]
-[ext_resource type="ArrayMesh" path="res://game/world/chapters/chapter_01/geo/cave_ceiling.mesh" id="12_6gci2"]
-[ext_resource type="Shape3D" path="res://game/world/chapters/chapter_01/geo/cave_ceiling_col.res" id="13_da572"]
-[ext_resource type="Texture2D" path="res://resources/textures/world/earth.png" id="14_hfl0i"]
-[ext_resource type="ArrayMesh" path="res://game/world/chapters/chapter_01/geo/cave_top.mesh" id="15_q8ddj"]
-[ext_resource type="Shape3D" path="res://game/world/chapters/chapter_01/geo/cave_top_col.res" id="16_remke"]
-[ext_resource type="Script" path="res://game/world/components/trigger.gd" id="17_gojak"]
+[ext_resource type="Script" path="res://game/world/chapters/chapter_01/chapter_01.gd" id="1_r3m3s"]
+[ext_resource type="Script" path="res://common/managers/input_manager.gd" id="2_4l2gl"]
+[ext_resource type="PackedScene" path="res://player/player.tscn" id="3_ptcqw"]
+[ext_resource type="Script" path="res://player/player.gd" id="4_c5472"]
+[ext_resource type="Script" path="res://game/world/components/muzzle_flash_rig.gd" id="5_6gci2"]
+[ext_resource type="PackedScene" path="res://common/hud/gameplay_hud.tscn" id="6_da572"]
+[ext_resource type="Script" path="res://common/hud/hud.gd" id="7_hfl0i"]
+[ext_resource type="Script" path="res://game/world/components/nav_bake.gd" id="8_q8ddj"]
+[ext_resource type="Script" path="res://game/world/props/prop.gd" id="9_remke"]
+[ext_resource type="Shader" path="res://resources/props/cave_surface.gdshader" id="10_gojak"]
+[ext_resource type="Texture2D" path="res://resources/textures/world/cracked_floor.png" id="11_47ynb"]
+[ext_resource type="Texture2D" path="res://resources/textures/world/sand.png" id="12_s2sn5"]
+[ext_resource type="Texture2D" path="res://resources/textures/world/cave_rock.png" id="13_ku1uv"]
+[ext_resource type="ArrayMesh" path="res://game/world/chapters/chapter_01/geo/cave_floor.mesh" id="14_188uc"]
+[ext_resource type="Shape3D" path="res://game/world/chapters/chapter_01/geo/cave_floor_col.res" id="15_25286"]
+[ext_resource type="ArrayMesh" path="res://game/world/chapters/chapter_01/geo/cave_ceiling.mesh" id="16_e733i"]
+[ext_resource type="Shape3D" path="res://game/world/chapters/chapter_01/geo/cave_ceiling_col.res" id="17_bgqav"]
+[ext_resource type="ArrayMesh" path="res://game/world/chapters/chapter_01/geo/cave_top.mesh" id="18_62c7y"]
+[ext_resource type="Shape3D" path="res://game/world/chapters/chapter_01/geo/cave_top_col.res" id="19_wfy4u"]
+[ext_resource type="Texture2D" path="res://resources/textures/world/root_bark.png" id="20_8q4lk"]
+[ext_resource type="ArrayMesh" path="res://game/world/chapters/chapter_01/geo/roots_mouth.mesh" id="21_lirk4"]
+[ext_resource type="ArrayMesh" path="res://game/world/chapters/chapter_01/geo/roots_tunnel.mesh" id="22_mlkrb"]
+[ext_resource type="ArrayMesh" path="res://game/world/chapters/chapter_01/geo/roots_hall.mesh" id="23_f30r3"]
+[ext_resource type="Script" path="res://game/world/components/trigger.gd" id="24_c5vs5"]
 
-[sub_resource type="Environment" id="Environment_47ynb"]
+[sub_resource type="Environment" id="Environment_3dee1"]
 background_mode = 1
 background_color = Color(0.02, 0.02, 0.035, 1)
 ambient_light_source = 2
@@ -31,59 +38,75 @@ fog_enabled = true
 fog_light_color = Color(0.05, 0.05, 0.07, 1)
 fog_density = 0.03
 
-[sub_resource type="NavigationMesh" id="NavigationMesh_s2sn5"]
+[sub_resource type="NavigationMesh" id="NavigationMesh_17mlo"]
 geometry_parsed_geometry_type = 1
 agent_max_slope = 40.0
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ku1uv"]
-albedo_color = Color(0.45, 0.42, 0.38, 1)
-roughness = 0.95
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2q4r4"]
+render_priority = 0
+shader = ExtResource("10_gojak")
+shader_parameter/wall_texture = ExtResource("13_ku1uv")
+shader_parameter/floor_texture = ExtResource("11_47ynb")
+shader_parameter/outdoor_texture = ExtResource("12_s2sn5")
+shader_parameter/wall_scale = null
+shader_parameter/floor_scale = null
+shader_parameter/outdoor_scale = null
+shader_parameter/mouth_z = null
+shader_parameter/tint = null
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_188uc"]
-albedo_color = Color(0.855, 0.8175, 0.78999996, 1)
-albedo_texture = ExtResource("14_hfl0i")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fn7nb"]
+albedo_color = Color(0.905, 0.875, 0.84000003, 1)
+albedo_texture = ExtResource("12_s2sn5")
 roughness = 0.95
-uv1_scale = Vector3(0.25, 0.25, 0.25)
+uv1_scale = Vector3(0.2, 0.2, 0.2)
 uv1_triplanar = true
 uv1_world_triplanar = true
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_25286"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_04edn"]
+albedo_color = Color(0.83, 0.81, 0.795, 1)
+albedo_texture = ExtResource("20_8q4lk")
+roughness = 0.95
+uv1_scale = Vector3(1.4, 1.4, 1.4)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e4ful"]
 size = Vector3(84, 10, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_e733i"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_hd5w7"]
 size = Vector3(84, 10, 1)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_bgqav"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_u4i65"]
 size = Vector3(1, 10, 76)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_62c7y"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_0vvq7"]
 size = Vector3(1, 10, 76)
 
-[node name="Chapter01" type="Node3D" unique_id=190592822]
-script = ExtResource("1_urs5c")
+[node name="Chapter01" type="Node3D" unique_id=1862742658]
+script = ExtResource("1_r3m3s")
 
-[node name="InputManager" type="Node" parent="." unique_id=505978956]
-script = ExtResource("2_gicds")
+[node name="InputManager" type="Node" parent="." unique_id=1535789125]
+script = ExtResource("2_4l2gl")
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=55223693]
-environment = SubResource("Environment_47ynb")
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2146054225]
+environment = SubResource("Environment_3dee1")
 
-[node name="Moon" type="DirectionalLight3D" parent="." unique_id=536887504]
+[node name="Moon" type="DirectionalLight3D" parent="." unique_id=1507971361]
 transform = Transform3D(0.8660254, -0.28678823, 0.40957603, 0, 0.81915206, 0.57357645, -0.5, -0.49673176, 0.7094065, 0, 0, 0)
 light_color = Color(0.55, 0.62, 0.85, 1)
 light_energy = 0.18
 
-[node name="Player" type="CharacterBody3D" parent="." unique_id=1157596601 groups=["door_access", "player"] instance=ExtResource("3_4irl1")]
+[node name="Player" type="CharacterBody3D" parent="." unique_id=1157596601 groups=["door_access", "player"] instance=ExtResource("3_ptcqw")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0.4, -230)
-script = ExtResource("4_mi23m")
+script = ExtResource("4_c5472")
 
-[node name="MuzzleFlashRig" type="Node" parent="." unique_id=1208214760]
-script = ExtResource("5_5k2yf")
+[node name="MuzzleFlashRig" type="Node" parent="." unique_id=1109148362]
+script = ExtResource("5_6gci2")
 auto_start = false
 
-[node name="HUD" type="CanvasLayer" parent="." unique_id=433453065]
+[node name="HUD" type="CanvasLayer" parent="." unique_id=87488982]
 
-[node name="Control" type="Control" parent="HUD" unique_id=581381809 instance=ExtResource("6_y1r8k")]
+[node name="Control" type="Control" parent="HUD" unique_id=581381809 instance=ExtResource("6_da572")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -91,915 +114,1062 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("7_lr6r2")
+script = ExtResource("7_hfl0i")
 
-[node name="NavigationRegion" type="NavigationRegion3D" parent="." unique_id=1580576394]
-navigation_mesh = SubResource("NavigationMesh_s2sn5")
-script = ExtResource("8_r3m3s")
+[node name="NavigationRegion" type="NavigationRegion3D" parent="." unique_id=523572953]
+navigation_mesh = SubResource("NavigationMesh_17mlo")
+script = ExtResource("8_q8ddj")
 
-[node name="Scenery" type="Node3D" parent="NavigationRegion" unique_id=1012279402]
+[node name="Scenery" type="Node3D" parent="NavigationRegion" unique_id=1941779361]
 
-[node name="farm_terrain_19469" type="Node3D" parent="NavigationRegion/Scenery" unique_id=2017165893]
+[node name="farm_terrain_19469" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1079327266]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -216)
-script = ExtResource("9_4l2gl")
+script = ExtResource("9_remke")
 kind = "farm_terrain"
 seed = 19469
 
-[node name="manor_73954" type="Node3D" parent="NavigationRegion/Scenery" unique_id=849455747]
+[node name="manor_73954" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1745198832]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -226)
-script = ExtResource("9_4l2gl")
+script = ExtResource("9_remke")
 kind = "manor"
 seed = 73954
 
-[node name="chapel_14223" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1299202321]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -228)
-script = ExtResource("9_4l2gl")
+[node name="chapel_14223" type="Node3D" parent="NavigationRegion/Scenery" unique_id=898909553]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 25, 0, -228)
+script = ExtResource("9_remke")
 kind = "chapel"
 seed = 14223
 
-[node name="barbed_fence_2998" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1037427758]
+[node name="barbed_fence_2998" type="Node3D" parent="NavigationRegion/Scenery" unique_id=326079634]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34, 0, -188)
-script = ExtResource("9_4l2gl")
+script = ExtResource("9_remke")
 kind = "barbed_fence"
 seed = 2998
 
-[node name="barbed_fence_84011" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1392588639]
+[node name="barbed_fence_84011" type="Node3D" parent="NavigationRegion/Scenery" unique_id=815614564]
 transform = Transform3D(0.66, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, -188)
-script = ExtResource("9_4l2gl")
+script = ExtResource("9_remke")
 kind = "barbed_fence"
 seed = 84011
 
-[node name="barbed_fence_64898" type="Node3D" parent="NavigationRegion/Scenery" unique_id=932218226]
+[node name="barbed_fence_64898" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1915080301]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -188)
-script = ExtResource("9_4l2gl")
+script = ExtResource("9_remke")
 kind = "barbed_fence"
 seed = 64898
 
-[node name="barbed_fence_75398" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1613274318]
+[node name="barbed_fence_75398" type="Node3D" parent="NavigationRegion/Scenery" unique_id=2106705709]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -188)
-script = ExtResource("9_4l2gl")
+script = ExtResource("9_remke")
 kind = "barbed_fence"
 seed = 75398
 
-[node name="barbed_fence_58597" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1460231600]
+[node name="barbed_fence_58597" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1692781915]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, -188)
-script = ExtResource("9_4l2gl")
+script = ExtResource("9_remke")
 kind = "barbed_fence"
 seed = 58597
 
-[node name="barbed_fence_4970" type="Node3D" parent="NavigationRegion/Scenery" unique_id=980900950]
+[node name="barbed_fence_4970" type="Node3D" parent="NavigationRegion/Scenery" unique_id=884543303]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26, 0, -188)
-script = ExtResource("9_4l2gl")
+script = ExtResource("9_remke")
 kind = "barbed_fence"
 seed = 4970
 
-[node name="barbed_fence_14692" type="Node3D" parent="NavigationRegion/Scenery" unique_id=2018336625]
+[node name="barbed_fence_14692" type="Node3D" parent="NavigationRegion/Scenery" unique_id=967008355]
 transform = Transform3D(0.5, 0, 0, 0, 1, 0, 0, 0, 1, 37, 0, -188)
-script = ExtResource("9_4l2gl")
+script = ExtResource("9_remke")
 kind = "barbed_fence"
 seed = 14692
 
-[node name="horse_54804" type="Node3D" parent="NavigationRegion/Scenery" unique_id=866580063]
-transform = Transform3D(-0.98502797, 0, -0.17239475, 0, 1, 0, 0.17239475, 0, -0.98502797, -22, 0, -184)
-script = ExtResource("9_4l2gl")
+[node name="horse_54804" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1741570742]
+transform = Transform3D(0.9933365, 0, 0.11525017, 0, 1, 0, -0.11525017, 0, 0.9933365, -22, 0, -184)
+script = ExtResource("9_remke")
 kind = "horse"
 seed = 54804
 
-[node name="horse_10515" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1541437810]
-transform = Transform3D(-0.9962108, 0, 0.08697109, 0, 1, 0, -0.08697109, 0, -0.9962108, -18, 0, -184)
-script = ExtResource("9_4l2gl")
+[node name="horse_10515" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1240986460]
+transform = Transform3D(0.99831533, 0, -0.05802153, 0, 1, 0, 0.05802153, 0, 0.99831533, -18, 0, -184)
+script = ExtResource("9_remke")
 kind = "horse"
 seed = 10515
 
-[node name="horse_57855" type="Node3D" parent="NavigationRegion/Scenery" unique_id=500456462]
-transform = Transform3D(-0.9986117, 0, 0.052674852, 0, 1, 0, -0.052674852, 0, -0.9986117, -14, 0, -184)
-script = ExtResource("9_4l2gl")
+[node name="horse_57855" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1186263944]
+transform = Transform3D(0.9993829, 0, -0.03512557, 0, 1, 0, 0.03512557, 0, 0.9993829, -14, 0, -184)
+script = ExtResource("9_remke")
 kind = "horse"
 seed = 57855
 
-[node name="crate_99524" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1624586948]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0.1, -234)
-script = ExtResource("9_4l2gl")
-kind = "crate"
+[node name="rail_fence_99524" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1343720669]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -181.6)
+script = ExtResource("9_remke")
+kind = "rail_fence"
 seed = 99524
 
-[node name="coin_pile_87543" type="Node3D" parent="NavigationRegion/Scenery" unique_id=2092550562]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5, 0.1, -233.5)
-script = ExtResource("9_4l2gl")
-kind = "coin_pile"
-seed = 87543
-
-[node name="mud_house_83331" type="Node3D" parent="NavigationRegion/Scenery" unique_id=749077601]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -30, 0, -210)
-script = ExtResource("9_4l2gl")
-kind = "mud_house"
-seed = 83331
-
-[node name="mud_house_48811" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1540233922]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -30, 0, -198)
-script = ExtResource("9_4l2gl")
-kind = "mud_house"
+[node name="mandacaru_48811" type="Node3D" parent="NavigationRegion/Scenery" unique_id=562240545]
+transform = Transform3D(0.94925416, 0, -0.31451, 0, 1, 0, 0.31451, 0, 0.94925416, -26.5, 0, -181)
+script = ExtResource("9_remke")
 seed = 48811
 
-[node name="mud_house_30974" type="Node3D" parent="NavigationRegion/Scenery" unique_id=853256887]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14, 0, -204)
-script = ExtResource("9_4l2gl")
-kind = "mud_house"
-seed = 30974
-
-[node name="mud_house_16698" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1324729050]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14, 0, -194)
-script = ExtResource("9_4l2gl")
-kind = "mud_house"
-seed = 16698
-
-[node name="dead_tree_49872" type="Node3D" parent="NavigationRegion/Scenery" unique_id=583049354]
-transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, -30, 0, -186)
-script = ExtResource("9_4l2gl")
-kind = "dead_tree"
+[node name="mandacaru_49872" type="Node3D" parent="NavigationRegion/Scenery" unique_id=235395173]
+transform = Transform3D(-0.4329279, 0, 0.9014285, 0, 1, 0, -0.9014285, 0, -0.4329279, -9.5, 0, -180)
+script = ExtResource("9_remke")
 seed = 49872
 
-[node name="dead_tree_64196" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1036359803]
-transform = Transform3D(-0.16322392, 0, 0.9865891, 0, 1, 0, -0.9865891, 0, -0.16322392, 22.691328, 0, -179.14526)
-script = ExtResource("9_4l2gl")
-kind = "dead_tree"
+[node name="mandacaru_63224" type="Node3D" parent="NavigationRegion/Scenery" unique_id=746386728]
+transform = Transform3D(0.52429, 0, 0.8515398, 0, 1, 0, -0.8515398, 0, 0.52429, -27, 0, -186)
+script = ExtResource("9_remke")
+seed = 63224
+
+[node name="porch_house_97910" type="Node3D" parent="NavigationRegion/Scenery" unique_id=328437539]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -21, 0, -211)
+script = ExtResource("9_remke")
+kind = "porch_house"
+seed = 97910
+
+[node name="porch_house_82768" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1937518406]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -21, 0, -203)
+script = ExtResource("9_remke")
+kind = "porch_house"
+seed = 82768
+
+[node name="porch_house_40853" type="Node3D" parent="NavigationRegion/Scenery" unique_id=398291531]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -21, 0, -195)
+script = ExtResource("9_remke")
+kind = "porch_house"
+seed = 40853
+
+[node name="porch_house_34986" type="Node3D" parent="NavigationRegion/Scenery" unique_id=977222637]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.5, 0, -207)
+script = ExtResource("9_remke")
+kind = "porch_house"
+seed = 34986
+
+[node name="porch_house_64196" type="Node3D" parent="NavigationRegion/Scenery" unique_id=497631904]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.5, 0, -198)
+script = ExtResource("9_remke")
+kind = "porch_house"
 seed = 64196
 
-[node name="rock_19209" type="Node3D" parent="NavigationRegion/Scenery" unique_id=426771035]
-transform = Transform3D(0.80133885, 0, 0.59821075, 0, 1, 0, -0.59821075, 0, 0.80133885, 33.68737, 0, -236.76503)
-script = ExtResource("9_4l2gl")
-kind = "rock"
-seed = 19209
-
-[node name="mandacaru_50267" type="Node3D" parent="NavigationRegion/Scenery" unique_id=831492253]
-transform = Transform3D(-0.9768022, 0, 0.21414357, 0, 1, 0, -0.21414357, 0, -0.9768022, -31.556925, 0, -186.63095)
-script = ExtResource("9_4l2gl")
-seed = 50267
-
-[node name="dead_tree_23917" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1949564146]
-transform = Transform3D(0.40027085, 0, 0.91639686, 0, 1, 0, -0.91639686, 0, 0.40027085, -34.212265, 0, -192.62029)
-script = ExtResource("9_4l2gl")
+[node name="dead_tree_84701" type="Node3D" parent="NavigationRegion/Scenery" unique_id=648677775]
+transform = Transform3D(1.4, 0, 0, 0, 1.4, 0, 0, 0, 1.4, -30, 0, -186)
+script = ExtResource("9_remke")
 kind = "dead_tree"
-seed = 23917
+seed = 84701
 
-[node name="rock_81020" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1788207776]
-transform = Transform3D(-0.6201668, 0, -0.78446996, 0, 1, 0, 0.78446996, 0, -0.6201668, 0.6911721, 0, -170.99776)
-script = ExtResource("9_4l2gl")
-kind = "rock"
-seed = 81020
-
-[node name="rock_48961" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1952014628]
-transform = Transform3D(-0.6470348, 0, 0.7624605, 0, 1, 0, -0.7624605, 0, -0.6470348, 29.488905, 0, -245.49939)
-script = ExtResource("9_4l2gl")
-kind = "rock"
-seed = 48961
-
-[node name="dead_tree_1615" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1931407601]
-transform = Transform3D(-0.8659634, 0, 0.5001074, 0, 1, 0, -0.5001074, 0, -0.8659634, 37.338383, 0, -238.37422)
-script = ExtResource("9_4l2gl")
-kind = "dead_tree"
-seed = 1615
-
-[node name="mandacaru_42218" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1700760857]
-transform = Transform3D(-0.9004419, 0, -0.4349764, 0, 1, 0, 0.4349764, 0, -0.9004419, -22.74838, 0, -252.12381)
-script = ExtResource("9_4l2gl")
-seed = 42218
-
-[node name="rock_21597" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1925760324]
-transform = Transform3D(0.24844706, 0, -0.96864545, 0, 1, 0, 0.96864545, 0, 0.24844706, -6.5373855, 0, -176.44556)
-script = ExtResource("9_4l2gl")
-kind = "rock"
-seed = 21597
-
-[node name="dead_tree_80998" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1543522047]
-transform = Transform3D(0.9712092, 0, 0.23822805, 0, 1, 0, -0.23822805, 0, 0.9712092, 7.797344, 0, -177.76569)
-script = ExtResource("9_4l2gl")
-kind = "dead_tree"
-seed = 80998
-
-[node name="rock_59112" type="Node3D" parent="NavigationRegion/Scenery" unique_id=74134787]
-transform = Transform3D(-0.8603119, 0, -0.50976795, 0, 1, 0, 0.50976795, 0, -0.8603119, -10.326842, 0, -173.29178)
-script = ExtResource("9_4l2gl")
-kind = "rock"
-seed = 59112
-
-[node name="dead_tree_15602" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1211161698]
-transform = Transform3D(-0.6057383, 0, -0.79566395, 0, 1, 0, 0.79566395, 0, -0.6057383, -37.31839, 0, -204.20145)
-script = ExtResource("9_4l2gl")
-kind = "dead_tree"
-seed = 15602
-
-[node name="rock_44058" type="Node3D" parent="NavigationRegion/Scenery" unique_id=911364187]
-transform = Transform3D(-0.4471984, 0, 0.8944348, 0, 1, 0, -0.8944348, 0, -0.4471984, -39.080017, 0, -237.09326)
-script = ExtResource("9_4l2gl")
-kind = "rock"
-seed = 44058
-
-[node name="mandacaru_94124" type="Node3D" parent="NavigationRegion/Scenery" unique_id=691645787]
-transform = Transform3D(0.90480936, 0, 0.42581692, 0, 1, 0, -0.42581692, 0, 0.90480936, 27.65703, 0, -190.00381)
-script = ExtResource("9_4l2gl")
-seed = 94124
-
-[node name="xique_xique_62738" type="Node3D" parent="NavigationRegion/Scenery" unique_id=116800542]
-transform = Transform3D(-0.1438197, 0, 0.98960394, 0, 1, 0, -0.98960394, 0, -0.1438197, 43.98183, 0, -210.22734)
-script = ExtResource("9_4l2gl")
+[node name="xique_xique_49688" type="Node3D" parent="NavigationRegion/Scenery" unique_id=90994437]
+transform = Transform3D(-0.8522022, 0, 0.5232126, 0, 1, 0, -0.5232126, 0, -0.8522022, 31.950369, 0, -236.8666)
+script = ExtResource("9_remke")
 kind = "xique_xique"
-seed = 62738
+seed = 49688
 
-[node name="rock_50972" type="Node3D" parent="NavigationRegion/Scenery" unique_id=41230660]
-transform = Transform3D(0.84885573, 0, 0.5286246, 0, 1, 0, -0.5286246, 0, 0.84885573, 2.681307, 0, -253.58693)
-script = ExtResource("9_4l2gl")
+[node name="rock_94834" type="Node3D" parent="NavigationRegion/Scenery" unique_id=730072365]
+transform = Transform3D(0.43865556, 0, -0.8986553, 0, 1, 0, 0.8986553, 0, 0.43865556, -37.011215, 0, -198.06587)
+script = ExtResource("9_remke")
 kind = "rock"
-seed = 50972
+seed = 94834
 
-[node name="mandacaru_67271" type="Node3D" parent="NavigationRegion/Scenery" unique_id=2126255909]
-transform = Transform3D(-0.0284772, 0, 0.99959445, 0, 1, 0, -0.99959445, 0, -0.0284772, -9.9533825, 0, -253.68233)
-script = ExtResource("9_4l2gl")
-seed = 67271
+[node name="mandacaru_89724" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1847242604]
+transform = Transform3D(0.49580938, 0, 0.8684314, 0, 1, 0, -0.8684314, 0, 0.49580938, 27.113983, 0, -240.38724)
+script = ExtResource("9_remke")
+seed = 89724
 
-[node name="dead_tree_36171" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1156838331]
-transform = Transform3D(-0.422807, 0, -0.9062197, 0, 1, 0, 0.9062197, 0, -0.422807, -35.929024, 0, -197.30493)
-script = ExtResource("9_4l2gl")
+[node name="dead_tree_82576" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1804789265]
+transform = Transform3D(0.14710428, 0, 0.98912096, 0, 1, 0, -0.98912096, 0, 0.14710428, -2.3574378, 0, -175.96513)
+script = ExtResource("9_remke")
 kind = "dead_tree"
-seed = 36171
+seed = 82576
 
-[node name="rock_43806" type="Node3D" parent="NavigationRegion/Scenery" unique_id=2133653705]
-transform = Transform3D(-0.79765815, 0, 0.60310984, 0, 1, 0, -0.60310984, 0, -0.79765815, 4.8178697, 0, -252.12566)
-script = ExtResource("9_4l2gl")
-kind = "rock"
-seed = 43806
-
-[node name="mandacaru_68727" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1445110382]
-transform = Transform3D(0.84898174, 0, -0.52842224, 0, 1, 0, 0.52842224, 0, 0.84898174, 36.378597, 0, -210.71632)
-script = ExtResource("9_4l2gl")
-seed = 68727
-
-[node name="rock_29394" type="Node3D" parent="NavigationRegion/Scenery" unique_id=580334697]
-transform = Transform3D(-0.7646705, 0, 0.6444215, 0, 1, 0, -0.6444215, 0, -0.7646705, 10.7366495, 0, -252.37965)
-script = ExtResource("9_4l2gl")
-kind = "rock"
-seed = 29394
-
-[node name="mandacaru_2522" type="Node3D" parent="NavigationRegion/Scenery" unique_id=624591524]
-transform = Transform3D(0.9890843, 0, -0.14735094, 0, 1, 0, 0.14735094, 0, 0.9890843, 37.748295, 0, -193.12878)
-script = ExtResource("9_4l2gl")
-seed = 2522
-
-[node name="dead_tree_51756" type="Node3D" parent="NavigationRegion/Scenery" unique_id=951876298]
-transform = Transform3D(0.8149663, 0, -0.5795083, 0, 1, 0, 0.5795083, 0, 0.8149663, 1.4975986, 0, -254.80042)
-script = ExtResource("9_4l2gl")
+[node name="dead_tree_63917" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1595167211]
+transform = Transform3D(0.5288425, 0, -0.84871995, 0, 1, 0, 0.84871995, 0, 0.5288425, 41.02228, 0, -221.50925)
+script = ExtResource("9_remke")
 kind = "dead_tree"
-seed = 51756
+seed = 63917
 
-[node name="dead_tree_75669" type="Node3D" parent="NavigationRegion/Scenery" unique_id=2132411876]
-transform = Transform3D(0.91756153, 0, -0.39759377, 0, 1, 0, 0.39759377, 0, 0.91756153, -6.782685, 0, -258.16608)
-script = ExtResource("9_4l2gl")
+[node name="rock_36082" type="Node3D" parent="NavigationRegion/Scenery" unique_id=599078427]
+transform = Transform3D(-0.8237111, 0, -0.5670097, 0, 1, 0, 0.5670097, 0, -0.8237111, -40.34565, 0, -201.85893)
+script = ExtResource("9_remke")
+kind = "rock"
+seed = 36082
+
+[node name="rock_20986" type="Node3D" parent="NavigationRegion/Scenery" unique_id=207738035]
+transform = Transform3D(0.9087844, 0, 0.41726598, 0, 1, 0, -0.41726598, 0, 0.9087844, -3.142735, 0, -254.1558)
+script = ExtResource("9_remke")
+kind = "rock"
+seed = 20986
+
+[node name="dead_tree_40687" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1112808251]
+transform = Transform3D(-0.61756545, 0, 0.78651947, 0, 1, 0, -0.78651947, 0, -0.61756545, 36.71213, 0, -202.91756)
+script = ExtResource("9_remke")
 kind = "dead_tree"
-seed = 75669
+seed = 40687
 
-[node name="dead_tree_1815" type="Node3D" parent="NavigationRegion/Scenery" unique_id=376660443]
-transform = Transform3D(0.50504404, 0, 0.8630936, 0, 1, 0, -0.8630936, 0, 0.50504404, -7.9301786, 0, -176.54381)
-script = ExtResource("9_4l2gl")
-kind = "dead_tree"
-seed = 1815
-
-[node name="mandacaru_40071" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1569585530]
-transform = Transform3D(0.9901932, 0, 0.1397047, 0, 1, 0, -0.1397047, 0, 0.9901932, 14.977721, 0, -248.92921)
-script = ExtResource("9_4l2gl")
-seed = 40071
-
-[node name="mandacaru_25393" type="Node3D" parent="NavigationRegion/Scenery" unique_id=2084256199]
-transform = Transform3D(0.9319914, 0, 0.36248037, 0, 1, 0, -0.36248037, 0, 0.9319914, 15.698259, 0, -178.17615)
-script = ExtResource("9_4l2gl")
-seed = 25393
-
-[node name="rock_8420" type="Node3D" parent="NavigationRegion/Scenery" unique_id=718370986]
-transform = Transform3D(0.6565767, 0, 0.7542593, 0, 1, 0, -0.7542593, 0, 0.6565767, 37.785316, 0, -241.10262)
-script = ExtResource("9_4l2gl")
-kind = "rock"
-seed = 8420
-
-[node name="xique_xique_50301" type="Node3D" parent="NavigationRegion/Scenery" unique_id=204127804]
-transform = Transform3D(-0.8450799, 0, -0.5346401, 0, 1, 0, 0.5346401, 0, -0.8450799, -20.507168, 0, -183.16608)
-script = ExtResource("9_4l2gl")
-kind = "xique_xique"
-seed = 50301
-
-[node name="rock_41745" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1371554447]
-transform = Transform3D(-0.47689575, 0, 0.87895983, 0, 1, 0, -0.87895983, 0, -0.47689575, -34.00425, 0, -232.05992)
-script = ExtResource("9_4l2gl")
-kind = "rock"
-seed = 41745
-
-[node name="xique_xique_49781" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1443444783]
-transform = Transform3D(-0.95872647, 0, -0.28433, 0, 1, 0, 0.28433, 0, -0.95872647, 41.26988, 0, -223.70467)
-script = ExtResource("9_4l2gl")
-kind = "xique_xique"
-seed = 49781
-
-[node name="mandacaru_93027" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1725480204]
-transform = Transform3D(0.8949996, 0, -0.44606686, 0, 1, 0, 0.44606686, 0, 0.8949996, -39.497524, 0, -221.65555)
-script = ExtResource("9_4l2gl")
-seed = 93027
-
-[node name="mandacaru_39577" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1937746014]
-transform = Transform3D(-0.71346414, 0, 0.70069176, 0, 1, 0, -0.70069176, 0, -0.71346414, -37.89668, 0, -205.72665)
-script = ExtResource("9_4l2gl")
-seed = 39577
-
-[node name="xique_xique_63158" type="Node3D" parent="NavigationRegion/Scenery" unique_id=2108070080]
-transform = Transform3D(-0.99832, 0, -0.05794148, 0, 1, 0, 0.05794148, 0, -0.99832, 33.039757, 0, -233.70059)
-script = ExtResource("9_4l2gl")
-kind = "xique_xique"
-seed = 63158
-
-[node name="mandacaru_1919" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1401142848]
-transform = Transform3D(0.3826514, 0, 0.9238928, 0, 1, 0, -0.9238928, 0, 0.3826514, -23.723885, 0, -186.34285)
-script = ExtResource("9_4l2gl")
-seed = 1919
-
-[node name="rock_33231" type="Node3D" parent="NavigationRegion/Scenery" unique_id=4300394]
-transform = Transform3D(-0.952199, 0, 0.3054785, 0, 1, 0, -0.3054785, 0, -0.952199, 8.339735, 0, -175.0469)
-script = ExtResource("9_4l2gl")
-kind = "rock"
-seed = 33231
-
-[node name="dead_tree_68753" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1826143396]
-transform = Transform3D(0.7714545, 0, 0.6362845, 0, 1, 0, -0.6362845, 0, 0.7714545, -45.794365, 0, -215.65842)
-script = ExtResource("9_4l2gl")
-kind = "dead_tree"
-seed = 68753
-
-[node name="xique_xique_9546" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1014703187]
-transform = Transform3D(0.9999685, 0, -0.007931451, 0, 1, 0, 0.007931451, 0, 0.9999685, 6.103055, 0, -173.66344)
-script = ExtResource("9_4l2gl")
-kind = "xique_xique"
-seed = 9546
-
-[node name="rock_18653" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1495285327]
-transform = Transform3D(-0.06710411, 0, 0.997746, 0, 1, 0, -0.997746, 0, -0.06710411, -20.60732, 0, -254.40097)
-script = ExtResource("9_4l2gl")
-kind = "rock"
-seed = 18653
-
-[node name="rock_51267" type="Node3D" parent="NavigationRegion/Scenery" unique_id=539061860]
-transform = Transform3D(0.47331947, 0, 0.88089085, 0, 1, 0, -0.88089085, 0, 0.47331947, -10.046398, 0, -258.49084)
-script = ExtResource("9_4l2gl")
-kind = "rock"
-seed = 51267
-
-[node name="cave_floor" type="StaticBody3D" parent="NavigationRegion/Scenery" unique_id=5579484]
-
-[node name="@MeshInstance3D@32" type="MeshInstance3D" parent="NavigationRegion/Scenery/cave_floor" unique_id=1343119337]
-material_override = SubResource("StandardMaterial3D_ku1uv")
-mesh = ExtResource("10_ptcqw")
-
-[node name="@CollisionShape3D@33" type="CollisionShape3D" parent="NavigationRegion/Scenery/cave_floor" unique_id=2025982207]
-shape = ExtResource("11_c5472")
-
-[node name="cave_ceiling" type="StaticBody3D" parent="NavigationRegion/Scenery" unique_id=2053265729]
-
-[node name="@MeshInstance3D@36" type="MeshInstance3D" parent="NavigationRegion/Scenery/cave_ceiling" unique_id=1273015191]
-material_override = SubResource("StandardMaterial3D_ku1uv")
-mesh = ExtResource("12_6gci2")
-
-[node name="@CollisionShape3D@37" type="CollisionShape3D" parent="NavigationRegion/Scenery/cave_ceiling" unique_id=2034995406]
-shape = ExtResource("13_da572")
-
-[node name="cave_top" type="StaticBody3D" parent="NavigationRegion/Scenery" unique_id=482193110]
-
-[node name="@MeshInstance3D@40" type="MeshInstance3D" parent="NavigationRegion/Scenery/cave_top" unique_id=626624706]
-material_override = SubResource("StandardMaterial3D_188uc")
-mesh = ExtResource("15_q8ddj")
-
-[node name="@CollisionShape3D@41" type="CollisionShape3D" parent="NavigationRegion/Scenery/cave_top" unique_id=1322814768]
-shape = ExtResource("16_remke")
-
-[node name="stone_arch_69210" type="Node3D" parent="NavigationRegion/Scenery" unique_id=155349465]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
-script = ExtResource("9_4l2gl")
-kind = "stone_arch"
-seed = 69210
-
-[node name="campfire_52773" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1161794395]
-script = ExtResource("9_4l2gl")
-kind = "campfire"
-seed = 52773
-
-[node name="cauldron_69366" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1378724094]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0, 0.4)
-script = ExtResource("9_4l2gl")
-kind = "cauldron"
-seed = 69366
-
-[node name="sleeping_mat_73905" type="Node3D" parent="NavigationRegion/Scenery" unique_id=141543389]
-transform = Transform3D(0.9803754, 0, -0.1971398, 0, 1, 0, 0.1971398, 0, 0.9803754, -4, 0, 6)
-script = ExtResource("9_4l2gl")
-kind = "sleeping_mat"
-seed = 73905
-
-[node name="sleeping_mat_71621" type="Node3D" parent="NavigationRegion/Scenery" unique_id=996840442]
-transform = Transform3D(0.9739646, 0, -0.22670023, 0, 1, 0, 0.22670023, 0, 0.9739646, -8, 0, 8)
-script = ExtResource("9_4l2gl")
-kind = "sleeping_mat"
-seed = 71621
-
-[node name="sleeping_mat_74863" type="Node3D" parent="NavigationRegion/Scenery" unique_id=952596030]
-transform = Transform3D(0.9919719, 0, -0.12645857, 0, 1, 0, 0.12645857, 0, 0.9919719, 6, 0, 8)
-script = ExtResource("9_4l2gl")
-kind = "sleeping_mat"
-seed = 74863
-
-[node name="sleeping_mat_7054" type="Node3D" parent="NavigationRegion/Scenery" unique_id=110507458]
-transform = Transform3D(0.9672762, 0, 0.2537258, 0, 1, 0, -0.2537258, 0, 0.9672762, 8, 0, 2)
-script = ExtResource("9_4l2gl")
-kind = "sleeping_mat"
-seed = 7054
-
-[node name="coin_pile_46731" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1495671114]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 4)
-script = ExtResource("9_4l2gl")
-kind = "coin_pile"
-seed = 46731
-
-[node name="horse_27958" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1865640955]
-transform = Transform3D(0.95318615, 0, 0.30238408, 0, 1, 0, -0.30238408, 0, 0.95318615, -8, 0, -16)
-script = ExtResource("9_4l2gl")
-kind = "horse"
-seed = 27958
-
-[node name="horse_22331" type="Node3D" parent="NavigationRegion/Scenery" unique_id=372834151]
-transform = Transform3D(0.3522119, 0, -0.9359203, 0, 1, 0, 0.9359203, 0, 0.3522119, 4, 0, -16)
-script = ExtResource("9_4l2gl")
-kind = "horse"
-seed = 22331
-
-[node name="idol_totem_97591" type="Node3D" parent="NavigationRegion/Scenery" unique_id=553478089]
-transform = Transform3D(0.76822126, 0, 0.6401844, 0, 1, 0, -0.6401844, 0, 0.76822126, -10, -6, 64)
-script = ExtResource("9_4l2gl")
-kind = "idol_totem"
-seed = 97591
-
-[node name="idol_totem_77773" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1187933515]
-transform = Transform3D(0.76822126, 0, -0.6401844, 0, 1, 0, 0.6401844, 0, 0.76822126, 10, -6, 64)
-script = ExtResource("9_4l2gl")
-kind = "idol_totem"
-seed = 77773
-
-[node name="idol_totem_12722" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1961195296]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12, -6, 76)
-script = ExtResource("9_4l2gl")
-kind = "idol_totem"
-seed = 12722
-
-[node name="idol_totem_96925" type="Node3D" parent="NavigationRegion/Scenery" unique_id=695032678]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12, -6, 76)
-script = ExtResource("9_4l2gl")
-kind = "idol_totem"
-seed = 96925
-
-[node name="idol_totem_59922" type="Node3D" parent="NavigationRegion/Scenery" unique_id=921661324]
-transform = Transform3D(-0.76822126, 0, 0.6401844, 0, 1, 0, -0.6401844, 0, -0.76822126, -10, -6, 88)
-script = ExtResource("9_4l2gl")
-kind = "idol_totem"
-seed = 59922
-
-[node name="idol_totem_525" type="Node3D" parent="NavigationRegion/Scenery" unique_id=247653373]
-transform = Transform3D(-0.76822126, 0, -0.6401844, 0, 1, 0, 0.6401844, 0, -0.76822126, 10, -6, 88)
-script = ExtResource("9_4l2gl")
-kind = "idol_totem"
-seed = 525
-
-[node name="rock_72356" type="Node3D" parent="NavigationRegion/Scenery" unique_id=158541726]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, -14)
-script = ExtResource("9_4l2gl")
-kind = "rock"
-seed = 72356
-
-[node name="rock_94829" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1803670787]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, -12)
-script = ExtResource("9_4l2gl")
-kind = "rock"
-seed = 94829
-
-[node name="mandacaru_55500" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1464373677]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, -20)
-script = ExtResource("9_4l2gl")
-seed = 55500
-
-[node name="mandacaru_56104" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1700394494]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -28)
-script = ExtResource("9_4l2gl")
-seed = 56104
-
-[node name="dead_tree_81689" type="Node3D" parent="NavigationRegion/Scenery" unique_id=663492066]
-transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -18, 0, -34)
-script = ExtResource("9_4l2gl")
-kind = "dead_tree"
-seed = 81689
-
-[node name="rock_34161" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1894816348]
-transform = Transform3D(-0.57262206, 0, -0.81981945, 0, 1, 0, 0.81981945, 0, -0.57262206, -17.017841, 0, -33.34214)
-script = ExtResource("9_4l2gl")
-kind = "rock"
-seed = 34161
-
-[node name="xique_xique_82707" type="Node3D" parent="NavigationRegion/Scenery" unique_id=200421141]
-transform = Transform3D(-0.40572485, 0, 0.91399527, 0, 1, 0, -0.91399527, 0, -0.40572485, -15.463765, 0, -34.09075)
-script = ExtResource("9_4l2gl")
-kind = "xique_xique"
-seed = 82707
-
-[node name="mandacaru_27532" type="Node3D" parent="NavigationRegion/Scenery" unique_id=453583514]
-transform = Transform3D(-0.22734839, 0, -0.9738135, 0, 1, 0, 0.9738135, 0, -0.22734839, -20.52134, 0, -33.981926)
-script = ExtResource("9_4l2gl")
-seed = 27532
-
-[node name="mandacaru_18360" type="Node3D" parent="NavigationRegion/Scenery" unique_id=937872119]
-transform = Transform3D(0.31898686, 0, -0.94775915, 0, 1, 0, 0.94775915, 0, 0.31898686, -22.640238, 0, -33.639923)
-script = ExtResource("9_4l2gl")
-seed = 18360
-
-[node name="xique_xique_89827" type="Node3D" parent="NavigationRegion/Scenery" unique_id=509198203]
-transform = Transform3D(0.98344964, 0, -0.18118165, 0, 1, 0, 0.18118165, 0, 0.98344964, -21.905716, 0, -31.395908)
-script = ExtResource("9_4l2gl")
+[node name="xique_xique_89827" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1706470902]
+transform = Transform3D(-0.99952376, 0, -0.030858949, 0, 1, 0, 0.030858949, 0, -0.99952376, -38.691036, 0, -193.8388)
+script = ExtResource("9_remke")
 kind = "xique_xique"
 seed = 89827
 
-[node name="rock_7013" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1720279614]
+[node name="xique_xique_25335" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1616939281]
+transform = Transform3D(-0.592002, 0, -0.8059365, 0, 1, 0, 0.8059365, 0, -0.592002, -35.84361, 0, -230.78728)
+script = ExtResource("9_remke")
+kind = "xique_xique"
+seed = 25335
+
+[node name="mandacaru_29437" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1068394655]
+transform = Transform3D(0.5577393, 0, 0.8300162, 0, 1, 0, -0.8300162, 0, 0.5577393, -28.98199, 0, -190.91797)
+script = ExtResource("9_remke")
+seed = 29437
+
+[node name="dead_tree_14652" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1088972604]
+transform = Transform3D(0.5513655, 0, -0.8342638, 0, 1, 0, 0.8342638, 0, 0.5513655, 37.062252, 0, -193.16034)
+script = ExtResource("9_remke")
+kind = "dead_tree"
+seed = 14652
+
+[node name="xique_xique_86630" type="Node3D" parent="NavigationRegion/Scenery" unique_id=837729207]
+transform = Transform3D(0.87681663, 0, -0.48082495, 0, 1, 0, 0.48082495, 0, 0.87681663, -24.903677, 0, -251.51418)
+script = ExtResource("9_remke")
+kind = "xique_xique"
+seed = 86630
+
+[node name="dead_tree_51325" type="Node3D" parent="NavigationRegion/Scenery" unique_id=38845793]
+transform = Transform3D(0.92627555, 0, 0.37684685, 0, 1, 0, -0.37684685, 0, 0.92627555, -39.032814, 0, -220.09172)
+script = ExtResource("9_remke")
+kind = "dead_tree"
+seed = 51325
+
+[node name="dead_tree_72568" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1758535115]
+transform = Transform3D(-0.8625397, 0, -0.5059894, 0, 1, 0, 0.5059894, 0, -0.8625397, -14.569605, 0, -250.67953)
+script = ExtResource("9_remke")
+kind = "dead_tree"
+seed = 72568
+
+[node name="xique_xique_11565" type="Node3D" parent="NavigationRegion/Scenery" unique_id=697417393]
+transform = Transform3D(0.9973579, 0, 0.072644524, 0, 1, 0, -0.072644524, 0, 0.9973579, 10.619941, 0, -180.43661)
+script = ExtResource("9_remke")
+kind = "xique_xique"
+seed = 11565
+
+[node name="rock_71756" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1101944045]
+transform = Transform3D(0.3877087, 0, 0.92178196, 0, 1, 0, -0.92178196, 0, 0.3877087, 39.06574, 0, -237.0832)
+script = ExtResource("9_remke")
+kind = "rock"
+seed = 71756
+
+[node name="rock_27301" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1129857020]
+transform = Transform3D(-0.3996959, 0, 0.9166478, 0, 1, 0, -0.9166478, 0, -0.3996959, -39.484524, 0, -231.48941)
+script = ExtResource("9_remke")
+kind = "rock"
+seed = 27301
+
+[node name="xique_xique_76121" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1885142754]
+transform = Transform3D(0.92055386, 0, -0.39061564, 0, 1, 0, 0.39061564, 0, 0.92055386, -30.550848, 0, -236.592)
+script = ExtResource("9_remke")
+kind = "xique_xique"
+seed = 76121
+
+[node name="xique_xique_62266" type="Node3D" parent="NavigationRegion/Scenery" unique_id=93103632]
+transform = Transform3D(0.9999996, 0, -0.0009334722, 0, 1, 0, 0.0009334722, 0, 0.9999996, -10.863476, 0, -255.97981)
+script = ExtResource("9_remke")
+kind = "xique_xique"
+seed = 62266
+
+[node name="rock_87040" type="Node3D" parent="NavigationRegion/Scenery" unique_id=851195859]
+transform = Transform3D(0.6046735, 0, -0.79647344, 0, 1, 0, 0.79647344, 0, 0.6046735, 22.593132, 0, -182.25055)
+script = ExtResource("9_remke")
+kind = "rock"
+seed = 87040
+
+[node name="mandacaru_92532" type="Node3D" parent="NavigationRegion/Scenery" unique_id=857309402]
+transform = Transform3D(-0.8388214, 0, 0.54440665, 0, 1, 0, -0.54440665, 0, -0.8388214, 43.514046, 0, -219.54326)
+script = ExtResource("9_remke")
+seed = 92532
+
+[node name="xique_xique_72571" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1578805062]
+transform = Transform3D(-0.33443013, 0, 0.94242054, 0, 1, 0, -0.94242054, 0, -0.33443013, 11.494097, 0, -172.2849)
+script = ExtResource("9_remke")
+kind = "xique_xique"
+seed = 72571
+
+[node name="xique_xique_30132" type="Node3D" parent="NavigationRegion/Scenery" unique_id=934543120]
+transform = Transform3D(0.41692045, 0, 0.908943, 0, 1, 0, -0.908943, 0, 0.41692045, 36.777596, 0, -191.28323)
+script = ExtResource("9_remke")
+kind = "xique_xique"
+seed = 30132
+
+[node name="xique_xique_49224" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1588722731]
+transform = Transform3D(0.2574466, 0, 0.9662925, 0, 1, 0, -0.9662925, 0, 0.2574466, -3.6535947, 0, -173.50775)
+script = ExtResource("9_remke")
+kind = "xique_xique"
+seed = 49224
+
+[node name="xique_xique_31677" type="Node3D" parent="NavigationRegion/Scenery" unique_id=2083821953]
+transform = Transform3D(-0.6490395, 0, -0.7607547, 0, 1, 0, 0.7607547, 0, -0.6490395, 13.6210165, 0, -177.38438)
+script = ExtResource("9_remke")
+kind = "xique_xique"
+seed = 31677
+
+[node name="rock_95359" type="Node3D" parent="NavigationRegion/Scenery" unique_id=928084034]
+transform = Transform3D(0.9252992, 0, 0.37923777, 0, 1, 0, -0.37923777, 0, 0.9252992, -37.391777, 0, -199.86273)
+script = ExtResource("9_remke")
+kind = "rock"
+seed = 95359
+
+[node name="xique_xique_71292" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1834199913]
+transform = Transform3D(0.89769995, 0, 0.4406073, 0, 1, 0, -0.4406073, 0, 0.89769995, 6.383953, 0, -172.4127)
+script = ExtResource("9_remke")
+kind = "xique_xique"
+seed = 71292
+
+[node name="rock_83919" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1900362796]
+transform = Transform3D(0.16655082, 0, 0.9860329, 0, 1, 0, -0.9860329, 0, 0.16655082, -22.841206, 0, -246.80464)
+script = ExtResource("9_remke")
+kind = "rock"
+seed = 83919
+
+[node name="rock_10438" type="Node3D" parent="NavigationRegion/Scenery" unique_id=2142398786]
+transform = Transform3D(0.92436576, 0, 0.38150746, 0, 1, 0, -0.38150746, 0, 0.92436576, -7.2523427, 0, -170.8544)
+script = ExtResource("9_remke")
+kind = "rock"
+seed = 10438
+
+[node name="dead_tree_5539" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1329543055]
+transform = Transform3D(0.24070261, 0, -0.97059894, 0, 1, 0, 0.97059894, 0, 0.24070261, 38.70806, 0, -226.65402)
+script = ExtResource("9_remke")
+kind = "dead_tree"
+seed = 5539
+
+[node name="dead_tree_46311" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1330502663]
+transform = Transform3D(-0.99307853, 0, 0.11745236, 0, 1, 0, -0.11745236, 0, -0.99307853, -41.457333, 0, -199.38828)
+script = ExtResource("9_remke")
+kind = "dead_tree"
+seed = 46311
+
+[node name="dead_tree_36609" type="Node3D" parent="NavigationRegion/Scenery" unique_id=704912045]
+transform = Transform3D(-0.75650096, 0, -0.6539926, 0, 1, 0, 0.6539926, 0, -0.75650096, -19.832172, 0, -184.92847)
+script = ExtResource("9_remke")
+kind = "dead_tree"
+seed = 36609
+
+[node name="rock_78477" type="Node3D" parent="NavigationRegion/Scenery" unique_id=644867540]
+transform = Transform3D(-0.40248215, 0, 0.91542786, 0, 1, 0, -0.91542786, 0, -0.40248215, -1.0907317, 0, -254.91222)
+script = ExtResource("9_remke")
+kind = "rock"
+seed = 78477
+
+[node name="xique_xique_1248" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1242214107]
+transform = Transform3D(-0.5197604, 0, 0.85431206, 0, 1, 0, -0.85431206, 0, -0.5197604, -20.809128, 0, -185.2728)
+script = ExtResource("9_remke")
+kind = "xique_xique"
+seed = 1248
+
+[node name="rock_51004" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1623457934]
+transform = Transform3D(-0.99228793, 0, 0.12395406, 0, 1, 0, -0.12395406, 0, -0.99228793, -44.75779, 0, -216.89734)
+script = ExtResource("9_remke")
+kind = "rock"
+seed = 51004
+
+[node name="dead_tree_56460" type="Node3D" parent="NavigationRegion/Scenery" unique_id=744817473]
+transform = Transform3D(-0.14781523, 0, 0.989015, 0, 1, 0, -0.989015, 0, -0.14781523, -2.860968, 0, -258.81253)
+script = ExtResource("9_remke")
+kind = "dead_tree"
+seed = 56460
+
+[node name="rock_46480" type="Node3D" parent="NavigationRegion/Scenery" unique_id=675255216]
+transform = Transform3D(0.9899751, 0, 0.14124185, 0, 1, 0, -0.14124185, 0, 0.9899751, -15.671298, 0, -252.90454)
+script = ExtResource("9_remke")
+kind = "rock"
+seed = 46480
+
+[node name="xique_xique_69210" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1632783893]
+transform = Transform3D(-0.7475613, 0, -0.66419286, 0, 1, 0, 0.66419286, 0, -0.7475613, 3.7172132, 0, -258.5801)
+script = ExtResource("9_remke")
+kind = "xique_xique"
+seed = 69210
+
+[node name="mandacaru_71621" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1506360566]
+transform = Transform3D(0.7338841, 0, 0.67927474, 0, 1, 0, -0.67927474, 0, 0.7338841, 30.92555, 0, -237.54874)
+script = ExtResource("9_remke")
+seed = 71621
+
+[node name="cave_floor" type="StaticBody3D" parent="NavigationRegion/Scenery" unique_id=1724441662]
+
+[node name="@MeshInstance3D@32" type="MeshInstance3D" parent="NavigationRegion/Scenery/cave_floor" unique_id=1567104494]
+material_override = SubResource("ShaderMaterial_2q4r4")
+mesh = ExtResource("14_188uc")
+
+[node name="@CollisionShape3D@33" type="CollisionShape3D" parent="NavigationRegion/Scenery/cave_floor" unique_id=1716770092]
+shape = ExtResource("15_25286")
+
+[node name="cave_ceiling" type="StaticBody3D" parent="NavigationRegion/Scenery" unique_id=1199523707]
+
+[node name="@MeshInstance3D@36" type="MeshInstance3D" parent="NavigationRegion/Scenery/cave_ceiling" unique_id=238164887]
+material_override = SubResource("ShaderMaterial_2q4r4")
+mesh = ExtResource("16_e733i")
+
+[node name="@CollisionShape3D@37" type="CollisionShape3D" parent="NavigationRegion/Scenery/cave_ceiling" unique_id=1381643862]
+shape = ExtResource("17_bgqav")
+
+[node name="cave_top" type="StaticBody3D" parent="NavigationRegion/Scenery" unique_id=1637637214]
+
+[node name="@MeshInstance3D@40" type="MeshInstance3D" parent="NavigationRegion/Scenery/cave_top" unique_id=463875399]
+material_override = SubResource("StandardMaterial3D_fn7nb")
+mesh = ExtResource("18_62c7y")
+
+[node name="@CollisionShape3D@41" type="CollisionShape3D" parent="NavigationRegion/Scenery/cave_top" unique_id=2045390648]
+shape = ExtResource("19_wfy4u")
+
+[node name="roots_mouth" type="MeshInstance3D" parent="NavigationRegion/Scenery" unique_id=1333179229]
+material_override = SubResource("StandardMaterial3D_04edn")
+mesh = ExtResource("21_lirk4")
+
+[node name="roots_tunnel" type="MeshInstance3D" parent="NavigationRegion/Scenery" unique_id=1472886963]
+material_override = SubResource("StandardMaterial3D_04edn")
+mesh = ExtResource("22_mlkrb")
+
+[node name="roots_hall" type="MeshInstance3D" parent="NavigationRegion/Scenery" unique_id=476753854]
+material_override = SubResource("StandardMaterial3D_04edn")
+mesh = ExtResource("23_f30r3")
+
+[node name="cave_mouth_13741" type="Node3D" parent="NavigationRegion/Scenery" unique_id=505949348]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8)
+script = ExtResource("9_remke")
+kind = "cave_mouth"
+seed = 13741
+
+[node name="drum_column_70938" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1659492384]
+transform = Transform3D(0.85744786, 0, 0.51457083, 0, 1, 0, -0.51457083, 0, 0.85744786, -4.3, 0, -10.4)
+script = ExtResource("9_remke")
+kind = "drum_column"
+seed = 70938
+
+[node name="drum_column_46731" type="Node3D" parent="NavigationRegion/Scenery" unique_id=226059762]
+transform = Transform3D(0.36197364, 0, -0.93218833, 0, 1, 0, 0.93218833, 0, 0.36197364, 5.4, 0, -10.3)
+script = ExtResource("9_remke")
+kind = "drum_column"
+seed = 46731
+
+[node name="broken_drum_column_27958" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1920992263]
+transform = Transform3D(0.95318615, 0, 0.30238408, 0, 1, 0, -0.30238408, 0, 0.95318615, -7.4, 0, -11.9)
+script = ExtResource("9_remke")
+kind = "broken_drum_column"
+seed = 27958
+
+[node name="block_pillar_96447" type="Node3D" parent="NavigationRegion/Scenery" unique_id=879362325]
+transform = Transform3D(0.9800666, 0, 0.19866933, 0, 1, 0, -0.19866933, 0, 0.9800666, -11.6, 0, -12.6)
+script = ExtResource("9_remke")
+kind = "block_pillar"
+seed = 96447
+
+[node name="mandacaru_97591" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1795777449]
+transform = Transform3D(0.36717042, 0, -0.93015367, 0, 1, 0, 0.93015367, 0, 0.36717042, 11.2, 0, -12.4)
+script = ExtResource("9_remke")
+seed = 97591
+
+[node name="mandacaru_96925" type="Node3D" parent="NavigationRegion/Scenery" unique_id=330612763]
+transform = Transform3D(-0.9899413, 0, 0.14147876, 0, 1, 0, -0.14147876, 0, -0.9899413, 13.8, 0, -11)
+script = ExtResource("9_remke")
+seed = 96925
+
+[node name="mandacaru_72356" type="Node3D" parent="NavigationRegion/Scenery" unique_id=132197914]
+transform = Transform3D(0.6782073, 0, -0.7348707, 0, 1, 0, 0.7348707, 0, 0.6782073, -11.8, 0, -14)
+script = ExtResource("9_remke")
+seed = 72356
+
+[node name="campfire_94829" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1498365920]
+script = ExtResource("9_remke")
+kind = "campfire"
+seed = 94829
+
+[node name="stone_stove_55500" type="Node3D" parent="NavigationRegion/Scenery" unique_id=298097225]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, 0, -1.8)
+script = ExtResource("9_remke")
+kind = "stone_stove"
+seed = 55500
+
+[node name="sleeping_mat_39152" type="Node3D" parent="NavigationRegion/Scenery" unique_id=381709535]
+transform = Transform3D(0.98574764, 0, 0.16823097, 0, 1, 0, -0.16823097, 0, 0.98574764, -4, 0, 6)
+script = ExtResource("9_remke")
+kind = "sleeping_mat"
+seed = 39152
+
+[node name="sleeping_mat_78595" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1841364570]
+transform = Transform3D(0.97442025, 0, -0.22473355, 0, 1, 0, 0.22473355, 0, 0.97442025, -8, 0, 8)
+script = ExtResource("9_remke")
+kind = "sleeping_mat"
+seed = 78595
+
+[node name="sleeping_mat_55432" type="Node3D" parent="NavigationRegion/Scenery" unique_id=918041988]
+transform = Transform3D(0.9585868, 0, -0.28480047, 0, 1, 0, 0.28480047, 0, 0.9585868, 6, 0, 8)
+script = ExtResource("9_remke")
+kind = "sleeping_mat"
+seed = 55432
+
+[node name="sleeping_mat_34427" type="Node3D" parent="NavigationRegion/Scenery" unique_id=251785580]
+transform = Transform3D(0.96888536, 0, -0.24750996, 0, 1, 0, 0.24750996, 0, 0.96888536, 8, 0, 2)
+script = ExtResource("9_remke")
+kind = "sleeping_mat"
+seed = 34427
+
+[node name="rolled_blanket_71135" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1109735022]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 4.5)
+script = ExtResource("9_remke")
+kind = "rolled_blanket"
+seed = 71135
+
+[node name="rolled_blanket_66238" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1046707935]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, 6.5)
+script = ExtResource("9_remke")
+kind = "rolled_blanket"
+seed = 66238
+
+[node name="gourd_bowls_12514" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1547073476]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6, 0, 1.8)
+script = ExtResource("9_remke")
+kind = "gourd_bowls"
+seed = 12514
+
+[node name="gourd_bowls_83151" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1103788742]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9, 0, 1.6)
+script = ExtResource("9_remke")
+kind = "gourd_bowls"
+seed = 83151
+
+[node name="gourd_bowls_48557" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1436774106]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6, 0, -0.6)
+script = ExtResource("9_remke")
+kind = "gourd_bowls"
+seed = 48557
+
+[node name="hanging_bags_82707" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1918970752]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -11, 0, 3)
+script = ExtResource("9_remke")
+kind = "hanging_bags"
+seed = 82707
+
+[node name="coin_pile_31447" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1469500770]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 4)
+script = ExtResource("9_remke")
+kind = "coin_pile"
+seed = 31447
+
+[node name="horse_80361" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1532054811]
+transform = Transform3D(-0.4391302, 0, 0.89842343, 0, 1, 0, -0.89842343, 0, -0.4391302, -8, 0, -16)
+script = ExtResource("9_remke")
+kind = "horse"
+seed = 80361
+
+[node name="horse_46932" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1779576132]
+transform = Transform3D(-0.99571, 0, -0.092528686, 0, 1, 0, 0.092528686, 0, -0.99571, 4, 0, -16)
+script = ExtResource("9_remke")
+kind = "horse"
+seed = 46932
+
+[node name="idol_column_27532" type="Node3D" parent="NavigationRegion/Scenery" unique_id=854550761]
+transform = Transform3D(0.76822126, 0, 0.6401844, 0, 1, 0, -0.6401844, 0, 0.76822126, -10, -6, 64)
+script = ExtResource("9_remke")
+kind = "idol_column"
+seed = 27532
+
+[node name="idol_column_10488" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1379241471]
+transform = Transform3D(0.76822126, 0, -0.6401844, 0, 1, 0, 0.6401844, 0, 0.76822126, 10, -6, 64)
+script = ExtResource("9_remke")
+kind = "idol_column"
+seed = 10488
+
+[node name="idol_column_tilted_29738" type="Node3D" parent="NavigationRegion/Scenery" unique_id=629058453]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12, -6, 76)
+script = ExtResource("9_remke")
+kind = "idol_column_tilted"
+seed = 29738
+
+[node name="idol_column_93831" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1211351155]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12, -6, 76)
+script = ExtResource("9_remke")
+kind = "idol_column"
+seed = 93831
+
+[node name="idol_column_95151" type="Node3D" parent="NavigationRegion/Scenery" unique_id=720086588]
+transform = Transform3D(-0.76822126, 0, 0.6401844, 0, 1, 0, -0.6401844, 0, -0.76822126, -10, -6, 88)
+script = ExtResource("9_remke")
+kind = "idol_column"
+seed = 95151
+
+[node name="idol_column_93007" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1202226005]
+transform = Transform3D(-0.76822126, 0, -0.6401844, 0, 1, 0, 0.6401844, 0, -0.76822126, 10, -6, 88)
+script = ExtResource("9_remke")
+kind = "idol_column"
+seed = 93007
+
+[node name="fallen_column_16327" type="Node3D" parent="NavigationRegion/Scenery" unique_id=675997257]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -6, 84)
+script = ExtResource("9_remke")
+kind = "fallen_column"
+seed = 16327
+
+[node name="moonbeam_52094" type="Node3D" parent="NavigationRegion/Scenery" unique_id=878770522]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 74)
+script = ExtResource("9_remke")
+kind = "moonbeam"
+seed = 52094
+
+[node name="arched_block_wall_18360" type="Node3D" parent="NavigationRegion/Scenery" unique_id=402024086]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4, -6, 90.2)
+script = ExtResource("9_remke")
+kind = "arched_block_wall"
+seed = 18360
+
+[node name="rock_22848" type="Node3D" parent="NavigationRegion/Scenery" unique_id=617992622]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, -14)
+script = ExtResource("9_remke")
+kind = "rock"
+seed = 22848
+
+[node name="rock_72459" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1257504880]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, -12)
+script = ExtResource("9_remke")
+kind = "rock"
+seed = 72459
+
+[node name="mandacaru_55501" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1013306802]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, -20)
+script = ExtResource("9_remke")
+seed = 55501
+
+[node name="mandacaru_7508" type="Node3D" parent="NavigationRegion/Scenery" unique_id=164898740]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -28)
+script = ExtResource("9_remke")
+seed = 7508
+
+[node name="great_dead_tree_95929" type="Node3D" parent="NavigationRegion/Scenery" unique_id=66553961]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -18, 0, -34)
+script = ExtResource("9_remke")
+kind = "great_dead_tree"
+seed = 95929
+
+[node name="dry_stakes_68613" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1814960956]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, -31)
+script = ExtResource("9_remke")
+kind = "dry_stakes"
+seed = 68613
+
+[node name="dry_stakes_46301" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1933900809]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, -29)
+script = ExtResource("9_remke")
+kind = "dry_stakes"
+seed = 46301
+
+[node name="dry_stakes_89827" type="Node3D" parent="NavigationRegion/Scenery" unique_id=793862805]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -33)
+script = ExtResource("9_remke")
+kind = "dry_stakes"
+seed = 89827
+
+[node name="rock_7013" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1776951052]
 transform = Transform3D(-0.99954563, 0, 0.03014123, 0, 1, 0, -0.03014123, 0, -0.99954563, -15.570154, 0, -31.137419)
-script = ExtResource("9_4l2gl")
+script = ExtResource("9_remke")
 kind = "rock"
 seed = 7013
 
-[node name="rock_4138" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1564677298]
+[node name="rock_4138" type="Node3D" parent="NavigationRegion/Scenery" unique_id=776557097]
 transform = Transform3D(0.9861127, 0, -0.16607732, 0, 1, 0, 0.16607732, 0, 0.9861127, 21.32669, 0, -30.576996)
-script = ExtResource("9_4l2gl")
+script = ExtResource("9_remke")
 kind = "rock"
 seed = 4138
 
-[node name="xique_xique_97294" type="Node3D" parent="NavigationRegion/Scenery" unique_id=914014795]
+[node name="xique_xique_97294" type="Node3D" parent="NavigationRegion/Scenery" unique_id=64945037]
 transform = Transform3D(-0.318595, 0, -0.94789094, 0, 1, 0, 0.94789094, 0, -0.318595, 32.869743, 0, -32.368477)
-script = ExtResource("9_4l2gl")
+script = ExtResource("9_remke")
 kind = "xique_xique"
 seed = 97294
 
-[node name="rock_37189" type="Node3D" parent="NavigationRegion/Scenery" unique_id=922191815]
+[node name="rock_37189" type="Node3D" parent="NavigationRegion/Scenery" unique_id=56270014]
 transform = Transform3D(0.046021845, 0, 0.9989404, 0, 1, 0, -0.9989404, 0, 0.046021845, -25.182732, 0, -31.177525)
-script = ExtResource("9_4l2gl")
+script = ExtResource("9_remke")
 kind = "rock"
 seed = 37189
 
-[node name="xique_xique_47497" type="Node3D" parent="NavigationRegion/Scenery" unique_id=219834079]
+[node name="xique_xique_47497" type="Node3D" parent="NavigationRegion/Scenery" unique_id=21477912]
 transform = Transform3D(0.96340954, 0, 0.2680337, 0, 1, 0, -0.2680337, 0, 0.96340954, 6.670845, 0, -34.675674)
-script = ExtResource("9_4l2gl")
+script = ExtResource("9_remke")
 kind = "xique_xique"
 seed = 47497
 
-[node name="xique_xique_45775" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1731745108]
+[node name="xique_xique_45775" type="Node3D" parent="NavigationRegion/Scenery" unique_id=672861219]
 transform = Transform3D(-0.95711887, 0, -0.2896955, 0, 1, 0, 0.2896955, 0, -0.95711887, 22.777714, 0, -30.083204)
-script = ExtResource("9_4l2gl")
+script = ExtResource("9_remke")
 kind = "xique_xique"
 seed = 45775
 
-[node name="mandacaru_18347" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1582723272]
+[node name="mandacaru_18347" type="Node3D" parent="NavigationRegion/Scenery" unique_id=54895520]
 transform = Transform3D(-0.9943647, 0, -0.10601359, 0, 1, 0, 0.10601359, 0, -0.9943647, 8.25666, 0, -32.12889)
-script = ExtResource("9_4l2gl")
+script = ExtResource("9_remke")
 seed = 18347
 
-[node name="rock_3247" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1178666819]
+[node name="rock_3247" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1173252792]
 transform = Transform3D(-0.9999485, 0, 0.010146595, 0, 1, 0, -0.010146595, 0, -0.9999485, -15.68038, 0, -33.21736)
-script = ExtResource("9_4l2gl")
+script = ExtResource("9_remke")
 kind = "rock"
 seed = 3247
 
-[node name="rock_30654" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1170387142]
+[node name="rock_30654" type="Node3D" parent="NavigationRegion/Scenery" unique_id=911322654]
 transform = Transform3D(0.7698261, 0, -0.6382537, 0, 1, 0, 0.6382537, 0, 0.7698261, -10.412315, 0, -30.92935)
-script = ExtResource("9_4l2gl")
+script = ExtResource("9_remke")
 kind = "rock"
 seed = 30654
 
-[node name="xique_xique_38232" type="Node3D" parent="NavigationRegion/Scenery" unique_id=621370106]
+[node name="xique_xique_38232" type="Node3D" parent="NavigationRegion/Scenery" unique_id=242105666]
 transform = Transform3D(0.88351464, 0, 0.46840358, 0, 1, 0, -0.46840358, 0, 0.88351464, -20.87621, 0, -30.79615)
-script = ExtResource("9_4l2gl")
+script = ExtResource("9_remke")
 kind = "xique_xique"
 seed = 38232
 
-[node name="xique_xique_77529" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1649225382]
+[node name="xique_xique_77529" type="Node3D" parent="NavigationRegion/Scenery" unique_id=103189272]
 transform = Transform3D(-0.34967855, 0, 0.93686974, 0, 1, 0, -0.93686974, 0, -0.34967855, -25.096779, 0, -33.687187)
-script = ExtResource("9_4l2gl")
+script = ExtResource("9_remke")
 kind = "xique_xique"
 seed = 77529
 
-[node name="mandacaru_93278" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1293679611]
+[node name="mandacaru_93278" type="Node3D" parent="NavigationRegion/Scenery" unique_id=72383655]
 transform = Transform3D(-0.5570278, 0, -0.83049387, 0, 1, 0, 0.83049387, 0, -0.5570278, 6.02528, 0, -32.3701)
-script = ExtResource("9_4l2gl")
+script = ExtResource("9_remke")
 seed = 93278
 
-[node name="xique_xique_40886" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1098914847]
+[node name="xique_xique_40886" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1683424098]
 transform = Transform3D(0.7153134, 0, -0.69880384, 0, 1, 0, 0.69880384, 0, 0.7153134, -9.905382, 0, -30.475458)
-script = ExtResource("9_4l2gl")
+script = ExtResource("9_remke")
 kind = "xique_xique"
 seed = 40886
 
-[node name="mandacaru_73077" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1767802621]
+[node name="mandacaru_73077" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1213688773]
 transform = Transform3D(-0.999868, 0, -0.016248075, 0, 1, 0, 0.016248075, 0, -0.999868, 11.251995, 0, -34.783146)
-script = ExtResource("9_4l2gl")
+script = ExtResource("9_remke")
 seed = 73077
 
-[node name="mandacaru_70944" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1134237660]
+[node name="mandacaru_70944" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1183712980]
 transform = Transform3D(-0.5206566, 0, -0.8537662, 0, 1, 0, 0.8537662, 0, -0.5206566, -20.586445, 0, -30.936333)
-script = ExtResource("9_4l2gl")
+script = ExtResource("9_remke")
 seed = 70944
 
-[node name="xique_xique_28451" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1746263955]
+[node name="xique_xique_28451" type="Node3D" parent="NavigationRegion/Scenery" unique_id=329946052]
 transform = Transform3D(-0.9991552, 0, -0.041096166, 0, 1, 0, 0.041096166, 0, -0.9991552, -10.572453, 0, -34.34968)
-script = ExtResource("9_4l2gl")
+script = ExtResource("9_remke")
 kind = "xique_xique"
 seed = 28451
 
-[node name="rock_36404" type="Node3D" parent="NavigationRegion/Scenery" unique_id=782709011]
+[node name="rock_36404" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1199083929]
 transform = Transform3D(0.8895677, 0, -0.4568034, 0, 1, 0, 0.4568034, 0, 0.8895677, -6.5924015, 0, -33.78301)
-script = ExtResource("9_4l2gl")
+script = ExtResource("9_remke")
 kind = "rock"
 seed = 36404
 
-[node name="xique_xique_80417" type="Node3D" parent="NavigationRegion/Scenery" unique_id=339803578]
+[node name="xique_xique_80417" type="Node3D" parent="NavigationRegion/Scenery" unique_id=80796676]
 transform = Transform3D(-0.99924314, 0, 0.03889953, 0, 1, 0, -0.03889953, 0, -0.99924314, -20.35742, 0, -32.1342)
-script = ExtResource("9_4l2gl")
+script = ExtResource("9_remke")
 kind = "xique_xique"
 seed = 80417
 
-[node name="xique_xique_48695" type="Node3D" parent="NavigationRegion/Scenery" unique_id=975056842]
+[node name="xique_xique_48695" type="Node3D" parent="NavigationRegion/Scenery" unique_id=585933468]
 transform = Transform3D(-0.50172544, 0, -0.8650269, 0, 1, 0, 0.8650269, 0, -0.50172544, -6.3181267, 0, -33.503742)
-script = ExtResource("9_4l2gl")
+script = ExtResource("9_remke")
 kind = "xique_xique"
 seed = 48695
 
-[node name="xique_xique_9328" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1040388608]
+[node name="xique_xique_9328" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1368780566]
 transform = Transform3D(-0.99056286, 0, 0.13705908, 0, 1, 0, -0.13705908, 0, -0.99056286, 10.342869, 0, -33.886898)
-script = ExtResource("9_4l2gl")
+script = ExtResource("9_remke")
 kind = "xique_xique"
 seed = 9328
 
-[node name="rock_82661" type="Node3D" parent="NavigationRegion/Scenery" unique_id=852160509]
+[node name="rock_82661" type="Node3D" parent="NavigationRegion/Scenery" unique_id=623757750]
 transform = Transform3D(0.48954684, 0, -0.871977, 0, 1, 0, 0.871977, 0, 0.48954684, 8.62867, 0, -31.67227)
-script = ExtResource("9_4l2gl")
+script = ExtResource("9_remke")
 kind = "rock"
 seed = 82661
 
-[node name="rock_20129" type="Node3D" parent="NavigationRegion/Scenery" unique_id=400184916]
+[node name="rock_20129" type="Node3D" parent="NavigationRegion/Scenery" unique_id=832343356]
 transform = Transform3D(0.64871013, 0, -0.7610356, 0, 1, 0, 0.7610356, 0, 0.64871013, -21.570457, 0, -33.110832)
-script = ExtResource("9_4l2gl")
+script = ExtResource("9_remke")
 kind = "rock"
 seed = 20129
 
-[node name="rock_12261" type="Node3D" parent="NavigationRegion/Scenery" unique_id=396194396]
+[node name="rock_12261" type="Node3D" parent="NavigationRegion/Scenery" unique_id=133519312]
 transform = Transform3D(0.9939441, 0, -0.109886795, 0, 1, 0, 0.109886795, 0, 0.9939441, -21.231316, 0, -30.355806)
-script = ExtResource("9_4l2gl")
+script = ExtResource("9_remke")
 kind = "rock"
 seed = 12261
 
-[node name="xique_xique_3511" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1228427456]
+[node name="xique_xique_3511" type="Node3D" parent="NavigationRegion/Scenery" unique_id=451781361]
 transform = Transform3D(0.5851363, 0, 0.81093496, 0, 1, 0, -0.81093496, 0, 0.5851363, -18.811478, 0, -31.845118)
-script = ExtResource("9_4l2gl")
+script = ExtResource("9_remke")
 kind = "xique_xique"
 seed = 3511
 
-[node name="rock_23993" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1904281798]
+[node name="rock_23993" type="Node3D" parent="NavigationRegion/Scenery" unique_id=335830545]
 transform = Transform3D(0.10688645, 0, 0.9942712, 0, 1, 0, -0.9942712, 0, 0.10688645, 7.259163, 0, -33.234173)
-script = ExtResource("9_4l2gl")
+script = ExtResource("9_remke")
 kind = "rock"
 seed = 23993
 
-[node name="OpeningView" type="Marker3D" parent="." unique_id=1209151555]
+[node name="rock_2119" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1243884757]
+transform = Transform3D(0.39391756, 0, 0.91914576, 0, 1, 0, -0.91914576, 0, 0.39391756, 22.3283, 0, -31.080309)
+script = ExtResource("9_remke")
+kind = "rock"
+seed = 2119
+
+[node name="rock_57300" type="Node3D" parent="NavigationRegion/Scenery" unique_id=67129943]
+transform = Transform3D(0.9780325, 0, -0.2084523, 0, 1, 0, 0.2084523, 0, 0.9780325, 17.037815, 0, -31.46069)
+script = ExtResource("9_remke")
+kind = "rock"
+seed = 57300
+
+[node name="rock_60863" type="Node3D" parent="NavigationRegion/Scenery" unique_id=25309583]
+transform = Transform3D(-0.14302395, 0, 0.9897192, 0, 1, 0, -0.9897192, 0, -0.14302395, 29.09805, 0, -30.054558)
+script = ExtResource("9_remke")
+kind = "rock"
+seed = 60863
+
+[node name="xique_xique_27057" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1834441203]
+transform = Transform3D(0.8958955, 0, 0.44426492, 0, 1, 0, -0.44426492, 0, 0.8958955, 36.065666, 0, -34.600143)
+script = ExtResource("9_remke")
+kind = "xique_xique"
+seed = 27057
+
+[node name="mandacaru_38423" type="Node3D" parent="NavigationRegion/Scenery" unique_id=1380713290]
+transform = Transform3D(0.18166952, 0, -0.98335963, 0, 1, 0, 0.98335963, 0, 0.18166952, -3.4059753, 0, -32.504173)
+script = ExtResource("9_remke")
+seed = 38423
+
+[node name="OpeningView" type="Marker3D" parent="." unique_id=837968867]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.1, -183)
 
-[node name="LampiaoRaid" type="Marker3D" parent="." unique_id=585005841]
+[node name="LampiaoRaid" type="Marker3D" parent="." unique_id=1110683243]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0.1, -230)
 
-[node name="RoomDoor" type="Marker3D" parent="." unique_id=1272124708]
+[node name="RoomDoor" type="Marker3D" parent="." unique_id=450494274]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.1, -230)
 
-[node name="Triangles" type="Marker3D" parent="." unique_id=767285867]
+[node name="Triangles" type="Marker3D" parent="." unique_id=373310996]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0.1, -232)
 
-[node name="Stars" type="Marker3D" parent="." unique_id=1784514047]
+[node name="Stars" type="Marker3D" parent="." unique_id=1166697508]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0.1, -228)
 
-[node name="MariaFarm" type="Marker3D" parent="." unique_id=1822608530]
+[node name="MariaFarm" type="Marker3D" parent="." unique_id=1586435954]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.1, -231)
 
-[node name="Guard" type="Marker3D" parent="." unique_id=819545835]
+[node name="Guard" type="Marker3D" parent="." unique_id=944401489]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0.1, -230)
 
-[node name="SoldierDoor" type="Marker3D" parent="." unique_id=285006358]
+[node name="SoldierDoor" type="Marker3D" parent="." unique_id=314741324]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0.1, -237)
 
-[node name="SoldierHandsUp" type="Marker3D" parent="." unique_id=1922419702]
+[node name="SoldierHandsUp" type="Marker3D" parent="." unique_id=1894677305]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.1, -229)
 
-[node name="Drawings" type="Marker3D" parent="." unique_id=1430486694]
+[node name="Drawings" type="Marker3D" parent="." unique_id=1685710317]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.1, -224)
 
-[node name="BackDoor" type="Marker3D" parent="." unique_id=2023749651]
+[node name="BackDoor" type="Marker3D" parent="." unique_id=939215617]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -215)
 
-[node name="StreetMiddle" type="Marker3D" parent="." unique_id=1241916907]
+[node name="StreetMiddle" type="Marker3D" parent="." unique_id=874959740]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0.1, -200)
 
-[node name="ViniFarm" type="Marker3D" parent="." unique_id=676493403]
+[node name="ViniFarm" type="Marker3D" parent="." unique_id=1513419840]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0.1, -182)
 
-[node name="FarmSoldier_1" type="Marker3D" parent="." unique_id=1661340696]
+[node name="FarmSoldier_1" type="Marker3D" parent="." unique_id=894669154]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0.1, -248)
 
-[node name="FarmSoldier_2" type="Marker3D" parent="." unique_id=351900371]
+[node name="FarmSoldier_2" type="Marker3D" parent="." unique_id=1570885752]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -248)
 
-[node name="FarmSoldier_3" type="Marker3D" parent="." unique_id=1798607771]
+[node name="FarmSoldier_3" type="Marker3D" parent="." unique_id=1866710049]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0.1, -248)
 
-[node name="FarmSoldier_4" type="Marker3D" parent="." unique_id=1317675879]
+[node name="FarmSoldier_4" type="Marker3D" parent="." unique_id=1730381484]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 0.1, -228)
 
-[node name="FarmSoldier_5" type="Marker3D" parent="." unique_id=2861132]
+[node name="FarmSoldier_5" type="Marker3D" parent="." unique_id=2077058471]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 0.1, -212)
 
-[node name="FarmSoldier_6" type="Marker3D" parent="." unique_id=671486960]
+[node name="FarmSoldier_6" type="Marker3D" parent="." unique_id=403182310]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 28, 0.1, -196)
 
-[node name="FarmSoldier_7" type="Marker3D" parent="." unique_id=726620371]
+[node name="FarmSoldier_7" type="Marker3D" parent="." unique_id=426241496]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 0.1, -200)
 
-[node name="BackDoorTrigger" type="Area3D" parent="." unique_id=1395426305]
+[node name="BackDoorTrigger" type="Area3D" parent="." unique_id=918807848]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -214)
-script = ExtResource("17_gojak")
+script = ExtResource("24_c5vs5")
 size = Vector3(6, 4, 4)
 
-[node name="MariaShotTrigger" type="Area3D" parent="." unique_id=568335548]
+[node name="MariaShotTrigger" type="Area3D" parent="." unique_id=614692541]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, -1, -206)
-script = ExtResource("17_gojak")
+script = ExtResource("24_c5vs5")
 size = Vector3(8, 4, 8)
 
-[node name="StreetTrigger" type="Area3D" parent="." unique_id=799110110]
+[node name="StreetTrigger" type="Area3D" parent="." unique_id=717212604]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -1, -196)
-script = ExtResource("17_gojak")
+script = ExtResource("24_c5vs5")
 size = Vector3(10, 4, 4)
 
-[node name="HorsesTrigger" type="Area3D" parent="." unique_id=1844865100]
+[node name="HorsesTrigger" type="Area3D" parent="." unique_id=562714105]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, -1, -186)
-script = ExtResource("17_gojak")
+script = ExtResource("24_c5vs5")
 size = Vector3(8, 4, 6)
 
-[node name="FarmBounds" type="StaticBody3D" parent="." unique_id=1973237895]
+[node name="FarmBounds" type="StaticBody3D" parent="." unique_id=1405626889]
 
-[node name="@CollisionShape3D@26" type="CollisionShape3D" parent="FarmBounds" unique_id=1787301157]
+[node name="@CollisionShape3D@26" type="CollisionShape3D" parent="FarmBounds" unique_id=435511491]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -254)
-shape = SubResource("BoxShape3D_25286")
+shape = SubResource("BoxShape3D_e4ful")
 
-[node name="@CollisionShape3D@27" type="CollisionShape3D" parent="FarmBounds" unique_id=2605292]
+[node name="@CollisionShape3D@27" type="CollisionShape3D" parent="FarmBounds" unique_id=426741105]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -182)
-shape = SubResource("BoxShape3D_e733i")
+shape = SubResource("BoxShape3D_hd5w7")
 
-[node name="@CollisionShape3D@28" type="CollisionShape3D" parent="FarmBounds" unique_id=718786391]
+[node name="@CollisionShape3D@28" type="CollisionShape3D" parent="FarmBounds" unique_id=1983707601]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 5, -218)
-shape = SubResource("BoxShape3D_bgqav")
+shape = SubResource("BoxShape3D_u4i65")
 
-[node name="@CollisionShape3D@29" type="CollisionShape3D" parent="FarmBounds" unique_id=80425080]
+[node name="@CollisionShape3D@29" type="CollisionShape3D" parent="FarmBounds" unique_id=1498460933]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 5, -218)
-shape = SubResource("BoxShape3D_62c7y")
+shape = SubResource("BoxShape3D_0vvq7")
 
-[node name="LampiaoMat" type="Marker3D" parent="." unique_id=828462894]
+[node name="LampiaoMat" type="Marker3D" parent="." unique_id=764808336]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 6)
 
-[node name="Maria" type="Marker3D" parent="." unique_id=472184704]
+[node name="Maria" type="Marker3D" parent="." unique_id=1867472683]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 8)
 
-[node name="@Marker3D@42" type="Marker3D" parent="." unique_id=1268209108]
+[node name="@Marker3D@42" type="Marker3D" parent="." unique_id=76480247]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 8)
 
-[node name="@Marker3D@43" type="Marker3D" parent="." unique_id=1743731491]
+[node name="@Marker3D@43" type="Marker3D" parent="." unique_id=1880322241]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 2)
 
-[node name="Vini" type="Marker3D" parent="." unique_id=516714522]
+[node name="Vini" type="Marker3D" parent="." unique_id=992352056]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -4)
 
-[node name="CoinPile" type="Marker3D" parent="." unique_id=1696593164]
+[node name="CoinPile" type="Marker3D" parent="." unique_id=446520291]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 4)
 
-[node name="SoupBowl" type="Marker3D" parent="." unique_id=1203669306]
+[node name="SoupBowl" type="Marker3D" parent="." unique_id=1003618995]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.2, 0, 5.2)
 
-[node name="Campfire" type="Marker3D" parent="." unique_id=1654916501]
+[node name="Campfire" type="Marker3D" parent="." unique_id=2112403400]
 
-[node name="ColonelAtMouth" type="Marker3D" parent="." unique_id=109272887]
+[node name="ColonelAtMouth" type="Marker3D" parent="." unique_id=749821379]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -16)
 
-[node name="MouthSoldier_1" type="Marker3D" parent="." unique_id=746516114]
+[node name="MouthSoldier_1" type="Marker3D" parent="." unique_id=293437944]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -14)
 
-[node name="MouthSoldier_2" type="Marker3D" parent="." unique_id=921458861]
+[node name="MouthSoldier_2" type="Marker3D" parent="." unique_id=52783902]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, -14)
 
-[node name="MouthSoldier_3" type="Marker3D" parent="." unique_id=334018703]
+[node name="MouthSoldier_3" type="Marker3D" parent="." unique_id=2100320608]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -17)
 
-[node name="CampReturnTrigger" type="Area3D" parent="." unique_id=809758389]
+[node name="CampReturnTrigger" type="Area3D" parent="." unique_id=1362576293]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -1, 11)
-script = ExtResource("17_gojak")
+script = ExtResource("24_c5vs5")
 size = Vector3(6, 4, 4)
 
-[node name="Tunnel_1" type="Marker3D" parent="." unique_id=1287391539]
+[node name="Tunnel_1" type="Marker3D" parent="." unique_id=2648827]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 14)
 
-[node name="Tunnel_2" type="Marker3D" parent="." unique_id=1081555897]
+[node name="Tunnel_2" type="Marker3D" parent="." unique_id=1664274373]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -1, 26)
 
-[node name="Tunnel_3" type="Marker3D" parent="." unique_id=1792554046]
+[node name="Tunnel_3" type="Marker3D" parent="." unique_id=90286778]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -2.5, 36)
 
-[node name="Tunnel_4" type="Marker3D" parent="." unique_id=41354128]
+[node name="Tunnel_4" type="Marker3D" parent="." unique_id=28806024]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -4, 46)
 
-[node name="Tunnel_5" type="Marker3D" parent="." unique_id=2067258333]
+[node name="Tunnel_5" type="Marker3D" parent="." unique_id=1711113812]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -5.5, 56)
 
-[node name="ViniHall" type="Marker3D" parent="." unique_id=73416102]
+[node name="ViniHall" type="Marker3D" parent="." unique_id=391998122]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 62)
 
-[node name="DistrustTrigger" type="Area3D" parent="." unique_id=192966779]
+[node name="DistrustTrigger" type="Area3D" parent="." unique_id=990395935]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -6.37069, 55)
-script = ExtResource("17_gojak")
+script = ExtResource("24_c5vs5")
 size = Vector3(5, 4, 4)
 
-[node name="HallTrigger" type="Area3D" parent="." unique_id=710200022]
+[node name="HallTrigger" type="Area3D" parent="." unique_id=569575246]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7, 63)
-script = ExtResource("17_gojak")
+script = ExtResource("24_c5vs5")
 size = Vector3(8, 4, 3)
 
-[node name="HallSoldier_1" type="Marker3D" parent="." unique_id=1755210088]
+[node name="HallSoldier_1" type="Marker3D" parent="." unique_id=1266809149]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, -6, 66)
 
-[node name="HallSoldier_2" type="Marker3D" parent="." unique_id=120049460]
+[node name="HallSoldier_2" type="Marker3D" parent="." unique_id=54745021]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -6, 66)
 
-[node name="HallSoldier_3" type="Marker3D" parent="." unique_id=520505072]
+[node name="HallSoldier_3" type="Marker3D" parent="." unique_id=1497844171]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -6, 74)
 
-[node name="HallSoldier_4" type="Marker3D" parent="." unique_id=771560708]
+[node name="HallSoldier_4" type="Marker3D" parent="." unique_id=905870237]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, -6, 74)
 
-[node name="HallView" type="Marker3D" parent="." unique_id=1435300848]
+[node name="HallView" type="Marker3D" parent="." unique_id=488238088]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 70)
 
-[node name="LampiaoDuel" type="Marker3D" parent="." unique_id=1565539516]
+[node name="LampiaoDuel" type="Marker3D" parent="." unique_id=742114241]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 72)
 
-[node name="ViniDuel" type="Marker3D" parent="." unique_id=288438142]
+[node name="ViniDuel" type="Marker3D" parent="." unique_id=1732136709]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -6, 77)
 
-[node name="HeadDrop" type="Marker3D" parent="." unique_id=45297385]
+[node name="HeadDrop" type="Marker3D" parent="." unique_id=223639837]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, -6, 73)
 
-[node name="ColonelBehind" type="Marker3D" parent="." unique_id=394200156]
+[node name="ColonelBehind" type="Marker3D" parent="." unique_id=1550512183]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, -6, 69)
 
-[node name="ColonelExit" type="Marker3D" parent="." unique_id=1191252522]
+[node name="ColonelExit" type="Marker3D" parent="." unique_id=780222555]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -5.925, 61)
 
-[node name="LampiaoRifle" type="Marker3D" parent="." unique_id=588340288]
+[node name="LampiaoRifle" type="Marker3D" parent="." unique_id=21890969]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, -6, 72.5)
 
-[node name="Grave_1" type="Marker3D" parent="." unique_id=837347614]
+[node name="Grave_1" type="Marker3D" parent="." unique_id=1735969007]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16, 0, -24)
 
-[node name="Grave_2" type="Marker3D" parent="." unique_id=1031710585]
+[node name="Grave_2" type="Marker3D" parent="." unique_id=76420352]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -24)
 
-[node name="Grave_3" type="Marker3D" parent="." unique_id=512501791]
+[node name="Grave_3" type="Marker3D" parent="." unique_id=787148948]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -24)
 
-[node name="Grave_4" type="Marker3D" parent="." unique_id=517619630]
+[node name="Grave_4" type="Marker3D" parent="." unique_id=2047410767]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -24)
 
-[node name="OathPoint" type="Marker3D" parent="." unique_id=1089263356]
+[node name="OathPoint" type="Marker3D" parent="." unique_id=768458199]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, -31)
 
-[node name="DeadTree" type="Marker3D" parent="." unique_id=1296239876]
+[node name="DeadTree" type="Marker3D" parent="." unique_id=878812009]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, -34)
 
-[node name="Kepi" type="Marker3D" parent="." unique_id=2037272281]
+[node name="Kepi" type="Marker3D" parent="." unique_id=1802725225]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -27)
 
-[node name="FullMoon" type="DirectionalLight3D" parent="." unique_id=1210220040]
+[node name="FullMoon" type="DirectionalLight3D" parent="." unique_id=1482558591]
 transform = Transform3D(0.34202015, 0.60402274, -0.7198463, 0, 0.76604444, 0.6427876, 0.9396926, -0.21984631, 0.26200265, 0, 0, 0)
 light_color = Color(0.62, 0.68, 0.9, 1)
 light_energy = 0.55
 
-[node name="Skylight" type="SpotLight3D" parent="." unique_id=1371762801]
+[node name="Skylight" type="SpotLight3D" parent="." unique_id=621813164]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 8.5, 74)
 light_color = Color(0.7, 0.75, 0.95, 1)
 light_energy = 6.0
 spot_range = 18.0
+spot_attenuation = 0.25
 spot_angle = 16.0

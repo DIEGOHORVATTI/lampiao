@@ -2,6 +2,8 @@ extends "res://tools/build_sandbox.gd"
 
 const TRIGGER := preload("res://game/world/components/trigger.gd")
 const CAVE := preload("res://game/world/chapters/chapter_01/cave_field.gd")
+const CAVE_PIECES := preload("res://game/world/props/cave_pieces.gd")
+const ROOT_REGIONS := [["roots_mouth", -10.0, 14.0, 240], ["roots_tunnel", 14.0, 60.0, 300], ["roots_hall", 60.0, 93.0, 300]]
 const GEO_DIR := "res://game/world/chapters/chapter_01/geo/"
 const FARM := Vector3(0, 0, -216)
 
@@ -43,6 +45,7 @@ func _moonlight() -> void:
 	shaft.light_energy = 6.0
 	shaft.spot_range = 18.0
 	shaft.spot_angle = 16.0
+	shaft.spot_attenuation = 0.25
 	shaft.position = Vector3(0, 8.5, 74)
 	shaft.rotation_degrees = Vector3(-90, 0, 0)
 	_own(shaft, scene_root)
@@ -51,15 +54,16 @@ func _moonlight() -> void:
 func _farm() -> void:
 	_put("farm_terrain", FARM, 0)
 	_put("manor", Vector3(0, 0, -226), 0)
-	_put("chapel", Vector3(25, 0, -228), 0)
+	_put("chapel", Vector3(25, 0, -228), PI)
 	for seg in [[-34.0, 1.0], [-24.0, 0.66], [-10.0, 1.0], [2.0, 1.0], [14.0, 1.0], [26.0, 1.0], [37.0, 0.5]]:
 		_put("barbed_fence", Vector3(seg[0], 0, -188), 0).scale.x = seg[1]
 	for x in [-22.0, -18.0, -14.0]:
-		_put("horse", Vector3(x, 0, -184), PI + rng.randf_range(-0.3, 0.3))
-	_put("crate", Vector3(-14, 0.1, -234), 0)
-	_put("coin_pile", Vector3(-12.5, 0.1, -233.5), 0)
-	for p in [Vector3(-30, 0, -210), Vector3(-30, 0, -198), Vector3(14, 0, -204), Vector3(14, 0, -194)]:
-		_put("mud_house", p, PI / 2 if p.x < 0 else -PI / 2)
+		_put("horse", Vector3(x, 0, -184), rng.randf_range(-0.2, 0.2))
+	_put("rail_fence", Vector3(-18, 0, -181.6), 0)
+	for p in [Vector3(-26.5, 0, -181), Vector3(-9.5, 0, -180), Vector3(-27, 0, -186)]:
+		_put("mandacaru", p, rng.randf() * TAU)
+	for p in [Vector3(-21, 0, -211), Vector3(-21, 0, -203), Vector3(-21, 0, -195), Vector3(4.5, 0, -207), Vector3(4.5, 0, -198)]:
+		_put("porch_house", p, PI / 2 if p.x < 0 else -PI / 2)
 	_put("dead_tree", Vector3(-30, 0, -186), 0).scale = Vector3.ONE * 1.4
 	for i in 40:
 		var a := rng.randf() * TAU
@@ -99,7 +103,7 @@ func _farm_bounds() -> void:
 
 func _cave_geometry() -> void:
 	DirAccess.make_dir_recursive_absolute(ProjectSettings.globalize_path(GEO_DIR))
-	var surfaces := [["cave_floor", "floor_height", false, "stone"], ["cave_ceiling", "ceiling_height", true, "stone"], ["cave_top", "top_height", false, "earth"]]
+	var surfaces := [["cave_floor", "floor_height", false, "cave"], ["cave_ceiling", "ceiling_height", true, "cave"], ["cave_top", "top_height", false, "sand"]]
 	for s in surfaces:
 		var generated: Node3D = PROPS.surface(CAVE, s[1], s[2], s[3])
 		var mi: MeshInstance3D = generated.find_children("*", "MeshInstance3D", true, false)[0]
@@ -117,14 +121,32 @@ func _cave_geometry() -> void:
 		var shape := CollisionShape3D.new()
 		shape.shape = load(GEO_DIR + s[0] + "_col.res")
 		_own(shape, body)
+	for region in ROOT_REGIONS:
+		ResourceSaver.save(CAVE_PIECES.roots_mesh(region[1], region[2], region[3]), GEO_DIR + region[0] + ".mesh")
+		var roots := MeshInstance3D.new()
+		roots.name = region[0]
+		roots.mesh = load(GEO_DIR + region[0] + ".mesh")
+		roots.material_override = PROPS.material("root")
+		_own(roots, props)
 
 
 func _z2_cave_mouth() -> void:
-	_at("stone_arch", 0, -8, 0)
+	_at("cave_mouth", 0, -8, 0)
+	_at("drum_column", -4.3, -10.4, rng.randf() * TAU)
+	_at("drum_column", 5.4, -10.3, rng.randf() * TAU)
+	_at("broken_drum_column", -7.4, -11.9, rng.randf() * TAU)
+	_at("block_pillar", -11.6, -12.6, 0.2)
+	for p in [Vector2(11.2, -12.4), Vector2(13.8, -11.0), Vector2(-11.8, -14.0)]:
+		_at("mandacaru", p.x, p.y, rng.randf() * TAU)
 	_at("campfire", 0, 0)
-	_at("cauldron", 0.7, 0.4)
+	_at("stone_stove", 2.4, -1.8)
 	for p in [Vector2(-4, 6), Vector2(-8, 8), Vector2(6, 8), Vector2(8, 2)]:
 		_at("sleeping_mat", p.x, p.y, rng.randf_range(-0.3, 0.3))
+	for p in [Vector2(-6, 4.5), Vector2(7.5, 6.5)]:
+		_at("rolled_blanket", p.x, p.y)
+	for p in [Vector2(-1.6, 1.8), Vector2(1.9, 1.6), Vector2(3.6, -0.6)]:
+		_at("gourd_bowls", p.x, p.y)
+	_at("hanging_bags", -11.0, 3.0, PI / 2)
 	_at("coin_pile", 10, 4)
 	for p in [Vector2(-8, -16), Vector2(4, -16)]:
 		_at("horse", p.x, p.y, rng.randf() * TAU)
@@ -142,7 +164,10 @@ func _z3_gallery() -> void:
 
 func _z4_idol_hall() -> void:
 	for p in [Vector2(-10, 64), Vector2(10, 64), Vector2(-12, 76), Vector2(12, 76), Vector2(-10, 88), Vector2(10, 88)]:
-		_at("idol_totem", p.x, p.y, atan2(-p.x, 76.0 - p.y))
+		_at("idol_column_tilted" if p == Vector2(-12, 76) else "idol_column", p.x, p.y, atan2(-p.x, 76.0 - p.y))
+	_at("fallen_column", -5, 84, 0)
+	_at("moonbeam", CAVE.SKYLIGHT.x, CAVE.SKYLIGHT.z)
+	_at("arched_block_wall", -4, 90.2, PI)
 	var soldiers := [Vector2(-6, 66), Vector2(6, 66), Vector2(-8, 74), Vector2(8, 74)]
 	for i in soldiers.size():
 		_marker("HallSoldier_%d" % (i + 1), soldiers[i].x, soldiers[i].y)
@@ -155,7 +180,9 @@ func _z6_rock_shelf() -> void:
 	_at("rock", -22, -12)
 	_at("mandacaru", -24, -20)
 	_at("mandacaru", 20, -28)
-	_at("dead_tree", -18, -34).scale = Vector3.ONE * 1.5
+	_at("great_dead_tree", -18, -34).scale = Vector3.ONE * 1.5
+	for p in [Vector2(-10, -31), Vector2(-23, -29), Vector2(-3, -33)]:
+		_at("dry_stakes", p.x, p.y)
 	for i in 30:
 		var x := rng.randf_range(-27, 37)
 		var z := rng.randf_range(-35, -30)

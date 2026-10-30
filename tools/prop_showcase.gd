@@ -1,6 +1,6 @@
 extends Node3D
 
-const KINDS := ["manor", "chapel", "idol_totem", "tomb_slab", "stone_arch", "horse", "barbed_fence", "bone_niche", "cauldron", "coin_pile", "torch", "sleeping_mat", "goat_carcass"]
+const KINDS := ["idol_column", "idol_column_tilted", "horse", "barbed_fence", "rail_fence", "drum_column", "broken_drum_column", "block_pillar", "stone_stove", "coin_pile", "sleeping_mat", "gourd_bowls", "hanging_bags", "great_dead_tree", "dry_stakes"]
 
 
 func _ready() -> void:
@@ -20,12 +20,16 @@ func _ready() -> void:
 		var rng := RandomNumberGenerator.new()
 		rng.seed = i
 		var node: Node3D = props.build(KINDS[i], rng)
-		node.position = Vector3((i % 5) * 9.0 - 18.0, 0, int(i / 5) * -14.0) + (Vector3(0, 0, -30) if i == 0 else Vector3.ZERO)
+		node.position = Vector3((i % 5) * 9.0 - 18.0, 0, int(i / 5) * -14.0)
 		add_child(node)
 	var cam := Camera3D.new()
 	cam.position = Vector3(0, 14, 16)
 	cam.rotation_degrees = Vector3(-32, 0, 0)
+	if OS.has_environment("CAM"):
+		var c := OS.get_environment("CAM").split_floats(",")
+		cam.position = Vector3(c[0], c[1], c[2])
+		cam.rotation_degrees = Vector3(c[3], c[4], 0)
 	add_child(cam)
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(1.5).timeout
 	get_viewport().get_texture().get_image().save_png(OS.get_environment("SHOT"))
 	get_tree().quit()

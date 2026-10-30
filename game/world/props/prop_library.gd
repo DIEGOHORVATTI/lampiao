@@ -8,7 +8,15 @@ const COLORS := {
 	"tile": Color(0.5, 0.2, 0.12),
 	"wood": Color(0.3, 0.2, 0.12),
 	"dry_wood": Color(0.45, 0.4, 0.34),
-	"stone": Color(0.45, 0.42, 0.38),
+	"stone": Color(0.55, 0.5, 0.45),
+	"planks": Color(0.5, 0.36, 0.24),
+	"carved": Color(0.62, 0.6, 0.56),
+	"root": Color(0.32, 0.24, 0.18),
+	"sand": Color(0.62, 0.5, 0.36),
+	"coins": Color(0.8, 0.72, 0.52),
+	"gourd": Color(0.5, 0.36, 0.2),
+	"horse_hide": Color(0.3, 0.2, 0.14),
+	"void": Color(0.01, 0.01, 0.012),
 	"iron": Color(0.12, 0.11, 0.1),
 	"flame": Color(1.0, 0.6, 0.25),
 	"canvas": Color(0.52, 0.47, 0.36),
@@ -27,9 +35,28 @@ const TEXTURES := {
 	"lime": ["plaster", 0.4],
 	"tile": ["roof_tile", 0.6],
 	"wood": ["wood", 0.8],
-	"dry_wood": ["wood", 1.2],
-	"stone": ["stone", 0.5],
+	"dry_wood": ["dead_wood", 0.7],
+	"stone": ["cave_rock", 0.35],
+	"planks": ["floor_planks", 0.45],
+	"carved": ["carved_stone", 0.4],
+	"root": ["root_bark", 1.4],
+	"sand": ["sand", 0.2],
+	"coins": ["coins", 2.0],
+	"gourd": ["gourd", 2.0],
+	"horse_hide": ["horse_hide", 0.8],
+	"iron": ["iron", 1.5],
+	"canvas": ["canvas", 1.2],
+	"cloth": ["cloth", 0.8],
+	"leather": ["leather", 1.5],
+	"ash": ["ash", 1.0],
+	"bone": ["bone", 2.0],
+	"rot": ["rot", 1.5],
 }
+const CAVE_SHADER := "res://resources/props/cave_surface.gdshader"
+const MOONBEAM_SHADER := "res://resources/props/moonbeam.gdshader"
+const CAVE_FIELD := "res://game/world/chapters/chapter_01/cave_field.gd"
+const CAVE_PIECES := "res://game/world/props/cave_pieces.gd"
+const CHAPTER_PIECES := "res://game/world/props/chapter_01_pieces.gd"
 const TEXTURE_DIR := "res://resources/textures/world/%s.png"
 
 static var _materials := {}
@@ -71,14 +98,16 @@ static func _build(kind: String, rng: RandomNumberGenerator) -> Node3D:
 	match kind:
 		"terrain": return terrain(rng, 60.0)
 		"terrain_large": return terrain(rng, 140.0)
-		"cave_floor": return surface(load("res://game/world/chapters/chapter_01/cave_field.gd"), "floor_height", false, "stone")
-		"cave_ceiling": return surface(load("res://game/world/chapters/chapter_01/cave_field.gd"), "ceiling_height", true, "stone")
-		"cave_top": return surface(load("res://game/world/chapters/chapter_01/cave_field.gd"), "top_height", false, "earth")
+		"cave_floor": return surface(load(CAVE_FIELD), "floor_height", false, "cave")
+		"cave_ceiling": return surface(load(CAVE_FIELD), "ceiling_height", true, "cave")
+		"cave_top": return surface(load(CAVE_FIELD), "top_height", false, "sand")
 		"farm_terrain": return terrain(rng, 96.0, 0.2)
 		"xique_xique": return xique_xique(rng)
 		"horse_carcass": return carcass(rng, 1.0)
-		"barbed_fence", "horse", "stone_arch", "idol_totem", "tomb_slab", "bone_niche", "cauldron", "coin_pile", "torch", "wall_lamp", "sleeping_mat", "chapel", "manor":
-			return load("res://game/world/props/chapter_01_pieces.gd").call(kind, rng)
+		"barbed_fence", "horse", "tomb_slab", "bone_niche", "torch", "wall_lamp", "chapel", "manor", "porch_house", "rail_fence", "great_dead_tree", "dry_stakes":
+			return load(CHAPTER_PIECES).call(kind, rng)
+		"stone_arch", "idol_totem", "idol_column", "idol_column_tilted", "fallen_column", "drum_column", "broken_drum_column", "block_pillar", "arched_block_wall", "cave_mouth", "moonbeam", "cauldron", "stone_stove", "coin_pile", "sleeping_mat", "rolled_blanket", "gourd_bowls", "hanging_bags":
+			return load(CAVE_PIECES).call(kind, rng)
 		"goat_carcass": return carcass(rng, 0.5)
 		"dead_vulture": return carcass(rng, 0.25)
 		"mandacaru": return mandacaru(rng)
@@ -103,7 +132,11 @@ static func _build(kind: String, rng: RandomNumberGenerator) -> Node3D:
 	return Node3D.new()
 
 
-static func material(name: String) -> StandardMaterial3D:
+static func material(name: String) -> Material:
+	if name == "cave":
+		return cave_material()
+	if name == "moonbeam":
+		return _shader_material(name, MOONBEAM_SHADER)
 	if not _materials.has(name):
 		var m := StandardMaterial3D.new()
 		m.albedo_color = COLORS[name]
@@ -120,6 +153,25 @@ static func material(name: String) -> StandardMaterial3D:
 			m.emission_energy_multiplier = 3.0
 		_materials[name] = m
 	return _materials[name]
+
+
+static func _shader_material(name: String, path: String) -> ShaderMaterial:
+	if not _materials.has(name):
+		var m := ShaderMaterial.new()
+		m.shader = load(path)
+		_materials[name] = m
+	return _materials[name]
+
+
+static func cave_material() -> ShaderMaterial:
+	if not _materials.has("cave"):
+		var m := ShaderMaterial.new()
+		m.shader = load(CAVE_SHADER)
+		m.set_shader_parameter("wall_texture", load(TEXTURE_DIR % "cave_rock"))
+		m.set_shader_parameter("floor_texture", load(TEXTURE_DIR % "cracked_floor"))
+		m.set_shader_parameter("outdoor_texture", load(TEXTURE_DIR % "sand"))
+		_materials["cave"] = m
+	return _materials["cave"]
 
 
 static func terrain(rng: RandomNumberGenerator, size: float, amplitude := 1.2) -> Node3D:
@@ -148,48 +200,23 @@ static func surface(field: Script, fn: String, flip: bool, mat: String) -> Node3
 	var hi: Vector2 = field.MAX
 	var cols := int((hi.x - lo.x) / cell) + 1
 	var rows := int((hi.y - lo.y) / cell) + 1
-	var noise := FastNoiseLite.new()
-	noise.seed = 1938
-	noise.frequency = 0.35
-	var heights := PackedFloat32Array()
-	heights.resize(cols * rows)
-	var floor_ref := PackedFloat32Array()
-	floor_ref.resize(cols * rows)
+	var noise := surface_noise()
+	var verts: Array[Vector3] = []
+	verts.resize(cols * rows)
 	for r in rows:
 		for c in cols:
-			var x := lo.x + c * cell
-			var z := lo.y + r * cell
-			heights[r * cols + c] = field.call(fn, x, z)
-			floor_ref[r * cols + c] = field.call("floor_height", x, z) if fn != "floor_height" else heights[r * cols + c]
+			verts[r * cols + c] = surface_vertex(field, fn, noise, lo.x + c * cell, lo.y + r * cell)
 	var st := SurfaceTool.new()
 	st.begin(Mesh.PRIMITIVE_TRIANGLES)
 	for r in rows - 1:
 		for c in cols - 1:
-			var ids := [r * cols + c, r * cols + c + 1, (r + 1) * cols + c, (r + 1) * cols + c + 1]
-			var ok := true
-			for id in ids:
-				var i: int = id
-				if is_nan(heights[i]):
-					ok = false
-			if not ok:
+			var quad := [verts[r * cols + c], verts[r * cols + c + 1], verts[(r + 1) * cols + c], verts[(r + 1) * cols + c + 1]]
+			if quad.any(func(v: Vector3) -> bool: return is_nan(v.y)):
 				continue
-			var v := []
-			for id in ids:
-				var i: int = id
-				var x := lo.x + (i % cols) * cell
-				var z := lo.y + int(i / cols) * cell
-				var y: float = heights[i]
-				var rough := clampf(absf(y - floor_ref[i]) / 3.0, 0.0, 1.0) if fn == "ceiling_height" else clampf((y - floor_ref[i] + 0.01) / 3.0, 0.0, 1.0)
-				if fn == "floor_height":
-					var base: float = field.call("sample", x, z).y
-					rough = clampf(absf(y - base) / 3.0, 0.0, 1.0)
-				y += noise.get_noise_2d(x, z) * (0.06 + rough * 0.45)
-				v.append(Vector3(x + noise.get_noise_2d(z, x) * rough * 0.2, y, z))
-			var tris := [[0, 1, 2], [2, 1, 3]]
-			for t in tris:
+			for t in [[0, 1, 2], [2, 1, 3]]:
 				var order: Array = t if not flip else [t[0], t[2], t[1]]
 				for k in order:
-					st.add_vertex(v[k])
+					st.add_vertex(quad[k])
 	st.generate_normals()
 	var mesh := st.commit()
 	var root := _static_body()
@@ -198,6 +225,41 @@ static func surface(field: Script, fn: String, flip: bool, mat: String) -> Node3
 	shape.shape = mesh.create_trimesh_shape()
 	root.add_child(shape)
 	return root
+
+
+static func surface_noise() -> FastNoiseLite:
+	var noise := FastNoiseLite.new()
+	noise.seed = 1938
+	noise.frequency = 0.35
+	return noise
+
+
+static func surface_vertex(field: Script, fn: String, noise: FastNoiseLite, x: float, z: float) -> Vector3:
+	var y: float = field.call(fn, x, z)
+	if is_nan(y):
+		return Vector3(x, NAN, z)
+	var floor_y: float = field.call("floor_height", x, z)
+	var rough := clampf(absf(y - floor_y) / 3.0, 0.0, 1.0) if fn == "ceiling_height" else clampf((y - floor_y + 0.01) / 3.0, 0.0, 1.0)
+	if fn == "floor_height":
+		rough = clampf(absf(y - field.call("sample", x, z).y) / 3.0, 0.0, 1.0)
+	y += noise.get_noise_2d(x, z) * (0.06 + rough * 0.45)
+	return Vector3(x + noise.get_noise_2d(z, x) * rough * 0.2, y, z)
+
+
+static func surface_height(field: Script, fn: String, noise: FastNoiseLite, x: float, z: float) -> float:
+	var cell: float = field.CELL
+	var lo: Vector2 = field.MIN
+	var gx := (x - lo.x) / cell
+	var gz := (z - lo.y) / cell
+	var x0 := lo.x + floorf(gx) * cell
+	var z0 := lo.y + floorf(gz) * cell
+	var fx := gx - floorf(gx)
+	var fz := gz - floorf(gz)
+	var a := surface_vertex(field, fn, noise, x0, z0).y
+	var b := surface_vertex(field, fn, noise, x0 + cell, z0).y
+	var c := surface_vertex(field, fn, noise, x0, z0 + cell).y
+	var d := surface_vertex(field, fn, noise, x0 + cell, z0 + cell).y
+	return lerpf(lerpf(a, b, fx), lerpf(c, d, fx), fz)
 
 
 static func xique_xique(rng: RandomNumberGenerator) -> Node3D:
@@ -263,7 +325,7 @@ static func mandacaru(rng: RandomNumberGenerator) -> Node3D:
 	return root
 
 
-static func mud_house(rng: RandomNumberGenerator) -> Node3D:
+static func mud_house(rng: RandomNumberGenerator, porch := false) -> Node3D:
 	var root := _static_body()
 	var w := rng.randf_range(5.0, 7.0)
 	var d := rng.randf_range(4.0, 5.5)
@@ -283,7 +345,20 @@ static func mud_house(rng: RandomNumberGenerator) -> Node3D:
 	_add_box(root, Vector3(w + 0.6, 0.08, slope), Vector3(0, h + 0.55, d / 4 + 0.05), "tile", gable.inverse())
 	_add_box(root, Vector3(w + 0.6, 0.08, slope), Vector3(0, h + 0.55, -d / 4 - 0.05), "tile", gable)
 	_add_box(root, Vector3(door - 0.1, 2.0, 0.05), Vector3(-door / 2 + 0.05, 1.0, d / 2 + 0.45), "wood", Basis(Vector3.UP, deg_to_rad(-70)), Vector3(door / 2, 0, 0))
+	if porch:
+		_add_porch(root, w, d, h)
 	return root
+
+
+static func _add_porch(root: Node3D, w: float, d: float, h: float) -> void:
+	var depth := 2.2
+	var pitch := atan2(h - 2.15, depth)
+	var length := depth / cos(pitch) + 0.2
+	_add_box(root, Vector3(w + 0.4, 0.07, length), Vector3(0, (h + 2.15) / 2.0 + 0.05, d / 2 + depth / 2), "tile", Basis(Vector3.RIGHT, pitch))
+	_add_box(root, Vector3(w + 0.2, 0.12, 0.12), Vector3(0, 2.1, d / 2 + depth - 0.1), "wood")
+	for x in [-w / 2, -w / 6, w / 6, w / 2]:
+		_add_box(root, Vector3(0.12, 2.1, 0.12), Vector3(x, 1.05, d / 2 + depth - 0.1), "wood")
+	_add_box(root, Vector3(w + 0.2, 0.12, depth), Vector3(0, 0.06, d / 2 + depth / 2), "earth")
 
 
 static func stick_fence(rng: RandomNumberGenerator, length: float) -> Node3D:
@@ -357,9 +432,9 @@ static func well(rng: RandomNumberGenerator) -> Node3D:
 
 static func campfire(rng: RandomNumberGenerator, lit: bool) -> Node3D:
 	var root := _static_body()
-	for i in 9:
-		var a := TAU * i / 9.0
-		_add_box(root, Vector3(0.22, 0.16, 0.18), Vector3(cos(a), 0.08, sin(a)) * Vector3(0.55, 1.0, 0.55), "stone", Basis(Vector3.UP, rng.randf() * TAU))
+	for i in 11:
+		var a := TAU * i / 11.0
+		_add_stone(root, rng, rng.randf_range(0.12, 0.16), Vector3(cos(a) * 0.58, 0.07, sin(a) * 0.58))
 	for i in 4:
 		var a := TAU * i / 4.0 + rng.randf()
 		_add_cylinder(root, 0.05, 0.7, Vector3(0, 0.12, 0), "ash" if not lit else "wood", 5, Basis(Vector3.UP, a) * Basis(Vector3.FORWARD, PI / 2 - 0.35))
@@ -526,6 +601,71 @@ static func _branch(root: Node3D, rng: RandomNumberGenerator, from: Vector3, dir
 		var basis := Basis(Quaternion(Vector3.UP, bent))
 		_add_cylinder(root, radius, length, (from + to) / 2, "dry_wood", 5, basis)
 		_branch(root, rng, to, bent, length * 0.65, radius * 0.6, depth - 1)
+
+
+static func tube(st: SurfaceTool, points: Array, r0: float, r1: float, sides: int) -> void:
+	var count := points.size()
+	var normal := Vector3.ZERO
+	var rings: Array = []
+	for i in count:
+		var tangent: Vector3 = (points[mini(i + 1, count - 1)] - points[maxi(i - 1, 0)]).normalized()
+		if normal == Vector3.ZERO:
+			normal = tangent.cross(Vector3.UP if absf(tangent.y) < 0.9 else Vector3.RIGHT).normalized()
+		normal = (normal - tangent * normal.dot(tangent)).normalized()
+		var binormal := tangent.cross(normal)
+		var radius := lerpf(r0, r1, float(i) / (count - 1))
+		var ring: Array = []
+		for k in sides:
+			var a := TAU * k / sides
+			ring.append(points[i] + (normal * cos(a) + binormal * sin(a)) * radius)
+		rings.append(ring)
+	for i in count - 1:
+		for k in sides:
+			var n := (k + 1) % sides
+			for corner in [[i, k], [i + 1, k], [i, n], [i, n], [i + 1, k], [i + 1, n]]:
+				st.set_uv(Vector2(float(corner[1]) / sides, float(corner[0]) / count))
+				st.add_vertex(rings[corner[0]][corner[1]])
+
+
+static func _add_tube(root: Node3D, points: Array, r0: float, r1: float, mat: String, sides := 6) -> void:
+	var st := SurfaceTool.new()
+	st.begin(Mesh.PRIMITIVE_TRIANGLES)
+	tube(st, points, r0, r1, sides)
+	st.generate_normals()
+	st.generate_tangents()
+	st.index()
+	root.add_child(_mesh_instance(st.commit(), mat))
+
+
+static func _add_stone(root: Node3D, rng: RandomNumberGenerator, radius: float, pos: Vector3, mat := "stone") -> void:
+	var sphere := SphereMesh.new()
+	sphere.radius = radius
+	sphere.height = radius * 2.0
+	sphere.radial_segments = 8
+	sphere.rings = 5
+	var mi := _mesh_instance(sphere, mat)
+	mi.transform = Transform3D(Basis(Vector3.UP, rng.randf() * TAU).scaled(Vector3(rng.randf_range(1.0, 1.4), rng.randf_range(0.6, 0.85), rng.randf_range(0.9, 1.2))), pos)
+	root.add_child(mi)
+
+
+static func _add_blob(root: Node3D, rng: RandomNumberGenerator, center: Vector3, radii: Vector3, mat: String, roughness := 0.25) -> Callable:
+	var sphere := SphereMesh.new()
+	sphere.radius = 1.0
+	sphere.height = 2.0
+	sphere.radial_segments = 28
+	sphere.rings = 16
+	var noise := FastNoiseLite.new()
+	noise.seed = rng.randi()
+	noise.frequency = 0.9
+	var place := func(d: Vector3) -> Vector3:
+		var n := d.normalized()
+		return center + n * radii * (1.0 + noise.get_noise_3dv(n * 1.7) * roughness)
+	var mesh := _displace(sphere, place)
+	root.add_child(_mesh_instance(mesh, mat))
+	var shape := CollisionShape3D.new()
+	shape.shape = mesh.create_convex_shape()
+	root.add_child(shape)
+	return place
 
 
 static func _add_wall(root: Node3D, center: Vector3, length: float, h: float, t: float, mat: String, rotated := false) -> void:
