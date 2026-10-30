@@ -43,7 +43,7 @@
   - **Gavião:** "Sabiá! Sabiá, levanta, home!"
   - **Jurema:** "Capitão, eu atiro? Eu atiro?"
   - **Lampião:** "Fica atrás da pedra, menino! Atrás da pedra!"
-- Ao avançar uns 10 m pela grota, Lampião leva um tiro no peito (roteirizado). Cai de joelho na
+- Ao avançar uns 20 m pela grota (da barraca A até o marco em (1, 100), ver `04-mapas.md`), Lampião leva um tiro no peito (roteirizado). Cai de joelho na
   lama. Câmera tomba. Som de tiro vira abafado, e um assovio agudo no ouvido.
 
 ### 2. O trato (cena, 60 s) — tela quase preta

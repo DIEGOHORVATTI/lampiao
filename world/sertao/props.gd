@@ -36,6 +36,7 @@ static var _materials := {}
 static func build(kind: String, rng: RandomNumberGenerator) -> Node3D:
 	match kind:
 		"terreno": return terreno(rng, 60.0)
+		"terreno_grande": return terreno(rng, 140.0)
 		"mandacaru": return mandacaru(rng)
 		"casa_taipa": return casa_taipa(rng)
 		"cerca_varas": return cerca_varas(rng, 8.0)

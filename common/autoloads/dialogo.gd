@@ -13,6 +13,8 @@ var subtitle: Label
 var prompt: Label
 var choice_buttons: Array[TouchScreenButton] = []
 var talking := false
+var fader: ColorRect
+var card: Label
 
 
 func _ready() -> void:
@@ -23,6 +25,20 @@ func _ready() -> void:
 	subtitle.offset_left = 260
 	subtitle.offset_right = -260
 	prompt = _label(38, Control.PRESET_CENTER, 120)
+	fader = ColorRect.new()
+	fader.color = Color(0, 0, 0, 0)
+	fader.set_anchors_preset(Control.PRESET_FULL_RECT)
+	fader.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(fader)
+	move_child(fader, 0)
+	card = Label.new()
+	card.set_anchors_preset(Control.PRESET_FULL_RECT)
+	card.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	card.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	card.add_theme_font_size_override("font_size", 44)
+	card.add_theme_color_override("font_color", Color(0.91, 0.84, 0.69))
+	card.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(card)
 	for action in ["escolha_1", "escolha_2", "escolha_3"]:
 		if not InputMap.has_action(action):
 			InputMap.add_action(action)
@@ -54,6 +70,31 @@ func falar(lines: Array) -> void:
 		await get_tree().create_timer(maxf(MIN_LINE_SECONDS, text.length() * SECONDS_PER_CHAR)).timeout
 	subtitle.text = ""
 	talking = false
+
+
+func fade(alpha: float, seconds: float, color := Color.BLACK) -> void:
+	color.a = fader.color.a
+	fader.color = color
+	await create_tween().tween_property(fader, "color:a", alpha, seconds).finished
+
+
+func cartao(text: String, seconds: float) -> void:
+	card.text = text
+	card.modulate.a = 0.0
+	await create_tween().tween_property(card, "modulate:a", 1.0, 1.0).finished
+	await get_tree().create_timer(seconds).timeout
+	await create_tween().tween_property(card, "modulate:a", 0.0, 1.0).finished
+	card.text = ""
+
+
+func limpar() -> void:
+	subtitle.text = ""
+	prompt.text = ""
+	card.text = ""
+	fader.color.a = 0.0
+	talking = false
+	for button in choice_buttons:
+		button.visible = false
 
 
 func mostrar_prompt(text: String) -> void:

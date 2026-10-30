@@ -29,7 +29,7 @@ func _set_inside(inside: bool) -> void:
 
 
 func _on_activate() -> void:
-	if not player_inside or Dialogo.talking:
+	if not player_inside:
 		return
 	Dialogo.esconder_prompt()
 	usado.emit()

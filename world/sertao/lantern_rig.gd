@@ -4,13 +4,17 @@ const FLAME := Color(1.0, 0.6, 0.25)
 const LANTERN_ENERGY := 2.2
 const LANTERN_RANGE := 11.0
 
+@export var auto_start := true
+
 var lantern: OmniLight3D
+var lit := true
 
 
 func _ready() -> void:
 	await get_tree().process_frame
 	var player: Node = Global.player
-	Pacto.start_level()
+	if auto_start:
+		Pacto.start_level()
 	lantern = OmniLight3D.new()
 	lantern.name = "Lampiao"
 	lantern.light_color = FLAME
@@ -30,8 +34,15 @@ func _ready() -> void:
 	player.get_node("WeaponSubViewport/SubViewport/Camera3D").environment = hands
 
 
+func set_lit(value: bool) -> void:
+	lit = value
+	if lantern:
+		lantern.visible = value
+
+
 func _process(_delta: float) -> void:
 	if lantern:
+		lantern.visible = lit
 		lantern.base_energy = LANTERN_ENERGY * Pacto.light_factor()
 		lantern.omni_range = LANTERN_RANGE * lerpf(0.5, 1.0, Pacto.light_factor())
 

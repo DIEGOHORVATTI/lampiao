@@ -1,6 +1,7 @@
 extends Control
 
-const FIRST_LEVEL := "res://world/sertao/sertao.tscn"
+const CHAPTERS := {1: "res://world/cap01/cap01.tscn"}
+const FREE_ROAM := "res://world/sertao/sertao.tscn"
 
 
 func _ready() -> void:
@@ -26,7 +27,7 @@ func _ready() -> void:
 	add_child(title)
 
 	var hint := Label.new()
-	hint.text = "toque para entrar no sertão"
+	hint.text = "toque para entrar no sertão" if CHAPTERS.has(Historia.capitulo) else "capítulo %d em breve · toque para andar no sertão" % Historia.capitulo
 	hint.add_theme_font_size_override("font_size", 40)
 	hint.add_theme_color_override("font_color", Color(0.91, 0.84, 0.69))
 	hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -44,4 +45,4 @@ func _input(event: InputEvent) -> void:
 	if tapped or clicked or event.is_action_pressed("ui_accept"):
 		set_process_input(false)
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-		get_tree().change_scene_to_file(FIRST_LEVEL)
+		get_tree().change_scene_to_file(CHAPTERS.get(Historia.capitulo, FREE_ROAM))

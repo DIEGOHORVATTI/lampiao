@@ -2,8 +2,11 @@ extends Node
 
 const PROP := preload("res://world/sertao/prop.gd")
 const PROPS := preload("res://world/sertao/props.gd")
-const OUT := "res://world/sertao/sertao.tscn"
-const MAP_SIZE := 80.0
+var out_path := "res://world/sertao/sertao.tscn"
+var map_size := 80.0
+var map_center := Vector3.ZERO
+var player_start := Vector3(0, 1, 22)
+var root_script: Script = null
 
 var scene_root: Node3D
 var props: Node3D
@@ -12,8 +15,11 @@ var rng := RandomNumberGenerator.new()
 
 func _ready() -> void:
 	rng.seed = 1938
+	_setup()
 	scene_root = Node3D.new()
-	scene_root.name = "Sertao"
+	scene_root.name = out_path.get_file().get_basename().capitalize().replace(" ", "")
+	if root_script:
+		scene_root.set_script(root_script)
 
 	var input_manager := Node.new()
 	input_manager.name = "InputManager"
@@ -34,11 +40,12 @@ func _ready() -> void:
 
 	var player: Node3D = load("res://player/player.tscn").instantiate()
 	player.name = "Player"
-	player.position = Vector3(0, 1, 22)
+	player.position = player_start
 	_own(player, scene_root)
 	var rig := Node.new()
 	rig.name = "LampiaoRig"
 	rig.set_script(load("res://world/sertao/lantern_rig.gd"))
+	rig.auto_start = root_script == null
 	_own(rig, scene_root)
 
 	var hud := CanvasLayer.new()
@@ -66,10 +73,14 @@ func _ready() -> void:
 	var packed := PackedScene.new()
 	var err := packed.pack(scene_root)
 	if err == OK:
-		err = ResourceSaver.save(packed, OUT)
+		err = ResourceSaver.save(packed, out_path)
 	scene_root.free()
-	print("build_sertao: ", "salvo em " + OUT if err == OK else "erro %d" % err)
+	print("build: ", "salvo em " + out_path if err == OK else "erro %d" % err)
 	get_tree().quit(err)
+
+
+func _setup() -> void:
+	pass
 
 
 func _layout() -> void:
@@ -102,7 +113,7 @@ func _scatter(kind: String, count: int, min_r: float, max_r: float, seed_base: i
 		_prop(kind, pos, rng.randf() * TAU, seed_base + i)
 
 
-func _prop(kind: String, pos: Vector3, yaw: float, seed: int) -> void:
+func _prop(kind: String, pos: Vector3, yaw: float, seed: int) -> Node3D:
 	var node := Node3D.new()
 	node.set_script(PROP)
 	node.name = "%s_%d" % [kind, seed]
@@ -111,6 +122,7 @@ func _prop(kind: String, pos: Vector3, yaw: float, seed: int) -> void:
 	node.position = pos
 	node.rotation.y = yaw
 	_own(node, props)
+	return node
 
 
 func _enemies() -> void:
@@ -143,13 +155,13 @@ func _bounds() -> void:
 	var walls := StaticBody3D.new()
 	walls.name = "Limites"
 	_own(walls, scene_root)
-	var half := MAP_SIZE / 2.0 - 2.0
+	var half := map_size / 2.0 - 2.0
 	for dir in [Vector3.FORWARD, Vector3.BACK, Vector3.LEFT, Vector3.RIGHT]:
 		var shape := CollisionShape3D.new()
 		var box := BoxShape3D.new()
-		box.size = Vector3(MAP_SIZE, 10, 1) if dir.x == 0 else Vector3(1, 10, MAP_SIZE)
+		box.size = Vector3(map_size, 10, 1) if dir.x == 0 else Vector3(1, 10, map_size)
 		shape.shape = box
-		shape.position = dir * half + Vector3.UP * 5
+		shape.position = map_center + dir * half + Vector3.UP * 5
 		_own(shape, walls)
 
 
