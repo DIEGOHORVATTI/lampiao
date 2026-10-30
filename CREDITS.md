@@ -14,6 +14,9 @@ história e incentivar o quadrinho brasileiro. Leia o original no Tapas.
   Quaternius (CC0).
 - Corpos, rostos e roupas: Universal Base Characters e Modular Character Outfits - Fantasy por
   Quaternius (CC0).
+- Armas em primeira pessoa (rifle de ferrolho, revólver, peixeira), mangas do casaco e textura de
+  madeira: geradas proceduralmente no próprio projeto (`resources/weapons/forge.gd`), sem assets
+  de terceiros. Os braços usam o esqueleto e as animações do template.
 - Efeitos sonoros do template: [Pixabay](https://pixabay.com/).
 - Ícones: [game-icons.net](https://game-icons.net) (CC BY 3.0), autores em
   `resources/ui/icons/CREDITS.md`.

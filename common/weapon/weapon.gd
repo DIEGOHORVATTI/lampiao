@@ -1,5 +1,7 @@
 extends Node3D
 
+signal fired
+
 @export_group("weapon settings")
 @export var is_melee_weapon: bool = false
 
@@ -156,6 +158,7 @@ func fire_weapon() -> void:
 	# Play fire SFX
 	if firing_sfx:
 		firing_sfx.play()
+	fired.emit()
 	
 	# Muzzle flash VFX (ranged weapons only)
 	if not is_melee_weapon:

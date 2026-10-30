@@ -8,6 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://dufj8pnelaehr" path="res://resources/sfx/weapons/no_bullets.wav" id="4_tf77g"]
 [ext_resource type="PackedScene" uid="uid://bnkw33w13ruko" path="res://resources/player/fps_demo_arms.glb" id="7_tf77g"]
 [ext_resource type="Material" uid="uid://onk5amtjoel5" path="res://resources/materials/black_mat.material" id="8_s7o25"]
+[ext_resource type="ArrayMesh" path="res://resources/player/coat_arms_mesh.res" id="9_coat"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_56b04"]
 shading_mode = 0
@@ -532,8 +533,10 @@ layers = 2
 
 [node name="fps_arms_extended" parent="fps_demo_arms/Armature/Skeleton3D" index="4" unique_id=636939472]
 layers = 2
+mesh = ExtResource("9_coat")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="fps_demo_arms/Armature/Skeleton3D/fps_arms_extended" index="0" unique_id=2042873908]
+visible = false
 layers = 2
 mesh = SubResource("ArrayMesh_tli1x")
 skin = SubResource("Skin_xk01g")

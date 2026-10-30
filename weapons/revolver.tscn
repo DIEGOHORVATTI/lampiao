@@ -1,18 +1,23 @@
 [gd_scene format=3 uid="uid://dw2hcpsqkygc2"]
 
 [ext_resource type="PackedScene" uid="uid://dtkna74y7fni" path="res://common/weapon/weapon_base.tscn" id="1_1ohd4"]
+[ext_resource type="ArrayMesh" path="res://resources/weapons/meshes/revolver.res" id="2_body"]
+[ext_resource type="ArrayMesh" path="res://resources/weapons/meshes/revolver_cylinder.res" id="3_cylinder"]
+[ext_resource type="Script" path="res://common/weapon/cylinder_turn.gd" id="4_turn"]
 
-[node name="Pistol" unique_id=1058031305 instance=ExtResource("1_1ohd4")]
+[node name="Revolver" unique_id=1058031305 instance=ExtResource("1_1ohd4")]
 animation_fire = "pistol_fire"
 animation_reload = "pistol_reload"
-cooldown = 0.25
-mag_capacity = 12
+damage = 70.0
+cooldown = 0.45
+mag_capacity = 6
+reload_time = 2.0
 
 [node name="StandardAimPosition" parent="." index="0" unique_id=643753700]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0.15, -0.02, -0.1)
+transform = Transform3D(0.9945219, -0.009110255, 0.10413071, 0, 0.9961947, 0.08715574, -0.104528464, -0.08667829, 0.9907375, 0.2, -0.13, -0.08)
 
 [node name="fps_demo_arms" parent="." index="6" unique_id=1804116874]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, -0.02, -0.1)
+transform = Transform3D(0.9945219, -0.009110255, 0.10413071, 0, 0.9961947, 0.08715574, -0.104528464, -0.08667829, 0.9907375, 0.2, -0.13, -0.08)
 
 [node name="Skeleton3D" parent="fps_demo_arms/Armature" parent_id_path=PackedInt32Array(1804116874, 189636582) index="0" unique_id=1638694486]
 bones/1/position = Vector3(-0.027379394, -0.10630757, 0.10846783)
@@ -67,13 +72,23 @@ bones/32/scale = Vector3(1, 1, 1)
 transform = Transform3D(0.015240042, -0.99988365, -1.6265972e-07, -8.009376e-08, 5.354662e-08, 0.9999998, -0.9998837, -0.015240298, 6.8597345e-08, 0.028598038, -0.106309175, -0.1952849)
 
 [node name="pistol_ammo" parent="fps_demo_arms/Armature/Skeleton3D/Holder_R" index="6" unique_id=64752129]
-visible = true
+visible = false
 
 [node name="hand_R" parent="fps_demo_arms/Armature/Skeleton3D" index="1" unique_id=1355498344]
 transform = Transform3D(0.99988365, 0.015240042, -1.4156103e-07, -7.4505806e-08, -8.940697e-08, 0.9999998, 0.015240298, -0.9998837, 5.9604645e-08, 0.02739498, -0.10631077, -0.10844818)
 
 [node name="pistol" parent="fps_demo_arms/Armature/Skeleton3D/hand_R" index="5" unique_id=1341208564]
 visible = true
+mesh = ExtResource("2_body")
+
+[node name="MeshInstance3D" parent="fps_demo_arms/Armature/Skeleton3D/hand_R/pistol" index="0"]
+visible = false
+
+[node name="Cylinder" type="MeshInstance3D" parent="fps_demo_arms/Armature/Skeleton3D/hand_R/pistol" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.046, -0.03)
+layers = 2
+mesh = ExtResource("3_cylinder")
+script = ExtResource("4_turn")
 
 [node name="Holder_L" parent="fps_demo_arms/Armature/Skeleton3D" index="2" unique_id=483185702]
 transform = Transform3D(-0.92327267, -0.030354826, -0.38294378, -0.22801913, 0.84556687, 0.48272547, 0.30915165, 0.53300583, -0.7876101, -0.029756948, -0.17195669, -0.22623304)
@@ -82,6 +97,6 @@ transform = Transform3D(-0.92327267, -0.030354826, -0.38294378, -0.22801913, 0.8
 transform = Transform3D(-0.030354833, 0.92327267, -0.38294378, 0.84556687, 0.22801913, 0.48272544, 0.53300583, -0.30915165, -0.7876101, -0.10993428, -0.19186166, -0.19944772)
 
 [node name="MuzzleFlashPosition" parent="fps_demo_arms" index="2" unique_id=219008948]
-transform = Transform3D(0.99999976, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, -0.007891081, -0.45480573)
+transform = Transform3D(0.99999976, 0, 0, 0, 0.9999998, 0, 0, 0, 0.9999998, 0, -0.0256, -0.6)
 
 [editable path="fps_demo_arms"]

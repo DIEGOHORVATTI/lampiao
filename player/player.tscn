@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://dau5ewl1inltl" path="res://player/player.gd" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://85o1fose5ay1" path="res://common/utils/active_camera.gd" id="2_boad6"]
 [ext_resource type="Script" uid="uid://crk1vovs3vyif" path="res://common/managers/weapons_manager.gd" id="3_rgyib"]
-[ext_resource type="PackedScene" uid="uid://dw2hcpsqkygc2" path="res://weapons/pistol.tscn" id="4_hg6s5"]
-[ext_resource type="PackedScene" uid="uid://5r64a43lxupx" path="res://weapons/assualt_rifle.tscn" id="5_8t03j"]
-[ext_resource type="PackedScene" uid="uid://c5cmenins5u2w" path="res://weapons/knife.tscn" id="8_yllr7"]
+[ext_resource type="PackedScene" uid="uid://dw2hcpsqkygc2" path="res://weapons/revolver.tscn" id="4_hg6s5"]
+[ext_resource type="PackedScene" uid="uid://5r64a43lxupx" path="res://weapons/bolt_rifle.tscn" id="5_8t03j"]
+[ext_resource type="PackedScene" uid="uid://c5cmenins5u2w" path="res://weapons/peixeira.tscn" id="8_yllr7"]
 [ext_resource type="Script" uid="uid://gku3bplish0s" path="res://common/utils/weapon_sub_viewport.gd" id="17_tqiix"]
 [ext_resource type="Script" uid="uid://ceq0fc565dbaa" path="res://common/managers/audio_manager.gd" id="18_x7c3f"]
 [ext_resource type="AudioStream" uid="uid://tohbwu7jgoab" path="res://player/sfx/footstep_ground.ogg" id="19_bjvpn"]
@@ -37,7 +37,7 @@ cull_mask = 1048573
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
 script = ExtResource("3_rgyib")
 follow_speed = 50.0
-weapons_array = [NodePath("Knife"), NodePath("Pistol"), NodePath("AssualtRifle")]
+weapons_array = [NodePath("Peixeira"), NodePath("Revolver"), NodePath("BoltRifle")]
 
 [node name="RayCastOrigin" type="Node3D" parent="WeaponsManager" unique_id=964028775]
 
@@ -45,11 +45,11 @@ weapons_array = [NodePath("Knife"), NodePath("Pistol"), NodePath("AssualtRifle")
 target_position = Vector3(0, 0, -10)
 collision_mask = 6
 
-[node name="Knife" parent="WeaponsManager" unique_id=171239475 instance=ExtResource("8_yllr7")]
+[node name="Peixeira" parent="WeaponsManager" unique_id=171239475 instance=ExtResource("8_yllr7")]
 
-[node name="Pistol" parent="WeaponsManager" unique_id=1058031305 instance=ExtResource("4_hg6s5")]
+[node name="Revolver" parent="WeaponsManager" unique_id=1058031305 instance=ExtResource("4_hg6s5")]
 
-[node name="AssualtRifle" parent="WeaponsManager" unique_id=240215704 instance=ExtResource("5_8t03j")]
+[node name="BoltRifle" parent="WeaponsManager" unique_id=240215704 instance=ExtResource("5_8t03j")]
 
 [node name="WeaponSubViewport" type="SubViewportContainer" parent="." unique_id=884807026]
 anchors_preset = 15

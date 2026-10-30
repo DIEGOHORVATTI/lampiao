@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://c5cmenins5u2w"]
 
 [ext_resource type="PackedScene" uid="uid://dtkna74y7fni" path="res://common/weapon/weapon_base.tscn" id="1_yyc7w"]
+[ext_resource type="ArrayMesh" path="res://resources/weapons/meshes/peixeira.res" id="2_body"]
 
-[node name="Knife" unique_id=1058031305 instance=ExtResource("1_yyc7w")]
+[node name="Peixeira" unique_id=1058031305 instance=ExtResource("1_yyc7w")]
 is_melee_weapon = true
 firing_distance = 1.0
 animation_fire = "knife"
@@ -81,6 +82,10 @@ transform = Transform3D(-0.62273955, 0.6788811, 0.3889932, -0.0070436676, -0.502
 
 [node name="knife" parent="fps_demo_arms/Armature/Skeleton3D/Holder_L" index="0" unique_id=998914723]
 visible = true
+mesh = ExtResource("2_body")
+
+[node name="MeshInstance3D" parent="fps_demo_arms/Armature/Skeleton3D/Holder_L/knife" index="0"]
+visible = false
 
 [node name="hand_L" parent="fps_demo_arms/Armature/Skeleton3D" index="3" unique_id=1868422015]
 transform = Transform3D(0.6788811, 0.62273955, 0.38899314, -0.50200474, 0.0070436597, 0.8648361, 0.53582764, -0.7823974, 0.31740016, -0.18615426, -0.10220088, -0.47337365)
