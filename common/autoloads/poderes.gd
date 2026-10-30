@@ -1,19 +1,25 @@
 extends Node
 
-const RAIZES_RANGE := 5.0
-const RAIZES_HUNGER := 10.0
-const RAIZES_COOLDOWN := 1.5
+const TENTACULOS_RANGE := 5.0
+const TENTACULOS_HUNGER := 10.0
+const TENTACULOS_COOLDOWN := 1.5
 
 var cooldown := 0.0
+var terco_ativo := false
 var root_material: StandardMaterial3D
 
 
 func _ready() -> void:
-	if not InputMap.has_action("raizes"):
-		InputMap.add_action("raizes")
+	if not InputMap.has_action("tentaculos"):
+		InputMap.add_action("tentaculos")
 		var key := InputEventKey.new()
 		key.physical_keycode = KEY_Q
-		InputMap.action_add_event("raizes", key)
+		InputMap.action_add_event("tentaculos", key)
+	if not InputMap.has_action("terco"):
+		InputMap.add_action("terco")
+		var key_t := InputEventKey.new()
+		key_t.physical_keycode = KEY_T
+		InputMap.action_add_event("terco", key_t)
 	root_material = StandardMaterial3D.new()
 	root_material.albedo_color = Color(0.08, 0.04, 0.03)
 	root_material.roughness = 0.6
@@ -21,17 +27,18 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	cooldown = maxf(0.0, cooldown - delta)
-	if Input.is_action_just_pressed("raizes") and cooldown == 0.0 and Pacto.active:
-		raizes()
+	terco_ativo = Input.is_action_pressed("terco") and Pacto.active
+	if Input.is_action_just_pressed("tentaculos") and cooldown == 0.0 and Pacto.active and not terco_ativo:
+		tentaculos()
 
 
-func raizes() -> bool:
+func tentaculos() -> bool:
 	var player: Node3D = Global.player
 	var target := _target(player)
-	cooldown = RAIZES_COOLDOWN
-	Pacto.hunger = minf(99.0, Pacto.hunger + RAIZES_HUNGER)
+	cooldown = TENTACULOS_COOLDOWN
+	Pacto.hunger = minf(99.0, Pacto.hunger + TENTACULOS_HUNGER)
 	var hand: Vector3 = player.camera.global_position + player.camera.global_basis * Vector3(0.3, -0.4, -0.3)
-	var end: Vector3 = target.global_position + Vector3.UP * 1.0 if target else hand + -player.camera.global_basis.z * RAIZES_RANGE
+	var end: Vector3 = target.global_position + Vector3.UP * 1.0 if target else hand + -player.camera.global_basis.z * TENTACULOS_RANGE
 	for i in 3:
 		_tentacle(hand, end + Vector3(randf_range(-0.3, 0.3), randf_range(-0.3, 0.3), randf_range(-0.3, 0.3)))
 	if target:
@@ -42,7 +49,7 @@ func raizes() -> bool:
 func _target(player: Node3D) -> Node3D:
 	var forward: Vector3 = -player.camera.global_basis.z
 	var best: Node3D = null
-	var best_distance := RAIZES_RANGE
+	var best_distance := TENTACULOS_RANGE
 	for enemy in get_tree().get_nodes_in_group("inimigos"):
 		if not enemy.is_alive:
 			continue

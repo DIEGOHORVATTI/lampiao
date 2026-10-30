@@ -22,13 +22,22 @@ func _ready() -> void:
 	await get_tree().create_timer(0.3).timeout
 	Global.player.camera_pivot.look_at(corpo.global_position, Vector3.UP)
 	Global.player.camera_holder.rotation.x = 0.0
-	_check(Poderes.raizes() and not corpo.is_alive, "raízes derrubam o corpo-seco à frente")
+	_check(Poderes.tentaculos() and not corpo.is_alive, "tentáculos derrubam o corpo-seco à frente")
 	Pacto.hunger = 60.0
 	Global.player.global_position = corpo.global_position + Vector3(0.5, 0.5, 0)
 	await get_tree().create_timer(0.4).timeout
 	Global.activate_pressed.emit()
 	await get_tree().process_frame
 	_check(Pacto.hunger < 35.0 and not corpo.character_root.visible, "matar e comer o corpo-seco com USAR")
+	var carnica := Node3D.new()
+	carnica.set_script(load("res://world/carnica.gd"))
+	add_child(carnica)
+	carnica.global_position = Global.player.global_position + Vector3(0, -0.5, 0)
+	Pacto.hunger = 70.0
+	await get_tree().create_timer(0.4).timeout
+	Global.activate_pressed.emit()
+	await get_tree().process_frame
+	_check(carnica.eaten and Pacto.hunger < 45.0, "comer carniça de bicho alimenta Ela")
 	Pacto.hunger = 99.95
 	await get_tree().create_timer(0.5).timeout
 	_check(get_tree().paused, "fome cheia mata e pausa")

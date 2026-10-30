@@ -8,7 +8,7 @@ Adapta o episódio 1 do quadrinho ("Lampião", 38 págs., `docs/referencias/tapa
 | **Local** | Fazenda do Coronel (prólogo) e Caverna dos Ídolos (mapa em `04-mapas.md`, cap. 1) |
 | **Duração** | 16–18 min |
 | **Objetivo** | fugir da fazenda com o dinheiro; sobreviver à traição; sair da caverna; enterrar o bando |
-| **Criatura** | Corpo-Seco (os servos secos da caverna); volante do Coronel (gente) |
+| **Inimigos** | volante do Coronel (soldados); Vini (duelo). Comida dela: os soldados que a história entrega e os restos deles |
 | **Ganha** | rifle e peixeira (desde o início), pistola (revólver de soldado), o terço de Maria; poderes Tentáculos e Comer |
 | **Começa com** | vida 100, sem medidor de fome (a barra só aparece quando Ela acorda, beat 8; ao fim do beat 9 a fome está em 50) |
 | **Folheto** | "O Rifle que Alumiava a Noite" (no bornal de Xexéu) |
@@ -184,12 +184,10 @@ Imagem em preto chapado e retícula, legenda curta embaixo. Ordem de sorteio liv
 
 - **Luz:** só o facho de Vini, 4 m à frente. Se o jogador ficar para trás, fica no escuro.
   Soldados vêm atrás com tochas; atirar neles acende o túnel e revela os dois.
-- As paredes têm **nichos** cavados na pedra. Dentro de cada um, um corpo seco, sentado de
-  joelhos, encolhido, a pele de couro grudada no osso, a boca aberta para cima como os
-  ídolos. Ninguém sabe há quanto tempo estão ali.
-- **Susto !4 (vulto):** no terceiro nicho, quando a luz do facho passa, o corpo vira a cabeça
-  devagar acompanhando Vini. Só a cabeça. Quando a luz volta, está de novo de boca para
-  cima. Vini não viu.
+- As paredes têm **nichos** cavados na pedra, cheios de ossada antiga e de cacos de pote, com
+  rostos de pedra de boca aberta entalhados em cima, como os dos ídolos. Só cenário.
+- **Susto !4 (vulto):** no fim do túnel, além da luz do facho, uma figura de pé, muito alta,
+  com dois olhos brancos. Quando o jogador olha direto, não tem nada. Vini não viu.
 - **Encontro E1:** dois soldados alcançam os dois na curva. Combate curto com o rifle.
 - **Sussurro (sem legenda de personagem, só texto entre colchetes):** "[uma voz de mulher,
   muito longe, no fundo do túnel: ...fome...]"
@@ -334,34 +332,35 @@ Imagem em preto chapado e retícula, legenda curta embaixo. Ordem de sorteio liv
 - O caminho de volta pela galeria está fechado pelas pedras (beat 5). A saída é a **fenda
   leste**, por onde Benedito fugiu. Uma corrente de ar frio vem de lá.
 
-### 10. Os servos (jogável, 4 min) — Zonas Z4 → Z5
+### 10. A fenda (jogável, 4 min) — Zonas Z4 → Z5
 
-- Ao passar pela laje rachada, gatilho g3. **Susto !7 (chao):** todos os nichos do salão
-  estalam ao mesmo tempo. Os corpos secos se desdobram e ficam de pé. Couro estalando como
-  sola velha. Os olhos têm um brilho branco pequeno, igual ao dos totens.
+- **Carniça (tutorial de Comer cadáver):** o salão está cheio dos restos dos soldados que Ela
+  comeu (metades, pernas, um quepe ainda na cabeça). Aviso "COMER" num deles: o pescoço abre, a
+  boca dela morde, a visão desce e sobe. Fome −30, vida +15.
 
-> **ELA:** Ih. Olha só, meus servos. Secaram me esperando.
-> **LAMPIÃO:** Teus servo tão vindo pra cima da gente.
-> **ELA:** Eles num sabem que sou eu aqui dentro. Tu tem cara de comida pra eles.
+> **ELA:** Morto de pouco. Ainda tá quente.
+> **LAMPIÃO:** Tu disse carne podre.
+> **ELA:** Tu disse. Eu como o que tiver.
 
-- **Encontro E3 (salão):** três corpos-secos. Peixeira, rifle, pistola, Tentáculos. **Tutorial
-  de Comer cadáver:** com o corpo-seco caído, "COMER". O pescoço abre, a boca dela morde,
-  a visão desce e sobe. Fome −30, vida +15.
-
-> **ELA:** Bleh. Carne de mil ano. Mas engana.
-
+- Ao passar pela laje rachada, gatilho g3. **Susto !7 (respiracao):** uma respiração enorme
+  vem de debaixo da laje, lenta, e para quando Lampião para. Ela fica calada.
+- **Encontro E3 (salão):** dois soldados voltam pela fenda com tochas, mandados de volta:
+  **SOLDADO:** "O Coronel quer a cabeça! Sem a cabeça ninguém recebe!" Peixeira, rifle,
+  revólver, Tentáculos. Os corpos viram carniça.
 - **A fenda (Z5):** corredor estreito que sobe em rampa para a superfície, 2 m de largura,
-  nichos dos dois lados. Escuro total, a não ser pelos clarões e por um **facho** largado
-  pelos soldados no começo da fenda (o jogador pode pegar e carregar o facho na mão esquerda
-  no lugar de arma; ele ilumina 5 m e dura 90 s).
+  nichos de ossada dos dois lados. Escuro total, a não ser pelos clarões e por um **facho**
+  largado pelos soldados no começo da fenda (o jogador pode carregar o facho na mão esquerda no
+  lugar de arma; ele ilumina 5 m e dura 90 s).
 - **Tutorial do terço:** quando a fome passar de 75 pela primeira vez (ou no gatilho g4, o
-  que vier antes), aviso: "Segure o TERÇO para acalmar a fome." Segurando, a fome desce, os
-  corpos-secos recuam a 4 m, e os poderes ficam desligados.
+  que vier antes), aviso: "Segure o TERÇO para acalmar a fome." Segurando, a fome desce e os
+  poderes ficam desligados.
 
 > **ELA:** Irch... sério que você vai usar isso aí?
 
-- **Encontro E4 (fenda):** spawner em dois nichos, cinco corpos-secos no total, no máximo
-  três vivos.
+- **Encontro E4 (fenda):** quatro soldados entrincheirados nas curvas da fenda, atrás de
+  pedras, com tochas fincadas no chão. Cada tiro do jogador acende a fenda e os mostra; cada tiro
+  deles mostra o jogador. Apagar as tochas a tiro deixa os soldados no escuro. Os mortos são
+  carniça.
 
 ### 11. Benedito (escolha, 60 s) — Zona Z5, nicho largo
 
@@ -485,20 +484,19 @@ estrofe, lida em voz alta por Lampião se o jogador abrir:
 
 Tipos (ferramentas que o jogo já tem): **jumpscare** (rosto em tela cheia), **vulto** (figura na
 visão periférica que some quando se olha), **passos**, **batida**, **sussurro**, **respiracao**
-(som atrás do jogador), **apagao** (as fogueiras próximas apagam juntas), **chao** (corpo-seco
-saindo do chão ou do nicho). Posições em `04-mapas.md`, cap. 1.
+(som atrás do jogador), **apagao** (as fogueiras e tochas próximas apagam juntas). Posições em `04-mapas.md`, cap. 1.
 
 | # | Zona | Tipo | Gatilho | O que acontece |
 |---|---|---|---|---|
 | !1 | Z2 | vulto | olhar o ídolo do pressentimento (−10, 14) e virar para a fogueira | uma figura de pé atrás de Vini, na borda da luz; some quando o jogador olha |
 | !2 | Z2 | jumpscare | acordar do sonho (beat 4) | o rosto de Maria em tela cheia, espuma branca saindo da boca, olho revirado; 0,4 s |
 | !3 | Z2 | apagao | o Coronel chega na boca (beat 4) | o vento da boca apaga a fogueira do bando de uma vez (se o jogador não tiver apagado antes); só os clarões |
-| !4 | Z3 | vulto | o facho de Vini passa pelo 3º nicho (−6, 36) | o corpo seco vira a cabeça seguindo Vini e volta à posição quando a luz retorna |
+| !4 | Z3 | vulto | (−6, 36), além da luz do facho de Vini | figura alta de olhos brancos no fim do túnel; some quando o jogador olha |
 | !5 | Z3 | sussurro | (−2, 46) | voz de mulher no ouvido esquerdo: "...fome..." |
 | !6 | Z4 | respiracao | cabeça caída (beat 7), antes da voz | respiração enorme, de bicho, vinda de debaixo da laje |
-| !7 | Z4 | chao | passar pela laje depois do beat 9 (g3) | todos os nichos estalam juntos e os corpos secos ficam de pé |
+| !7 | Z4 | respiracao | passar pela laje depois do beat 9 (g3) | respiração enorme debaixo da laje, que para quando Lampião para |
 | !8 | Z5 | passos | 10 s depois de pegar o facho (16, 78) | passos de pé descalço atrás do jogador, parando quando ele para |
-| !9 | Z5 | jumpscare | tirar a luz do facho do nicho (27, 54) e voltar | o corpo seco está fora do nicho, a 1 m, rosto de couro e boca aberta em tela cheia |
+| !9 | Z5 | jumpscare | iluminar o nicho (27, 54) com o facho | rosto de **soldado comido** em tela cheia: metade do rosto, olho aberto, quepe; o corpo foi arrastado até ali |
 | !10 | Z5 | batida | perto do nicho de Benedito (31, 24) | três batidas de dedo na pedra, devagar; é Benedito pedindo socorro, mas o jogador não sabe |
 | !11 | Z6 | vulto | olhar a árvore seca durante o enterro (beat 13) | por um instante, Maria de pé ao lado da árvore, de chapéu; some |
 
@@ -510,8 +508,8 @@ saindo do chão ou do nicho). Posições em `04-mapas.md`, cap. 1.
 | E1 | Z2/Z3 | 2 soldados na boca + 2 na curva da galeria | Lampião envenenado: mira com tremor |
 | D | Z4 | Vini (duelo) | só peixeira; 2 golpes |
 | E2 | Z4 | 4 soldados (Modo Ela) | tutorial de Tentáculos e Comer; tiro não fere Ela |
-| E3 | Z4 | 3 corpos-secos | tutorial de comer cadáver |
-| E4 | Z5 | 2 nichos-spawner: 5 corpos-secos, máx. 3 vivos | tutorial do terço; para quando o jogador passa da escolha de Benedito |
+| E3 | Z4 | 2 soldados com tocha, vindos da fenda | os corpos viram carniça |
+| E4 | Z5 | 4 soldados entrincheirados nas curvas, com tochas fincadas | tutorial do terço; apagar tocha a tiro deixa o soldado no escuro |
 
 ## Escolhas
 

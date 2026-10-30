@@ -16,6 +16,8 @@ const COLORS := {
 	"leather": Color(0.36, 0.22, 0.12),
 	"ash": Color(0.12, 0.11, 0.1),
 	"ember": Color(1.0, 0.35, 0.1),
+	"bone": Color(0.82, 0.78, 0.68),
+	"rot": Color(0.22, 0.05, 0.04),
 }
 
 const TEXTURES := {
@@ -71,6 +73,9 @@ static func _build(kind: String, rng: RandomNumberGenerator) -> Node3D:
 		"terreno_grande": return terreno(rng, 140.0)
 		"grota_barauna": return terreno_relevo(load("res://world/cap01/relevo.gd"))
 		"xique_xique": return xique_xique(rng)
+		"carcaca_cavalo": return carcaca(rng, 1.0)
+		"carcaca_bode": return carcaca(rng, 0.5)
+		"urubu_morto": return carcaca(rng, 0.25)
 		"mandacaru": return mandacaru(rng)
 		"casa_taipa": return casa_taipa(rng)
 		"cerca_varas": return cerca_varas(rng, 8.0)
@@ -157,6 +162,41 @@ static func xique_xique(rng: RandomNumberGenerator) -> Node3D:
 		var tilt := Basis(Vector3(cos(a), 0, sin(a)), rng.randf_range(0.2, 0.6))
 		_add_cylinder(root, 0.08, h, tilt * Vector3(0, h / 2, 0), "cactus", 6, tilt)
 	_add_box_shape(root, Vector3(0.8, 0.8, 0.8), Vector3(0, 0.4, 0))
+	return root
+
+
+static func carcaca(rng: RandomNumberGenerator, size: float) -> Node3D:
+	var root := Node3D.new()
+	var length := 1.6 * size
+	var meat := SphereMesh.new()
+	meat.radius = 0.35 * size
+	meat.height = 0.4 * size
+	meat.radial_segments = 8
+	meat.rings = 4
+	var meat_mi := _mesh_instance(meat, "rot")
+	meat_mi.scale = Vector3(1.0, 0.6, length / (0.7 * size))
+	meat_mi.position.y = 0.08 * size
+	root.add_child(meat_mi)
+	var ribs := int(7 * maxf(size, 0.5))
+	for i in ribs:
+		var z := -length * 0.35 + i * (length * 0.6 / ribs)
+		for side in [-1.0, 1.0]:
+			_add_cylinder(root, 0.025 * size + 0.01, 0.55 * size, Vector3(side * 0.18 * size, 0.28 * size, z), "bone", 5, Basis(Vector3.FORWARD, side * 0.5 + rng.randf_range(-0.1, 0.1)))
+	_add_cylinder(root, 0.04 * size + 0.01, length, Vector3(0, 0.38 * size, 0), "bone", 5, Basis(Vector3.RIGHT, PI / 2))
+	var skull := SphereMesh.new()
+	skull.radius = 0.16 * size
+	skull.height = 0.26 * size
+	skull.radial_segments = 8
+	skull.rings = 4
+	var skull_mi := _mesh_instance(skull, "bone")
+	skull_mi.scale = Vector3(0.8, 0.8, 1.8)
+	skull_mi.position = Vector3(0.1 * size, 0.12 * size, length * 0.62)
+	skull_mi.rotation.y = rng.randf_range(-0.6, 0.6)
+	root.add_child(skull_mi)
+	for leg in 4:
+		var x := (0.25 if leg % 2 == 0 else -0.25) * size
+		var z := (0.4 if leg < 2 else -0.4) * length * 0.6
+		_add_cylinder(root, 0.03 * size + 0.008, 0.8 * size, Vector3(x * 1.8, 0.04, z), "bone", 5, Basis(Vector3.UP, rng.randf() * TAU) * Basis(Vector3.FORWARD, PI / 2))
 	return root
 
 

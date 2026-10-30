@@ -1,6 +1,6 @@
 extends Node3D
 
-const KINDS := ["fogueira", "fogueira_apagada", "barraca_lona", "barraca_rasgada", "carroca_tombada", "caixote", "muro_pedra", "cova", "corpo", "cruz_exvoto", "paredao", "mandacaru", "casa_taipa"]
+const KINDS := ["carcaca_cavalo", "carcaca_bode", "urubu_morto", "fogueira", "fogueira_apagada", "barraca_lona", "barraca_rasgada", "carroca_tombada", "caixote", "muro_pedra", "cova", "corpo", "cruz_exvoto", "paredao", "mandacaru", "casa_taipa"]
 
 
 func _ready() -> void:

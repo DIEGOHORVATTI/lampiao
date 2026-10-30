@@ -3,7 +3,7 @@ extends CanvasLayer
 signal _choice_made(index: int)
 
 const SPEAKER_COLORS := {
-	"ENCOSTO": Color(0.75, 0.15, 0.2),
+	"ELA": Color(0.75, 0.15, 0.2),
 	"LAMPIÃO": Color(0.95, 0.65, 0.25),
 }
 const SECONDS_PER_CHAR := 0.085

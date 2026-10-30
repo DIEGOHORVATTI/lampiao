@@ -52,11 +52,15 @@ func shake(strength: float, seconds: float) -> void:
 		return
 	var elapsed := 0.0
 	while elapsed < seconds:
+		if not is_instance_valid(camera):
+			return
 		var falloff := 1.0 - elapsed / seconds
 		camera.h_offset = randf_range(-strength, strength) * falloff
 		camera.v_offset = randf_range(-strength, strength) * falloff
 		await get_tree().process_frame
 		elapsed += get_process_delta_time()
+	if not is_instance_valid(camera):
+		return
 	camera.h_offset = 0.0
 	camera.v_offset = 0.0
 

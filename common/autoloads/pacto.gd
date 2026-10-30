@@ -3,6 +3,7 @@ extends CanvasLayer
 signal hunger_changed(value: float)
 
 const HUNGER_PER_SECOND := 0.8
+const TERCO_HUNGER_FACTOR := 0.15
 const HUNGER_PER_MEAL := 30.0
 const HEAL_PER_MEAL := 15.0
 const POSSESSION_DAMAGE := 1000.0
@@ -158,10 +159,11 @@ func _process(delta: float) -> void:
 		print("LAMPIAO_FPS %d draw_calls %d" % [Engine.get_frames_per_second(), Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME)])
 	if not active or get_tree().paused:
 		return
-	hunger = minf(100.0, hunger + HUNGER_PER_SECOND * delta)
+	var rate := HUNGER_PER_SECOND * (TERCO_HUNGER_FACTOR if Poderes.terco_ativo else 1.0)
+	hunger = minf(100.0, hunger + rate * delta)
 	_emit()
 	if hunger >= 100.0 and Global.player and Global.player.is_alive:
-		death_message.text = "O Encosto cansou de esperar.\nAgora a carniça é você."
+		death_message.text = "Ela cansou de esperar, Capitão.\nAgora a carne podre é você."
 		Global.player.get_damage(POSSESSION_DAMAGE, Vector3.ZERO)
 
 
