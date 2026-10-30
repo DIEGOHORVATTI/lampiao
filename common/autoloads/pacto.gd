@@ -12,6 +12,7 @@ const POSSESSION_DAMAGE := 1000.0
 var hunger := 0.0
 var kerosene := 100.0
 var active := false
+var fps_log_timer := 0.0
 
 var hunger_bar: ProgressBar
 var kerosene_bar: ProgressBar
@@ -81,6 +82,10 @@ func _notification(what: int) -> void:
 
 
 func _process(delta: float) -> void:
+	fps_log_timer += delta
+	if OS.is_debug_build() and OS.has_feature("mobile") and fps_log_timer > 5.0:
+		fps_log_timer = 0.0
+		print("LAMPIAO_FPS %d draw_calls %d" % [Engine.get_frames_per_second(), Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME)])
 	if not active or get_tree().paused:
 		return
 	hunger = minf(100.0, hunger + HUNGER_PER_SECOND * delta)
