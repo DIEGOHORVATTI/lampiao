@@ -9,7 +9,7 @@ arquivo; quando este arquivo contradisser o quadrinho, vale o quadrinho. Os dema
 - `01-personagens.md` — quem é quem.
 - `02-estrutura.md` — capítulos ↔ episódios, escolhas, medidores, o fim.
 - `03-capitulos/` — roteiro cena a cena, com sustos marcados.
-- `04-mapas.md` — ponte para o level design (coordenadas, zonas, spawners, peças).
+- `04-mapas.md` — ponte para o level design (coordenadas, zonas, inimigos, carniça, sustos, peças).
 - `05-bestiario.md` — criaturas: IA, fraqueza, som, o que Ela ganha ao comer.
 - `MUDANCAS-CAP1.md` — o que muda no cap. 1 já implementado.
 
@@ -27,21 +27,21 @@ arquivo; quando este arquivo contradisser o quadrinho, vale o quadrinho. Os dema
 6. **Seguir a obra:** mesma cronologia, cenas, personagens, falas-chave e viradas dos E1–E11.
    Nada inventado depois do E11. Jogabilidade entra dentro dos episódios sem mudar o que acontece.
 7. **Horror em primeiro lugar:** todo capítulo tem vários sustos marcados, com os tipos que o jogo
-   já tem: jumpscare, vulto, passos, batida, sussurro, respiracao, apagao (e chao, o corpo-seco
-   saindo da terra).
+   já tem: jumpscare, vulto, passos, batida, sussurro, respiracao, apagao.
+8. **Só criaturas da obra.** Não há corpo-seco nem outro monstro de fora do quadrinho. Inimigos:
+   a volante, Antônio e Marconi, o lobisomem. O vulto de olhos brancos é presença, não combate.
 
 ### Sustos: tipo ↔ ferramenta (`common/autoloads/sustos.gd`)
 
 | Tipo na tabela | Chamada | Observação |
 |---|---|---|
-| jumpscare | `Sustos.jumpscare(face, segundos)` | rostos prontos: `corpo_seco`, `entidade`. Rostos a produzir (do quadrinho, preto e retícula): `maria_veneno` (E1 10), `carroceiro`, `marconi_faca` (E3 15), `ciro_febre` (E5 14), `ciro_transformando` (E8 11), `velho_porta` (cap. 5), `caveira_boi`, `olho_ela` (E9 12) |
+| jumpscare | `Sustos.jumpscare(face, segundos)` | rosto pronto: `entidade` (o `corpo_seco` sai de uso). Rostos a produzir, tirados das páginas do quadrinho (preto e retícula): `soldado_comido` (E1 28), `maria_veneno` (E1 10), `carroceiro`, `marconi_faca` (E3 15), `ciro_febre` (E5 14), `ciro_transformando` (E8 11), `lobisomem` (E9 05), `vulto` (E8 13), `velho_porta` (cap. 5), `caveira_boi`, `olho_ela` (E9 12) |
 | vulto | `Sustos.vulto(distancia, segundos)` | figura de olhos brancos na visão periférica |
 | passos | `Sustos.som_atras("passos")` | |
 | batida | `Sustos.som_atras("batida")` | |
 | sussurro | `Sustos.som_atras("sussurro")` | com legenda entre colchetes quando a fala importa |
 | respiracao | `Sustos.som_atras("respiracao")` | |
 | apagao | `Sustos.apagar_luzes(raio, segundos)` | o clarão do tiro não apaga |
-| chao | spawn de corpo-seco saindo da terra ou do nicho | usa o `spawner` com animação de levantar |
 
 ---
 
@@ -157,9 +157,9 @@ Os nomes de lugar são do jogo; o quadrinho não nomeia.
 |---|---|---|---|
 | Segurar o corpo | Lampião é frágil por fora (apanha, voa longe), mas levanta | — | cap. 1 |
 | **Tentáculos** | empalam e erguem; alcance 5 m | +10 de fome, recarga 1,5 s | cap. 1 (no código: `raizes`) |
-| **Comer** | a costura abre e come criatura caída ou cadáver de corpo-seco | fome −30, vida +15 | cap. 1 |
+| **Comer** | a costura abre e come **carniça** (bicho morto, cadáver de soldado) ou quem Tentáculos ergueu | fome −30, vida +15 (carniça); varia por tipo, ver bestiário | cap. 1 |
 | **Boca elástica** | mordida de 10 m | só no chefe lobisomem | cap. 6 |
-| **Vômito** | área de 6 m; mata corpo-seco, prende chefe 5 s | fome vai a 90, vida −30, recarga 120 s | cap. 7 |
+| **Vômito** | área de 6 m; derruba gente, prende chefe 5 s | fome vai a 90, vida −30, recarga 120 s | cap. 7 |
 
 ### O que Ela não pode
 
@@ -176,8 +176,8 @@ Os nomes de lugar são do jogo; o quadrinho não nomeia.
 | 95–100 | Tomado | fim de jogo: "Ela cansou de esperar. Agora a comida é você." |
 
 - Sobe com o tempo (no código: 0,8/s; ajustar no teste) e com Tentáculos.
-- **Segurar o terço:** desce ~1/s, sem poderes, corpo-seco recua a 4 m.
-- **Comer corpo-seco** é o pão de cada dia.
+- **Segurar o terço:** desce ~1/s, sem poderes.
+- **Comer carniça** é o pão de cada dia: "todas as carnes podres que eu achar no caminho" (E1).
 
 ### Vida
 
@@ -202,7 +202,7 @@ Inteireza do corpo. Sobe comendo, devagar perto de fogueira, e com garrafada dei
 - **Não existe lampião de querosene.** Luz carregável: só **facho** (tocha), por 90 s, no lugar
   da arma, em trechos marcados.
 - **Clarão do tiro:** rifle ~14 m, revólver ~8 m, por um instante. Mostra o caminho e mostra o
-  jogador a todo inimigo com linha de visão; acorda corpo-seco a 25 m.
+  jogador a todo inimigo com linha de visão; quem ouve o tiro a 30 m vem ver.
 - **Fogueira:** luz fixa de 8 m e checkpoint; pode ser apagada; no cap. 7 dá **tição**
   (arremessável, fogo de 3 m).
 - **Lua cheia:** luz cinza-azulada em área aberta.
@@ -211,15 +211,22 @@ Inteireza do corpo. Sobe comendo, devagar perto de fogueira, e com garrafada dei
 
 ### Fé e prata
 
-- O **terço de Maria** trava Ela e faz recuar corpo-seco. Contra o lobisomem, segura 2 s.
+- O **terço de Maria** trava Ela. Contra o lobisomem, segura 2 s.
 - **Bala de prata** (caixa de Regina, cap. 7) fere o lobisomem.
 
-### Corpo-seco no "Lampião 1"
+### Comida dela no "Lampião 1"
 
-O quadrinho não tem corpo-seco; o jogo precisa de carniça. Justificativa mínima, sem acrescentar
-história: na caverna dos ídolos há corpos secos ajoelhados em nichos, que ficam de pé quando Ela
-acorda; desde então, onde Lampião passa, os mortos secos levantam da terra, atraídos pela fome
-dela. Ninguém explica por quê.
+Só o que a obra dá. Lampião promete "todas as carnes podres que eu achar no caminho" (E1 38), e
+no E2 ela quer comer o cavalo ("Opa, esse eu nunca experimentei!"). No jogo, a comida é:
+
+- **Carniça de bicho** espalhada pela caatinga e pelas vilas: bode, cavalo, jumento, vaca, urubu
+  (marcadores de carniça no mapa).
+- **A gente que a história entrega:** os soldados do cap. 1 (no Modo Ela e os restos deles no
+  salão e na fenda) e os irmãos no cap. 3 (roteirizado).
+- **Gente por escolha:** Benedito, o carroceiro, Zeca (Marca).
+
+Os capítulos da vila (4–7) têm pouco ou nenhum combate: são horror de exploração e de
+perseguição, sustentados pelos sustos; a carniça é o que segura a fome.
 
 ---
 
@@ -235,7 +242,7 @@ dela. Ninguém explica por quê.
 | Fome, Comer, Tentáculos, Vômito | Ela |
 | Terço | de Maria |
 | Escolhas morais | pequenas, em cena, sem mudar a história |
-| Spawners | nicho, cova, galhada |
+| Carniça no mapa | bicho morto (bode, cavalo, jumento, vaca, urubu) e os mortos que a história deixa (soldados no cap. 1) |
 | Cavalo | só em cena |
 
 ## Linguagem
@@ -254,4 +261,4 @@ dela. Ninguém explica por quê.
 - **Ponto de vista:** sempre primeira pessoa; trocas curtas de corpo: Ela (cap. 1), Ciro (cap. 4),
   Helena (cap. 6), Juliana (cap. 7).
 - **Sustos:** cada capítulo tem uma tabela com tipo (jumpscare, vulto, passos, batida, sussurro,
-  respiracao, apagao, chao), zona, gatilho e o que acontece.
+  respiracao, apagao), zona, gatilho e o que acontece.

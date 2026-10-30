@@ -36,12 +36,13 @@ G  casa-grande / sobrado        C  capela / igreja
 T  árvore seca / juazeiro       Y  mandacaru / xique-xique
 O  pedra grande (cobertura)     ~  lama / açude / água
 F  fogueira acesa (checkpoint)  *  caatinga fechada / galhada (borda; agachado esconde)
-I  ídolo / totem entalhado      N  nicho com corpo seco (spawner)
+I  ídolo / totem entalhado      N  nicho de ossada (só cenário)
 Q  claraboia (coluna de lua)    h  cavalo
 $  dinheiro                     R  carroça
 c  caixote / móvel / barraca    p  arma / munição (pickup)
 t  facho / tição (pickup)       +  cruz / cova
 b  corpo (cadáver de cenário)   n  NPC vivo
+k  carniça (comida dela)
 S  segredo / folheto            !  susto
 0..9  encontro (E#)             x  marco narrativo
 ^  bloqueio que fecha após evento   %  bloqueio que abre após evento
@@ -84,7 +85,7 @@ parênteses). 🆕 = peça a criar. ♻️ = existe no template com outro nome. 
 | `arco-pedra` | 🆕 | boca da caverna com pilares lavrados tortos |
 | `totem-idolo` | 🆕 | pilar de 3–4 m com rosto de boca aberta e dentes; olhos que acendem (emissão branca) |
 | `laje-sepultura` | 🆕 | laje entalhada 6 × 4 m, rachada no meio; recebe sangue (decal) |
-| `nicho-corpo-seco` | 🆕 | nicho cavado na parede com corpo seco ajoelhado; **spawner** |
+| `nicho-ossada` | 🆕 | nicho cavado na parede com ossada antiga, cacos de pote e rosto de pedra entalhado em cima; só cenário |
 | `caldeirao` | 🆕 | caldeirão de ferro sobre pedras, com sopa |
 | `monte-moedas` | 🆕 | moedas espalhadas sobre pedra, sacos de estopa |
 | `desmoronamento` | 🆕 | pilha de pedras que cai e fecha túnel (anima em 1 s) |
@@ -105,7 +106,7 @@ parênteses). 🆕 = peça a criar. ♻️ = existe no template com outro nome. 
 | `porteira` / `porta` | ♻️ (`door.tscn`) | porta e porteira | todos |
 | `janela-tabua` | 🆕 | janela de tábua com veneziana; parapeito para oferenda | vila |
 | `muro-pedra` | ✅ (`muro_pedra`) | muro de pedra seca 1,2 m | caps. 3, 5 |
-| `cruz` / `cova` | ✅ (`cruz`, `cova`) | cruz de túmulo, monte de terra; **spawner** quando marcado | todos |
+| `cruz` / `cova` | ✅ (`cruz`, `cova`) | cruz de túmulo, monte de terra; cenário | todos |
 | `cruz-exvoto` | ✅ (`cruz_exvoto`) | cruz de beira de estrada com ex-votos | cap. 3 |
 | `cova-cavavel` | 🆕 | marca no chão que vira cova aberta e depois cova fechada | cap. 1 |
 | `poco` | ✅ (`poco`) | poço com sarilho | cap. 2 |
@@ -135,7 +136,8 @@ parênteses). 🆕 = peça a criar. ♻️ = existe no template com outro nome. 
 | `folheto` | 🆕 | folheto de cordel (colecionável, um por capítulo) | todos |
 | `bilhete` | 🆕 | papel legível | todos |
 | `oferenda-janela` | 🆕 | coisa deixada no parapeito (água, farinha, bala, linha) | Graça |
-| `spawner` | ♻️ (`spawner.tscn`) | sempre escondido em `nicho`, `cova` ou `galhada-seca` | todos |
+| `spawner` | ♻️ (`spawner.tscn`) | só para soldados da volante no cap. 1 (entram por boca de túnel ou curva) | cap. 1 |
+| `carnica` | 🆕 | bicho morto (bode, cavalo, jumento, vaca, urubu) ou restos de soldado; interação COMER; quase sempre com `urubu` em cima | todos |
 | `gatilho` | ♻️ (`world/gatilho.gd`) | área invisível de cena, susto ou fala | todos |
 | `interagivel` | ♻️ (`world/interagivel.gd`) | ponto de "USAR" com texto | todos |
 
@@ -213,9 +215,9 @@ parênteses). 🆕 = peça a criar. ♻️ = existe no template com outro nome. 
    68 ########.......D.......####.########
    72 ########N..2p..Q...2..N##..#########
    76 ########.I...........I....##########
-   80 ########......xxxp.....t############
+   80 ########......xxxp...3.t############
    84 ########N.............N#############
-   88 ########..I....3....I..#############
+   88 ########..I.........I..#############
    92 ########...............#############
    96 ####################################
 ```
@@ -267,7 +269,7 @@ z −36 a −8 são o lajedo de fora, aberto para o céu. A boca da caverna (`||
 | Elemento | Peça | Posição (x, z) | Notas |
 |---|---|---|---|
 | Trilha | `caverna-modulo` | (6, 16) → (4, 26) → (−4, 36) → (−2, 46) → (2, 56) → (0, 60) | rampa contínua |
-| Nichos | `nicho-corpo-seco` | (8, 24), (0, 30), (−6, 36), (2, 44), (−4, 50) | sem spawner na ida; o de (−6, 36) é o **!4** |
+| Nichos | `nicho-ossada` | (8, 24), (0, 30), (−6, 36), (2, 44), (−4, 50) | cenário; em (−6, 36), além da luz do facho, o **!4** (vulto) |
 | Gatilho !4 | `gatilho` | raio 3 em (−4, 36) | dispara quando o facho de Vini passa |
 | Soldados E1b | NPC | chegam em (4, 26) vindos de trás | 2 soldados |
 | Desmoronamento 2 | `desmoronamento` | (−1, 48) | cai depois do E1b: fecha a galeria de vez (`^`) |
@@ -281,14 +283,16 @@ z −36 a −8 são o lajedo de fora, aberto para o céu. A boca da caverna (`||
 | Claraboia | `claraboia` | (0, 74), raio 3 | coluna de lua; único ponto claro fixo |
 | Laje rachada | `laje-sepultura` | centro (0, 80), 6 × 4 m | decal de sangue de Vini; inscrição (interação "Olhar") |
 | Totens | `totem-idolo` ×6 | (−10, 64), (10, 64), (−12, 76), (12, 76), (−10, 88), (10, 88) | olhos acendem um a um na cena 7 |
-| Nichos do salão | `nicho-corpo-seco` + `spawner` | (−14, 70), (14, 70), (−14, 84), (14, 84) | E3: 3 corpos-secos (sorteio de 3 dos 4) |
+| Nichos do salão | `nicho-ossada` | (−14, 70), (14, 70), (−14, 84), (14, 84) | cenário |
+| Carniça do salão | `carnica` (restos de soldado) | `Carnica_1..4` em (−6, 62), (6, 62), (−8, 72), (8, 72) | o que sobrou do E2; tutorial de Comer cadáver |
+| Soldados E3 | `spawner` | `E3_1` (12, 78), `E3_2` (10, 72) | entram pela fenda com tocha depois do !7 |
 | Duelo com Vini | D | Lampião (0, 66), Vini (0, 72) | |
 | Onde a cabeça cai | marco | (−2, 66) | câmera da cena 7 |
 | Soldados E2 (Modo Ela) | NPC | (−6, 62), (6, 62), (−8, 72), (8, 72) | o Coronel entra e foge por (0, 60) |
 | Benedito foge | rota | (8, 72) → (14, 80) → fenda | |
 | Revólver + balas | `p` | (−6, 70) | pickup da cena 9 |
 | Rifle + pente | `p` | (4, 78) | perto do corpo de Vini (2, 78) |
-| Gatilho g3 (!7) | `gatilho` | caixa x −4..4, z 76..84 | só depois da cena 9 |
+| Gatilho g3 (!7, respiracao) | `gatilho` | caixa x −4..4, z 76..84 | só depois da cena 9 |
 | Saída para a fenda | `caverna-modulo` (2 m) | (14, 80) | corrente de ar (partículas de poeira indo para leste) |
 
 **Z5 — A Fenda** (trilha de 2 m de (14, 80) a (34, −4); y −6 → 0)
@@ -298,8 +302,8 @@ z −36 a −8 são o lajedo de fora, aberto para o céu. A boca da caverna (`||
 | Trilha | `caverna-modulo` (2 m, rampa) | (14, 80) → (22, 72) → (26, 60) → (28, 46) → (30, 32) → (32, 18) → (34, 6) → (34, −4) | |
 | Facho largado | `facho` (pickup) | (16, 78) | ilumina 5 m por 90 s |
 | Gatilho g4 (terço) | `gatilho` | raio 3 em (26, 60) | tutorial do terço, se a fome ainda não passou de 75 |
-| Nichos-spawner E4 | `nicho-corpo-seco` + `spawner` | (24, 66), (29, 40) | 5 corpos-secos, máx. 3 vivos, intervalo 6 s |
-| Nicho do !9 | `nicho-corpo-seco` | (27, 54) | o corpo aparece fora do nicho quando a luz volta |
+| Soldados E4 | `spawner` + `pedra` + tocha fincada | `E4_1` (24, 66), `E4_2` (27, 56), `E4_3` (29, 40), `E4_4` (30, 34) | entrincheirados; tocha apagável a tiro; mortos viram `carnica` |
+| Nicho do !9 | `nicho-ossada` + `corpo` (soldado comido) | (27, 54) | jumpscare `soldado_comido` ao iluminar com o facho |
 | Nicho de Benedito | NPC + `pedra` | (31, 24) | gatilho da escolha: raio 3 |
 | Saída da fenda | `gatilho` | (34, −4) | começa a cena 12 (luz cinza-azulada) |
 
@@ -316,7 +320,7 @@ z −36 a −8 são o lajedo de fora, aberto para o céu. A boca da caverna (`||
 | Fim X | marco | (−10, −30), olhando para leste | o sol nasce a leste (+x) |
 | Segredo S | `cartucheira` | (12, −30) | munição de rifle esquecida pela volante |
 
-### Encontros e spawners
+### Encontros, inimigos e carniça
 
 | # | Zona | Spawner / posição | Criaturas | Regras |
 |---|---|---|---|---|
@@ -325,8 +329,9 @@ z −36 a −8 são o lajedo de fora, aberto para o céu. A boca da caverna (`||
 | E1b | Z3 | (4, 26) | 2 soldados | passam pelo desmoronamento 1 um por vez |
 | D | Z4 | (0, 72) | Vini | 2 golpes de peixeira; coronhada 15 de dano |
 | E2 | Z4 | (−6, 62), (6, 62), (−8, 72), (8, 72) | 4 soldados | Modo Ela: tiros não ferem; morrem com 1 Tentáculo |
-| E3 | Z4 | nichos (−14, 70), (14, 70), (−14, 84), (14, 84) | 3 corpos-secos | acordam juntos no !7 |
-| E4 | Z5 | nichos (24, 66), (29, 40) | 5 corpos-secos, máx. 3 vivos | param ao chegar à escolha de Benedito |
+| E3 | Z4 | (12, 78), (10, 72) | 2 soldados com tocha | entram pela fenda depois do !7 |
+| E4 | Z5 | (24, 66), (27, 56), (29, 40), (30, 34) | 4 soldados entrincheirados | tochas fincadas; o último fica a 8 m do nicho de Benedito |
+| — | Z4/Z5 | `Carnica_1..4` + corpos dos E3/E4 | carniça | fome −30, vida +15 cada |
 
 ### Itens
 
@@ -363,7 +368,7 @@ Template: `porta` (`door.tscn`), `cartucheira` (`ammo_refil.tscn`), `spawner`, `
 `interagivel`.
 **A criar (prioridade do cap. 1):** `casa-grande` (com interior), `capela` (fachada), `cerca-arame`,
 `candeeiro-parede`, `janela-tabua`, `cavalo`, `arco-pedra`, `caverna-modulo`, `salao-caverna`,
-`claraboia`, `totem-idolo`, `laje-sepultura`, `nicho-corpo-seco`, `caldeirao`, `monte-moedas`,
+`claraboia`, `totem-idolo`, `laje-sepultura`, `nicho-ossada`, `carnica`, `caldeirao`, `monte-moedas`,
 `desmoronamento`, `facho`, `lajedo`, `cova-cavavel`, `folheto`, `bilhete`.
 **Sai do cap. 1 atual:** `lampiao`, `lata-querosene`, `garrafa-querosene`, `barraca-lona`,
 `carroca_tombada`, `muro_pedra`, `cruz_exvoto`, `caminhao` (jeep).
@@ -391,11 +396,11 @@ Template: `porta` (`door.tscn`), `cartucheira` (`ammo_refil.tscn`), `spawner`, `
   -48 *********         x :                   ***********
   -44 *********           :                   ***********
   -40 *********           :                   ***********
-  -36 *********           :  1                ***********
+  -36 *********           :                   ***********
   -32 *********           :                   ***********
   -28 *********           :                   ***********
   -24 *********           :                   ***********
-  -20 *********       1   :                   ***********
+  -20 *********           :                   ***********
   -16 *********           :       Y           ***********
   -12 *********           :                   ***********
    -8 *********           :   h               ***********
@@ -412,11 +417,11 @@ Template: `porta` (`door.tscn`), `cartucheira` (`ammo_refil.tscn`), `spawner`, `
    36 **************            ..     *******          *
    40 **************          ..       *******          *
    44 **************        ...        *******          *
-   48 *********     2    ...           *******          *
+   48 *********          ...           *******          *
    52 *********       ...              *******          *
    56 *********      ..                *******          *
-   60 *********   2   .                *******          *
-   64 ***************  .       2                        *
+   60 *********       .                *******          *
+   64 ***************  .                                *
    68 ***************   .                               *
    72 ***************    .                              *
    76 ***************     .                             *
@@ -432,7 +437,7 @@ Template: `porta` (`door.tscn`), `cartucheira` (`ammo_refil.tscn`), `spawner`, `
 |---|---|---|---|---|
 | Z1 | Início | P | (0, −72) | sol baixo a oeste |
 | Z1 | Caveira de cavalo + urubus | `caveira-cavalo`, `urubu` | (−4, −50) | conversa sobre o mar começa aqui |
-| Z1 | Corpos-secos E1 | `galhada-seca` + `spawner` | (−8, −20), (6, −36) | 1 cada, de tocaia na galhada |
+| Z1 | Carniça: bode morto + urubus | `carnica`, `urubu` | (−4, −40) | tutorial de comer bicho; revoada |
 | Z2 | Carroça virada | `carroca` | (0, 0) | |
 | Z2 | Carroceiro morto | `corpo` | (3, 2) | escolha 1 (Marca) |
 | Z2 | Cavalo morto | `corpo` (cavalo) | (−4, 4) | comer: fome −40 |
@@ -441,7 +446,8 @@ Template: `porta` (`door.tscn`), `cartucheira` (`ammo_refil.tscn`), `spawner`, `
 | Z3 | Cerca e poço | `cerca-varas`, `poco` | cerca em volta; poço (34, 12) | |
 | Z3 | Segredo | `folheto` | (30, 18) | "A Moça que Fugiu com o Cão" |
 | Z4 | Trilha do rastro | trilha | (24, 24) → (10, 40) → (−10, 56) → (0, 76) | pegadas de cavalo visíveis só no clarão e na lua |
-| Z4 | Cemiteriozinho e corpos-secos E2 | `cruz`, `cova` + `spawner` | (−12, 48), (10, 62), (−16, 60) | saem do chão um de cada vez; o tiro acorda o próximo |
+| Z4 | Cemiteriozinho | `cruz`, `cova` | (−12, 48), (10, 62) | cenário; !4 (respiracao) em (−12, 48) |
+| Z4 | Carniça: vaca atolada | `carnica` | (−16, 60) | |
 | Z5 | Choupana | `choupana` | x −4..4, z 84..92 | |
 | Z5 | Fogueira | `fogueira` | (−6, 86) | a verdadeira (checkpoint) |
 | Z5 | Juliana | NPC | (2, 80) | sentada |
@@ -450,7 +456,7 @@ Template: `porta` (`door.tscn`), `cartucheira` (`ammo_refil.tscn`), `spawner`, `
 
 Peças: `terreno`, `mandacaru`, `arvore-seca`, `caatinga-fechada`, `galhada-seca`, `caveira-cavalo`,
 `urubu`, `carroca`, `cruz`, `corpo`, `cavalo`, `casa-taipa-interior`, `cerca-varas`, `poco`, `cova`,
-`choupana`, `fogueira`, `juazeiro`, `pedra`, `spawner`, `gatilho`, `folheto`.
+`choupana`, `fogueira`, `juazeiro`, `pedra`, `carnica`, `gatilho`, `folheto`.
 
 ---
 
@@ -479,11 +485,11 @@ Peças: `terreno`, `mandacaru`, `arvore-seca`, `caatinga-fechada`, `galhada-seca
     8 *                T  F                   *
    12 *                  n n                  *
    16 *            O        n    MMMMMMMMM    *
-   20 *                   g      M       M 3  *
+   20 *                   g      M       M    *
    24 *              *           | + + + M    *
    28 *                          M       M    *
-   32 *                          MMMMMMMMM 3  *
-   36 *                               3       *
+   32 *                          MMMMMMMMM    *
+   36 *                                       *
    40 *                                       *
    44 *                                       *
    48 *                                       *
@@ -501,14 +507,14 @@ Peças: `terreno`, `mandacaru`, `arvore-seca`, `caatinga-fechada`, `galhada-seca
 | Z2 | Antônio, Marconi, Juliana | NPC | (2, 12), (−2, 12), (4, 16) | |
 | Z2 | Gatilho do confronto | `gatilho` | raio 3 em (0, 20) | |
 | Z3 | Cemitério de beira de estrada | `muro-pedra` x 14..30, z 16..32; portão (14, 24) | | 3 `cruz` dentro |
-| Z3 | Covas dos enjeitados E3 | `cova` + `spawner` | (34, 20), (34, 30), (24, 36) | corpos-secos atacam todo mundo |
+| Z3 | Covas de fora do muro | `cova` | (34, 20), (34, 30), (24, 36) | cobertura no esconde-esconde com Antônio |
 | Z3 | Segredo | `cartucheira` | (20, −8) | |
 | Z4 | Cruz da estrada | `cruz-exvoto` | (−20, −20) | |
 | Z4 | Estrada | estrada | z −28 | saída X (−30, −28) |
 | Z4 | O Vulto | marco | em cima de `pedra` (30, −36) | cena final |
 
 Peças: `juazeiro`, `cacimba`, `cavalo`, `fogueira`, `muro-pedra`, `cruz`, `cova`, `cruz-exvoto`,
-`pedra`, `galhada-seca`, `mandacaru`, `spawner`, `gatilho`.
+`pedra`, `galhada-seca`, `mandacaru`, `gatilho`.
 
 ---
 
@@ -526,23 +532,23 @@ Peças: `juazeiro`, `cacimba`, `cavalo`, `fogueira`, `muro-pedra`, `cruz`, `cova
   -96 **************                               ****************
   -92 **************               .P h  F         ****************
   -88 **************           ....                ****************
-  -84 **************   2    ....                   ****************
+  -84 **************   k    ....                   ****************
   -80 **************      ..                       ****************
   -76 **************     .                         ****************
-  -72 ************** ****.****************  3      ****************
+  -72 ************** ****.****************  o      ****************
   -68 ************** ***.*****************         ****************
   -64 ************** ***.*****************         ****************
-  -60 ************** **.****************** 2       ****************
+  -60 ************** **.****************** k       ****************
   -56 ************** ***.*****************         ****************
   -52 ************** !**..****************         ****************
   -48 ************** ****.****************         ****************
   -44 ************** *****..**************         ****************
-  -40 ************** ******...************      3  ****************
+  -40 ************** ******...************      o  ****************
   -36 ************** ********...**********         ****************
   -32 ************** **********...********         ****************
   -28 ************** ************....*****         ****************
   -24 **************                ...            ****************
-  -20 ************** 3                 ...         ****************
+  -20 ************** o                 ...         ****************
   -16 **************                   ...         ****************
   -12 **************                 ...           ****************
    -8 **************                |.             ****************
@@ -569,11 +575,12 @@ Peças: `juazeiro`, `cacimba`, `cavalo`, `fogueira`, `muro-pedra`, `cruz`, `cova
 | Z3 | Pedra de Topo Reto | `pedra-topo-reto` | x −6..6, z −4..8 | entrada da loca (0, −8), agachado |
 | Z3 | Ciro acorrentado | NPC | (2, 4) | |
 | Z3 | Munição, dinheiro, folheto | `cartucheira`, `$`, `folheto` | (−4, 4), (4, 0), (−2, 0) | o coito do bando |
-| Z4 | Corpos-secos E2/E3 | `cova` / `galhada-seca` + `spawner` | E2: (−26, −84), (14, −60); E3: (−30, −20), (24, −40), (16, −72) | E3 só na volta, com Ciro no cavalo |
+| Z2 | Carniça | `carnica`, `urubu` | jumento rasgado (14, −60); urubus que não voam (−26, −84) | |
+| Z4 | Perseguição (só som e vulto) | rota `o` | (−30, −20) → (24, −40) → (16, −72) | passos e galho quebrando acompanham o cavalo pela galhada; nunca aparece |
 | Z4 | Saída X | — | (20, 20) | estrada para a vila |
 
 Peças: `pedra-topo-reto`, `loca`, `caatinga-fechada`, `galhada-seca`,
-`cavalo`, `fogueira`, `cova`, `corrente` (🆕, cenário), `cartucheira`, `folheto`, `spawner`, `gatilho`.
+`cavalo`, `fogueira`, `corrente` (🆕, cenário), `cartucheira`, `carnica`, `urubu`, `folheto`, `gatilho`.
 
 ---
 
@@ -601,10 +608,10 @@ Peças: `pedra-topo-reto`, `loca`, `caatinga-fechada`, `galhada-seca`,
    16 *       HHHHH   HHHHHHHH                HHHHH   HHHHH       *
    20 *              o              F                         T   *
    24 *                                             MMMMMMMMMM    *
-   28 *                          CCCCCCC            MM 3    MM    *
+   28 *                          CCCCCCC            MM      MM    *
    32 *                          CCCCCCC            MM      MM    *
-   36 *                          CCCCCCC            MM    3 MM    *
-   40 *                                             MMMM3MMMMM    *
+   36 *                          CCCCCCC            MM      MM    *
+   40 *                                             MMMM MMMMM    *
    44 *************************************************************
 ```
 
@@ -619,7 +626,8 @@ Peças: `pedra-topo-reto`, `loca`, `caatinga-fechada`, `galhada-seca`,
 | Bodega | `casa-caiada` | x −22..−14, z 8..16 | telhado acessível: Juliana atira daqui (cap. 6), y +4 |
 | Largo e cruzeiro | `cruz`, aberto | cruzeiro (0, 22); fogueira do largo (0, 18) | checkpoint; fonte de **tição** (cap. 7) |
 | Capela | `capela` | x −6..6, z 28..36 | |
-| Cemitério | `muro-pedra`, `cova` + `spawner` | muro x 32..50, z 24..40; covas (38, 30), (44, 34), (40, 40) | corpos-secos dos caps. 5–7 |
+| Cemitério | `muro-pedra`, `cova` | muro x 32..50, z 24..40; covas (38, 30), (44, 34), (40, 40) | cenário; esconderijo na caça do cap. 6 |
+| Carniça | `carnica` | bode no quintal (−8, 8) (cap. 5); bode (−24, 12) e galinhas mortas (24, −20) (cap. 6) | |
 | Casa de Regina | `casa-taipa` | ponta leste da rua: NPC em (56, −12) | ela chega por aqui; a janela da caixa de prata (cap. 7) |
 | Gatilhos da multidão | `gatilho` | (−8, 4), (8, 4) | a multidão ocupa a rua entre eles |
 | Gatilho da janela | `gatilho` | (0, −20) | cap. 6 |
@@ -627,7 +635,7 @@ Peças: `pedra-topo-reto`, `loca`, `caatinga-fechada`, `galhada-seca`,
 
 Peças: `casa-taipa`, `casa-taipa-interior`, `parede-taipa-quebravel`, `casa-caiada`, `janela-tabua`,
 `capela`, `cruz`, `muro-pedra`, `cova`, `fogueira`, `candeeiro-parede`, `vela`, `mobilia-sertao`,
-`ticao`, `caixa-balas-prata`, `oferenda-janela`, `boneca` (🆕), `mandacaru`, `arvore-seca`, `spawner`, `gatilho`.
+`ticao`, `caixa-balas-prata`, `oferenda-janela`, `boneca` (🆕), `carnica`, `mandacaru`, `arvore-seca`, `gatilho`.
 
 **Área extra do cap. 7 (flashback de Juliana):** caixa separada em x 200..240, z −20..20: roça
 seca com 5 `espantalho` presos em `mandacaru` a 10, 15, 20, 25 e 30 m de um tamborete em
@@ -641,6 +649,6 @@ seca com 5 `espantalho` presos em `mandacaru` a 10, 15, 20, 25 e 30 m de um tamb
 |---|---|
 | **Já existem** | `terreno`, `terreno_relevo`, `mandacaru`, `xique_xique`, `arvore_seca`, `pedra`, `paredao`, `casa_taipa`, `cerca_varas`, `cruz`, `cova`, `fogueira`, `caixote`, `corpo`, `poco`, `muro_pedra`, `cruz_exvoto`, `carroca_tombada` |
 | **Sai do jogo** | `lampiao` (e qualquer pickup de querosene) |
-| **1 — cap. 1** | `casa-grande`, `capela`, `cerca-arame`, `candeeiro-parede`, `janela-tabua`, `cavalo`, `arco-pedra`, `caverna-modulo`, `salao-caverna`, `claraboia`, `totem-idolo`, `laje-sepultura`, `nicho-corpo-seco`, `caldeirao`, `monte-moedas`, `desmoronamento`, `facho`, `lajedo`, `cova-cavavel`, `folheto`, `bilhete` |
+| **1 — cap. 1** | `casa-grande`, `capela`, `cerca-arame`, `candeeiro-parede`, `janela-tabua`, `cavalo`, `arco-pedra`, `caverna-modulo`, `salao-caverna`, `claraboia`, `totem-idolo`, `laje-sepultura`, `nicho-ossada`, `carnica`, `caldeirao`, `monte-moedas`, `desmoronamento`, `facho`, `lajedo`, `cova-cavavel`, `folheto`, `bilhete` |
 | **2 — vários capítulos** | `galhada-seca`, `caatinga-fechada`, `casa-taipa-interior`, `mobilia-sertao`, `juazeiro`, `urubu`, `vela`, `casa-caiada`, `oferenda-janela` |
 | **3 — um capítulo** | `choupana`, `caveira-cavalo`, `cacimba`, `pedra-topo-reto`, `loca`, `corrente`, `parede-taipa-quebravel`, `ticao`, `caixa-balas-prata`, `espantalho`, `boneca` |

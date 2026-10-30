@@ -8,8 +8,8 @@ Adapta o fim do E3 ("Lampião?!", `tapas-2592381/10–21`) e o E4 inteiro ("Juli
 | **Quando** | dia 2, logo depois da emboscada: a lua cheia já alta (o quadrinho é de dia; o jogo empurra para a noite por causa da luz) |
 | **Local** | estrada arrastado; Cacimba da Cruz; sítio dos velhos (corte); estrada de Mossoró (mapa: `04-mapas.md`, cap. 3) |
 | **Duração** | 12–14 min |
-| **Objetivo** | soltar-se; pegar o rifle; sobreviver aos irmãos e aos secos |
-| **Criatura** | Antônio e Marconi (gente) + corpo-seco |
+| **Objetivo** | soltar-se; pegar o rifle; sobreviver aos irmãos |
+| **Inimigos** | Antônio e Marconi (gente). Comida dela: os irmãos (roteirizado) |
 | **Folheto** | "Os Irmãos do Laço" (na bolsa de Marconi) |
 
 ## Cartão de abertura
@@ -69,15 +69,17 @@ Adapta o fim do E3 ("Lampião?!", `tapas-2592381/10–21`) e o E4 inteiro ("Juli
   atirando no escuro: cada tiro dele acende a cacimba. Fique fora do clarão dele.
 - **O rifle** está na sela do cavalo de Marconi, perto da cacimba. Furtividade: agachar na
   galhada, esperar o clarão do Antônio passar, pegar.
-- Os tiros acordam o cemitério: **E3**, corpos-secos das covas de fora do muro, que atacam todo
-  mundo. Antônio e Marconi atiram neles também. O jogador pode deixar os secos ocuparem os irmãos.
+- **Esconde-esconde no cemitério:** Antônio caça Lampião entre as cruzes, com Juliana segurando
+  um facho atrás dele. Marconi, no chão, geme com a faca na cara. Cada tiro de Antônio acende o
+  cemitério por um instante; o jogador se move entre um clarão e outro. Atirar de volta mostra
+  onde ele está.
 
-> **ANTÔNIO:** Que diabo é isso, Lampião?! Que diabo tu trouxe?!
-> **ELA:** Eles num são meus, não. Mas bem que podiam ser.
+> **ANTÔNIO:** Sai daí, Lampião! O Coronel te quer inteiro, mas eu me contento com metade!
+> **ELA:** Deixa eu sair, Capitão. Só um pouquinho.
 
 ### 4. Juliana de escudo (cena, 45 s) — Z2 · E3 17–21
 
-- Com os secos derrubados (ou espalhados), Antônio agarra Juliana pelo pescoço e põe um revólver na
+- Quando o jogador chega a 6 m dele (ou depois de 3 min), Antônio agarra Juliana pelo pescoço e põe um revólver na
   mão dela, apontado para Lampião:
 
 > **LAMPIÃO:** Larga ela agora!
@@ -161,16 +163,15 @@ Nenhuma escolha moral neste capítulo: tudo o que acontece com os irmãos é do 
 | # | Zona | Inimigos | Notas |
 |---|---|---|---|
 | E1 | Z2 | Antônio (Marconi ferido não atira) | só atira no escuro; o clarão dele mostra o jogador |
-| E3 | Z3 | 3 corpos-secos das covas de fora do muro | acordam com o 3º tiro do jogo; atacam quem estiver mais perto |
 
 ## Sustos
 
 | # | Zona | Tipo | Gatilho | O que acontece |
 |---|---|---|---|---|
 | !1 | arrasto | jumpscare | a 3ª pedra que bate | a câmera para colada numa caveira de boi; olhos de formiga se mexendo; 0,4 s |
-| !2 | Z1 | respiracao | soltar as mãos no juazeiro | respiração atrás do tronco; é um seco agachado do outro lado, imóvel |
+| !2 | Z1 | respiracao | soltar as mãos no juazeiro | respiração atrás do tronco; quando ele olha, só o cavalo de Marconi, de olho branco de medo |
 | !3 | Z2 | apagao | o 1º tiro de Antônio | a fogueira dos irmãos e o facho apagam com o vento do tiro |
-| !4 | Z3 | chao | portão do cemitério (14, 24) | três secos saem do chão de uma vez, fora do muro |
-| !5 | Z3 | batida | encostar no muro do cemitério | batidas de dentro das covas, do outro lado do muro |
+| !4 | Z3 | jumpscare | portão do cemitério (14, 24) | Marconi, com a faca cravada na cara, se ergue por cima do muro em tela cheia (rosto `marconi_faca`) |
+| !5 | Z3 | batida | encostar no muro do cemitério | batidas no muro do outro lado: Antônio bate com o cano do revólver para assustar |
 | !6 | Z2 | sussurro | Juliana aponta o revólver (beat 4) | Ela, no ouvido: "Ela vai atirar. Deixa eu sair." |
 | !7 | Z4 | vulto | o Vulto na pedra (beat 9) | dois olhos brancos; antes da fala, ele já estava no canto da tela desde a volta aos pais |

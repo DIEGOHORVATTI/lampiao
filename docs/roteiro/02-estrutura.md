@@ -2,13 +2,15 @@
 
 **"Lampião 1"** cobre **somente os episódios 1 a 11** do quadrinho, à risca e na mesma ordem:
 mesmas cenas, personagens, falas-chave, viradas e visual. Nada é reordenado nem pulado. A
-jogabilidade (corpos-secos, sustos, exploração, escolhas pequenas) entra **dentro** dos
+jogabilidade (carniça, sustos, exploração, escolhas pequenas) entra **dentro** dos
 episódios, sem mudar o que acontece na obra. O último capítulo torna jogável o fim da luta com o
 lobisomem do E11 e fecha com um gancho para o **"Lampião 2"**, sem resolver o que o quadrinho
 ainda não resolveu (o destino de Ciro, quem é o vulto de olhos brancos, o que Ela é, o Coronel).
 
-Sete capítulos de 12 a 18 minutos (total ~1h45 na primeira jogada). Todo capítulo tem
-corpos-secos como **carniça** de base, porque o jogador precisa comer para segurar a fome, e
+Sete capítulos de 12 a 18 minutos (total ~1h45 na primeira jogada). Só criaturas da obra: a
+volante, Antônio e Marconi, o lobisomem (o vulto de olhos brancos é presença). Todo capítulo tem
+**carniça de bicho** espalhada (bode, cavalo, jumento, urubu), porque o jogador precisa dar de
+comer a Ela, e
 **vários sustos marcados** (ver a tabela "Sustos" de cada capítulo).
 
 | Ato | Nome | Capítulos | Episódios | Pergunta |
@@ -34,11 +36,11 @@ Pastas em `docs/referencias/`. O corte no meio do E3 é aproximado e segue a vir
 
 | # | Capítulo | Noite | Local | Criatura principal | Duração |
 |---|---|---|---|---|---|
-| 1 | `cap01-o-sacrificio` | 1 | Fazenda do Coronel e Caverna dos Ídolos | Corpo-Seco (os secos da caverna) + volante | 16–18 min |
-| 2 | `cap02-emboscada` | 2 (tarde → lusco-fusco) | Estrada do Riacho Fundo, sítio dos velhos, choupana | corpo-seco; Antônio e Marconi | 12–14 min |
-| 3 | `cap03-juliana` | 2 (noite) | Cacimba da Cruz | Antônio e Marconi (gente) + corpo-seco | 12–14 min |
-| 4 | `cap04-painho` | 3 | Vila Boa Vista (prólogo) e Pedra de Topo Reto | corpo-seco | 13–15 min |
-| 5 | `cap05-va-embora` | 3 (madrugada) | Vila Boa Vista | a multidão (gente) + corpo-seco | 12–14 min |
+| 1 | `cap01-o-sacrificio` | 1 | Fazenda do Coronel e Caverna dos Ídolos | volante (soldados); Vini (duelo) | 16–18 min |
+| 2 | `cap02-emboscada` | 2 (tarde → lusco-fusco) | Estrada do Riacho Fundo, sítio dos velhos, choupana | Antônio e Marconi (roteirizado); carniça | 12–14 min |
+| 3 | `cap03-juliana` | 2 (noite) | Cacimba da Cruz | Antônio e Marconi | 12–14 min |
+| 4 | `cap04-painho` | 3 | Vila Boa Vista (prólogo) e Pedra de Topo Reto | nenhum: exploração e perseguição | 13–15 min |
+| 5 | `cap05-va-embora` | 3 (madrugada) | Vila Boa Vista | a multidão (não-alvo): defesa e sustos | 12–14 min |
 | 6 | `cap06-lobisomem` | 4 | Vila Boa Vista | Lobisomem (chefe, fase 1) | 14–16 min |
 | 7 | `cap07-gosto-ruim` | 4 (madrugada) | largo da Vila Boa Vista | Lobisomem (chefe, fase 2) | 14–16 min |
 

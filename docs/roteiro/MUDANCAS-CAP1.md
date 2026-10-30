@@ -51,13 +51,14 @@ está marcado como **mantém**.
 3. Acampamento na boca da caverna, exploração livre: conversas, Maria dá o terço, a sopa.
 4. Sonho (a lua vira olho) e veneno: o bando morrendo, Lampião lento e com mira tremendo;
    o Coronel chega; tiroteio curto; o jogador pode apagar a fogueira; segue Vini.
-5. Galeria: seguir o facho de Vini; nichos com corpos secos; 2 soldados; desmoronamentos.
+5. Galeria: seguir o facho de Vini; nichos com ossada (cenário); 2 soldados; desmoronamentos.
 6. Salão dos Ídolos: Vini aponta o rifle, duelo de peixeira (2 golpes).
 7. Degola em primeira pessoa (a câmera é a cabeça que cai), o Coronel, morte de Vini, a voz.
 8. **Modo Ela:** o jogador controla o corpo sem cabeça; tentáculos e comer contra 4 soldados;
    o terço brilha, Ela grita, a cabeça volta.
 9. Conversa "Nós estamos vivos"; revólver; fechar os olhos de Vini.
-10. Corpos-secos acordam nos nichos; tutorial de comer cadáver e do terço; a fenda.
+10. Tutorial de comer carniça (restos dos soldados); 2 soldados voltam pela fenda atrás da cabeça;
+    tutorial do terço; 4 soldados entrincheirados na fenda.
 11. Escolha de Benedito.
 12. Maria morre nos braços dele.
 13. Enterro (três covas, mais a de Vini se o jogador quiser) e juramento ao nascer do sol.
@@ -79,7 +80,7 @@ está marcado como **mantém**.
 | Item | Antes | Agora |
 |---|---|---|
 | Rifle | pego na lata (`rifle_taken`) | com o jogador **desde o início**; vazio no duelo; recuperado no salão |
-| Peixeira | só citada | arma de corpo a corpo usada no duelo (beat 6) e contra corpo-seco |
+| Peixeira | só citada | arma de corpo a corpo usada no duelo (beat 6) e contra soldado |
 | Pistola | parabélum da sentinela | **revólver** de soldado, no chão do salão (−6, 70) |
 | Lampião de querosene | pickup, querosene | **não existe**. Tirar `lampiao` do mapa e qualquer HUD de querosene |
 | Luz | lampião + fogueira | clarão do tiro (já existe em `clarao_rig.gd`), fogueira, lua, **facho** (NPC; jogador pode carregar 90 s), candeeiro de cenário, **claraboia** |
@@ -87,16 +88,16 @@ está marcado como **mantém**.
 | Medidor de fome | visível desde o começo, inicia em 60 | **escondido até Ela acordar** (Modo Ela, beat 8). Ao voltar para Lampião (beat 9), fome em 50 |
 | Rótulo da barra | "FOME DO ENCOSTO" | **"FOME"** |
 | Raízes | botão "RAÍZES", tecla Q, `Poderes.raizes()` | **Tentáculos**: rótulo "TENTÁCULOS". O efeito visual passa de raiz marrom a tentáculo preto com pontinhos brancos (olhos). Pode manter os ids `raizes` no código |
-| Comer | corpo-seco caído | igual (mantém: fome −30, vida +15) e mais: em Modo Ela, comer soldado erguido pelo tentáculo (fome −12; a barra começa em 100 no Modo Ela) |
+| Comer | corpo-seco caído | **carniça**: restos de soldado no salão e soldados mortos na fenda (fome −30, vida +15) e mais: em Modo Ela, comer soldado erguido pelo tentáculo (fome −12; a barra começa em 100 no Modo Ela) |
 | **Modo Ela** | — | novo, só no cap. 1: câmera a 1,5 m, sem armas, lente olho-de-peixe leve, cinza; Tentáculos sem custo de fome, alcance 6 m, cooldown 0,6 s; tiro não fere; dura até o E2 acabar |
-| **Terço** | — (o crucifixo era do cap. 2) | ganho no cap. 1 (beat 3), tutorial no beat 10. Novo botão **"TERÇO"** (segurar): fome desce ~1/s, poderes desligados, corpos-secos recuam a 4 m. Tutorial no gatilho g4 ou com fome ≥ 75 |
+| **Terço** | — (o crucifixo era do cap. 2) | ganho no cap. 1 (beat 3), tutorial no beat 10. Novo botão **"TERÇO"** (segurar): fome desce ~1/s, poderes desligados. Tutorial no gatilho g4 ou com fome ≥ 75 |
 | Escolha | `Dialogo.escolher(["Guardar a peixeira", "Deixar ele comer"])` | mantém o mecanismo; texto "**Deixar ela comer**" |
 | Segurar para aceitar | `Dialogo.segurar(...)` no trato | sai do cap. 1 (pode ser reaproveitado em "Cavar", 3 s por cova) |
 | Duelo | — | Vini: inimigo humano corpo a corpo, 2 golpes de peixeira, coronhada de 15 |
 | Degola em primeira pessoa | corte para preto antes do golpe | **mostrada**: câmera solta da cabeça, gira, cai, vê o corpo sem cabeça jorrando sangue preto |
 | Lente rachada | — | depois da degola, risco fino no canto direito da tela, permanente |
 | Cavar | — | interação de segurar 3 s em `cova-cavavel` |
-| Spawner | covas de cemitério | **nichos** na parede da caverna |
+| Spawner de corpo-seco | covas de cemitério | **sai**: não há corpo-seco no jogo. Inimigos do cap. 1 são só soldados em pontos marcados (`E3_1..2`, `E4_1..4`); comida = marcadores de carniça (`Carnica_n`) nos restos dos soldados |
 
 ## 7. Flags e medidores
 
@@ -116,7 +117,7 @@ Refazer `tools/build_cap01.gd`. Origem nova: **a fogueira do bando** na boca da 
 |---|---|
 | Z1 Acampamento da volante, Z2 Cemiteriozinho, Z3 Trilha do paredão, Z4 Grota, Z5 Saída | Z1 Fazenda (área separada, z −252..−180), Z2 Salão da boca, Z3 Galeria, Z4 Salão dos Ídolos, Z5 Fenda, Z6 Lajedo de fora |
 | caminhão (jeep), barracas, carroça, cemitério, cruz de ex-votos | casa-grande com interior, capela, cerca de arame farpado, cavalos, túneis de caverna, totens, laje rachada, nichos, claraboia |
-| Marcadores `E1`, `E2a`, `E2b`, `E3a..c`, `E4a/b`, `JuremaPos`, `JuremaSaida` | Marcadores `E0_1..7`, `E1a_1..2`, `E1b_1..2`, `Vini`, `E2_1..4`, `E3_n1..n4`, `E4a`, `E4b`, `Benedito`, `Cabeca` |
+| Marcadores `E1`, `E2a`, `E2b`, `E3a..c`, `E4a/b`, `JuremaPos`, `JuremaSaida` | Marcadores `E0_1..7`, `E1a_1..2`, `E1b_1..2`, `Vini`, `E2_1..4`, `E3_1..2`, `E4_1..4`, `Carnica_1..6`, `Benedito`, `Cabeca` |
 | Gatilhos `G_Carroca`, `G_Cemiterio`, `G_Grota`, `G_Saida`, `G_Estrada` | Gatilhos `G1_Maria` (−6, −206), `G_Cavalos` (−18, −186), `G2_Desmorona` (6, 20), `G_Sussurro` (−2, 46), `G_Salao` (0, 62), `G3_Servos` (0, 80), `G4_Terco` (26, 60), `G_Benedito` (31, 24), `G_SaidaFenda` (34, −4), `G_Covas` (−10, −24) |
 | Interagíveis "Lata", "Barraca", "CruzEnjeitados", "Corpo_0..5" | "Saco" (cofre), "Falar" (4 NPCs), "Terço" (Maria), "Sopa", "Olhar" (ídolo e laje), "Levantar Maria", "Apagar" (fogueira), "Pegar" (revólver, rifle, facho), "Fechar os olhos" (Vini), "Cavar" (4 covas), "Folheto" |
 
@@ -137,7 +138,7 @@ mesma seção, "Peças usadas no cap. 1".
 
 O cap. 1 antigo tinha 4 sustos (batidas na lata, braço na cerca, urubus, Jurema). O novo tem 11,
 todos com as ferramentas que o jogo já tem: **jumpscare**, **vulto**, **passos**, **batida**,
-**sussurro**, **respiracao**, **apagao**, e **chao** (corpo-seco saindo do nicho). Tabela com zona,
+**sussurro**, **respiracao** e **apagao**. Rostos de jumpscare: `entidade` (pronto) e `soldado_comido`, `maria_veneno` (a produzir). Tabela com zona,
 gatilho e efeito no fim de `03-capitulos/cap01-o-sacrificio.md`; posições dos gatilhos em
 `04-mapas.md`. Os ids de gatilho sugeridos: `S1_Vulto` … `S11_Vulto` (um por linha da tabela).
 

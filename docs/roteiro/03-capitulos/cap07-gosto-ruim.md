@@ -163,7 +163,6 @@ Nenhuma escolha moral: a luta e o gancho são do quadrinho. Salvo para o "Lampi�
 | # | Zona | Inimigos | Notas |
 |---|---|---|---|
 | D | largo | Lobisomem, fase 2 (30T) | sem Tentáculos; tição; Vômito (roteirizado na 1ª vez); trecho como Juliana; balas de prata; termina de joelhos (não morre) |
-| E1 | cemitério | 3 corpos-secos | entram no beat 7 para pressionar; morrem com tição e tiro (Comer continua desligado até o fim do capítulo) |
 
 ## Sustos
 

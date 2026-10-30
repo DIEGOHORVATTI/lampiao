@@ -9,7 +9,7 @@ família de Ciro, depois a busca do esconderijo e o encontro com Ciro.
 | **Local** | Vila Boa Vista (prólogo, mapa dos caps. 5–7) e Pedra de Topo Reto (mapa: `04-mapas.md`, cap. 4) |
 | **Duração** | 13–15 min |
 | **Objetivo** | (como Ciro) sair de casa; (como Lampião) achar o coito do bando debaixo da pedra de topo reto |
-| **Criatura** | corpo-seco |
+| **Inimigos** | nenhum: horror de exploração e perseguição. Comida dela: carniça (jumento morto, urubu) |
 | **Folheto** | "O Coito da Pedra de Mesa" (no coito) |
 
 ## Cartão de abertura
@@ -70,7 +70,8 @@ família de Ciro, depois a busca do esconderijo e o encontro com Ciro.
 > **LAMPIÃO:** Nenhum que eu conheça.
 > **ELA:** (baixo, sem deboche) ...
 
-- **E2:** dois corpos-secos de tocaia na galhada (comer para segurar a fome).
+- **Carniça:** um jumento morto, rasgado no lombo por garra (o jogador vê as marcas) (fome −30), e
+  urubus que não voam (dá para pegar um com Tentáculos; fome −15).
 - Um trecho sem facho: o vento apaga o facho de Juliana (apagao) e os dois andam 30 m só com a
   lua em fiapos e os clarões.
 
@@ -107,9 +108,10 @@ família de Ciro, depois a busca do esconderijo e o encontro com Ciro.
 ### 5. A volta (jogável, escolta, 3 min) — Z4 · encaixe de jogo depois de E5 16
 
 - Ciro atravessado na sela do cavalo de Lampião; Lampião a pé, puxando o cavalo; Juliana com o
-  facho. **E3:** corpos-secos saem das covas e da galhada e vão **no cavalo** (no cheiro do
-  doente). Se o cavalo levar 3 ataques, Ciro cai e o jogador precisa defender o lugar até Juliana
-  o pôr de volta (20 s).
+  facho. **Perseguição:** alguma coisa grande acompanha os três pelo lado de fora da galhada
+  (passos, galho quebrando, respiração). O cavalo se assusta a cada barulho; se o jogador se
+  afastar mais de 6 m do cavalo, ele empina e Ciro cai, e o jogador tem 20 s para ajudar Juliana a
+  pôr ele de volta antes que os passos cheguem. A coisa nunca aparece (só o vulto, no !4).
 - Ciro geme na sela, de vez em quando com voz grossa demais: "Fi... lha."
 - Saída pela estrada da vila. Fim: as primeiras casas, todas de janela fechada. Cartão: "Fim do
   capítulo 4 — Painho".
@@ -124,8 +126,8 @@ Nenhuma escolha moral neste capítulo (o episódio não tem espaço para isso se
 
 | # | Zona | Inimigos | Notas |
 |---|---|---|---|
-| E2 | Z2 | 2 corpos-secos | (−26, −84), (14, −60) |
-| E3 | Z4 | 3 corpos-secos | (−30, −20), (24, −40), (16, −72); miram o cavalo |
+| — | Z2 | carniça: jumento morto (14, −60); urubus (−26, −84) | sem combate |
+| — | Z4 | perseguição: passos pela galhada, rota (−30, −20) → (24, −40) → (16, −72) | nunca aparece; empina o cavalo |
 
 ## Sustos
 
@@ -138,4 +140,4 @@ Nenhuma escolha moral neste capítulo (o episódio não tem espaço para isso se
 | !5 | Z2 | passos | logo depois do !4 | passos pesados acompanhando a trilha pelo lado de fora da galhada |
 | !6 | Z3 | sussurro | entrar na loca (0, −8) | "fi... lha..." vindo do fundo, antes de se ver qualquer coisa |
 | !7 | Z3 | jumpscare | fundo da loca | a mão de Ciro agarra o tornozelo de Juliana; o rosto suado dele em tela cheia, olhos meio brancos |
-| !8 | Z4 | chao | escolta, (−30, −20) | um seco sai do chão debaixo do cavalo |
+| !8 | Z4 | jumpscare | escolta, (−30, −20) | Ciro, na sela, vira a cabeça para a câmera: rosto suado com os olhos brancos e os dentes compridos demais (rosto `ciro_febre`) |

@@ -2,8 +2,9 @@
 
 Cada ficha traz: **origem** (folclore ou quadrinho), **versão no jogo**, **IA** nos termos do
 template (patrulhar → perceber → perseguir → atacar), **fraqueza**, **som** e **o que Ela ganha**
-ao comer. O "Lampião 1" só tem o que cabe nos E1–E11: corpo-seco (carniça do jogo), o lobisomem e
-gente. O vulto de olhos brancos não é inimigo.
+ao comer. O "Lampião 1" só tem criaturas da obra (E1–E11): a volante, Antônio e Marconi, o
+lobisomem. O vulto de olhos brancos não é inimigo. A comida dela é carniça de bicho e a gente que a
+história entrega.
 
 ## Como ler a IA
 
@@ -11,60 +12,49 @@ O inimigo base (`common/enemy/enemy.gd`) faz: parado/patrulha → vê o jogador 
 `vision_range` → persegue por `chase_time` → ataca dentro de `attack_range`. **🆕** marca o que
 precisa ser programado além do template.
 
-Força: o corpo-seco é a unidade (3 tiros de pistola). "Vida 3T" = aguenta 3 tiros de pistola.
-Rifle = 2 tiros. Peixeira = 1 tiro, silenciosa. Tentáculos = mata corpo-seco e gente na hora; em
-chefe, 2 tiros.
+Força: "Vida 2T" = aguenta 2 tiros de revólver. Rifle = 2 tiros. Peixeira = 1 tiro,
+silenciosa. Tentáculos = mata gente na hora; em chefe, 2 tiros.
 
 ## Regras gerais
 
-- **Clarão:** todo inimigo com linha de visão vê o jogador no instante do tiro, até 40 m. Tiro
-  acorda corpo-seco a 25 m.
-- **Terço:** corpo-seco recua a 4 m; lobisomem fica lento 2 s; gente não liga.
+- **Clarão:** todo inimigo com linha de visão vê o jogador no instante do tiro, até 40 m. Quem
+  ouve um tiro a 30 m vem ver.
+- **Terço:** lobisomem fica lento 2 s; gente não liga.
 - **Prata:** só o lobisomem sente.
 
 ## Tabela rápida
 
 | Criatura | Caps. | Vida | Velocidade | Visão | Pode comer? | Fome | Ganho |
 |---|---|---|---|---|---|---|---|
-| Corpo-Seco | 1–7 | 3T | lenta | 10 m (clarão: 40 m) | sim | −30 | vida +15 |
 | Lobisomem (Ciro) | 6–7 | 30T (chefe) | muito rápida | 20 m, faro | **não** (enjoo) | — | — |
-| Soldado da volante | 1 | 2T | normal | cone de facho 14 m | só em cena (Modo Ela) | −12 | — |
+| Soldado da volante | 1 | 2T | normal | cone de facho 14 m | sim: vivo no Modo Ela (−12), morto como carniça (−30) | | vida +15 (carniça) |
 | Vini (duelo) | 1 | 2 golpes de peixeira | normal | — | não | — | — |
 | Antônio e Marconi | 2–3 | 4T cada | normal | 16 m | só em cena (roteirizado) | zera | — |
 | Multidão | 5 | não-alvo | lenta | — | só Zeca (escolha) | zera | — |
-| Bicho morto (cavalo) | 2 | — | — | — | sim | −40 | — |
+| Carniça de bicho | 2, 4–6 | — | — | — | sim | −10 a −40 | ver Carniça |
 
 ---
 
-## Corpo-Seco
+## Carniça (comida, não inimigo)
 
-**Origem folclórica.** Lenda do interior do Sudeste e do Centro-Oeste, contada também no
-Nordeste: o homem tão ruim em vida que nem Deus nem o Diabo quiseram, e **a terra cuspiu o
-corpo**. Ele seca sem apodrecer, pele de couro grudada no osso, e fica na beira da estrada atacando
-quem passa.
+**Origem.** O quadrinho: "Eu vou te dar todas as carnes podres que eu achar no caminho" (E1 38) e
+o cavalo morto do E2 ("Opa, esse eu nunca experimentei!").
 
-**No jogo.** O quadrinho não tem corpo-seco; é a carniça do jogo. Os primeiros são os corpos
-secos ajoelhados nos nichos da Caverna dos Ídolos (cap. 1), que ficam de pé quando Ela acorda.
-Depois, onde Lampião passa, mortos secos levantam da terra atrás da fome dela. Ninguém explica. São a carniça do
-jogo. Pele de couro escuro rachado, sem lábio, dentes à mostra, olhos com um ponto branco pequeno
-(igual ao dos totens), visível de longe no escuro. Os servos da caverna têm a boca aberta para
-cima como os ídolos. Modelo `undead` do template.
+**No jogo.** Bicho morto espalhado pelo mapa em **marcadores de carniça** (`carnica` no
+`04-mapas.md`), quase sempre com urubus em cima que levantam em revoada quando o jogador chega.
+Interação "COMER": a costura abre, a boca dela morde, a visão desce e sobe.
 
-**IA.**
-- Patrulhar: parado perto do nicho ou da cova; alguns agachados comendo bicho morto.
-- Perceber: `vision_range` 10 m; vê no clarão a até 40 m; ouve tiro a 25 m.
-- Perseguir: `move_speed` 1.0, `chase_time` 8 s; alerta em grupo a 12 m (🆕 estalo de dentes).
-- Atacar: `attack_range` 1.8 m, agarrão e mordida, `attack_damage` 12.
-- Não abre porta. Não entra em fogueira (raio 3 m).
+| Carniça | Onde | Fome | Vida |
+|---|---|---|---|
+| Bode / cabra | caps. 2, 5, 6 | −30 | +10 |
+| Cavalo / jumento / vaca | caps. 2, 4 | −40 | +15 |
+| Urubu (pego com Tentáculos) | caps. 2, 4 | −15 | +5 |
+| Galinhas mortas pelo bicho | cap. 6 | −10 | — |
+| Restos e cadáver de soldado | cap. 1 | −30 | +15 |
 
-**Fraqueza.** Fogo (tição mata na hora); terço (recua a 4 m); tiro na cabeça conta dobrado.
+**Som.** Mosca, urubu, o estalo da costura abrindo.
 
-**Som.** Couro seco dobrando como sola velha; ar passando por garganta seca; quando chegam, os
-grilos param.
-
-**Ela ganha.** Fome −30, vida +15. "Bleh. Carne de mil ano. Mas engana."
-
----
+**Ela.** "Bleh. Isso aí já passou do ponto." / "Morto de pouco. Ainda tá quente."
 
 ---
 

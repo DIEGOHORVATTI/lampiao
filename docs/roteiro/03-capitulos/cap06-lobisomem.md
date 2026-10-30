@@ -121,7 +121,7 @@ ordem do quadrinho.
 | # | Zona | Inimigos | Notas |
 |---|---|---|---|
 | D | vila | Lobisomem, fase 1 | ver bestiário; investida, garra, fuga para telhado; caça pelo clarão |
-| E1 | cemitério | 2 corpos-secos | aparecem se a luta passar de 4 min (comida para a fome) |
+| — | quintais | carniça: bode (−24, 12), galinhas mortas pelo bicho (24, −20) | comida para a fome durante a caça |
 
 ## Sustos
 

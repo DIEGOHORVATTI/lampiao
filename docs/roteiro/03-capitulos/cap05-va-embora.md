@@ -9,7 +9,7 @@ ordem do quadrinho.
 | **Local** | Vila Boa Vista (mapa: `04-mapas.md`, caps. 5–7) |
 | **Duração** | 12–14 min |
 | **Objetivo** | achar a casa de Ciro; segurar a vila do lado de fora |
-| **Criatura** | a multidão (gente) + corpo-seco do cemitério |
+| **Inimigos** | a multidão (gente, não-alvo). Comida dela: carniça (bode morto no quintal) |
 | **Folheto** | "O Morto que Bateu na Porta" (no parapeito da bodega) |
 
 ## Cartão de abertura
@@ -59,9 +59,9 @@ ordem do quadrinho.
   (para a 4 m e joga pedra: 5 de dano). **Tiro para cima**: o clarão faz a multidão recuar 6 m por
   10 s, e o susto vira silêncio por um instante. Matar morador é possível e custa Graça −1 (e o
   povo grita o nome do morto o resto do capítulo).
-- Ao mesmo tempo, o barulho acorda o cemitério: **E1**, corpos-secos vindo pela rua de trás. A
-  multidão vê os secos e grita mais ("É ele que traz!"). O jogador alterna entre a porta e os
-  secos. Comer um seco na frente do povo: o povo vê a costura abrir e recua sozinho por 20 s.
+- A fome aperta. No quintal ao lado, um bode morto (carniça, fome −30). Comer **na frente do
+  povo**: o povo vê a costura abrir e recua sozinho por 20 s ("É o cão! Ele tem o cão no
+  pescoço!"), mas grita mais alto depois.
 
 ### 3. Regina (cena, 90 s) — porta · E7 01–08
 
@@ -129,7 +129,7 @@ ordem do quadrinho.
 | # | Zona | Inimigos | Notas |
 |---|---|---|---|
 | — | rua | multidão (não-alvo) | tiro para cima faz recuar |
-| E1 | rua de trás / cemitério | 4 corpos-secos em 2 levas | covas (38, 30), (44, 34), (40, 40) |
+| — | quintal | carniça: bode morto (−8, 8) | |
 
 ## Sustos
 
@@ -138,8 +138,8 @@ ordem do quadrinho.
 | !1 | rua | batida | bater na 3ª porta | a batida responde de dentro, três vezes, do mesmo jeito; ninguém fala |
 | !2 | rua | vulto | olhar a janela de Dona Cândida | um rosto colado na fresta, sumindo |
 | !3 | rua | jumpscare | a 5ª porta se abre de repente | rosto de velho banguela em tela cheia gritando "SAI DAQUI, PESTE!" |
-| !4 | porta | apagao | a multidão chega | as tochas da multidão e o candeeiro da casa apagam juntos por 2 s; no escuro, só os olhos dos secos na rua de trás |
-| !5 | rua de trás | chao | (38, 30) | o primeiro seco sai do chão do cemitério bem na frente da multidão |
+| !4 | porta | apagao | a multidão chega | as tochas da multidão e o candeeiro da casa apagam juntos por 2 s; no escuro, só as brasas das tochas caídas |
+| !5 | largo | vulto | olhar para a capela (0, 30) | o vulto de olhos brancos de pé no telhado da capela, olhando a casa de Ciro; some |
 | !6 | cozinha | passos | antes de Zeca aparecer | passos no telhado de palha, de um lado para o outro |
 | !7 | quarto | respiracao | passar pela porta do quarto de Ciro | respiração grossa demais para um homem doente |
 | !8 | quarto | sussurro | Regina erguendo a faca | Ela, no ouvido: "A velha sabe. A velha sabe o que ele é." |

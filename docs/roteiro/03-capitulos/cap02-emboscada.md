@@ -1,7 +1,7 @@
 # Capítulo 2 — Emboscada (`cap02-emboscada`)
 
 Adapta o E2 inteiro ("Emboscada", `tapas-2592356/01–16`) e o começo do E3 ("Lampião?!",
-`tapas-2592381/01–09`). Nada é reordenado; os corpos-secos, os sustos e as escolhas entram
+`tapas-2592381/01–09`). Nada é reordenado; a carniça, os sustos e as escolhas entram
 entre as cenas do quadrinho.
 
 | | |
@@ -10,7 +10,7 @@ entre as cenas do quadrinho.
 | **Local** | Estrada do Riacho Fundo, sítio dos velhos, trilha da caatinga, choupana (mapa: `04-mapas.md`, cap. 2) |
 | **Duração** | 12–14 min |
 | **Objetivo** | seguir a estrada; socorrer os velhos; achar a filha deles |
-| **Criatura** | corpo-seco; Antônio e Marconi (gente, roteirizados) |
+| **Inimigos** | Antônio e Marconi (roteirizados). Comida dela: carniça de bicho (bode, cavalo) |
 | **Folheto** | "A Moça que Fugiu com o Cão" (no sítio dos velhos) |
 
 ## Cartão de abertura
@@ -44,8 +44,11 @@ entre as cenas do quadrinho.
 > **ELA:** É sério, imbecil!
 > **ELA:** Era tão lindo... A melhor parte eram os bichos d'água. Eu comia muito peixe, ostra...
 
-- **Encontro E1:** dois corpos-secos de tocaia na galhada, um de cada vez. Primeiro combate de
-  dia: sem clarão útil, o jogador vê tudo, e eles também. Comer: "Bleh."
+- **Carniça (tutorial de comer bicho):** um bode morto na beira da estrada, inchado de sol, com
+  urubus em cima. Chegar perto espanta os urubus (revoada). "COMER": fome −30.
+
+> **ELA:** Bleh. Isso aí já passou do ponto.
+> **LAMPIÃO:** Tu pediu carne podre. Tá aí a carne podre.
 
 ### 2. A carroça (jogável, 2 min) — Z2 · E2 03–05
 
@@ -92,11 +95,12 @@ entre as cenas do quadrinho.
 
 - Sol se pondo, depois lusco-fusco e a **lua cheia** subindo. Pegadas de cavalo na areia, que só
   se leem bem na luz baixa da lua ou no clarão de um tiro.
-- Um cemiteriozinho de beira de trilha, de cruz caída. **E2:** três corpos-secos saem do chão, um
-  de cada vez, enquanto o jogador procura o rastro. Cada tiro mostra o rastro por um instante e
-  acorda mais um.
+- Um cemiteriozinho de beira de trilha, de cruz caída, e uma vaca morta atolada na lama seca
+  (carniça, fome −30). Cada tiro mostra o rastro por um instante, mas o barulho rola longe e
+  alguma coisa responde lá no escuro com um uivo comprido (o primeiro aviso do que vem nos
+  caps. 4–7; ninguém comenta).
 
-> **ELA:** Tô sentindo eles debaixo da terra. Tão com fome também. Mas a fome deles é minha.
+> **ELA:** Ouviu isso? (pausa) Esquece. Segue o rastro.
 
 ### 5. A choupana (cena + emboscada roteirizada, 2 min) — Z5 · E2 12–16
 
@@ -150,8 +154,8 @@ entre as cenas do quadrinho.
 
 | # | Zona | Inimigos | Notas |
 |---|---|---|---|
-| E1 | Z1 | 2 corpos-secos na galhada | de dia, sem surpresa de luz |
-| E2 | Z4 | 3 corpos-secos (covas) | saem do chão; o tiro acorda o próximo |
+| — | Z1 | carniça: bode morto (−4, −40) | sem combate; urubus em revoada |
+| — | Z4 | carniça: vaca morta (−16, 60) | sem combate |
 | — | Z5 | Antônio e Marconi | roteirizado: o jogador perde |
 
 ## Sustos
@@ -161,7 +165,7 @@ entre as cenas do quadrinho.
 | !1 | Z1 | vulto | olhar para a caveira de cavalo (−4, −50) e virar | um homem magro de pé no meio da estrada, longe, contra o sol; some |
 | !2 | Z2 | jumpscare | virar o rosto do carroceiro (interação "Ver") | o rosto furado de bala em tela cheia, olho aberto, mosca |
 | !3 | Z3 | batida | entrar na casa dos velhos | três batidas na porta dos fundos; Seu Tonho: "É o vento. Faz três noite que é o vento." |
-| !4 | Z4 | chao | procurar o rastro perto das cruzes (−12, 48) | a mão do seco sai da terra e pega o tornozelo |
+| !4 | Z4 | respiracao | procurar o rastro perto das cruzes (−12, 48) | respiração pesada atrás; quando ele vira, é só o cavalo da carroça, que seguiu ele no escuro |
 | !5 | Z4 | passos | andar sozinho na trilha (10, 62) | passos de cavalo atrás, devagar; não tem cavalo |
 | !6 | Z4 | sussurro | (−10, 56) | voz de moça: "volta pra casa"; é a voz de Juliana, que ele ainda não conhece |
 | !7 | Z5 | respiracao | chegar a 6 m de Juliana | respiração de homem atrás da orelha (Antônio já está ali) |
