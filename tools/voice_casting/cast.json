@@ -1,0 +1,199 @@
+{
+  "lampiao": {
+    "name": "Lampião",
+    "lines": [
+      [
+        "angry, shouting, rough northeastern Brazilian cangaceiro in his thirties",
+        "Ele tá desarmado! Tamo aqui pela grana, não pela matança, para de perder tempo!"
+      ],
+      [
+        "desperate, grieving, voice breaking",
+        "Maria meu amor, você precisa acordar... por favor!"
+      ]
+    ],
+    "voices": {
+      "elevenlabs/eleven-v3": [
+        "brian",
+        "callum",
+        "liam",
+        "chris"
+      ],
+      "elevenlabs/eleven-v4": [
+        "brian",
+        "callum"
+      ],
+      "google/gemini-3.8-flash-tts": [
+        "Fenrir",
+        "Orus",
+        "Algenib",
+        "Alnilam"
+      ],
+      "fish-audio/drama-3": [
+        null
+      ]
+    }
+  },
+  "coronel": {
+    "name": "Coronel",
+    "lines": [
+      [
+        "very deep bass voice, gravelly cigar smoker, older powerful landowner, cruel and mocking, laughing",
+        "Ha, tu pensou que eu ia deixar tu ir embora na boa? Tu família tá morta desde que tu saiu em missão."
+      ],
+      [
+        "very deep bass voice, furious, shouting",
+        "Tu vai se arrepender de roubar de mim, fi duma rapariga!!"
+      ]
+    ],
+    "voices": {
+      "elevenlabs/eleven-v3": [
+        "bill",
+        "george",
+        "roger",
+        "daniel"
+      ],
+      "elevenlabs/eleven-v4": [
+        "bill",
+        "george"
+      ],
+      "google/gemini-3.8-flash-tts": [
+        "Charon",
+        "Algieba",
+        "Rasalgethi",
+        "Iapetus",
+        "Enceladus"
+      ],
+      "fish-audio/drama-3": [
+        null
+      ]
+    }
+  },
+  "maria": {
+    "name": "Maria",
+    "lines": [
+      [
+        "wounded, in pain but smiling, brave young northeastern Brazilian woman",
+        "Não se preocupa, eu sou abençoada, lembra?"
+      ],
+      [
+        "playful, proud, teasing",
+        "Cabra, tu sabe que eu sei cuidar de mim mesma. Não aceito ficar botando rédeas em mim não."
+      ]
+    ],
+    "voices": {
+      "elevenlabs/eleven-v3": [
+        "lily",
+        "jessica",
+        "matilda",
+        "sarah"
+      ],
+      "elevenlabs/eleven-v4": [
+        "lily",
+        "jessica"
+      ],
+      "google/gemini-3.8-flash-tts": [
+        "Kore",
+        "Aoede",
+        "Despina",
+        "Callirrhoe"
+      ],
+      "fish-audio/drama-3": [
+        null
+      ]
+    }
+  },
+  "vini": {
+    "name": "Vini",
+    "lines": [
+      [
+        "crying, terrified, voice breaking, young man",
+        "Eu... eu não tive escolha. Eles pegaram a minha família, ameaçaram matar meus pais, minha esposa... minha filha!"
+      ],
+      [
+        "cheerful, friendly, laughing",
+        "Hahah, que nada, home. Agora descansem, vou passar a noite na vigilha."
+      ]
+    ],
+    "voices": {
+      "elevenlabs/eleven-v3": [
+        "liam",
+        "will",
+        "eric",
+        "charlie"
+      ],
+      "elevenlabs/eleven-v4": [
+        "liam",
+        "will"
+      ],
+      "google/gemini-3.8-flash-tts": [
+        "Puck",
+        "Umbriel",
+        "Achird",
+        "Schedar"
+      ],
+      "fish-audio/drama-3": [
+        null
+      ]
+    }
+  },
+  "ela": {
+    "name": "Ela (a entidade)",
+    "lines": [
+      [
+        "slow, sinister, ancient deep demonic voice, like a symbiote monster",
+        "Por séculos eu estive sepultada..."
+      ],
+      [
+        "bored, mocking, sarcastic, hungry demon",
+        "Er... eu não quero interromper, mas to precisando bater um rango."
+      ]
+    ],
+    "voices": {
+      "elevenlabs/eleven-v3": [
+        "alice",
+        "bella",
+        "laura",
+        "george",
+        "callum"
+      ],
+      "elevenlabs/eleven-v4": [
+        "alice",
+        "george"
+      ],
+      "google/gemini-3.8-flash-tts": [
+        "Leda",
+        "Erinome",
+        "Gacrux",
+        "Charon",
+        "Enceladus"
+      ],
+      "fish-audio/drama-3": [
+        null
+      ]
+    }
+  },
+  "soldado": {
+    "name": "Soldado da volante",
+    "lines": [
+      [
+        "terrified young soldier screaming for his life",
+        "Eu não quero morrer!! Coronel! Socorro!!"
+      ]
+    ],
+    "voices": {
+      "elevenlabs/eleven-v3": [
+        "eric",
+        "chris",
+        "will"
+      ],
+      "google/gemini-3.8-flash-tts": [
+        "Puck",
+        "Zubenelgenubi",
+        "Sadaltager"
+      ],
+      "fish-audio/drama-3": [
+        null
+      ]
+    }
+  }
+}

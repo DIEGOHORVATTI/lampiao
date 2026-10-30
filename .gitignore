@@ -18,3 +18,4 @@ mono_crash.*.json
 build/
 docs/references/
 __pycache__/
+tools/voice_casting/out/

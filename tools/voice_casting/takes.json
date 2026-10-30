@@ -1,0 +1,863 @@
+[
+ {
+  "character": "lampiao",
+  "line": 0,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "brian",
+  "file": "out/lampiao-0-eleven-v3-brian.mp3"
+ },
+ {
+  "character": "lampiao",
+  "line": 0,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "callum",
+  "file": "out/lampiao-0-eleven-v3-callum.mp3"
+ },
+ {
+  "character": "lampiao",
+  "line": 0,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "liam",
+  "file": "out/lampiao-0-eleven-v3-liam.mp3"
+ },
+ {
+  "character": "lampiao",
+  "line": 0,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "chris",
+  "file": "out/lampiao-0-eleven-v3-chris.mp3"
+ },
+ {
+  "character": "lampiao",
+  "line": 0,
+  "model": "elevenlabs/eleven-v4",
+  "voice": "brian",
+  "file": "out/lampiao-0-eleven-v4-brian.mp3"
+ },
+ {
+  "character": "lampiao",
+  "line": 0,
+  "model": "elevenlabs/eleven-v4",
+  "voice": "callum",
+  "file": "out/lampiao-0-eleven-v4-callum.mp3"
+ },
+ {
+  "character": "lampiao",
+  "line": 0,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Fenrir",
+  "file": "out/lampiao-0-gemini-3.8-flash-tts-Fenrir.mp3"
+ },
+ {
+  "character": "lampiao",
+  "line": 0,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Orus",
+  "file": "out/lampiao-0-gemini-3.8-flash-tts-Orus.mp3"
+ },
+ {
+  "character": "lampiao",
+  "line": 0,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Algenib",
+  "file": "out/lampiao-0-gemini-3.8-flash-tts-Algenib.mp3"
+ },
+ {
+  "character": "lampiao",
+  "line": 0,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Alnilam",
+  "file": "out/lampiao-0-gemini-3.8-flash-tts-Alnilam.mp3"
+ },
+ {
+  "character": "lampiao",
+  "line": 0,
+  "model": "fish-audio/drama-3",
+  "voice": "default",
+  "file": "out/lampiao-0-drama-3-default.mp3"
+ },
+ {
+  "character": "lampiao",
+  "line": 1,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "brian",
+  "file": "out/lampiao-1-eleven-v3-brian.mp3"
+ },
+ {
+  "character": "lampiao",
+  "line": 1,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "callum",
+  "file": "out/lampiao-1-eleven-v3-callum.mp3"
+ },
+ {
+  "character": "lampiao",
+  "line": 1,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "liam",
+  "file": "out/lampiao-1-eleven-v3-liam.mp3"
+ },
+ {
+  "character": "lampiao",
+  "line": 1,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "chris",
+  "file": "out/lampiao-1-eleven-v3-chris.mp3"
+ },
+ {
+  "character": "lampiao",
+  "line": 1,
+  "model": "elevenlabs/eleven-v4",
+  "voice": "brian",
+  "file": "out/lampiao-1-eleven-v4-brian.mp3"
+ },
+ {
+  "character": "lampiao",
+  "line": 1,
+  "model": "elevenlabs/eleven-v4",
+  "voice": "callum",
+  "file": "out/lampiao-1-eleven-v4-callum.mp3"
+ },
+ {
+  "character": "lampiao",
+  "line": 1,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Fenrir",
+  "file": "out/lampiao-1-gemini-3.8-flash-tts-Fenrir.mp3"
+ },
+ {
+  "character": "lampiao",
+  "line": 1,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Orus",
+  "file": "out/lampiao-1-gemini-3.8-flash-tts-Orus.mp3"
+ },
+ {
+  "character": "lampiao",
+  "line": 1,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Algenib",
+  "file": "out/lampiao-1-gemini-3.8-flash-tts-Algenib.mp3"
+ },
+ {
+  "character": "lampiao",
+  "line": 1,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Alnilam",
+  "file": "out/lampiao-1-gemini-3.8-flash-tts-Alnilam.mp3"
+ },
+ {
+  "character": "lampiao",
+  "line": 1,
+  "model": "fish-audio/drama-3",
+  "voice": "default",
+  "file": "out/lampiao-1-drama-3-default.mp3"
+ },
+ {
+  "character": "coronel",
+  "line": 0,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "bill",
+  "file": "out/coronel-0-eleven-v3-bill.mp3"
+ },
+ {
+  "character": "coronel",
+  "line": 0,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "george",
+  "file": "out/coronel-0-eleven-v3-george.mp3"
+ },
+ {
+  "character": "coronel",
+  "line": 0,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "roger",
+  "file": "out/coronel-0-eleven-v3-roger.mp3"
+ },
+ {
+  "character": "coronel",
+  "line": 0,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "daniel",
+  "file": "out/coronel-0-eleven-v3-daniel.mp3"
+ },
+ {
+  "character": "coronel",
+  "line": 0,
+  "model": "elevenlabs/eleven-v4",
+  "voice": "bill",
+  "file": "out/coronel-0-eleven-v4-bill.mp3"
+ },
+ {
+  "character": "coronel",
+  "line": 0,
+  "model": "elevenlabs/eleven-v4",
+  "voice": "george",
+  "file": "out/coronel-0-eleven-v4-george.mp3"
+ },
+ {
+  "character": "coronel",
+  "line": 0,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Charon",
+  "file": "out/coronel-0-gemini-3.8-flash-tts-Charon.mp3"
+ },
+ {
+  "character": "coronel",
+  "line": 0,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Algieba",
+  "file": "out/coronel-0-gemini-3.8-flash-tts-Algieba.mp3"
+ },
+ {
+  "character": "coronel",
+  "line": 0,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Rasalgethi",
+  "file": "out/coronel-0-gemini-3.8-flash-tts-Rasalgethi.mp3"
+ },
+ {
+  "character": "coronel",
+  "line": 0,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Iapetus",
+  "file": "out/coronel-0-gemini-3.8-flash-tts-Iapetus.mp3"
+ },
+ {
+  "character": "coronel",
+  "line": 0,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Enceladus",
+  "file": "out/coronel-0-gemini-3.8-flash-tts-Enceladus.mp3"
+ },
+ {
+  "character": "coronel",
+  "line": 0,
+  "model": "fish-audio/drama-3",
+  "voice": "default",
+  "file": "out/coronel-0-drama-3-default.mp3"
+ },
+ {
+  "character": "coronel",
+  "line": 1,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "bill",
+  "file": "out/coronel-1-eleven-v3-bill.mp3"
+ },
+ {
+  "character": "coronel",
+  "line": 1,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "george",
+  "file": "out/coronel-1-eleven-v3-george.mp3"
+ },
+ {
+  "character": "coronel",
+  "line": 1,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "roger",
+  "file": "out/coronel-1-eleven-v3-roger.mp3"
+ },
+ {
+  "character": "coronel",
+  "line": 1,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "daniel",
+  "file": "out/coronel-1-eleven-v3-daniel.mp3"
+ },
+ {
+  "character": "coronel",
+  "line": 1,
+  "model": "elevenlabs/eleven-v4",
+  "voice": "bill",
+  "file": "out/coronel-1-eleven-v4-bill.mp3"
+ },
+ {
+  "character": "coronel",
+  "line": 1,
+  "model": "elevenlabs/eleven-v4",
+  "voice": "george",
+  "file": "out/coronel-1-eleven-v4-george.mp3"
+ },
+ {
+  "character": "coronel",
+  "line": 1,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Charon",
+  "file": "out/coronel-1-gemini-3.8-flash-tts-Charon.mp3"
+ },
+ {
+  "character": "coronel",
+  "line": 1,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Algieba",
+  "file": "out/coronel-1-gemini-3.8-flash-tts-Algieba.mp3"
+ },
+ {
+  "character": "coronel",
+  "line": 1,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Rasalgethi",
+  "file": "out/coronel-1-gemini-3.8-flash-tts-Rasalgethi.mp3"
+ },
+ {
+  "character": "coronel",
+  "line": 1,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Iapetus",
+  "file": "out/coronel-1-gemini-3.8-flash-tts-Iapetus.mp3"
+ },
+ {
+  "character": "coronel",
+  "line": 1,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Enceladus",
+  "file": "out/coronel-1-gemini-3.8-flash-tts-Enceladus.mp3"
+ },
+ {
+  "character": "coronel",
+  "line": 1,
+  "model": "fish-audio/drama-3",
+  "voice": "default",
+  "file": "out/coronel-1-drama-3-default.mp3"
+ },
+ {
+  "character": "maria",
+  "line": 0,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "lily",
+  "file": "out/maria-0-eleven-v3-lily.mp3"
+ },
+ {
+  "character": "maria",
+  "line": 0,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "jessica",
+  "file": "out/maria-0-eleven-v3-jessica.mp3"
+ },
+ {
+  "character": "maria",
+  "line": 0,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "matilda",
+  "file": "out/maria-0-eleven-v3-matilda.mp3"
+ },
+ {
+  "character": "maria",
+  "line": 0,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "sarah",
+  "file": "out/maria-0-eleven-v3-sarah.mp3"
+ },
+ {
+  "character": "maria",
+  "line": 0,
+  "model": "elevenlabs/eleven-v4",
+  "voice": "lily",
+  "file": "out/maria-0-eleven-v4-lily.mp3"
+ },
+ {
+  "character": "maria",
+  "line": 0,
+  "model": "elevenlabs/eleven-v4",
+  "voice": "jessica",
+  "file": "out/maria-0-eleven-v4-jessica.mp3"
+ },
+ {
+  "character": "maria",
+  "line": 0,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Kore",
+  "file": "out/maria-0-gemini-3.8-flash-tts-Kore.mp3"
+ },
+ {
+  "character": "maria",
+  "line": 0,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Aoede",
+  "file": "out/maria-0-gemini-3.8-flash-tts-Aoede.mp3"
+ },
+ {
+  "character": "maria",
+  "line": 0,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Despina",
+  "file": "out/maria-0-gemini-3.8-flash-tts-Despina.mp3"
+ },
+ {
+  "character": "maria",
+  "line": 0,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Callirrhoe",
+  "file": "out/maria-0-gemini-3.8-flash-tts-Callirrhoe.mp3"
+ },
+ {
+  "character": "maria",
+  "line": 0,
+  "model": "fish-audio/drama-3",
+  "voice": "default",
+  "file": "out/maria-0-drama-3-default.mp3"
+ },
+ {
+  "character": "maria",
+  "line": 1,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "lily",
+  "file": "out/maria-1-eleven-v3-lily.mp3"
+ },
+ {
+  "character": "maria",
+  "line": 1,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "jessica",
+  "file": "out/maria-1-eleven-v3-jessica.mp3"
+ },
+ {
+  "character": "maria",
+  "line": 1,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "matilda",
+  "file": "out/maria-1-eleven-v3-matilda.mp3"
+ },
+ {
+  "character": "maria",
+  "line": 1,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "sarah",
+  "file": "out/maria-1-eleven-v3-sarah.mp3"
+ },
+ {
+  "character": "maria",
+  "line": 1,
+  "model": "elevenlabs/eleven-v4",
+  "voice": "lily",
+  "file": "out/maria-1-eleven-v4-lily.mp3"
+ },
+ {
+  "character": "maria",
+  "line": 1,
+  "model": "elevenlabs/eleven-v4",
+  "voice": "jessica",
+  "file": "out/maria-1-eleven-v4-jessica.mp3"
+ },
+ {
+  "character": "maria",
+  "line": 1,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Kore",
+  "file": "out/maria-1-gemini-3.8-flash-tts-Kore.mp3"
+ },
+ {
+  "character": "maria",
+  "line": 1,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Aoede",
+  "file": "out/maria-1-gemini-3.8-flash-tts-Aoede.mp3"
+ },
+ {
+  "character": "maria",
+  "line": 1,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Despina",
+  "file": "out/maria-1-gemini-3.8-flash-tts-Despina.mp3"
+ },
+ {
+  "character": "maria",
+  "line": 1,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Callirrhoe",
+  "file": "out/maria-1-gemini-3.8-flash-tts-Callirrhoe.mp3"
+ },
+ {
+  "character": "maria",
+  "line": 1,
+  "model": "fish-audio/drama-3",
+  "voice": "default",
+  "file": "out/maria-1-drama-3-default.mp3"
+ },
+ {
+  "character": "vini",
+  "line": 0,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "liam",
+  "file": "out/vini-0-eleven-v3-liam.mp3"
+ },
+ {
+  "character": "vini",
+  "line": 0,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "will",
+  "file": "out/vini-0-eleven-v3-will.mp3"
+ },
+ {
+  "character": "vini",
+  "line": 0,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "eric",
+  "file": "out/vini-0-eleven-v3-eric.mp3"
+ },
+ {
+  "character": "vini",
+  "line": 0,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "charlie",
+  "file": "out/vini-0-eleven-v3-charlie.mp3"
+ },
+ {
+  "character": "vini",
+  "line": 0,
+  "model": "elevenlabs/eleven-v4",
+  "voice": "liam",
+  "file": "out/vini-0-eleven-v4-liam.mp3"
+ },
+ {
+  "character": "vini",
+  "line": 0,
+  "model": "elevenlabs/eleven-v4",
+  "voice": "will",
+  "file": "out/vini-0-eleven-v4-will.mp3"
+ },
+ {
+  "character": "vini",
+  "line": 0,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Puck",
+  "file": "out/vini-0-gemini-3.8-flash-tts-Puck.mp3"
+ },
+ {
+  "character": "vini",
+  "line": 0,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Umbriel",
+  "file": "out/vini-0-gemini-3.8-flash-tts-Umbriel.mp3"
+ },
+ {
+  "character": "vini",
+  "line": 0,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Achird",
+  "file": "out/vini-0-gemini-3.8-flash-tts-Achird.mp3"
+ },
+ {
+  "character": "vini",
+  "line": 0,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Schedar",
+  "file": "out/vini-0-gemini-3.8-flash-tts-Schedar.mp3"
+ },
+ {
+  "character": "vini",
+  "line": 0,
+  "model": "fish-audio/drama-3",
+  "voice": "default",
+  "file": "out/vini-0-drama-3-default.mp3"
+ },
+ {
+  "character": "vini",
+  "line": 1,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "liam",
+  "file": "out/vini-1-eleven-v3-liam.mp3"
+ },
+ {
+  "character": "vini",
+  "line": 1,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "will",
+  "file": "out/vini-1-eleven-v3-will.mp3"
+ },
+ {
+  "character": "vini",
+  "line": 1,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "eric",
+  "file": "out/vini-1-eleven-v3-eric.mp3"
+ },
+ {
+  "character": "vini",
+  "line": 1,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "charlie",
+  "file": "out/vini-1-eleven-v3-charlie.mp3"
+ },
+ {
+  "character": "vini",
+  "line": 1,
+  "model": "elevenlabs/eleven-v4",
+  "voice": "liam",
+  "file": "out/vini-1-eleven-v4-liam.mp3"
+ },
+ {
+  "character": "vini",
+  "line": 1,
+  "model": "elevenlabs/eleven-v4",
+  "voice": "will",
+  "file": "out/vini-1-eleven-v4-will.mp3"
+ },
+ {
+  "character": "vini",
+  "line": 1,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Puck",
+  "file": "out/vini-1-gemini-3.8-flash-tts-Puck.mp3"
+ },
+ {
+  "character": "vini",
+  "line": 1,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Umbriel",
+  "file": "out/vini-1-gemini-3.8-flash-tts-Umbriel.mp3"
+ },
+ {
+  "character": "vini",
+  "line": 1,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Achird",
+  "file": "out/vini-1-gemini-3.8-flash-tts-Achird.mp3"
+ },
+ {
+  "character": "vini",
+  "line": 1,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Schedar",
+  "file": "out/vini-1-gemini-3.8-flash-tts-Schedar.mp3"
+ },
+ {
+  "character": "vini",
+  "line": 1,
+  "model": "fish-audio/drama-3",
+  "voice": "default",
+  "file": "out/vini-1-drama-3-default.mp3"
+ },
+ {
+  "character": "ela",
+  "line": 0,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "alice",
+  "file": "out/ela-0-eleven-v3-alice.mp3"
+ },
+ {
+  "character": "ela",
+  "line": 0,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "bella",
+  "file": "out/ela-0-eleven-v3-bella.mp3"
+ },
+ {
+  "character": "ela",
+  "line": 0,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "laura",
+  "file": "out/ela-0-eleven-v3-laura.mp3"
+ },
+ {
+  "character": "ela",
+  "line": 0,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "george",
+  "file": "out/ela-0-eleven-v3-george.mp3"
+ },
+ {
+  "character": "ela",
+  "line": 0,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "callum",
+  "file": "out/ela-0-eleven-v3-callum.mp3"
+ },
+ {
+  "character": "ela",
+  "line": 0,
+  "model": "elevenlabs/eleven-v4",
+  "voice": "alice",
+  "file": "out/ela-0-eleven-v4-alice.mp3"
+ },
+ {
+  "character": "ela",
+  "line": 0,
+  "model": "elevenlabs/eleven-v4",
+  "voice": "george",
+  "file": "out/ela-0-eleven-v4-george.mp3"
+ },
+ {
+  "character": "ela",
+  "line": 0,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Leda",
+  "file": "out/ela-0-gemini-3.8-flash-tts-Leda.mp3"
+ },
+ {
+  "character": "ela",
+  "line": 0,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Erinome",
+  "file": "out/ela-0-gemini-3.8-flash-tts-Erinome.mp3"
+ },
+ {
+  "character": "ela",
+  "line": 0,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Gacrux",
+  "file": "out/ela-0-gemini-3.8-flash-tts-Gacrux.mp3"
+ },
+ {
+  "character": "ela",
+  "line": 0,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Charon",
+  "file": "out/ela-0-gemini-3.8-flash-tts-Charon.mp3"
+ },
+ {
+  "character": "ela",
+  "line": 0,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Enceladus",
+  "file": "out/ela-0-gemini-3.8-flash-tts-Enceladus.mp3"
+ },
+ {
+  "character": "ela",
+  "line": 0,
+  "model": "fish-audio/drama-3",
+  "voice": "default",
+  "file": "out/ela-0-drama-3-default.mp3"
+ },
+ {
+  "character": "ela",
+  "line": 1,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "alice",
+  "file": "out/ela-1-eleven-v3-alice.mp3"
+ },
+ {
+  "character": "ela",
+  "line": 1,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "bella",
+  "file": "out/ela-1-eleven-v3-bella.mp3"
+ },
+ {
+  "character": "ela",
+  "line": 1,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "laura",
+  "file": "out/ela-1-eleven-v3-laura.mp3"
+ },
+ {
+  "character": "ela",
+  "line": 1,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "george",
+  "file": "out/ela-1-eleven-v3-george.mp3"
+ },
+ {
+  "character": "ela",
+  "line": 1,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "callum",
+  "file": "out/ela-1-eleven-v3-callum.mp3"
+ },
+ {
+  "character": "ela",
+  "line": 1,
+  "model": "elevenlabs/eleven-v4",
+  "voice": "alice",
+  "file": "out/ela-1-eleven-v4-alice.mp3"
+ },
+ {
+  "character": "ela",
+  "line": 1,
+  "model": "elevenlabs/eleven-v4",
+  "voice": "george",
+  "file": "out/ela-1-eleven-v4-george.mp3"
+ },
+ {
+  "character": "ela",
+  "line": 1,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Leda",
+  "file": "out/ela-1-gemini-3.8-flash-tts-Leda.mp3"
+ },
+ {
+  "character": "ela",
+  "line": 1,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Erinome",
+  "file": "out/ela-1-gemini-3.8-flash-tts-Erinome.mp3"
+ },
+ {
+  "character": "ela",
+  "line": 1,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Gacrux",
+  "file": "out/ela-1-gemini-3.8-flash-tts-Gacrux.mp3"
+ },
+ {
+  "character": "ela",
+  "line": 1,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Charon",
+  "file": "out/ela-1-gemini-3.8-flash-tts-Charon.mp3"
+ },
+ {
+  "character": "ela",
+  "line": 1,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Enceladus",
+  "file": "out/ela-1-gemini-3.8-flash-tts-Enceladus.mp3"
+ },
+ {
+  "character": "ela",
+  "line": 1,
+  "model": "fish-audio/drama-3",
+  "voice": "default",
+  "file": "out/ela-1-drama-3-default.mp3"
+ },
+ {
+  "character": "soldado",
+  "line": 0,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "eric",
+  "file": "out/soldado-0-eleven-v3-eric.mp3"
+ },
+ {
+  "character": "soldado",
+  "line": 0,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "chris",
+  "file": "out/soldado-0-eleven-v3-chris.mp3"
+ },
+ {
+  "character": "soldado",
+  "line": 0,
+  "model": "elevenlabs/eleven-v3",
+  "voice": "will",
+  "file": "out/soldado-0-eleven-v3-will.mp3"
+ },
+ {
+  "character": "soldado",
+  "line": 0,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Puck",
+  "file": "out/soldado-0-gemini-3.8-flash-tts-Puck.mp3"
+ },
+ {
+  "character": "soldado",
+  "line": 0,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Zubenelgenubi",
+  "file": "out/soldado-0-gemini-3.8-flash-tts-Zubenelgenubi.mp3"
+ },
+ {
+  "character": "soldado",
+  "line": 0,
+  "model": "google/gemini-3.8-flash-tts",
+  "voice": "Sadaltager",
+  "file": "out/soldado-0-gemini-3.8-flash-tts-Sadaltager.mp3"
+ },
+ {
+  "character": "soldado",
+  "line": 0,
+  "model": "fish-audio/drama-3",
+  "voice": "default",
+  "file": "out/soldado-0-drama-3-default.mp3"
+ }
+]
