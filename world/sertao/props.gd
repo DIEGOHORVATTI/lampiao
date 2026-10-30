@@ -201,8 +201,8 @@ static func superficie(field: Script, fn: String, flip: bool, mat: String) -> No
 				if fn == "chao":
 					var base: float = field.call("sample", x, z).y
 					rough = clampf(absf(y - base) / 3.0, 0.0, 1.0)
-				y += noise.get_noise_2d(x, z) * (0.08 + rough * 0.7)
-				v.append(Vector3(x + noise.get_noise_2d(z, x) * rough * 0.5, y, z))
+				y += noise.get_noise_2d(x, z) * (0.06 + rough * 0.45)
+				v.append(Vector3(x + noise.get_noise_2d(z, x) * rough * 0.2, y, z))
 			var tris := [[0, 1, 2], [2, 1, 3]]
 			for t in tris:
 				var order: Array = t if not flip else [t[0], t[2], t[1]]

@@ -130,7 +130,7 @@ func _enemies() -> void:
 	enemies.name = "Enemies"
 	_own(enemies, scene_root)
 	var spawner_scene: PackedScene = load("res://common/spawner/spawner.tscn")
-	var undead: PackedScene = load("res://enemies/corpo_seco.tscn")
+	var undead: PackedScene = load("res://enemies/soldado.tscn")
 	for pos in [Vector3(-22, 0, -27), Vector3(26, 0, 10), Vector3(-26, 0, 14), Vector3(8, 0, -30)]:
 		var spawner: Node3D = spawner_scene.instantiate()
 		spawner.position = pos

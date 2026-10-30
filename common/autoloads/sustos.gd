@@ -4,6 +4,9 @@ const RATE := 22050
 const FACES := {
 	"corpo_seco": "res://resources/ui/sustos/corpo_seco.jpg",
 	"entidade": "res://resources/ui/sustos/entidade.jpg",
+	"maria": "res://resources/ui/sustos/maria.jpg",
+	"soldado_comido": "res://resources/ui/sustos/soldado_comido.jpg",
+	"lua": "res://resources/ui/sustos/lua.jpg",
 }
 const UNDEAD := preload("res://enemies/undead.tscn")
 const FOOTSTEP := preload("res://player/sfx/footstep_ground.ogg")

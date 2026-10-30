@@ -9,6 +9,9 @@ const HEAL_PER_MEAL := 15.0
 const POSSESSION_DAMAGE := 1000.0
 
 var hunger := 0.0
+var meal_value := HUNGER_PER_MEAL
+var fome_ativa := true
+var lente: Line2D
 var active := false
 var fps_log_timer := 0.0
 
@@ -23,6 +26,7 @@ func _ready() -> void:
 	layer = 20
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_build_vignette()
+	_build_lente()
 	pause_screen = _build_pause_screen()
 	if not InputMap.has_action("pausa"):
 		InputMap.add_action("pausa")
@@ -47,6 +51,20 @@ func _build_vignette() -> void:
 	vignette.shader = preload("res://resources/shaders/vinheta.gdshader")
 	rect.material = vignette
 	holder.add_child(rect)
+
+
+func _build_lente() -> void:
+	lente = Line2D.new()
+	lente.width = 2.0
+	lente.default_color = Color(0.85, 0.85, 0.8, 0.55)
+	lente.points = PackedVector2Array([Vector2(1920, 120), Vector2(1840, 210), Vector2(1862, 260), Vector2(1790, 360), Vector2(1808, 420), Vector2(1745, 520)])
+	lente.visible = Historia.flag("lente") == "rachada"
+	get_node("Vinheta").add_child(lente)
+
+
+func rachar_lente() -> void:
+	Historia.set_flag("lente", "rachada")
+	lente.visible = true
 
 
 func _on_health_changed(change: float, current: float, max_health: float, _enemy: bool) -> void:
@@ -118,7 +136,7 @@ func feed(amount: float) -> void:
 
 
 func comer() -> void:
-	feed(HUNGER_PER_MEAL)
+	feed(meal_value)
 	heal(HEAL_PER_MEAL)
 
 
@@ -141,7 +159,7 @@ func _notification(what: int) -> void:
 func _process(delta: float) -> void:
 	hit_flash = maxf(0.0, hit_flash - delta * 2.5)
 	vignette.set_shader_parameter("hit", hit_flash)
-	vignette.set_shader_parameter("hunger", hunger / 100.0 if active else 0.0)
+	vignette.set_shader_parameter("hunger", hunger / 100.0 if active and fome_ativa else 0.0)
 	if Input.is_action_just_pressed("pausa") and (active or pause_screen.visible):
 		pause(not pause_screen.visible)
 	if pause_screen.visible:
@@ -159,10 +177,10 @@ func _process(delta: float) -> void:
 		print("LAMPIAO_FPS %d draw_calls %d" % [Engine.get_frames_per_second(), Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME)])
 	if not active or get_tree().paused:
 		return
-	var rate := HUNGER_PER_SECOND * (TERCO_HUNGER_FACTOR if Poderes.terco_ativo else 1.0)
+	var rate := HUNGER_PER_SECOND * (TERCO_HUNGER_FACTOR if Poderes.terco_ativo else 1.0) * (1.0 if fome_ativa else 0.0)
 	hunger = minf(100.0, hunger + rate * delta)
 	_emit()
-	if hunger >= 100.0 and Global.player and Global.player.is_alive:
+	if fome_ativa and not Poderes.modo_ela and hunger >= 100.0 and Global.player and Global.player.is_alive:
 		death_message.text = "Ela cansou de esperar, Capitão.\nAgora a carne podre é você."
 		Global.player.get_damage(POSSESSION_DAMAGE, Vector3.ZERO)
 

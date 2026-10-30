@@ -2,7 +2,7 @@ const CELL := 0.75
 const MIN := Vector2(-32, -40)
 const MAX := Vector2(42, 98)
 const ROCK_TOP := 9.0
-const WALL_BLEND := 1.4
+const WALL_BLEND := 2.4
 
 const ROOMS := [
 	{"name": "boca", "min": Vector2(-12, -8), "max": Vector2(12, 16), "y": 0.0, "h": 6.0, "roof": true},

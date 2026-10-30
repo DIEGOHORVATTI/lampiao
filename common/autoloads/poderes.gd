@@ -6,6 +6,7 @@ const TENTACULOS_COOLDOWN := 1.5
 
 var cooldown := 0.0
 var terco_ativo := false
+var modo_ela := false
 var root_material: StandardMaterial3D
 
 
@@ -21,22 +22,23 @@ func _ready() -> void:
 		key_t.physical_keycode = KEY_T
 		InputMap.action_add_event("terco", key_t)
 	root_material = StandardMaterial3D.new()
-	root_material.albedo_color = Color(0.08, 0.04, 0.03)
+	root_material.albedo_color = Color(0.02, 0.02, 0.02)
 	root_material.roughness = 0.6
 
 
 func _process(delta: float) -> void:
 	cooldown = maxf(0.0, cooldown - delta)
 	terco_ativo = Input.is_action_pressed("terco") and Pacto.active
-	if Input.is_action_just_pressed("tentaculos") and cooldown == 0.0 and Pacto.active and not terco_ativo:
+	if Input.is_action_just_pressed("tentaculos") and cooldown == 0.0 and (Pacto.active or modo_ela) and not terco_ativo:
 		tentaculos()
 
 
 func tentaculos() -> bool:
 	var player: Node3D = Global.player
 	var target := _target(player)
-	cooldown = TENTACULOS_COOLDOWN
-	Pacto.hunger = minf(99.0, Pacto.hunger + TENTACULOS_HUNGER)
+	cooldown = 0.6 if modo_ela else TENTACULOS_COOLDOWN
+	if not modo_ela:
+		Pacto.hunger = minf(99.0, Pacto.hunger + TENTACULOS_HUNGER)
 	var hand: Vector3 = player.camera.global_position + player.camera.global_basis * Vector3(0.3, -0.4, -0.3)
 	var end: Vector3 = target.global_position + Vector3.UP * 1.0 if target else hand + -player.camera.global_basis.z * TENTACULOS_RANGE
 	for i in 3:
@@ -49,7 +51,7 @@ func tentaculos() -> bool:
 func _target(player: Node3D) -> Node3D:
 	var forward: Vector3 = -player.camera.global_basis.z
 	var best: Node3D = null
-	var best_distance := TENTACULOS_RANGE
+	var best_distance := 6.0 if modo_ela else TENTACULOS_RANGE
 	for enemy in get_tree().get_nodes_in_group("inimigos"):
 		if not enemy.is_alive:
 			continue
