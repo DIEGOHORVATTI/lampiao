@@ -28,7 +28,7 @@ button { position: fixed; right: 32px; bottom: 32px; background: #b8862b; color:
 <script>
 const load = (path) => fetch(path).then((r) => (r.ok ? r.json() : {}));
 
-function takeRow(character, candidate, takes, chosen) {
+function takeRow(character, candidate, takes, chosen, fallback) {
   const row = document.createElement("label");
   row.className = "take" + (chosen === candidate ? " chosen" : "");
   const radio = Object.assign(document.createElement("input"), { type: "radio", name: character, value: candidate, checked: chosen === candidate });
@@ -36,7 +36,7 @@ function takeRow(character, candidate, takes, chosen) {
     document.querySelectorAll(`input[name="${character}"]`).forEach((r) => r.closest(".take").classList.toggle("chosen", r.checked));
   };
   const name = document.createElement("span");
-  name.textContent = candidate.replace("|", " · ");
+  name.textContent = candidate.replace("|", " · ") + (candidate === fallback ? "  (padrão)" : "");
   const players = document.createElement("div");
   players.className = "players";
   takes.sort((a, b) => a.line - b.line).forEach((t) => players.append(Object.assign(document.createElement("audio"), { controls: true, preload: "none", src: t.file })));
@@ -53,7 +53,7 @@ async function render() {
     const groups = {};
     takes.filter((t) => t.character === character).forEach((t) => (groups[`${t.model}|${t.voice}`] ??= []).push(t));
     const picked = choices[character] || {};
-    Object.entries(groups).forEach(([candidate, list]) => section.append(takeRow(character, candidate, list, picked.voice)));
+    Object.entries(groups).forEach(([candidate, list]) => section.append(takeRow(character, candidate, list, picked.voice || spec.default, spec.default)));
     const notes = Object.assign(document.createElement("textarea"), { rows: 2, placeholder: "notas para este personagem", value: picked.notes || "" });
     notes.dataset.character = character;
     section.append(notes);

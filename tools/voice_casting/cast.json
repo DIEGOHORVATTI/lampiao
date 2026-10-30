@@ -22,16 +22,11 @@
         "brian",
         "callum"
       ],
-      "google/gemini-3.8-flash-tts": [
-        "Fenrir",
-        "Orus",
-        "Algenib",
-        "Alnilam"
-      ],
       "fish-audio/drama-3": [
         null
       ]
-    }
+    },
+    "default": "fish-audio/drama-3|default"
   },
   "coronel": {
     "name": "Coronel",
@@ -56,17 +51,11 @@
         "bill",
         "george"
       ],
-      "google/gemini-3.8-flash-tts": [
-        "Charon",
-        "Algieba",
-        "Rasalgethi",
-        "Iapetus",
-        "Enceladus"
-      ],
       "fish-audio/drama-3": [
         null
       ]
-    }
+    },
+    "default": "fish-audio/drama-3|default"
   },
   "maria": {
     "name": "Maria",
@@ -91,16 +80,11 @@
         "lily",
         "jessica"
       ],
-      "google/gemini-3.8-flash-tts": [
-        "Kore",
-        "Aoede",
-        "Despina",
-        "Callirrhoe"
-      ],
       "fish-audio/drama-3": [
         null
       ]
-    }
+    },
+    "default": "fish-audio/drama-3|default"
   },
   "vini": {
     "name": "Vini",
@@ -125,16 +109,11 @@
         "liam",
         "will"
       ],
-      "google/gemini-3.8-flash-tts": [
-        "Puck",
-        "Umbriel",
-        "Achird",
-        "Schedar"
-      ],
       "fish-audio/drama-3": [
         null
       ]
-    }
+    },
+    "default": "elevenlabs/eleven-v3|liam"
   },
   "ela": {
     "name": "Ela (a entidade)",
@@ -160,17 +139,11 @@
         "alice",
         "george"
       ],
-      "google/gemini-3.8-flash-tts": [
-        "Leda",
-        "Erinome",
-        "Gacrux",
-        "Charon",
-        "Enceladus"
-      ],
       "fish-audio/drama-3": [
         null
       ]
-    }
+    },
+    "default": "fish-audio/drama-3|default"
   },
   "soldado": {
     "name": "Soldado da volante",
@@ -186,14 +159,10 @@
         "chris",
         "will"
       ],
-      "google/gemini-3.8-flash-tts": [
-        "Puck",
-        "Zubenelgenubi",
-        "Sadaltager"
-      ],
       "fish-audio/drama-3": [
         null
       ]
-    }
+    },
+    "default": "fish-audio/drama-3|default"
   }
 }
