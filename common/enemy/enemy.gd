@@ -21,6 +21,9 @@ var current_health: float = 100.0
 @export var vision_range: float = 10.0
 @export var hearing_range: float = 0.0
 @export var light_attraction: float = 0.0
+@export var alert_range: float = 0.0
+@export var eye_glow: Color = Color(0, 0, 0, 0)
+@export var eye_height: float = 1.6
 @export var chase_time: float = 5.0
 var is_chasing:bool = false
 
@@ -81,6 +84,11 @@ func _ready() -> void:
 	
 	play_sfx(spawn_sfx)
 	play_vfx(spawn_vfx)
+	add_to_group("inimigos")
+	if hearing_range > 0.0:
+		Global.fire_input.connect(_on_player_fired)
+	if eye_glow.a > 0.0:
+		_add_eyes()
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -174,15 +182,45 @@ func _player_in_attack_range() -> bool:
 
 func _chasing_player() -> bool:
 	if _player_in_vision_range():
+		if not is_chasing and alert_range > 0.0:
+			get_tree().call_group("inimigos", "alert", global_position, alert_range)
 		is_chasing = true
 		chase_timer.start(chase_time)
 	
 	return is_chasing
 
+
+func alert(from: Vector3, radius: float) -> void:
+	if is_alive and global_position.distance_to(from) < radius:
+		is_chasing = true
+		chase_timer.start(chase_time)
+
+
+func _on_player_fired() -> void:
+	if player and is_alive and global_position.distance_to(player.global_position) < hearing_range:
+		alert(global_position, 1.0)
+
+
+func _add_eyes() -> void:
+	var mat := StandardMaterial3D.new()
+	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	mat.albedo_color = eye_glow
+	mat.disable_fog = true
+	var sphere := SphereMesh.new()
+	sphere.radius = 0.025
+	sphere.height = 0.05
+	sphere.radial_segments = 6
+	sphere.rings = 3
+	for x in [-0.045, 0.045]:
+		var eye := MeshInstance3D.new()
+		eye.mesh = sphere
+		eye.material_override = mat
+		eye.position = Vector3(x, eye_height, -0.13)
+		character_root.add_child(eye)
+
 func _player_in_vision_range() -> bool:
 	var distance := global_position.distance_to(player.global_position)
-	var seen_range := vision_range * (1.0 + light_attraction * Pacto.light_factor())
-	return distance < seen_range or distance < hearing_range
+	return distance < vision_range * (1.0 + light_attraction * Pacto.light_factor())
 
 func _on_chase_timer_timeout() -> void:
 	is_chasing = false

@@ -3,9 +3,14 @@
 [ext_resource type="PackedScene" path="res://enemies/undead.tscn" id="1"]
 
 [node name="CorpoSeco" instance=ExtResource("1")]
-move_speed = 1.4
-vision_range = 9.0
-hearing_range = 30.0
-light_attraction = 0.8
+move_speed = 1.0
+vision_range = 10.0
+light_attraction = 0.6
+hearing_range = 25.0
+alert_range = 12.0
+chase_time = 8.0
+attack_range = 1.8
+attack_damage = 12.0
 show_health_bar = false
 edible_seconds = 15.0
+eye_glow = Color(0.75, 0.04, 0.02, 1)
