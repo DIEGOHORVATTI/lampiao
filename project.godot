@@ -27,6 +27,7 @@ Pacto="*res://common/autoloads/pacto.gd"
 Historia="*res://common/autoloads/historia.gd"
 Dialogo="*res://common/autoloads/dialogo.gd"
 Poderes="*res://common/autoloads/poderes.gd"
+Ambiente="*res://common/autoloads/ambiente.gd"
 TouchControls="*res://common/touch/touch_controls.gd"
 
 [display]

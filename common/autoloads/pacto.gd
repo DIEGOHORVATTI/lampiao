@@ -72,6 +72,14 @@ func light_factor() -> float:
 	return lerpf(0.12, 1.0, kerosene / 100.0)
 
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_WM_GO_BACK_REQUEST and active:
+		stop()
+		Dialogo.limpar()
+		get_tree().paused = false
+		get_tree().change_scene_to_file("res://ui/menu.tscn")
+
+
 func _process(delta: float) -> void:
 	if not active or get_tree().paused:
 		return
