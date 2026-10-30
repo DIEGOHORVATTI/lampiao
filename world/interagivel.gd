@@ -23,7 +23,7 @@ func _ready() -> void:
 func _set_inside(inside: bool) -> void:
 	player_inside = inside
 	if inside:
-		Dialogo.mostrar_prompt("✋ " + texto)
+		Dialogo.mostrar_prompt("USAR: " + texto)
 	else:
 		Dialogo.esconder_prompt()
 

@@ -5,13 +5,13 @@ const LOOK_SENSITIVITY := 0.006
 const BUTTON_SIZE := 150.0
 const MOVE_ACTIONS := ["left", "right", "forward", "backward"]
 const BUTTONS := [
-	{"action": "fire", "label": "🔥", "anchor": Vector2(-200, -380), "scale": 1.3},
-	{"action": "aim_mode", "label": "◎", "anchor": Vector2(-400, -320), "scale": 1.0},
-	{"action": "jump", "label": "⤒", "anchor": Vector2(-200, -590), "scale": 0.8},
-	{"action": "reload", "label": "↻", "anchor": Vector2(-380, -540), "scale": 0.8},
-	{"action": "activate", "label": "✋", "anchor": Vector2(-560, -380), "scale": 0.8},
-	{"action": "weapon_change_next", "label": "⇄", "anchor": Vector2(-200, -760), "scale": 0.7},
-	{"action": "raizes", "label": "🌿", "anchor": Vector2(-560, -560), "scale": 0.9},
+	{"action": "fire", "label": "ATIRAR", "anchor": Vector2(-200, -380), "scale": 1.3},
+	{"action": "aim_mode", "label": "MIRAR", "anchor": Vector2(-400, -320), "scale": 1.0},
+	{"action": "jump", "label": "PULAR", "anchor": Vector2(-200, -590), "scale": 0.8},
+	{"action": "reload", "label": "RECARREGAR", "anchor": Vector2(-380, -540), "scale": 0.8},
+	{"action": "activate", "label": "USAR", "anchor": Vector2(-560, -380), "scale": 0.8},
+	{"action": "weapon_change_next", "label": "TROCAR", "anchor": Vector2(-200, -760), "scale": 0.7},
+	{"action": "raizes", "label": "RAÍZES", "anchor": Vector2(-560, -560), "scale": 0.9},
 ]
 
 var move_finger := -1
@@ -97,7 +97,7 @@ func _build_button(spec: Dictionary) -> TouchScreenButton:
 	label.size = Vector2(size, size)
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	label.add_theme_font_size_override("font_size", int(size * 0.4))
+	label.add_theme_font_size_override("font_size", int(size * (0.2 if spec.label.length() <= 6 else 0.15)))
 	button.add_child(label)
 	return button
 

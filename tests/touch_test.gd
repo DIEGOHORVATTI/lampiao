@@ -30,7 +30,7 @@ func _ready() -> void:
 	var fire_center := screen + Vector2(-200, -380) + Vector2(97, 97)
 	_touch(2, fire_center, true)
 	await _frames(2)
-	_check(Input.is_action_pressed("fire"), "tocar no 🔥 aciona fire")
+	_check(Input.is_action_pressed("fire"), "tocar em ATIRAR aciona fire")
 	_touch(2, fire_center, false)
 	_touch(0, Vector2(300, screen.y - 300), true)
 	await _frames(1)

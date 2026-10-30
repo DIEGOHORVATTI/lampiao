@@ -28,7 +28,7 @@ func _ready() -> void:
 	await get_tree().create_timer(0.4).timeout
 	Global.activate_pressed.emit()
 	await get_tree().process_frame
-	_check(Pacto.hunger < 35.0 and not corpo.character_root.visible, "matar e comer o corpo-seco com ✋")
+	_check(Pacto.hunger < 35.0 and not corpo.character_root.visible, "matar e comer o corpo-seco com USAR")
 	Pacto.kerosene = 10.0
 	var can: Node3D = find_child("Querosene", true, false)
 	Global.player.global_position = can.global_position + Vector3.UP

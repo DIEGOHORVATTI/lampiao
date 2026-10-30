@@ -41,7 +41,7 @@ func _prologo() -> void:
 		["LAMPIÃO", "E o preço?"],
 		["ENCOSTO", "Comida. Toda noite. E quando tua vingança acabar, o resto é meu."],
 	])
-	await Dialogo.segurar("Segure ✋ para aceitar", 1.5, func(): Dialogo.falar([["ENCOSTO", "Eles tão chegando, garoto."]]))
+	await Dialogo.segurar("Segure a tela para aceitar", 1.5, func(): Dialogo.falar([["ENCOSTO", "Eles tão chegando, garoto."]]))
 	await Dialogo.falar([
 		["LAMPIÃO", "Feito. Eu te alimento com qualquer carniça que tiver no caminho. Mas tu fica calado até eu ter minha vingança."],
 		["ENCOSTO", "(riso baixo) Calado eu fico. Com fome, não."],
@@ -125,7 +125,7 @@ func _enjeitados() -> void:
 		["ENCOSTO", "Tá ouvindo? Pararam os grilo. Chegou visita."],
 	])
 	_spawn("E1")
-	Dialogo.mostrar_prompt("🌿 Raízes derrubam o corpo-seco · depois ✋ Comer")
+	Dialogo.mostrar_prompt("RAÍZES derrubam o corpo-seco. Depois, USAR para comer.")
 	await get_tree().create_timer(6.0).timeout
 	Dialogo.esconder_prompt()
 	_spawn("E2a")

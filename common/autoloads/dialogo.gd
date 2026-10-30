@@ -15,6 +15,8 @@ var choice_buttons: Array[TouchScreenButton] = []
 var talking := false
 var fader: ColorRect
 var card: Label
+var hold_bar: ProgressBar
+var screen_held := false
 
 
 func _ready() -> void:
@@ -39,6 +41,21 @@ func _ready() -> void:
 	card.add_theme_color_override("font_color", Color(0.91, 0.84, 0.69))
 	card.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	add_child(card)
+	hold_bar = ProgressBar.new()
+	hold_bar.show_percentage = false
+	hold_bar.set_anchors_and_offsets_preset(Control.PRESET_CENTER)
+	hold_bar.offset_left = -260
+	hold_bar.offset_right = 260
+	hold_bar.offset_top = 190
+	hold_bar.offset_bottom = 204
+	var fill := StyleBoxFlat.new()
+	fill.bg_color = Color(0.6, 0.08, 0.1)
+	var back := StyleBoxFlat.new()
+	back.bg_color = Color(1, 1, 1, 0.12)
+	hold_bar.add_theme_stylebox_override("fill", fill)
+	hold_bar.add_theme_stylebox_override("background", back)
+	hold_bar.visible = false
+	add_child(hold_bar)
 	for action in ["escolha_1", "escolha_2", "escolha_3"]:
 		if not InputMap.has_action(action):
 			InputMap.add_action(action)
@@ -138,13 +155,22 @@ func escolher(options: Array, timeout := 0.0, on_timeout := Callable()) -> int:
 	return choice
 
 
+func _input(event: InputEvent) -> void:
+	if event is InputEventScreenTouch:
+		screen_held = event.pressed
+	elif event is InputEventMouseButton:
+		screen_held = event.pressed
+
+
 func segurar(text: String, seconds: float, nag := Callable()) -> void:
 	var held := 0.0
 	var idle := 0.0
+	prompt.text = text
+	hold_bar.visible = true
 	while held < seconds:
 		await get_tree().process_frame
 		var dt := get_process_delta_time()
-		if Input.is_action_pressed("activate"):
+		if Input.is_action_pressed("activate") or screen_held:
 			held += dt
 			idle = 0.0
 		else:
@@ -153,8 +179,9 @@ func segurar(text: String, seconds: float, nag := Callable()) -> void:
 			if idle > 6.0 and nag.is_valid():
 				idle = 0.0
 				nag.call()
-		prompt.text = "%s  %s" % [text, "▮".repeat(int(held / seconds * 10.0)) + "▯".repeat(10 - int(held / seconds * 10.0))]
+		hold_bar.value = held / seconds * 100.0
 	prompt.text = ""
+	hold_bar.visible = false
 
 
 func _label(font_size: int, preset: int, offset: float) -> Label:
