@@ -3,6 +3,13 @@
 Jogo de horror em primeira pessoa no sertão. Inspirado no mangá *Lampião* (justiceiro
 errante possuído) e na música de referência (transcrição em `docs/transcricao-musica.txt`).
 
+## Decisões do autor (2026-10-29)
+
+- O apelido vem do rifle: ele atirava tão rápido que o clarão iluminava a noite. **Não existe lampião de querosene**: a luz do jogo vem do clarão dos tiros e das fogueiras. Atirar ilumina, mas revela a posição.
+- O jogo nunca usa o nome de batismo, só "Lampião" ou "Capitão".
+- Nenhum emoji na interface.
+- Onde o roteiro cita querosene, lampião na mão ou pavio, trocar por clarão do rifle, fogueira ou candeeiro de cenário.
+
 ## Premissa
 
 O bando foi morto por um coronel. Lampião morreu junto, com a cabeça arrancada, e voltou.

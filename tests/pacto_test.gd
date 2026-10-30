@@ -12,7 +12,7 @@ func _ready() -> void:
 		return _finish()
 
 	_check(Pacto.active, "fase ativa o Pacto")
-	_check(Pacto.hunger < 5.0 and Pacto.kerosene > 95.0, "começa com fome baixa e querosene cheio")
+	_check(Pacto.hunger < 5.0, "começa com fome baixa")
 	Pacto.hunger = 50.0
 	Pacto.comer()
 	_check(Pacto.hunger < 25.0, "comer carniça alimenta o Encosto")
@@ -29,11 +29,6 @@ func _ready() -> void:
 	Global.activate_pressed.emit()
 	await get_tree().process_frame
 	_check(Pacto.hunger < 35.0 and not corpo.character_root.visible, "matar e comer o corpo-seco com USAR")
-	Pacto.kerosene = 10.0
-	var can: Node3D = find_child("Querosene", true, false)
-	Global.player.global_position = can.global_position + Vector3.UP
-	await get_tree().create_timer(0.6).timeout
-	_check(Pacto.kerosene > 50.0 and not is_instance_valid(can), "lata de querosene recarrega o lampião")
 	Pacto.hunger = 99.95
 	await get_tree().create_timer(0.5).timeout
 	_check(get_tree().paused, "fome cheia mata e pausa")

@@ -20,7 +20,7 @@ var current_health: float = 100.0
 @export var attack_range: float = 2.0
 @export var vision_range: float = 10.0
 @export var hearing_range: float = 0.0
-@export var light_attraction: float = 0.0
+@export var flash_sight_range: float = 0.0
 @export var alert_range: float = 0.0
 @export var eye_glow: Color = Color(0, 0, 0, 0)
 @export var chase_time: float = 5.0
@@ -86,6 +86,8 @@ func _ready() -> void:
 	add_to_group("inimigos")
 	if hearing_range > 0.0:
 		Global.fire_input.connect(_on_player_fired)
+	if flash_sight_range > 0.0:
+		Global.muzzle_flash.connect(_on_muzzle_flash)
 	if eye_glow.a > 0.0:
 		_add_eyes()
 
@@ -200,6 +202,11 @@ func _on_player_fired() -> void:
 		alert(global_position, 1.0)
 
 
+func _on_muzzle_flash() -> void:
+	if player and is_alive and global_position.distance_to(player.global_position) < flash_sight_range:
+		alert(global_position, 1.0)
+
+
 func _add_eyes() -> void:
 	for mi in character_root.find_children("*", "MeshInstance3D", true, false):
 		for i in mi.mesh.get_surface_count():
@@ -213,7 +220,7 @@ func _add_eyes() -> void:
 
 func _player_in_vision_range() -> bool:
 	var distance := global_position.distance_to(player.global_position)
-	return distance < vision_range * (1.0 + light_attraction * Pacto.light_factor())
+	return distance < vision_range
 
 func _on_chase_timer_timeout() -> void:
 	is_chasing = false

@@ -18,12 +18,11 @@ func _ready() -> void:
 	await _until(func(): return Pacto.active, 120.0)
 	Input.action_release("activate")
 	_check(Pacto.active and Pacto.hunger >= 59.0, "trato aceito, fome começa em 60")
-	_check(Pacto.kerosene == 0.0, "lampião começa seco")
 
 	_god_mode()
 	await _go("Lata")
 	await _activate()
-	_check(Pacto.kerosene >= 69.0, "encher o lampião na lata")
+	_check(level.rifle_taken, "pegar o rifle no chão")
 
 	await _go("G_Carroca")
 	await _until(func(): return Dialogo.choice_buttons[0].visible, 240.0)

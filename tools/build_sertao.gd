@@ -43,8 +43,8 @@ func _ready() -> void:
 	player.position = player_start
 	_own(player, scene_root)
 	var rig := Node.new()
-	rig.name = "LampiaoRig"
-	rig.set_script(load("res://world/sertao/lantern_rig.gd"))
+	rig.name = "ClaraoRig"
+	rig.set_script(load("res://world/sertao/clarao_rig.gd"))
 	rig.auto_start = root_script == null
 	_own(rig, scene_root)
 
@@ -140,11 +140,7 @@ func _enemies() -> void:
 		spawner.max_items = 1
 		_own(spawner, enemies)
 	for pos in [Vector3(-9, 0, 1), Vector3(12, 0, -1), Vector3(-20, 0, -22), Vector3(22, 0, 18), Vector3(2, 0, -26)]:
-		var can := Area3D.new()
-		can.name = "Querosene"
-		can.set_script(load("res://world/sertao/kerosene_pickup.gd"))
-		can.position = pos
-		_own(can, scene_root)
+		_prop("fogueira", pos, 0, int(pos.x * 10 + pos.z))
 	var ammo: Node3D = load("res://common/utils/ammo_refil.tscn").instantiate()
 	ammo.name = "Municao"
 	ammo.position = Vector3(-5, 0, 6)
@@ -171,7 +167,7 @@ func _night() -> Environment:
 	e.background_color = Color(0.02, 0.02, 0.035)
 	e.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
 	e.ambient_light_color = Color(0.25, 0.27, 0.4)
-	e.ambient_light_energy = 0.35
+	e.ambient_light_energy = 0.55
 	e.tonemap_mode = Environment.TONE_MAPPER_FILMIC
 	e.fog_enabled = true
 	e.fog_light_color = Color(0.05, 0.05, 0.07)

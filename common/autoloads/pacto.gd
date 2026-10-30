@@ -1,21 +1,17 @@
 extends CanvasLayer
 
 signal hunger_changed(value: float)
-signal kerosene_changed(value: float)
 
 const HUNGER_PER_SECOND := 0.8
 const HUNGER_PER_MEAL := 30.0
 const HEAL_PER_MEAL := 15.0
-const KEROSENE_PER_SECOND := 0.45
 const POSSESSION_DAMAGE := 1000.0
 
 var hunger := 0.0
-var kerosene := 100.0
 var active := false
 var fps_log_timer := 0.0
 
 var hunger_bar: ProgressBar
-var kerosene_bar: ProgressBar
 var death_screen: Control
 var death_message: Label
 
@@ -24,15 +20,13 @@ func _ready() -> void:
 	layer = 20
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	hunger_bar = _bar(Vector2(70, 135), Color(0.55, 0.08, 0.12), "FOME DO ENCOSTO")
-	kerosene_bar = _bar(Vector2(70, 185), Color(0.9, 0.55, 0.15), "QUEROSENE")
 	death_screen = _build_death_screen()
 	Global.player_dead.connect(_on_player_dead)
 	_set_hud_visible(false)
 
 
-func start_level(start_hunger := 0.0, start_kerosene := 100.0) -> void:
+func start_level(start_hunger := 0.0) -> void:
 	hunger = start_hunger
-	kerosene = start_kerosene
 	active = true
 	Global.enemies_killed = 0
 	get_tree().paused = false
@@ -64,15 +58,6 @@ func heal(amount: float) -> void:
 	Global.player_health_changed.emit(amount, player.current_health, player.MAX_HEALTH, false)
 
 
-func refill_kerosene(amount: float) -> void:
-	kerosene = minf(100.0, kerosene + amount)
-	_emit()
-
-
-func light_factor() -> float:
-	return lerpf(0.12, 1.0, kerosene / 100.0)
-
-
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_WM_GO_BACK_REQUEST and active:
 		stop()
@@ -89,7 +74,6 @@ func _process(delta: float) -> void:
 	if not active or get_tree().paused:
 		return
 	hunger = minf(100.0, hunger + HUNGER_PER_SECOND * delta)
-	kerosene = maxf(0.0, kerosene - KEROSENE_PER_SECOND * delta)
 	_emit()
 	if hunger >= 100.0 and Global.player and Global.player.is_alive:
 		death_message.text = "O Encosto cansou de esperar.\nAgora a carniça é você."
@@ -120,9 +104,7 @@ func _input(event: InputEvent) -> void:
 
 func _emit() -> void:
 	hunger_bar.value = hunger
-	kerosene_bar.value = kerosene
 	hunger_changed.emit(hunger)
-	kerosene_changed.emit(kerosene)
 
 
 func _set_hud_visible(visible_now: bool) -> void:

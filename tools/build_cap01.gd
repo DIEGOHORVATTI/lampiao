@@ -2,7 +2,7 @@ extends "res://tools/build_sertao.gd"
 
 const GATILHO := preload("res://world/gatilho.gd")
 const RELEVO := preload("res://world/cap01/relevo.gd")
-const PICKUP := preload("res://world/sertao/kerosene_pickup.gd")
+const CARTUCHEIRA := preload("res://common/utils/ammo_refil.tscn")
 
 
 func _setup() -> void:
@@ -66,6 +66,7 @@ func _z2_cemiterio() -> void:
 	_at("mandacaru", 54, 0)
 	_at("xique_xique", 44, 20)
 	_trigger("G_Cemiterio", 27, 6, Vector3(5, 4, 30))
+	_at("fogueira", 25, 9)
 	_marker("E1", 46, -1)
 	_marker("E2a", 46, 13)
 	_marker("E2b", 36, 16)
@@ -76,6 +77,7 @@ func _z3_trilha() -> void:
 		for side in [-1.0, 1.0]:
 			_at("pedra", p.x + side * 5.0, p.z + side * 2.0, rng.randf() * TAU)
 	_at("arvore_seca", 24, 38)
+	_at("fogueira", 26, 35)
 	_pickup(22, 40, 25.0)
 
 
@@ -114,6 +116,7 @@ func _z5_saida() -> void:
 	_at("pedra", -4, 146).scale = Vector3.ONE * 1.5
 	_trigger("G_Saida", 0, 128, Vector3(28, 6, 5))
 	_at("cruz_exvoto", 15, 166, 0.2)
+	_at("fogueira", 4, 150)
 	_trigger("G_Estrada", 15, 164, Vector3(10, 5, 6))
 	for x in range(-28, 60, 8):
 		_at("cerca_varas", x, 170)
@@ -171,13 +174,11 @@ func _at(kind: String, x: float, z: float, yaw := 0.0) -> Node3D:
 	return _prop(kind, Vector3(x, RELEVO.altura(x, z), z), yaw, rng.randi() % 100000)
 
 
-func _pickup(x: float, z: float, amount: float) -> void:
-	var can := Area3D.new()
-	can.name = "Querosene"
-	can.set_script(PICKUP)
-	can.refill = amount
-	can.position = Vector3(x, RELEVO.altura(x, z), z)
-	_own(can, scene_root)
+func _pickup(x: float, z: float, _amount: float) -> void:
+	var ammo: Node3D = CARTUCHEIRA.instantiate()
+	ammo.name = "Cartucheira"
+	ammo.position = Vector3(x, RELEVO.altura(x, z), z)
+	_own(ammo, scene_root)
 
 
 func _marker(marker_name: String, x: float, z: float) -> void:

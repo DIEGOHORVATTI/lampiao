@@ -17,6 +17,7 @@ const BENEDITO_TIMEOUT := 30.0
 var covered := 0
 var cine: Node3D
 var firing := false
+var rifle_taken := false
 var e4_spawned := 0
 var e4_done := false
 
@@ -24,7 +25,6 @@ var e4_done := false
 func _ready() -> void:
 	await get_tree().process_frame
 	_lock(true)
-	_rig().set_lit(false)
 	Dialogo.fade(1.0, 0.0)
 	await _prologo()
 	await _lata()
@@ -153,15 +153,14 @@ func _lata() -> void:
 	cine.sound(cine.ENGINE, Vector3(0, 0, -10), 4.0)
 	cine.end()
 	_lock(false)
-	Pacto.start_level(60.0, 0.0)
-	_rig().set_lit(false)
+	Pacto.start_level(60.0)
 
 
 func _acampamento() -> void:
-	var lata := _interagivel("Lata", "Encher o lampião")
+	var lata := _interagivel("Lata", "Pegar o rifle")
 	lata.usado.connect(func():
-		Pacto.refill_kerosene(70.0)
-		_rig().set_lit(true)
+		rifle_taken = true
+		Global.player.weapons_manager.switch_weapon(2)
 		Dialogo.falar([["ENCOSTO", "Costurar cabeça dá fome, garoto. Fome, fome."]]))
 	_interagivel("Barraca", "Ler os papéis").usado.connect(func(): Dialogo.falar([
 		["", "Relação do serviço. Grota da Baraúna, 28 de julho."],
@@ -176,7 +175,7 @@ func _acampamento() -> void:
 	_gatilho("G_Estrada").entrou.connect(_amanhecer)
 	await Dialogo.falar([
 		["TENENTE LAURINDO", "É assombração! Pro caminhão! Larga essa merda e sobe!"],
-		["ENCOSTO", "Tá seco. Enche da tua lata, garoto. É querosene bom, tá com teu cheiro."],
+		["ENCOSTO", "Teu rifle tá ali no chão, garoto. Pega. Num é à toa que chamam tu de Lampião."],
 	])
 
 
@@ -294,9 +293,6 @@ func _lock(locked: bool) -> void:
 		Global.player.set_physics_process(not locked)
 		Global.player.set_process_unhandled_input(not locked)
 
-
-func _rig() -> Node:
-	return find_child("LampiaoRig", true, false)
 
 
 func _spawn(marker_name: String) -> void:

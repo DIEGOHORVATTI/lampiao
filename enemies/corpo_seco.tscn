@@ -5,7 +5,7 @@
 [node name="CorpoSeco" instance=ExtResource("1")]
 move_speed = 1.0
 vision_range = 10.0
-light_attraction = 0.6
+flash_sight_range = 25.0
 hearing_range = 25.0
 alert_range = 12.0
 chase_time = 8.0
