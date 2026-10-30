@@ -1,0 +1,296 @@
+[gd_resource type="Theme" load_steps=33 format=3]
+
+[ext_resource type="FontFile" path="res://resources/fonts/Rye-Regular.ttf" id="Rye"]
+[ext_resource type="FontFile" path="res://resources/fonts/Alegreya-Variable.ttf" id="Alegreya"]
+[ext_resource type="Texture2D" path="res://resources/ui/backlands/button_normal.png" id="button_normal"]
+[ext_resource type="Texture2D" path="res://resources/ui/backlands/button_hover.png" id="button_hover"]
+[ext_resource type="Texture2D" path="res://resources/ui/backlands/button_pressed.png" id="button_pressed"]
+[ext_resource type="Texture2D" path="res://resources/ui/backlands/button_disabled.png" id="button_disabled"]
+[ext_resource type="Texture2D" path="res://resources/ui/backlands/frame_woodcut.png" id="frame_woodcut"]
+[ext_resource type="Texture2D" path="res://resources/ui/backlands/frame_blood.png" id="frame_blood"]
+[ext_resource type="Texture2D" path="res://resources/ui/backlands/grabber.png" id="grabber"]
+[ext_resource type="Texture2D" path="res://resources/ui/backlands/grabber_hover.png" id="grabber_hover"]
+[ext_resource type="Texture2D" path="res://resources/ui/backlands/slider_track.png" id="slider_track"]
+[ext_resource type="Texture2D" path="res://resources/ui/backlands/progress_back.png" id="progress_back"]
+[ext_resource type="Texture2D" path="res://resources/ui/backlands/progress_fill.png" id="progress_fill"]
+[ext_resource type="Texture2D" path="res://resources/ui/backlands/toggle_on.png" id="toggle_on"]
+[ext_resource type="Texture2D" path="res://resources/ui/backlands/toggle_off.png" id="toggle_off"]
+
+[sub_resource type="FontVariation" id="body"]
+base_font = ExtResource("Alegreya")
+variation_opentype = {2003265652: 520}
+
+[sub_resource type="FontVariation" id="bold"]
+base_font = ExtResource("Alegreya")
+variation_opentype = {2003265652: 760}
+
+[sub_resource type="FontVariation" id="display"]
+base_font = ExtResource("Rye")
+spacing_glyph = 2
+
+[sub_resource type="StyleBoxTexture" id="btn_normal"]
+content_margin_left = 104.0
+content_margin_top = 14.0
+content_margin_right = 104.0
+content_margin_bottom = 18.0
+texture = ExtResource("button_normal")
+texture_margin_left = 40.0
+texture_margin_top = 40.0
+texture_margin_right = 40.0
+texture_margin_bottom = 40.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[sub_resource type="StyleBoxTexture" id="btn_hover"]
+content_margin_left = 104.0
+content_margin_top = 14.0
+content_margin_right = 104.0
+content_margin_bottom = 18.0
+texture = ExtResource("button_hover")
+texture_margin_left = 40.0
+texture_margin_top = 40.0
+texture_margin_right = 40.0
+texture_margin_bottom = 40.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[sub_resource type="StyleBoxTexture" id="btn_pressed"]
+content_margin_left = 104.0
+content_margin_top = 14.0
+content_margin_right = 104.0
+content_margin_bottom = 18.0
+texture = ExtResource("button_pressed")
+texture_margin_left = 40.0
+texture_margin_top = 40.0
+texture_margin_right = 40.0
+texture_margin_bottom = 40.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[sub_resource type="StyleBoxTexture" id="btn_disabled"]
+content_margin_left = 104.0
+content_margin_top = 14.0
+content_margin_right = 104.0
+content_margin_bottom = 18.0
+texture = ExtResource("button_disabled")
+texture_margin_left = 40.0
+texture_margin_top = 40.0
+texture_margin_right = 40.0
+texture_margin_bottom = 40.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[sub_resource type="StyleBoxFlat" id="focus"]
+draw_center = false
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(1, 0.67, 0.24, 0.9)
+corner_radius_top_left = 18
+corner_radius_top_right = 18
+corner_radius_bottom_right = 18
+corner_radius_bottom_left = 18
+expand_margin_left = 6.0
+expand_margin_top = 6.0
+expand_margin_right = 6.0
+expand_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxFlat" id="check_focus"]
+draw_center = false
+border_width_bottom = 3
+border_color = Color(1, 0.67, 0.24, 0.9)
+
+[sub_resource type="StyleBoxEmpty" id="empty"]
+content_margin_left = 4.0
+content_margin_top = 6.0
+content_margin_right = 4.0
+content_margin_bottom = 6.0
+
+[sub_resource type="StyleBoxTexture" id="frame"]
+content_margin_left = 76.0
+content_margin_top = 64.0
+content_margin_right = 76.0
+content_margin_bottom = 64.0
+texture = ExtResource("frame_woodcut")
+texture_margin_left = 72.0
+texture_margin_top = 72.0
+texture_margin_right = 72.0
+texture_margin_bottom = 72.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[sub_resource type="StyleBoxTexture" id="frame_blood"]
+content_margin_left = 76.0
+content_margin_top = 64.0
+content_margin_right = 76.0
+content_margin_bottom = 64.0
+texture = ExtResource("frame_blood")
+texture_margin_left = 72.0
+texture_margin_top = 72.0
+texture_margin_right = 72.0
+texture_margin_bottom = 72.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[sub_resource type="StyleBoxTexture" id="track"]
+content_margin_top = 12.0
+content_margin_bottom = 12.0
+texture = ExtResource("slider_track")
+texture_margin_left = 14.0
+texture_margin_top = 14.0
+texture_margin_right = 14.0
+texture_margin_bottom = 14.0
+axis_stretch_horizontal = 2
+
+[sub_resource type="StyleBoxTexture" id="bar_back"]
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+texture = ExtResource("progress_back")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+axis_stretch_horizontal = 2
+
+[sub_resource type="StyleBoxTexture" id="bar_fill"]
+content_margin_top = 8.0
+content_margin_bottom = 8.0
+texture = ExtResource("progress_fill")
+texture_margin_left = 12.0
+texture_margin_top = 12.0
+texture_margin_right = 12.0
+texture_margin_bottom = 12.0
+axis_stretch_horizontal = 2
+
+[sub_resource type="StyleBoxFlat" id="grab_area"]
+bg_color = Color(0.55, 0.14, 0.07, 0.9)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+content_margin_top = 12.0
+content_margin_bottom = 12.0
+expand_margin_top = -4.0
+expand_margin_bottom = -4.0
+
+[sub_resource type="StyleBoxFlat" id="grab_area_hot"]
+bg_color = Color(0.85, 0.42, 0.12, 0.95)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+content_margin_top = 12.0
+content_margin_bottom = 12.0
+expand_margin_top = -4.0
+expand_margin_bottom = -4.0
+
+[resource]
+default_font = SubResource("body")
+default_font_size = 32
+Button/colors/font_color = Color(0.91, 0.85, 0.71, 1)
+Button/colors/font_hover_color = Color(1, 0.86, 0.6, 1)
+Button/colors/font_pressed_color = Color(0.86, 0.6, 0.25, 1)
+Button/colors/font_hover_pressed_color = Color(0.86, 0.6, 0.25, 1)
+Button/colors/font_focus_color = Color(1, 0.86, 0.6, 1)
+Button/colors/font_disabled_color = Color(0.5, 0.46, 0.4, 1)
+Button/colors/font_outline_color = Color(0.055, 0.035, 0.024, 1)
+Button/constants/outline_size = 8
+Button/font_sizes/font_size = 40
+Button/fonts/font = SubResource("display")
+Button/styles/normal = SubResource("btn_normal")
+Button/styles/hover = SubResource("btn_hover")
+Button/styles/pressed = SubResource("btn_pressed")
+Button/styles/hover_pressed = SubResource("btn_pressed")
+Button/styles/disabled = SubResource("btn_disabled")
+Button/styles/focus = SubResource("focus")
+CheckButton/colors/font_color = Color(0.91, 0.85, 0.71, 1)
+CheckButton/colors/font_hover_color = Color(1, 0.86, 0.6, 1)
+CheckButton/colors/font_pressed_color = Color(0.91, 0.85, 0.71, 1)
+CheckButton/colors/font_hover_pressed_color = Color(1, 0.86, 0.6, 1)
+CheckButton/colors/font_focus_color = Color(1, 0.86, 0.6, 1)
+CheckButton/colors/font_outline_color = Color(0.055, 0.035, 0.024, 1)
+CheckButton/constants/outline_size = 0
+CheckButton/constants/h_separation = 24
+CheckButton/font_sizes/font_size = 30
+CheckButton/fonts/font = SubResource("bold")
+CheckButton/icons/checked = ExtResource("toggle_on")
+CheckButton/icons/unchecked = ExtResource("toggle_off")
+CheckButton/icons/checked_mirrored = ExtResource("toggle_on")
+CheckButton/icons/unchecked_mirrored = ExtResource("toggle_off")
+CheckButton/icons/checked_disabled = ExtResource("toggle_on")
+CheckButton/icons/unchecked_disabled = ExtResource("toggle_off")
+CheckButton/styles/normal = SubResource("empty")
+CheckButton/styles/hover = SubResource("empty")
+CheckButton/styles/pressed = SubResource("empty")
+CheckButton/styles/hover_pressed = SubResource("empty")
+CheckButton/styles/disabled = SubResource("empty")
+CheckButton/styles/focus = SubResource("check_focus")
+HSlider/icons/grabber = ExtResource("grabber")
+HSlider/icons/grabber_highlight = ExtResource("grabber_hover")
+HSlider/icons/grabber_disabled = ExtResource("grabber")
+HSlider/styles/slider = SubResource("track")
+HSlider/styles/grabber_area = SubResource("grab_area")
+HSlider/styles/grabber_area_highlight = SubResource("grab_area_hot")
+HSlider/constants/center_grabber = 1
+Label/colors/font_color = Color(0.91, 0.85, 0.71, 1)
+Label/colors/font_outline_color = Color(0.055, 0.035, 0.024, 1)
+Label/colors/font_shadow_color = Color(0, 0, 0, 0)
+PanelContainer/styles/panel = SubResource("frame")
+ProgressBar/styles/background = SubResource("bar_back")
+ProgressBar/styles/fill = SubResource("bar_fill")
+ProgressBar/colors/font_color = Color(0.91, 0.85, 0.71, 1)
+ProgressBar/font_sizes/font_size = 18
+VBoxContainer/constants/separation = 18
+BloodPanel/base_type = &"PanelContainer"
+BloodPanel/styles/panel = SubResource("frame_blood")
+TitleLabel/base_type = &"Label"
+TitleLabel/fonts/font = SubResource("display")
+TitleLabel/font_sizes/font_size = 150
+TitleLabel/colors/font_color = Color(0.9, 0.58, 0.2, 1)
+TitleLabel/colors/font_outline_color = Color(0.055, 0.035, 0.024, 1)
+TitleLabel/constants/outline_size = 22
+TitleLabel/colors/font_shadow_color = Color(0.35, 0.03, 0.02, 0.85)
+TitleLabel/constants/shadow_offset_x = 6
+TitleLabel/constants/shadow_offset_y = 8
+TitleLabel/constants/shadow_outline_size = 22
+HeaderLabel/base_type = &"Label"
+HeaderLabel/fonts/font = SubResource("display")
+HeaderLabel/font_sizes/font_size = 64
+HeaderLabel/colors/font_color = Color(0.9, 0.62, 0.25, 1)
+HeaderLabel/colors/font_outline_color = Color(0.055, 0.035, 0.024, 1)
+HeaderLabel/constants/outline_size = 12
+DeathLabel/base_type = &"Label"
+DeathLabel/fonts/font = SubResource("display")
+DeathLabel/font_sizes/font_size = 54
+DeathLabel/colors/font_color = Color(0.93, 0.78, 0.6, 1)
+DeathLabel/colors/font_outline_color = Color(0.2, 0, 0, 1)
+DeathLabel/constants/outline_size = 14
+DeathLabel/constants/line_spacing = 10
+VerseLabel/base_type = &"Label"
+VerseLabel/fonts/font = SubResource("bold")
+VerseLabel/font_sizes/font_size = 34
+VerseLabel/colors/font_color = Color(0.91, 0.85, 0.71, 1)
+VerseLabel/constants/line_spacing = 6
+CaptionLabel/base_type = &"Label"
+CaptionLabel/fonts/font = SubResource("body")
+CaptionLabel/font_sizes/font_size = 22
+CaptionLabel/colors/font_color = Color(0.91, 0.85, 0.71, 0.8)
+CaptionLabel/colors/font_outline_color = Color(0.055, 0.035, 0.024, 1)
+CaptionLabel/constants/outline_size = 6
+SettingLabel/base_type = &"Label"
+SettingLabel/fonts/font = SubResource("bold")
+SettingLabel/font_sizes/font_size = 30
+HudLabel/base_type = &"Label"
+HudLabel/fonts/font = SubResource("bold")
+HudLabel/font_sizes/font_size = 30
+HudLabel/colors/font_color = Color(0.91, 0.86, 0.75, 1)
+HudLabel/colors/font_outline_color = Color(0.25, 0, 0, 1)
+HudLabel/constants/outline_size = 8
+SubtitleLabel/base_type = &"Label"
+SubtitleLabel/fonts/font = SubResource("bold")
+SubtitleLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+CardLabel/base_type = &"Label"
+CardLabel/fonts/font = SubResource("display")
+CardLabel/colors/font_outline_color = Color(0.055, 0.035, 0.024, 1)
+CardLabel/constants/outline_size = 10

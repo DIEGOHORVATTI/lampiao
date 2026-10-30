@@ -1,6 +1,13 @@
 const P := preload("res://game/world/props/prop_library.gd")
 const CAVE := preload("res://game/world/chapters/chapter_01/cave_field.gd")
 const DRUM_RADIUS := 0.78
+const MOUTH_HALF_WIDTH := 30.0
+const MOUTH_ARCH_X := 0.6
+const MOUTH_ARCH_HALF := 2.6
+const MOUTH_ARCH_SPRING := 3.0
+const MOUTH_ARCH_TOP := 5.4
+const MOUTH_ARCH_DEPTH := 1.8
+const MOUTH_PROFILE := [Vector2(-1.8, -0.6), Vector2(-1.5, 2.0), Vector2(-1.1, 4.4), Vector2(-0.5, 6.4), Vector2(0.7, 8.6), Vector2(2.6, 10.9), Vector2(5.0, 12.7), Vector2(8.5, 13.6), Vector2(13.0, 13.0), Vector2(18.0, 10.6), Vector2(22.0, 8.0)]
 
 
 static func idol_column(rng: RandomNumberGenerator) -> Node3D:
@@ -111,14 +118,19 @@ static func broken_drum_column(rng: RandomNumberGenerator) -> Node3D:
 	return _outdoor_column(rng, 2, true)
 
 
-static func _outdoor_column(rng: RandomNumberGenerator, drums: int, broken: bool) -> Node3D:
+static func trail_pillar(rng: RandomNumberGenerator) -> Node3D:
+	var root := _outdoor_column(rng, rng.randi_range(5, 8), rng.randf() < 0.3, rng.randf_range(1.1, 1.45))
+	root.rotation = Vector3(rng.randf_range(-0.06, 0.06), rng.randf() * TAU, rng.randf_range(-0.06, 0.06))
+	return root
+
+
+static func _outdoor_column(rng: RandomNumberGenerator, drums: int, broken: bool, radius := 0.85) -> Node3D:
 	var root := P._static_body()
-	var radius := 0.85
 	var top := _drum_stack(root, rng, drums, radius)
 	if broken:
 		for i in 5:
 			var a := TAU * i / 5.0 + rng.randf()
-			P._add_box(root, Vector3(0.5, rng.randf_range(0.2, 0.55), 0.4), Vector3(cos(a) * 0.45, top + 0.1, sin(a) * 0.45), "carved", Basis(Vector3.UP, -a) * Basis(Vector3.RIGHT, rng.randf_range(-0.3, 0.3)))
+			P._add_box(root, Vector3(0.5, rng.randf_range(0.2, 0.55), 0.4) * radius / 0.85, Vector3(cos(a), 0, sin(a)) * radius * 0.53 + Vector3(0, top + 0.1, 0), "carved", Basis(Vector3.UP, -a) * Basis(Vector3.RIGHT, rng.randf_range(-0.3, 0.3)))
 		P._add_cylinder(root, radius, 0.9, Vector3(1.6, radius, 0.8), "carved", 14, Basis(Vector3.UP, 0.6) * Basis(Vector3.RIGHT, PI / 2))
 	else:
 		P._add_cylinder(root, radius + 0.15, 0.3, Vector3(0, top + 0.15, 0), "carved", 14)
@@ -196,37 +208,154 @@ static func _wall_root(root: Node3D, rng: RandomNumberGenerator, start: Vector3,
 
 static func cave_mouth(rng: RandomNumberGenerator) -> Node3D:
 	var root := P._static_body()
-	var masses := [
-		[Vector3(-8.6, 3.6, -0.6), Vector3(5.8, 6.0, 2.8)],
-		[Vector3(9.4, 3.6, -0.6), Vector3(5.8, 6.2, 2.8)],
-		[Vector3(0.4, 9.4, -0.4), Vector3(6.0, 3.2, 2.8)],
-		[Vector3(-3.6, 3.6, -0.9), Vector3(1.7, 5.6, 2.2)],
-		[Vector3(4.6, 3.6, -0.9), Vector3(1.7, 5.8, 2.2)],
-		[Vector3(-8.0, 9.0, 1.6), Vector3(7.5, 3.4, 3.2)],
-		[Vector3(9.0, 9.2, 1.6), Vector3(7.5, 3.4, 3.2)],
-		[Vector3(-19.0, 3.0, 1.6), Vector3(6.5, 5.0, 3.6)],
-		[Vector3(20.0, 3.0, 1.6), Vector3(6.5, 5.0, 3.6)],
-	]
-	var faces: Array = []
-	for m in masses:
-		faces.append(P._add_blob(root, rng, m[0], m[1], "stone", 0.22))
-	for i in 110:
-		var face: Callable = faces[i % faces.size()]
-		_drape(root, rng, face)
+	var noise := FastNoiseLite.new()
+	noise.seed = rng.randi()
+	noise.frequency = 0.16
+	noise.fractal_octaves = 3
+	var sheet := func(u: float, v: float) -> Vector3: return _hill_point(noise, u, v)
+	var st := SurfaceTool.new()
+	st.begin(Mesh.PRIMITIVE_TRIANGLES)
+	_hill_sheet(st, sheet)
+	_arch_jamb(st, sheet)
+	st.generate_normals()
+	var mesh := st.commit()
+	root.add_child(P._mesh_instance(mesh, "stone_double"))
+	var shape := CollisionShape3D.new()
+	shape.shape = mesh.create_trimesh_shape()
+	root.add_child(shape)
+	var vines := SurfaceTool.new()
+	vines.begin(Mesh.PRIMITIVE_TRIANGLES)
+	for i in 150:
+		_hill_vine(vines, rng, sheet)
+	for i in 14:
+		_arch_root(vines, rng, sheet)
+	vines.generate_normals()
+	root.add_child(P._mesh_instance(vines.commit(), "root"))
 	return root
 
 
-static func _drape(root: Node3D, rng: RandomNumberGenerator, face: Callable) -> void:
-	var d := Vector3(rng.randf_range(-0.9, 0.9), rng.randf_range(0.0, 0.9), -rng.randf_range(0.5, 1.0))
+static func _hill_point(noise: FastNoiseLite, u: float, v: float) -> Vector3:
+	var x := u * MOUTH_HALF_WIDTH
+	var base := _profile(v)
+	var side := absf(u)
+	var height := 1.0 - 0.45 * side * side
+	var tuck := maxf(side - 0.72, 0.0) * 34.0
+	var p := Vector3(x, base.y * height, base.x + tuck)
+	var lump := Vector3(noise.get_noise_3d(x, p.y, 7.0) * 0.6, noise.get_noise_3d(x, p.y, 31.0) * 0.5, noise.get_noise_3d(x, p.y, 0.0) * 1.3)
+	var grip := smoothstep(0.0, 0.06, v) * _arch_calm(x, p.y)
+	return p + lump * grip + Vector3(0, 0, -0.25 * (1.0 - grip))
+
+
+static func _profile(v: float) -> Vector2:
+	var t := v * (MOUTH_PROFILE.size() - 1)
+	var i := mini(int(t), MOUTH_PROFILE.size() - 2)
+	return MOUTH_PROFILE[i].lerp(MOUTH_PROFILE[i + 1], t - i)
+
+
+static func _arch_calm(x: float, y: float) -> float:
+	var q := Vector2((x - MOUTH_ARCH_X) / MOUTH_ARCH_HALF, maxf(y - MOUTH_ARCH_SPRING, 0.0) / (MOUTH_ARCH_TOP - MOUTH_ARCH_SPRING))
+	return smoothstep(1.1, 2.2, q.length())
+
+
+static func _in_mouth_arch(x: float, y: float) -> bool:
+	var dx := absf(x - MOUTH_ARCH_X)
+	var half := MOUTH_ARCH_HALF + 0.3
+	if y < MOUTH_ARCH_SPRING:
+		return dx < half
+	var k := (y - MOUTH_ARCH_SPRING) / (MOUTH_ARCH_TOP + 0.3 - MOUTH_ARCH_SPRING)
+	return k < 1.0 and dx < half * sqrt(1.0 - k * k)
+
+
+static func _hill_sheet(st: SurfaceTool, sheet: Callable) -> void:
+	var cols := 96
+	var rows := 44
+	var grid: Array = []
+	for r in rows + 1:
+		var row: Array = []
+		for c in cols + 1:
+			row.append(sheet.call(lerpf(-1.0, 1.0, float(c) / cols), float(r) / rows))
+		grid.append(row)
+	for r in rows:
+		for c in cols:
+			var quad: Array = [grid[r][c], grid[r][c + 1], grid[r + 1][c], grid[r + 1][c + 1]]
+			var mid: Vector3 = (quad[0] + quad[3]) / 2.0
+			var plain := _profile((r + 0.5) / rows)
+			if plain.x < 1.0 and _in_mouth_arch(lerpf(-1.0, 1.0, (c + 0.5) / cols) * MOUTH_HALF_WIDTH, plain.y):
+				continue
+			_quad(st, quad)
+
+
+static func _quad(st: SurfaceTool, q: Array) -> void:
+	for k in [0, 2, 1, 1, 2, 3]:
+		st.add_vertex(q[k])
+
+
+static func _arch_outline() -> Array:
 	var points: Array = []
-	for i in rng.randi_range(6, 14):
-		var p: Vector3 = face.call(d)
-		points.append(p + Vector3(0, 0, -0.06))
-		d += Vector3(rng.randf_range(-0.12, 0.12), -rng.randf_range(0.1, 0.22), 0)
-		if d.normalized().z > -0.15:
+	for y in [-0.6, 0.6, 1.6, 2.4]:
+		points.append(Vector2(MOUTH_ARCH_X - MOUTH_ARCH_HALF, y))
+	for i in 25:
+		var a := PI * i / 24.0
+		points.append(Vector2(MOUTH_ARCH_X - cos(a) * MOUTH_ARCH_HALF, MOUTH_ARCH_SPRING + (MOUTH_ARCH_TOP - MOUTH_ARCH_SPRING) * sin(a)))
+	for y in [2.4, 1.6, 0.6, -0.6]:
+		points.append(Vector2(MOUTH_ARCH_X + MOUTH_ARCH_HALF, y))
+	return points
+
+
+static func _arch_jamb(st: SurfaceTool, sheet: Callable) -> void:
+	var outline := _arch_outline()
+	var rings: Array = []
+	for p in outline:
+		var on: Vector3 = sheet.call(p.x / MOUTH_HALF_WIDTH, _profile_v(maxf(p.y, -0.6)))
+		var out := Vector2(p.x - MOUTH_ARCH_X, maxf(p.y - MOUTH_ARCH_SPRING, 0.0)).normalized()
+		var lip := Vector3(p.x, p.y, on.z - 0.12)
+		rings.append([lip + Vector3(out.x, out.y, 0.0) * 0.9 + Vector3(0, 0, -0.05), lip, lip + Vector3(-out.x * 0.4, -out.y * 0.3, MOUTH_ARCH_DEPTH)])
+	for i in rings.size() - 1:
+		for k in 2:
+			_quad(st, [rings[i][k], rings[i + 1][k], rings[i][k + 1], rings[i + 1][k + 1]])
+
+
+static func _profile_v(y: float) -> float:
+	for i in MOUTH_PROFILE.size() - 1:
+		var lo: Vector2 = MOUTH_PROFILE[i]
+		var hi: Vector2 = MOUTH_PROFILE[i + 1]
+		if y <= hi.y:
+			return (i + clampf((y - lo.y) / (hi.y - lo.y), 0.0, 1.0)) / (MOUTH_PROFILE.size() - 1)
+	return 1.0
+
+
+static func _hill_vine(st: SurfaceTool, rng: RandomNumberGenerator, sheet: Callable) -> void:
+	var u := rng.randf_range(-0.8, 0.8)
+	var v := rng.randf_range(0.25, 0.75)
+	var points: Array = []
+	for i in rng.randi_range(8, 22):
+		var p: Vector3 = sheet.call(u, v)
+		if v < 0.02 or (_profile(v).x < 1.0 and _in_mouth_arch(p.x, _profile(v).y)):
 			break
+		points.append(p + Vector3(0, 0, -0.12))
+		u += rng.randf_range(-0.012, 0.012)
+		v -= rng.randf_range(0.012, 0.03)
 	if points.size() > 2:
-		P._add_tube(root, points, rng.randf_range(0.05, 0.1), 0.015, "root", 5)
+		P.tube(st, points, rng.randf_range(0.04, 0.11), 0.012, 5)
+
+
+static func _arch_root(st: SurfaceTool, rng: RandomNumberGenerator, sheet: Callable) -> void:
+	var x := MOUTH_ARCH_X + rng.randf_range(-MOUTH_ARCH_HALF - 1.5, MOUTH_ARCH_HALF + 1.5)
+	var u := x / MOUTH_HALF_WIDTH
+	var v := _profile_v(MOUTH_ARCH_TOP + rng.randf_range(0.6, 2.5))
+	var points: Array = []
+	for i in 12:
+		var p: Vector3 = sheet.call(u, v)
+		points.append(p + Vector3(0, 0, -0.15))
+		v -= 0.02
+		u += rng.randf_range(-0.01, 0.01)
+		if _profile(v).y < MOUTH_ARCH_TOP - 0.2 and _in_mouth_arch(p.x, _profile(v).y):
+			break
+	var tip: Vector3 = points[-1]
+	for i in 3:
+		tip += Vector3(rng.randf_range(-0.15, 0.15), -rng.randf_range(0.3, 0.7), rng.randf_range(0.0, 0.2))
+		points.append(tip)
+	P.tube(st, points, rng.randf_range(0.06, 0.12), 0.01, 5)
 
 
 static func roots_mesh(z_min: float, z_max: float, count: int) -> ArrayMesh:

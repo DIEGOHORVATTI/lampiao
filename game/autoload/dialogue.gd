@@ -12,6 +12,8 @@ const MIN_LINE_SECONDS := 3.0
 const MIN_BEFORE_SKIP := 0.6
 const VOICE_PATH := "res://resources/voices/%s.ogg"
 const VOICE_TAIL := 0.35
+const CHOICE_NORMAL := preload("res://resources/ui/backlands/choice_normal.png")
+const CHOICE_PRESSED := preload("res://resources/ui/backlands/choice_pressed.png")
 
 var subtitle: Label
 var prompt: Label
@@ -46,6 +48,8 @@ func _ready() -> void:
 	card.set_anchors_preset(Control.PRESET_FULL_RECT)
 	card.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	card.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	card.theme = Backlands.THEME
+	card.theme_type_variation = &"CardLabel"
 	card.add_theme_font_size_override("font_size", 44)
 	card.add_theme_color_override("font_color", Color(0.91, 0.84, 0.69))
 	card.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -82,8 +86,12 @@ func _ready() -> void:
 		label.name = "Texto"
 		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		label.theme = Backlands.THEME
+		label.theme_type_variation = &"SubtitleLabel"
 		label.add_theme_font_size_override("font_size", 34)
 		label.add_theme_color_override("font_color", Color(0.95, 0.88, 0.72))
+		label.add_theme_color_override("font_outline_color", Color(0.05, 0.02, 0.0))
+		label.add_theme_constant_override("outline_size", 6)
 		button.add_child(label)
 		add_child(button)
 		choice_buttons.append(button)
@@ -178,8 +186,8 @@ func choose(options: Array, timeout := 0.0, on_timeout := Callable()) -> int:
 		button.visible = i < options.size()
 		if not button.visible:
 			continue
-		button.texture_normal = _rect_texture(Vector2(width, 110), Color(0.25, 0.05, 0.03, 0.8))
-		button.texture_pressed = _rect_texture(Vector2(width, 110), Color(0.6, 0.25, 0.08, 0.9))
+		button.texture_normal = CHOICE_NORMAL
+		button.texture_pressed = CHOICE_PRESSED
 		button.position = Vector2((screen.x - total) / 2.0 + i * (width + gap), screen.y * 0.55)
 		var label: Label = button.get_node("Texto")
 		label.size = Vector2(width, 110)
@@ -245,6 +253,8 @@ func _label(font_size: int, preset: int, offset: float) -> Label:
 		label.offset_right = 700
 		label.offset_top = offset
 		label.offset_bottom = offset + 60
+	label.theme = Backlands.THEME
+	label.theme_type_variation = &"SubtitleLabel"
 	label.add_theme_font_size_override("font_size", font_size)
 	label.add_theme_color_override("font_outline_color", Color.BLACK)
 	label.add_theme_constant_override("outline_size", 10)
@@ -252,8 +262,3 @@ func _label(font_size: int, preset: int, offset: float) -> Label:
 	add_child(label)
 	return label
 
-
-func _rect_texture(size: Vector2, color: Color) -> ImageTexture:
-	var image := Image.create(int(size.x), int(size.y), false, Image.FORMAT_RGBA8)
-	image.fill(color)
-	return ImageTexture.create_from_image(image)

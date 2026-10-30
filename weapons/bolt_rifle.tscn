@@ -5,6 +5,7 @@
 [ext_resource type="ArrayMesh" path="res://resources/weapons/meshes/bolt_rifle_bolt.res" id="3_bolt"]
 [ext_resource type="Script" path="res://common/weapon/bolt_cycle.gd" id="4_cycle"]
 [ext_resource type="AudioStream" uid="uid://dufj8pnelaehr" path="res://resources/sfx/weapons/no_bullets.wav" id="5_click"]
+[ext_resource type="AudioStream" path="res://resources/sfx/weapons/rifle_shot.wav" id="6_shot"]
 
 [node name="BoltRifle" unique_id=1058031305 instance=ExtResource("1_gx0xw")]
 firing_distance = 100.0
@@ -20,7 +21,7 @@ focused_aim_angle = 0.3
 standard_aim_angle = 1.5
 
 [node name="StandardAimPosition" parent="." index="0" unique_id=643753700]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 0.25, -0.05, 0.05)
+transform = Transform3D(0.9797005, -0.06183193, 0.19069277, 0.06971398, 0.9969564, -0.034899496, -0.18795446, 0.047485, 0.9810292, 0.27, -0.06, 0.05)
 
 [node name="FocusedAimPosition" parent="." index="1" unique_id=1608304768]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, 0.05)
@@ -110,10 +111,10 @@ transform = Transform3D(-0.8915605, 0.017932465, -0.4525462, -0.22801897, 0.8455
 transform = Transform3D(0.017932454, 0.8915605, -0.4525462, 0.8455669, 0.22801897, 0.48272547, 0.53356814, -0.39131474, -0.74978477, -0.100321695, -0.19245419, -0.57580805)
 
 [node name="MuzzleFlashPosition" parent="fps_demo_arms" index="2" unique_id=219008948]
-transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0, -0.118, -1.37)
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0, -0.118, -1.265)
 
 [node name="FiringSFX" parent="SFX" index="0"]
-volume_db = 5.0
-pitch_scale = 0.72
+stream = ExtResource("6_shot")
+volume_db = 3.0
 
 [editable path="fps_demo_arms"]

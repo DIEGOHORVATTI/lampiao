@@ -18,6 +18,14 @@ const SHOTS := [
 	["hall_comic", Vector3(3, -4.2, 78), Vector3(6, 132, 0), true],
 	["skylight", Vector3(7, -3.4, 67), Vector3(-12, 135, 0), false],
 	["burial", Vector3(-8, 1.8, -19), Vector3(-6, 30, 0), false],
+	["opening", Vector3(-4, 0.7, -183), Vector3(-2, 4.1, -230), false, true],
+	["forest", Vector3(-4, 1.0, -189), Vector3(-2, 4.1, -230), false, true],
+	["ride_start", Vector3(0, 1.8, -38), Vector3(0, 2, 0), false, true],
+	["ride_end", Vector3(0, 1.8, -24), Vector3(0, 2, 0), false, true],
+	["ride_side", Vector3(4, 1.2, -22), Vector3(0, 3, 0), false, true],
+	["arrival", Vector3(1, 1.6, -14), Vector3(0, 1.5, 0), false, true],
+	["colonel", Vector3(0, 1.5, 3), Vector3(0, 2.2, -16), false, true],
+	["idol_close", Vector3(-6.5, -4.4, 70), Vector3(-10, -0.5, 64), false, true],
 ]
 
 
@@ -42,8 +50,15 @@ func _ready() -> void:
 		if only != "" and not only.split(",").has(shot[0]):
 			continue
 		cam.position = shot[1]
-		cam.rotation_degrees = shot[2]
+		_aim(cam, shot)
 		lantern.light_energy = 1.2 if shot[3] else 0.0
 		await get_tree().create_timer(0.4).timeout
 		get_viewport().get_texture().get_image().save_png("/tmp/claude-1000/env/shots/%s-%s.png" % [prefix, shot[0]])
 	get_tree().quit()
+
+
+func _aim(cam: Camera3D, shot: Array) -> void:
+	if shot.size() > 4:
+		cam.look_at(shot[2])
+		return
+	cam.rotation_degrees = shot[2]

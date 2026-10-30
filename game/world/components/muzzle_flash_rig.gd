@@ -2,6 +2,7 @@ extends Node
 
 const FLASH := Color(1.0, 0.82, 0.55)
 const HANDS_LIGHT := Color(1.0, 0.6, 0.25)
+const VIEWMODEL_LAYER := 2
 
 @export var auto_start := true
 
@@ -20,6 +21,7 @@ func _ready() -> void:
 	flash.omni_range = 24.0
 	flash.omni_attenuation = 0.8
 	flash.position = Vector3(0.2, -0.1, -1.0)
+	flash.light_cull_mask = 0xFFFFF & ~VIEWMODEL_LAYER
 	player.camera.add_child(flash)
 	Global.muzzle_flash.connect(_on_muzzle_flash)
 

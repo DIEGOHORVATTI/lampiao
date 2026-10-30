@@ -26,6 +26,7 @@ const COLORS := {
 	"ember": Color(1.0, 0.35, 0.1),
 	"bone": Color(0.82, 0.78, 0.68),
 	"rot": Color(0.22, 0.05, 0.04),
+	"foliage": Color(0.05, 0.065, 0.045),
 }
 
 const TEXTURES := {
@@ -58,6 +59,7 @@ const CAVE_FIELD := "res://game/world/chapters/chapter_01/cave_field.gd"
 const CAVE_PIECES := "res://game/world/props/cave_pieces.gd"
 const CHAPTER_PIECES := "res://game/world/props/chapter_01_pieces.gd"
 const TEXTURE_DIR := "res://resources/textures/world/%s.png"
+const DOUBLE_SIDED := "_double"
 
 static var _materials := {}
 
@@ -104,9 +106,9 @@ static func _build(kind: String, rng: RandomNumberGenerator) -> Node3D:
 		"farm_terrain": return terrain(rng, 96.0, 0.2)
 		"xique_xique": return xique_xique(rng)
 		"horse_carcass": return carcass(rng, 1.0)
-		"barbed_fence", "horse", "tomb_slab", "bone_niche", "torch", "wall_lamp", "chapel", "manor", "porch_house", "rail_fence", "great_dead_tree", "dry_stakes":
+		"barbed_fence", "horse", "dry_bush", "forest_belt", "tomb_slab", "bone_niche", "torch", "wall_lamp", "chapel", "manor", "porch_house", "rail_fence", "great_dead_tree", "dry_stakes":
 			return load(CHAPTER_PIECES).call(kind, rng)
-		"stone_arch", "idol_totem", "idol_column", "idol_column_tilted", "fallen_column", "drum_column", "broken_drum_column", "block_pillar", "arched_block_wall", "cave_mouth", "moonbeam", "cauldron", "stone_stove", "coin_pile", "sleeping_mat", "rolled_blanket", "gourd_bowls", "hanging_bags":
+		"stone_arch", "idol_totem", "idol_column", "idol_column_tilted", "fallen_column", "drum_column", "broken_drum_column", "block_pillar", "arched_block_wall", "cave_mouth", "trail_pillar", "moonbeam", "cauldron", "stone_stove", "coin_pile", "sleeping_mat", "rolled_blanket", "gourd_bowls", "hanging_bags":
 			return load(CAVE_PIECES).call(kind, rng)
 		"goat_carcass": return carcass(rng, 0.5)
 		"dead_vulture": return carcass(rng, 0.25)
@@ -137,6 +139,10 @@ static func material(name: String) -> Material:
 		return cave_material()
 	if name == "moonbeam":
 		return _shader_material(name, MOONBEAM_SHADER)
+	if name.ends_with(DOUBLE_SIDED) and not _materials.has(name):
+		var twin: StandardMaterial3D = material(name.trim_suffix(DOUBLE_SIDED)).duplicate()
+		twin.cull_mode = BaseMaterial3D.CULL_DISABLED
+		_materials[name] = twin
 	if not _materials.has(name):
 		var m := StandardMaterial3D.new()
 		m.albedo_color = COLORS[name]

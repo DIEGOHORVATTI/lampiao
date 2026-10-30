@@ -102,10 +102,8 @@ func _build_overlay() -> void:
 	overlay.add_child(lens_crack)
 	objective_label = Label.new()
 	objective_label.position = Vector2(48, 40)
-	objective_label.add_theme_font_size_override("font_size", 30)
-	objective_label.add_theme_color_override("font_color", Color(0.91, 0.86, 0.75))
-	objective_label.add_theme_color_override("font_outline_color", Color(0.25, 0.0, 0.0))
-	objective_label.add_theme_constant_override("outline_size", 8)
+	objective_label.theme = Backlands.THEME
+	objective_label.theme_type_variation = &"HudLabel"
 	overlay.add_child(objective_label)
 
 

@@ -309,3 +309,72 @@ static func dry_stakes(rng: RandomNumberGenerator) -> Node3D:
 		P._add_tube(root, [base, base + Vector3(0, height * 0.5, 0) + bend * 0.4, base + Vector3(0, height, 0) + bend], rng.randf_range(0.06, 0.1), 0.004, "dry_wood", 5)
 		P._add_cylinder(root, 0.1, height, base + Vector3(0, height / 2.0, 0), "", 6, Basis.IDENTITY, true)
 	return root
+
+
+static func dry_bush(rng: RandomNumberGenerator) -> Node3D:
+	var root := Node3D.new()
+	var st := SurfaceTool.new()
+	st.begin(Mesh.PRIMITIVE_TRIANGLES)
+	for i in rng.randi_range(9, 16):
+		var heading := Vector3(rng.randf_range(-0.7, 0.7), 1.0, rng.randf_range(-0.7, 0.7)).normalized()
+		_twig(st, rng, Vector3(rng.randf_range(-0.15, 0.15), -0.05, rng.randf_range(-0.15, 0.15)), heading, rng.randf_range(0.6, 1.5), 0.035, 2)
+	st.generate_normals()
+	root.add_child(P._mesh_instance(st.commit(), "dry_wood"))
+	return root
+
+
+static func _twig(st: SurfaceTool, rng: RandomNumberGenerator, from: Vector3, heading: Vector3, length: float, radius: float, depth: int) -> void:
+	var points: Array = [from]
+	var p := from
+	var dir := heading
+	for i in 3:
+		dir = (dir + Vector3(rng.randf_range(-0.3, 0.3), rng.randf_range(-0.1, 0.15), rng.randf_range(-0.3, 0.3))).normalized()
+		p += dir * length / 3.0
+		points.append(p)
+	P.tube(st, points, radius, radius * 0.2, 4)
+	if depth <= 1:
+		return
+	for i in 2:
+		var turn := Basis(Vector3.UP, rng.randf_range(-1.5, 1.5)) * Basis(Vector3.RIGHT, rng.randf_range(-0.6, 0.6))
+		_twig(st, rng, points[rng.randi_range(1, 2)], (turn * dir).normalized(), length * 0.5, radius * 0.5, depth - 1)
+
+
+static func forest_belt(rng: RandomNumberGenerator, length := 140.0, depth := 22.0) -> Node3D:
+	var root := Node3D.new()
+	var crowns := SurfaceTool.new()
+	crowns.begin(Mesh.PRIMITIVE_TRIANGLES)
+	var trunks := SurfaceTool.new()
+	trunks.begin(Mesh.PRIMITIVE_TRIANGLES)
+	var x := -length / 2.0
+	while x < length / 2.0:
+		for row in 3:
+			var base := Vector3(x + rng.randf_range(-1.5, 1.5), 0, row * depth / 3.0 + rng.randf_range(0.0, depth / 3.0))
+			_forest_tree(crowns, trunks, rng, base, rng.randf_range(8.0, 17.0) + row * 1.5)
+		x += rng.randf_range(3.0, 5.5)
+	crowns.generate_normals()
+	trunks.generate_normals()
+	root.add_child(P._mesh_instance(crowns.commit(), "foliage"))
+	root.add_child(P._mesh_instance(trunks.commit(), "wood"))
+	return root
+
+
+static func _forest_tree(crowns: SurfaceTool, trunks: SurfaceTool, rng: RandomNumberGenerator, base: Vector3, height: float) -> void:
+	var lean := Vector3(rng.randf_range(-0.6, 0.6), height, rng.randf_range(-0.6, 0.6))
+	P.tube(trunks, [base, base + lean * 0.5, base + lean * 0.8], rng.randf_range(0.25, 0.45), 0.12, 6)
+	for k in rng.randi_range(2, 4):
+		var center := base + lean * rng.randf_range(0.65, 1.0) + Vector3(rng.randf_range(-2.5, 2.5), 0, rng.randf_range(-2.0, 2.0))
+		_crown(crowns, rng, center, Vector3(rng.randf_range(2.5, 4.5), rng.randf_range(2.0, 3.6), rng.randf_range(2.5, 4.5)))
+
+
+static func _crown(st: SurfaceTool, rng: RandomNumberGenerator, center: Vector3, radii: Vector3) -> void:
+	var sphere := SphereMesh.new()
+	sphere.radial_segments = 10
+	sphere.rings = 6
+	var offset := Vector3(rng.randf() * 50.0, rng.randf() * 50.0, 0)
+	var noise := FastNoiseLite.new()
+	noise.frequency = 1.6
+	var verts: PackedVector3Array = sphere.get_mesh_arrays()[Mesh.ARRAY_VERTEX]
+	var indices: PackedInt32Array = sphere.get_mesh_arrays()[Mesh.ARRAY_INDEX]
+	for i in indices:
+		var n := verts[i].normalized()
+		st.add_vertex(center + n * radii * (1.0 + noise.get_noise_3dv(n + offset) * 0.45))
