@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-const MODEL := preload("res://resources/personagens/ual/UAL1_Standard.glb")
+const MODEL := preload("res://resources/personagens/volante/volante.tscn")
 const SHOT := preload("res://resources/sfx/weapons/pistol.wav")
 const GRAVITY := -20.0
 const LOOPS := ["Idle", "Walk", "Jog_Fwd", "Sitting_Idle", "Pistol_Idle", "Pistol_Aim_Neutral", "Idle_Torch"]
@@ -16,7 +16,6 @@ const LOOPS := ["Idle", "Walk", "Jog_Fwd", "Sitting_Idle", "Pistol_Idle", "Pisto
 @export var accuracy := 0.55
 @export var fire_interval := 1.5
 @export var chase_time := 10.0
-@export var uniform := Color(0.6, 0.53, 0.38)
 @export var seated := false
 @export var edible_seconds := 30.0
 
@@ -62,33 +61,12 @@ func _build_model() -> void:
 	for name in LOOPS:
 		if anim.has_animation(name):
 			anim.get_animation(name).loop_mode = Animation.LOOP_LINEAR
-	var mesh: MeshInstance3D = character_root.find_children("*", "MeshInstance3D", true, false)[0]
-	for i in mesh.mesh.get_surface_count():
-		var cloth := (mesh.get_active_material(i) as StandardMaterial3D).duplicate() as StandardMaterial3D
-		cloth.albedo_color = uniform if i == 0 else uniform.darkened(0.45)
-		cloth.roughness = 1.0
-		mesh.set_surface_override_material(i, cloth)
 	var skeleton: Skeleton3D = character_root.find_children("*", "Skeleton3D", true, false)[0]
-	var dark := StandardMaterial3D.new()
-	dark.albedo_color = Color(0.12, 0.1, 0.08)
-	var head := _attach(skeleton, "DEF-head")
-	var cap := CylinderMesh.new()
-	cap.top_radius = 0.11
-	cap.bottom_radius = 0.12
-	cap.height = 0.09
-	_part(head, cap, dark, Vector3(0, 0.17, 0))
-	var visor := BoxMesh.new()
-	visor.size = Vector3(0.2, 0.015, 0.1)
-	_part(head, visor, dark, Vector3(0, 0.13, 0.1))
-	var hand := _attach(skeleton, "DEF-hand.R")
-	var rifle := BoxMesh.new()
-	rifle.size = Vector3(0.05, 0.06, 0.95)
-	_part(hand, rifle, dark, Vector3(0, 0.25, 0.05)).rotation_degrees = Vector3(90, 0, 0)
+	var hand := _attach(skeleton, "hand_r")
 	muzzle = OmniLight3D.new()
 	muzzle.light_color = Color(1.0, 0.75, 0.4)
 	muzzle.light_energy = 0.0
 	muzzle.omni_range = 16.0
-	muzzle.position = Vector3(0, 0.75, 0.05)
 	hand.add_child(muzzle)
 
 
@@ -258,12 +236,3 @@ func _attach(skeleton: Skeleton3D, bone: String) -> BoneAttachment3D:
 	a.bone_name = bone
 	skeleton.add_child(a)
 	return a
-
-
-func _part(parent: Node3D, mesh: Mesh, mat: Material, pos: Vector3) -> MeshInstance3D:
-	var mi := MeshInstance3D.new()
-	mi.mesh = mesh
-	mi.material_override = mat
-	mi.position = pos
-	parent.add_child(mi)
-	return mi

@@ -8,6 +8,7 @@ const LOOPS := ["Idle", "Walk", "Jog_Fwd", "Sitting_Idle", "Pistol_Idle", "Idle_
 @export_enum("half_moon", "kepi", "beret", "none") var hat := "half_moon"
 @export var carries_torch := false
 @export var carries_rifle := true
+@export var character: PackedScene
 
 var model: Node3D
 var anim: AnimationPlayer
@@ -16,13 +17,29 @@ var torch_light: OmniLight3D
 
 
 func _ready() -> void:
-	model = MODEL.instantiate()
+	model = (character if character else MODEL).instantiate()
 	add_child(model)
 	anim = model.find_children("*", "AnimationPlayer", true, false)[0]
 	for name in LOOPS:
 		if anim.has_animation(name):
 			anim.get_animation(name).loop_mode = Animation.LOOP_LINEAR
 	skeleton = model.find_children("*", "Skeleton3D", true, false)[0]
+	if character:
+		_dress_character()
+	else:
+		_dress_mannequin()
+	if carries_torch:
+		_torch(_attach("hand_l" if character else "DEF-hand.L"))
+	pose("Idle")
+
+
+func _dress_character() -> void:
+	var rifle := skeleton.get_node_or_null("Rifle")
+	if rifle:
+		rifle.visible = carries_rifle
+
+
+func _dress_mannequin() -> void:
 	var mesh: MeshInstance3D = model.find_children("*", "MeshInstance3D", true, false)[0]
 	for i in mesh.mesh.get_surface_count():
 		var cloth := (mesh.get_active_material(i) as StandardMaterial3D).duplicate() as StandardMaterial3D
@@ -35,21 +52,21 @@ func _ready() -> void:
 		rifle.size = Vector3(0.05, 0.06, 0.95)
 		var mi := _part(_attach("DEF-spine.003"), rifle, _dark(), Vector3(0.0, 0.0, -0.18))
 		mi.rotation_degrees = Vector3(0, 0, 40)
-	if carries_torch:
-		var hand := _attach("DEF-hand.L")
-		var stick := CylinderMesh.new()
-		stick.top_radius = 0.025
-		stick.bottom_radius = 0.025
-		stick.height = 0.8
-		_part(hand, stick, _dark(), Vector3(0, 0.25, 0))
-		torch_light = OmniLight3D.new()
-		torch_light.light_color = Color(1.0, 0.6, 0.25)
-		torch_light.light_energy = 2.4
-		torch_light.omni_range = 5.0
-		torch_light.position = Vector3(0, 0.7, 0)
-		torch_light.set_script(load("res://game/world/components/flicker.gd"))
-		hand.add_child(torch_light)
-	pose("Idle")
+
+
+func _torch(hand: BoneAttachment3D) -> void:
+	var stick := CylinderMesh.new()
+	stick.top_radius = 0.025
+	stick.bottom_radius = 0.025
+	stick.height = 0.8
+	_part(hand, stick, _dark(), Vector3(0, 0.25, 0))
+	torch_light = OmniLight3D.new()
+	torch_light.light_color = Color(1.0, 0.6, 0.25)
+	torch_light.light_energy = 2.4
+	torch_light.omni_range = 5.0
+	torch_light.position = Vector3(0, 0.7, 0)
+	torch_light.set_script(load("res://game/world/components/flicker.gd"))
+	hand.add_child(torch_light)
 
 
 func pose(name: String, blend := 0.3) -> void:
